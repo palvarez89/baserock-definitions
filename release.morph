@@ -31,7 +31,7 @@ systems:
       DISK_SIZE: 4G
 - morph: devel-system-armv7lhf-wandboard
   deploy:
-    release:
+    devel-system-armv7lhf-wandboard:
       type: tar
       location: devel-system-armv7lhf-wandboard.tar
 - morph: genivi-baseline-system-x86_64-generic
