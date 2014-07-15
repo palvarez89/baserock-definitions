@@ -1,0 +1,358 @@
+#!/usr/bin/python
+# Copyright (C) 2014  Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+
+'''Upload and publish Baserock binaries for a release.
+
+This utility is used for the Baserock release process. See
+http://wiki.baserock.org/guides/release-process/ for details on the
+release process.
+
+This utility uploads two sets of binaries:
+
+* The build artifacts (built chunks and strata) used to construct the
+  systems being released. The systems are found in `release.morph` and
+  the artifacts from the Trove used to prepare the release. They get
+  uploaded to a public Trove (by default git.baserock.org). If they're
+  the same Trove, then nothing happens.
+
+* The released system images (disk images, tar archives, etc)
+  specified in `release.morph` get uploaded to a download server (by
+  default download.baserock.org).
+
+'''
+
+
+import json
+import logging
+import os
+import pwd
+import shutil
+import sys
+import urllib
+import urllib2
+import urlparse
+
+import cliapp
+import yaml
+
+
+class ReleaseUploader(cliapp.Application):
+
+    def add_settings(self):
+        group = 'Release upload settings'
+
+        local_username = self.get_local_username()
+
+        self.settings.string(
+            ['build-trove-host'],
+            'get build artifacts from Trove at ADDRESS',
+            metavar='ADDRESS',
+            group=group)
+
+        self.settings.string(
+            ['public-trove-host'],
+            'publish build artifacts on Trove at ADDRESS',
+            metavar='ADDRESS',
+            default='git.baserock.org',
+            group=group)
+
+        self.settings.string(
+            ['public-trove-username'],
+            'log into public trove as USER',
+            metavar='USER',
+            default=local_username,
+            group=group)
+
+        self.settings.string(
+            ['public-trove-artifact-dir'],
+            'put published artifacts into DIR',
+            metavar='DIR',
+            default='/home/cache/artifacts',
+            group=group)
+
+        self.settings.string(
+            ['release-artifact-dir'],
+            'get release artifacts from DIR (all files from there)',
+            metavar='DIR',
+            default='.',
+            group=group)
+
+        self.settings.string(
+            ['download-server-address'],
+            'publish release artifacts on server at ADDRESS',
+            metavar='ADDRESS',
+            default='download.baserock.org',
+            group=group)
+
+        self.settings.string(
+            ['download-server-username'],
+            'log into download server as USER',
+            metavar='USER',
+            default=local_username,
+            group=group)
+
+        self.settings.string(
+            ['download-server-private-dir'],
+            'use DIR as the temporary location for uploaded release '
+            'artifacts',
+            metavar='DIR',
+            default='/srv/download.baserock.org/baserock/.publish-temp',
+            group=group)
+
+        self.settings.string(
+            ['download-server-public-dir'],
+            'put published release artifacts in DIR',
+            metavar='DIR',
+            default='/srv/download.baserock.org/baserock',
+            group=group)
+
+        self.settings.string(
+            ['local-build-artifacts-dir'],
+            'keep build artifacts to be uploaded temporarily in DIR',
+            metavar='DIR',
+            default='build-artifacts',
+            group=group)
+
+        self.settings.string(
+            ['morph-cmd'],
+            'run FILE to invoke morph',
+            metavar='FILE',
+            default='morph',
+            group=group)
+
+    def get_local_username(self):
+        uid = os.getuid()
+        return pwd.getpwuid(uid)[0]
+
+    def process_args(self, args):
+        self.status(msg='Uploading and publishing Baserock release')
+        BuildArtifactPublisher(self.settings, self.status).publish_build_artifacts()
+        ReleaseArtifactPublisher(self.settings, self.status).publish_release_artifacts()
+        self.status(msg='Release has been uploaded and published')
+
+    def status(self, msg, **kwargs):
+        formatted = msg.format(**kwargs)
+        logging.info(formatted)
+        sys.stdout.write(formatted + '\n')
+        sys.stdout.flush()
+
+
+class BuildArtifactPublisher(object):
+
+    '''Publish build artifacts related to the release.'''
+
+    def __init__(self, settings, status):
+        self.settings = settings
+        self.status = status
+
+    def publish_build_artifacts(self):
+        artifact_basenames = self.list_build_artifacts_for_release()
+        self.status(
+            msg='Found {count} build artifact files in release',
+            count=len(artifact_basenames))
+
+        to_be_uploaded = self.filter_away_build_artifacts_on_public_trove(
+            artifact_basenames)
+        self.status(
+            msg='Need to fetch locally, then upload {count} build artifacts',
+            count=len(to_be_uploaded))
+
+        self.upload_build_artifacts_to_public_trove(to_be_uploaded)
+
+    def list_build_artifacts_for_release(self):
+        self.status(msg='Find build artifacts included in release')
+
+        # FIXME: These are hardcoded for simplicity. They would be
+        # possible to deduce automatically from the workspace, but
+        # that can happen later.
+        repo = 'baserock:baserock/definitions'
+        ref = 'HEAD'
+
+        argv = [self.settings['morph-cmd'], 'list-artifacts', '--quiet', repo, ref]
+        argv += self.find_system_morphologies()
+        output = cliapp.runcmd(argv)
+        basenames = output.splitlines()
+        return basenames
+
+    def find_system_morphologies(self):
+        cluster_morphology_pathname = 'release.morph'
+        with open(cluster_morphology_pathname) as f:
+            obj = yaml.load(f)
+        return [system_dict['morph'] for system_dict in obj['systems']]
+
+    def filter_away_build_artifacts_on_public_trove(self, basenames):
+        return [
+            basename
+            for basename, exists in self.query_public_trove_for_artifacts(basenames)
+            if not exists]
+
+    def query_public_trove_for_artifacts(self, basenames):
+        host = self.settings['public-trove-host']
+
+        # FIXME: This is just for testing.
+        host = 'ct-mcr-1.ducie.codethink.co.uk'
+
+        url = 'http://{host}:8080/1.0/artifacts'.format(host=host)
+        data = json.dumps(basenames)
+        f = urllib2.urlopen(url, data=data)
+        obj = json.load(f)
+        return obj.items()
+
+    def upload_build_artifacts_to_public_trove(self, basenames):
+        self.download_artifacts_locally(basenames)
+        self.upload_artifacts_to_public_trove(basenames)
+
+    def download_artifacts_locally(self, basenames):
+        dirname = self.settings['local-build-artifacts-dir']
+        self.create_directory_if_missing(dirname)
+        for i, basename in enumerate(basenames):
+            url = self.construct_artifact_url(basename)
+            pathname = os.path.join(dirname, basename)
+            if not os.path.exists(pathname):
+                self.status(
+                    msg='Downloading {i}/{total} {basename}',
+                    basename=repr(basename), i=i, total=len(basenames))
+                self.download_from_url(url, dirname, pathname)
+                assert self.path.exists(pathname)
+
+    def create_directory_if_missing(self, dirname):
+        if not os.path.exists(dirname):
+            os.makedirs(dirname)
+
+    def construct_artifact_url(self, basename):
+        scheme = 'http'
+        netloc = '{host}:8080'.format(host=self.settings['build-trove-host'])
+        path = '/1.0/artifacts'
+        query = 'filename={0}'.format(urllib.quote_plus(basename))
+        fragment = ''
+        components = (scheme, netloc, path, query, fragment)
+        return urlparse.urlunsplit(components)
+
+    def download_from_url(self, url, dirname, pathname):
+        logging.info(
+            'Downloading {url} to {pathname}'.format(
+                url=url, pathname=pathname))
+        with open(pathname, 'wb') as output:
+            if False: # FIXME: Skip this to speed up testing.
+                try:
+                    incoming = urllib2.urlopen(url)
+                    shutil.copyfileobj(incoming, output)
+                    incoming.close()
+                except urllib2.HTTPError as e:
+                    self.status(
+                        msg="ERROR: Can't download {url}: {explanation}",
+                        url=url,
+                        explanation=str(e))
+                    os.remove(pathname)
+                    raise
+
+    def upload_artifacts_to_public_trove(self, basenames):
+        self.status(
+            msg='Upload build artifacts to {trove}',
+            trove=self.settings['public-trove-host'])
+        rsync_files_to_server(
+            self.settings['local-build-artifacts-dir'],
+            basenames,
+            self.settings['public-trove-username'],
+            self.settings['public-trove-host'],
+            self.settings['public-trove-artifact-dir'])
+
+
+class ReleaseArtifactPublisher(object):
+
+    '''Publish release artifacts for a release.'''
+
+    def __init__(self, settings, status):
+        self.settings = settings
+        self.status = status
+
+    def publish_release_artifacts(self):
+        files = self.list_release_artifacts()
+        self.upload_release_artifacts_to_private_dir(files)
+        self.move_release_artifacts_to_public_dir(files)
+        self.create_symlinks_to_new_release_artifacts(files)
+
+    def list_release_artifacts(self):
+        self.status(msg='Find release artifacts to publish')
+        return os.listdir(self.settings['release-artifact-dir'])
+
+    def upload_release_artifacts_to_private_dir(self, files):
+        self.status(msg='Upload release artifacts to private directory')
+        path = self.settings['download-server-private-dir']
+        self.create_directory_on_download_server(path)
+        self.rsync_files_to_download_server(files, path)
+
+    def create_directory_on_download_server(self, path):
+        user = self.settings['download-server-username']
+        host = self.settings['download-server-address']
+        self.status(msg='Create {host}:{path}', host=host, path=path)
+        target = '{user}@{host}'.format(user=user, host=host)
+        cliapp.ssh_runcmd(target, ['mkdir', '-p', path])
+
+    def rsync_files_to_download_server(self, files, path):
+        self.status(msg='Upload release artifacts to download server')
+        rsync_files_to_server(
+            self.settings['release-artifact-dir'],
+            files,
+            self.settings['download-server-username'],
+            self.settings['download-server-address'],
+            path)
+
+    def move_release_artifacts_to_public_dir(self, files):
+        self.status(msg='Move release artifacts to public directory')
+        private_dir = self.settings['download-server-private-dir']
+        public_dir = self.settings['download-server-public-dir']
+        self.create_directory_on_download_server(public_dir)
+
+        # Move just the contents of the private dir, not the dir
+        # itself (-mindepth). Avoid overwriting existing files (mv
+        # -n).
+        argv = ['find', private_dir, '-mindepth', '1',
+                '-exec', 'mv', '-n', '{}', public_dir + '/.', ';']
+
+        target = '{user}@{host}'.format(
+            user=self.settings['download-server-username'],
+            host=self.settings['download-server-address'])
+        cliapp.ssh_runcmd(target, argv)
+
+    def create_symlinks_to_new_release_artifacts(self, files):
+        self.status(msg='FIXME: Create symlinks to new releas artifacts')
+
+
+def rsync_files_to_server(
+    source_dir, source_filenames, user, host, target_dir):
+
+    argv = [
+        'rsync',
+        '-a',
+        '--progress',
+        '--partial',
+        '--human-readable',
+        '--sparse',
+        '--protect-args',
+        '-0',
+        '--files-from=-',
+        source_dir,
+        '{user}@{host}:{path}'.format(user=user, host=host, path=target_dir),
+        ]
+    
+    files_list = ''.join(
+        '{0}\0'.format(filename) for filename in source_filenames)
+    cliapp.runcmd(argv, feed_stdin=files_list, stdout=None, stderr=None)
+
+
+ReleaseUploader(description=__doc__).run()

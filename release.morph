@@ -7,44 +7,15 @@ description: |
   you can deploy the systems yourself, if you are making a Baserock release
   then the script should be used.
 systems:
-- morph: devel-system-x86_32-chroot
-  deploy:
-    devel-system-x86_32-chroot:
-      type: tar
-      location: devel-system-x86_32-chroot.tar
 - morph: devel-system-x86_32-generic
   deploy:
     devel-system-x86_32-generic:
       type: rawdisk
       location: devel-system-x86_32-generic.img
       DISK_SIZE: 4G
-- morph: devel-system-x86_64-chroot
-  deploy:
-    devel-system-x86_64-chroot:
-      type: tar
-      location: devel-system-x86_64-chroot.tar
 - morph: devel-system-x86_64-generic
   deploy:
     devel-system-x86_64-generic:
       type: rawdisk
       location: devel-system-x86_64-generic.img
       DISK_SIZE: 4G
-- morph: devel-system-armv7lhf-wandboard
-  deploy:
-    release:
-      type: tar
-      location: devel-system-armv7lhf-wandboard.tar
-- morph: genivi-baseline-system-x86_64-generic
-  deploy:
-    genivi-baseline-system-x86_64-generic:
-      type: rawdisk
-      location: genivi-baseline-system-x86_64-generic.img
-      DISK_SIZE: 4G
-      KERNEL_ARGS: vga=788
-- morph: genivi-baseline-system-armv7lhf-versatile
-  deploy:
-    genivi-baseline-system-armv7lhf-versatile:
-      type: rawdisk
-      location: genivi-baseline-system-armv7lhf-versatile.img
-      DISK_SIZE: 4G
-      KERNEL_ARGS: vga=788
