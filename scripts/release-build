@@ -1,0 +1,158 @@
+#!/usr/bin/env python
+# Copyright (C) 2014  Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+
+import cliapp
+import morphlib
+import os
+import subprocess
+import sys
+import time
+
+
+class Build(object):
+    '''A single distbuild instance.'''
+
+    def __init__(self, name, arch, app):
+        self.system_name = name
+        self.controller = app.controllers[arch]
+        self.command = [
+            'morph', 'distbuild-morphology',
+            '--controller-initiator-address=%s' % self.controller,
+            'baserock:baserock/definitions', app.ref, self.system_name]
+
+    def start(self):
+        self.process = subprocess.Popen(self.command)
+
+    def completed(self):
+        return (self.process.poll() is not None)
+
+
+class ReleaseApp(cliapp.Application):
+
+    '''Cliapp app that handles distbuilding and deploying a cluster.'''
+
+    def add_settings(self):
+        self.settings.string(['controllers'],
+                             'a list of distbuild controllers and their '
+                             'architecture')
+        self.settings.string(['trove-host'],
+                             'hostname of Trove instance')
+
+    def process_args(self, args):
+        '''Process the command line'''
+        self.controllers = {}
+        controllers_list = self.settings['controllers'].split(', ')
+        for item in controllers_list:
+            arch, controller = item.split(':')
+            self.controllers[arch] = controller
+
+        self.ref = cliapp.runcmd(['git', 'rev-parse', 'HEAD']).strip()
+
+        sb = morphlib.sysbranchdir.open_from_within('.')
+        definitions = sb.get_git_directory_name(sb.root_repository_url)
+        defs_repo = morphlib.gitdir.GitDirectory(definitions)
+        self.loader = morphlib.morphloader.MorphologyLoader()
+        self.finder = morphlib.morphologyfinder.MorphologyFinder(defs_repo)
+
+        cluster_name = args[0]
+        cluster, cluster_path = self.load_morphology(cluster_name)
+
+        builds = self.prepare_builds(cluster)
+        if not os.path.exists('builds'):
+            os.mkdir('builds')
+        os.chdir('builds')
+        for build in builds:
+            build.start()
+
+        while not all(build.completed() for build in builds):
+            time.sleep(1)
+
+        fail = False
+        for build in builds:
+            if build.process.returncode != 0:
+                fail = True
+                sys.stderr.write(
+                    'Building failed for %s\n' % build.system_name)
+        if fail:
+            raise cliapp.AppException('Building of systems failed')
+
+        os.chdir('..')
+        if not os.path.exists('release'):
+            os.mkdir('release')
+        os.chdir('release')
+        self.deploy_images(cluster, cluster_path)
+
+    def load_morphology(self, name, kind=None):
+        path = morphlib.util.sanitise_morphology_path(name)
+        morph = self.loader.load_from_string(
+            self.finder.read_morphology(path))
+        if kind:
+            assert morph['kind'] == kind
+        return morph, path
+
+    def prepare_builds(self, cluster):
+        '''Prepare a list of builds'''
+        systems = [system['morph'] for system in cluster['systems']]
+        builds = []
+        for system_name in systems:
+            system, _ = self.load_morphology(system_name)
+            builds.append(Build(system_name, system['arch'], self))
+        return builds
+
+    def deploy_images(self, cluster, cluster_path):
+        version_label = 'baserock-%s' % self.settings['release-number']
+        outputs = {}
+
+        for system in cluster['systems']:
+            name = system['morph']
+            if name not in system['deploy']:
+                raise cliapp.AppException(
+                    'In %s: system %s ID should be "%s"' %
+                    (cluster_path, name, name))
+
+            # The release.morph cluster must specify a basename for the file,
+            # of name and extension. This script knows about name, but it
+            # can't find out the appropriate file extension without second
+            # guessing the behaviour of write extensions.
+            basename = system['deploy'][name]['location']
+
+            if '/' in basename or basename.startswith(version_label):
+                raise cliapp.AppException(
+                    'In %s: system %s.location should be just the base name, '
+                    'e.g. "%s.img"' % (cluster_path, name, name))
+
+            filename = '%s-%s' % (version_label, basename)
+            if os.path.exists(filename):
+                status('Reusing existing deployment of %s', filename)
+            else:
+                status('Creating %s from release.morph', filename)
+                self.deploy_single_image(cluster_path, name, filename, version_label)
+
+    def deploy_single_image(self, cluster_path, name, location, version_label):
+        deploy_command = [
+            'morph', 'deploy', cluster_path, name,
+            '--trove-host=%s' % self.settings['trove-host'],
+            '%s.location=%s' % (name, filename),
+            '%s.VERSION_LABEL=%s' % (name, version_label)
+        ]
+
+        cliapp.runcmd(deploy_command, stdout=sys.stdout)
+
+
+app = ReleaseApp()
+app.settings.config_files = ['release-build.conf']
+app.run()
