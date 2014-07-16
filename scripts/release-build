@@ -46,7 +46,7 @@ class ReleaseApp(cliapp.Application):
     '''Cliapp app that handles distbuilding and deploying a cluster.'''
 
     def add_settings(self):
-        self.settings.string(['controllers'],
+        self.settings.string_list(['controllers'],
                              'a list of distbuild controllers and their '
                              'architecture')
         self.settings.string(['trove-host'],
@@ -55,7 +55,7 @@ class ReleaseApp(cliapp.Application):
     def process_args(self, args):
         '''Process the command line'''
         self.controllers = {}
-        controllers_list = self.settings['controllers'].split(', ')
+        controllers_list = self.settings['controllers']
         for item in controllers_list:
             arch, controller = item.split(':')
             self.controllers[arch] = controller
