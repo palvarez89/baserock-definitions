@@ -49,8 +49,13 @@ class ReleaseApp(cliapp.Application):
         self.settings.string_list(['controllers'],
                              'a list of distbuild controllers and their '
                              'architecture')
+
         self.settings.string(['trove-host'],
                              'hostname of Trove instance')
+
+        self.settings.string(['release-number'],
+                             'Baserock version of the systems being built',
+                             default='yy.ww')
 
     def process_args(self, args):
         '''Process the command line'''
