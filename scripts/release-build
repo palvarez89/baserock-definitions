@@ -142,16 +142,16 @@ class ReleaseApp(cliapp.Application):
 
             filename = '%s-%s' % (version_label, basename)
             if os.path.exists(filename):
-                status('Reusing existing deployment of %s', filename)
+                self.output.write('Reusing existing deployment of %s\n' % filename)
             else:
-                status('Creating %s from release.morph', filename)
+                self.output.write('Creating %s from release.morph\n' % filename)
                 self.deploy_single_image(cluster_path, name, filename, version_label)
 
     def deploy_single_image(self, cluster_path, name, location, version_label):
         deploy_command = [
             'morph', 'deploy', cluster_path, name,
             '--trove-host=%s' % self.settings['trove-host'],
-            '%s.location=%s' % (name, filename),
+            '%s.location=%s' % (name, location),
             '%s.VERSION_LABEL=%s' % (name, version_label)
         ]
 
