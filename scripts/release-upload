@@ -167,6 +167,12 @@ class BuildArtifactPublisher(object):
 
         to_be_uploaded = self.filter_away_build_artifacts_on_public_trove(
             artifact_basenames)
+
+        logging.debug('List of artifacts (basenames) to upload (without alread uploaded):')
+        for i, basename in enumerate(to_be_uploaded):
+            logging.debug('  {0}: {1}'.format(i, basename))
+        logging.debug('End of artifact list (to_be_uploaded)')
+
         self.status(
             msg='Need to fetch locally, then upload {count} build artifacts',
             count=len(to_be_uploaded))
@@ -186,6 +192,12 @@ class BuildArtifactPublisher(object):
         argv += self.find_system_morphologies()
         output = cliapp.runcmd(argv)
         basenames = output.splitlines()
+
+        logging.debug('List of artifacts (basenames) to upload:')
+        for i, basename in enumerate(basenames):
+            logging.debug('  {0}: {1}'.format(i, basename))
+        logging.debug('End of artifact list')
+
         return basenames
 
     def find_system_morphologies(self):
@@ -195,6 +207,7 @@ class BuildArtifactPublisher(object):
         return [system_dict['morph'] for system_dict in obj['systems']]
 
     def filter_away_build_artifacts_on_public_trove(self, basenames):
+        return basenames # FIXME: this is a workaround for files that already exist but are 0 bytes on git.baserock.org
         return [
             basename
             for basename, exists in self.query_public_trove_for_artifacts(basenames)
@@ -244,18 +257,17 @@ class BuildArtifactPublisher(object):
             'Downloading {url} to {pathname}'.format(
                 url=url, pathname=pathname))
         with open(pathname, 'wb') as output:
-            if False: # FIXME: Skip this to speed up testing.
-                try:
-                    incoming = urllib2.urlopen(url)
-                    shutil.copyfileobj(incoming, output)
-                    incoming.close()
-                except urllib2.HTTPError as e:
-                    self.status(
-                        msg="ERROR: Can't download {url}: {explanation}",
-                        url=url,
-                        explanation=str(e))
-                    os.remove(pathname)
-                    raise
+            try:
+                incoming = urllib2.urlopen(url)
+                shutil.copyfileobj(incoming, output)
+                incoming.close()
+            except urllib2.HTTPError as e:
+                self.status(
+                    msg="ERROR: Can't download {url}: {explanation}",
+                    url=url,
+                    explanation=str(e))
+                os.remove(pathname)
+                raise
 
     def upload_artifacts_to_public_trove(self, basenames):
         self.status(
@@ -279,9 +291,10 @@ class ReleaseArtifactPublisher(object):
 
     def publish_release_artifacts(self):
         files = self.list_release_artifacts()
-        self.upload_release_artifacts_to_private_dir(files)
-        self.move_release_artifacts_to_public_dir(files)
-        self.create_symlinks_to_new_release_artifacts(files)
+        if files:
+            self.upload_release_artifacts_to_private_dir(files)
+            self.move_release_artifacts_to_public_dir(files)
+            self.create_symlinks_to_new_release_artifacts(files)
 
     def list_release_artifacts(self):
         self.status(msg='Find release artifacts to publish')
