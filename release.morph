@@ -30,7 +30,7 @@ systems:
       location: devel-system-x86_64-generic.img
       DISK_SIZE: 4G
 - morph: devel-system-armv7lhf-wandboard
-  deploy:
+  devel-system-armv7lhf-wandboard:
     release:
       type: tar
       location: devel-system-armv7lhf-wandboard.tar
