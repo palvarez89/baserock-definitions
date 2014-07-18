@@ -227,7 +227,7 @@ class BuildArtifactPublisher(object):
                     msg='Downloading {i}/{total} {basename}',
                     basename=repr(basename), i=i, total=len(basenames))
                 self.download_from_url(url, dirname, pathname)
-                assert self.path.exists(pathname)
+                assert os.path.exists(pathname)
 
     def create_directory_if_missing(self, dirname):
         if not os.path.exists(dirname):
