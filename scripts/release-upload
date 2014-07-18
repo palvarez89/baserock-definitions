@@ -203,9 +203,6 @@ class BuildArtifactPublisher(object):
     def query_public_trove_for_artifacts(self, basenames):
         host = self.settings['public-trove-host']
 
-        # FIXME: This is just for testing.
-        host = 'ct-mcr-1.ducie.codethink.co.uk'
-
         url = 'http://{host}:8080/1.0/artifacts'.format(host=host)
         data = json.dumps(basenames)
         f = urllib2.urlopen(url, data=data)
