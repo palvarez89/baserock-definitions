@@ -1,0 +1,18 @@
+name: ca-certificates
+kind: chunk
+build-system: autotools
+configure-commands: []
+pre-install-commands:
+- mkdir -p "$DESTDIR"/usr/share/ca-certificates
+- mkdir -p "$DESTDIR"/usr/sbin
+post-install-commands:
+- mkdir "$DESTDIR"/etc
+- |
+  cd "$DESTDIR"/usr/share/ca-certificates
+  find * -type f > "$DESTDIR"/etc/ca-certificates.conf
+- |
+  export CERTSCONF="$DESTDIR/etc/ca-certificates.conf"
+  export CERTSDIR="$DESTDIR/usr/share/ca-certificates"
+  export ETCCERTSDIR="$DESTDIR/etc/ssl/certs"
+  mkdir -p "$ETCCERTSDIR"
+  ./sbin/update-ca-certificates

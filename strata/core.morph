@@ -166,6 +166,14 @@ chunks:
   - cpython
   - libtool
   - xz
+- name: ca-certificates
+  morph: strata/core/ca-certificates.morph
+  repo: upstream:ca-certificates
+  ref: e9b06b26d9e57444e74a5cb6beca3f12726fc3c6
+  unpetrify-ref: baserock/debian/20140325
+  build-depends:
+  - automake
+  - cpython
 - name: curl
   morph: strata/core/curl.morph
   repo: upstream:curl
@@ -176,6 +184,7 @@ chunks:
   - automake
   - libtool
   - openssl-new
+  - ca-certificates
 - name: libexpat
   morph: strata/core/libexpat.morph
   repo: upstream:libexpat
