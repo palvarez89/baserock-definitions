@@ -1,0 +1,12 @@
+name: libxkbcommon-no-x11
+kind: chunk
+
+description: |
+  xkbcommon is a library to handle keyboard descriptions.
+
+  This version is built without X11 support. If built with X11 support,
+  it depends on the xcb-xkb library.
+
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --disable-x11

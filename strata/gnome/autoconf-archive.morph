@@ -1,0 +1,5 @@
+name: autoconf-archive
+kind: chunk
+build-system: autotools
+pre-configure-commands:
+- ./bootstrap.sh

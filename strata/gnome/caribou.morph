@@ -1,0 +1,5 @@
+name: caribou
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --disable-gtk2-module

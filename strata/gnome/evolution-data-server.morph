@@ -1,0 +1,5 @@
+name: evolution-data-server
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --disable-goa --disable-uoa --with-libdb=no --disable-google --with-nss-includes=/usr/include/nss --with-nspr-includes=/usr/include/nspr

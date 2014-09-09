@@ -1,0 +1,6 @@
+name: clutter
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --enable-wayland-backend --enable-wayland-compositor
+  --enable-egl-backend --enable-evdev-input --enable-x11-backend

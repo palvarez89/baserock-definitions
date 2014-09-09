@@ -3,6 +3,7 @@ kind: stratum
 build-depends:
 - morph: strata/foundation.morph
 - morph: strata/xorg-util-macros-common.morph
+- morph: strata/x-common.morph
 chunks:
 - name: mtdev
   repo: upstream:mtdev-git
@@ -27,8 +28,10 @@ chunks:
   build-depends:
   - mtdev
   - libevdev
-- name: libxkbcommon
-  morph: strata/input-common/libxkbcommon.morph
+- name: libxkbcommon-no-x11
   repo: upstream:xorg-lib-libxkbcommon
   ref: c43c3c866eb9d52cd8f61e75cbef1c30d07f3a28
+  morph: strata/input-common/libxkbcommon-no-x11.morph
   unpetrify-ref: xkbcommon-0.5.0
+  build-depends:
+    - xkeyboard-config

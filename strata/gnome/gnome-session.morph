@@ -1,0 +1,5 @@
+name: gnome-session
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --disable-man --enable-systemd

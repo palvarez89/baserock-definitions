@@ -1,0 +1,5 @@
+name: gnome-settings-daemon
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --disable-cups --disable-man

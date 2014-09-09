@@ -1,0 +1,63 @@
+name: gnome-system-x86_64
+kind: system
+description: A GNOME system system.
+arch: x86_64
+strata:
+- name: audio-bluetooth
+  morph: strata/audio-bluetooth.morph
+- name: bsp-x86_64-generic
+  morph: strata/bsp-x86_64-generic.morph
+- name: build-essential
+  morph: strata/build-essential.morph
+- name: NetworkManager-common
+  morph: strata/NetworkManager-common.morph
+- name: core
+  morph: strata/core.morph
+- name: foundation
+  morph: strata/foundation.morph
+- name: glib-common
+  morph: strata/glib-common.morph
+- name: gnome
+  morph: strata/gnome.morph
+- name: graphics-common
+  morph: strata/graphics-common.morph
+- name: gtk-deps
+  morph: strata/gtk-deps.morph
+- name: gtk3
+  morph: strata/gtk3.morph
+- name: input-common
+  morph: strata/input-common.morph
+- name: llvm-common
+  morph: strata/llvm-common.morph
+- name: mesa-common
+  morph: strata/mesa-common.morph
+- name: multimedia-common
+  morph: strata/multimedia-common.morph
+- name: multimedia-gstreamer
+  morph: strata/multimedia-gstreamer.morph
+- name: python3-core
+  morph: strata/python3-core.morph
+- name: python-pygobject
+  morph: strata/python-pygobject.morph
+- name: libsoup-common
+  morph: strata/libsoup-common.morph
+- name: tools
+  morph: strata/tools.morph
+- name: libdrm-common
+  morph: strata/libdrm-common.morph
+- name: wayland-generic
+  morph: strata/wayland-generic.morph
+- name: weston-common
+  morph: strata/weston-common.morph
+- name: x-common
+  morph: strata/x-common.morph
+- name: x-drivers
+  morph: strata/x-drivers.morph
+- name: x-generic
+  morph: strata/x-generic.morph
+- name: network-security
+  morph: strata/network-security.morph
+configuration-extensions:
+- extensions/set-hostname
+- extensions/add-config-files
+- extensions/install-essential-files
