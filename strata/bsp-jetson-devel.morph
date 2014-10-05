@@ -14,8 +14,8 @@ chunks:
 - name: u-boot
   morph: strata/bsp-jetson-devel/u-boot.morph
   repo: upstream:u-boot
-  ref: c77921345b943cdf5f2f28bbe88c6d8970620d2e
-  unpetrify-ref: baserock/jetson/u-boot-tegra-next
+  ref: b15ae44ab9f085140039b09a00232d5aed6596a9
+  unpetrify-ref: baserock/arm/tegra-uboot-btrfs
   build-depends:
   - device-tree-compiler
 - name: linux-jetson-tk1
