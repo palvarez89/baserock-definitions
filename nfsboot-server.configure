@@ -24,7 +24,8 @@ ROOT="$1"
 
 ##########################################################################
 
-chroot "$ROOT" systemctl enable nfs-server.service
+ln -sf /lib/systemd/system/nfs-server.service \
+    "$ROOT/etc/systemd/system/multi-user.target.wants/nfs-server.service"
 
 mkdir -p "$ROOT/srv/nfsboot/tftp" "$ROOT/srv/nfsboot/nfs"
 
@@ -41,4 +42,5 @@ ExecStart=/usr/bin/udpsvd -E 0 69 /usr/sbin/tftpd /srv/nfsboot/tftp/
 WantedBy=multi-user.target
 EOF
 
-chroot "$ROOT" systemctl enable nfsboot-tftp.service
+ln -sf /usr/lib/systemd/system/nfsboot-tftp.service \
+    "$ROOT/etc/systemd/system/multi-user.target.wants/nfsboot-tftp.service"
