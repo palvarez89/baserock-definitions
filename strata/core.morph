@@ -31,8 +31,7 @@ chunks:
 - name: m4
   morph: strata/core/m4.morph
   repo: upstream:m4
-  ref: d533342af991401d865de9b037ac03cdc9bd852e
-  unpetrify-ref: baserock/build-essential
+  ref: baserock/pedroalvarez/build-essential
   build-depends: []
 - name: mini-utils
   morph: strata/core/mini-utils.morph
