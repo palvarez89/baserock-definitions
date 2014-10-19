@@ -225,7 +225,7 @@ chunks:
 - name: bison
   morph: strata/core/bison.morph
   repo: upstream:bison
-  ref: 6729ad1c314b179225325dcc1bc684077a71f859
+  ref: baserock/pedroalvarez/v3.0.2
   unpetrify-ref: baserock/morph
   build-depends:
   - autoconf
