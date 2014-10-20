@@ -124,8 +124,7 @@ chunks:
 - name: patch
   morph: strata/foundation/patch.morph
   repo: upstream:patch
-  ref: 9a16dcb97aac1a26af4372d95bd62b84f3f1264a
-  unpetrify-ref: baserock/morph
+  ref: baserock/v2.7.1
   build-depends: []
 - name: tbdiff
   morph: strata/foundation/tbdiff.morph
