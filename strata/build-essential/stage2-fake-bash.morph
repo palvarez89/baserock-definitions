@@ -1,0 +1,4 @@
+name: stage2-fake-bash
+kind: chunk
+install-commands:
+- printf '#!/bin/sh\nexec /bin/sh "$@"\n' | install -D /proc/self/fd/0 -m 755 "$DESTDIR$PREFIX/bin/bash"

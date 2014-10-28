@@ -120,6 +120,15 @@ chunks:
   - stage2-eglibc
   build-mode: bootstrap
   prefix: /tools
+- name: stage2-fake-bash
+  morph: strata/build-essential/stage2-fake-bash.morph
+  repo: upstream:bash
+  ref: 3590145af6f1c9fa321dff231f69ae696e7e740b
+  unpetrify-ref: baserock/bash-4.3-patch-27
+  build-depends:
+  - stage2-busybox
+  build-mode: bootstrap
+  prefix: /tools
 - name: stage2-fhs-dirs
   morph: strata/build-essential/stage2-fhs-dirs.morph
   repo: baserock:baserock/fhs-dirs
@@ -200,6 +209,7 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
+  - stage2-fake-bash
   - stage2-eglibc
   - stage2-fhs-dirs
   - stage2-gawk
