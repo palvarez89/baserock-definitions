@@ -20,7 +20,6 @@ chunks:
 - name: syslinux
   morph: strata/bsp-x86_32-generic/syslinux.morph
   repo: upstream:syslinux
-  ref: 8821237240c5374d83298b2da5ad88fa1e3c1ef7
-  unpetrify-ref: baserock/morph
+  ref: baserock/pedroalvarez/glibc
   build-depends:
   - nasm
