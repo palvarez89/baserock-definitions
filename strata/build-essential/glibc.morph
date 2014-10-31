@@ -1,0 +1,86 @@
+name: glibc
+kind: chunk
+products:
+- artifact: glibc-nss
+  include:
+  - etc/nsswitch.conf
+  - (usr/)?lib/libnss.*
+- artifact: glibc-gconv
+  include:
+  - (usr/)?lib/gconv/.*
+- artifact: glibc-libs
+  include:
+  - sbin/ldconfig
+  - lib(32|64)?/ld-.*
+  - (usr/)?lib(exec)?/pt_chown
+- artifact: glibc-bins
+  include:
+  - (usr/)?s?bin/.*
+  - (usr/)?libexec/getconf/.*
+  - (usr/)?lib/libSegFault\.so(\.\d+)*$
+- artifact: glibc-libs
+  include:
+  - (usr/)?lib(32|64)?/lib[^/]*\.so(\.\d+)*$
+- artifact: glibc-devel
+  include:
+  - (usr/)?include/.*
+  - (usr/)?lib(32|64)?/lib.*\.a
+  - (usr/)?lib(32|64)?/lib.*\.la
+  - (usr/)?(lib(32|64)?|share)/pkgconfig/.*\.pc
+  - (usr/)?lib(32|64)?/.*\.o
+- artifact: glibc-locale
+  include:
+  - (usr/)?share/locale/.*
+  - (usr/)?share/i18n/.*
+  - (usr/)?share/zoneinfo/.*
+- artifact: glibc-misc
+  include:
+  - .*
+configure-commands:
+- mkdir o
+
+- |
+  case "$MORPH_ARCH" in
+      armv7*)
+          ARCH_FLAGS="--without-fp" ;;
+  esac
+
+  # We override the PATH here to remove /tools/bin from it.
+  # Thanks to this glibc finds bash in /bin/bash through the /bin
+  # symlink. This is important because glibc changes the path to bash
+  # of the shebang in some scripts and these scripts will be broken if
+  # they point to bash in /tools/bin/bash.
+  export PATH="/usr/bin:/sbin:/bin";
+  export CFLAGS="-O2 $CFLAGS";
+  cd o && ../configure \
+    $ARCH_FLAGS \
+    --prefix="$PREFIX" \
+    --disable-profile \
+    --enable-kernel=2.6.25 \
+    --without-cvs \
+    --without-selinux \
+    --enable-obsolete-rpc
+
+build-commands:
+- cd o && make localtime=UTC
+
+install-commands:
+- cd o && make install_root="$DESTDIR" localtime=UTC install
+- mkdir -p "$DESTDIR/etc"
+- |
+  cat <<EOF > nsswitch.conf
+  passwd: compat
+  group: compat
+  shadow: compat
+
+  hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4 myhostname
+  networks: files
+
+  protocols: db files
+  services: db files
+  ethers: db files
+  rpc: db files
+
+  netgroup: nis
+  EOF
+- install -m 644 -o root -g root nsswitch.conf "$DESTDIR/etc/nsswitch.conf"

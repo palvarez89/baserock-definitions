@@ -1,28 +1,29 @@
-name: stage2-eglibc
+name: stage2-glibc
 kind: chunk
 
 configure-commands:
 - mkdir o
 
-# Necessary for ARM port
-- cd libc && ln -s ../ports ports
-
 # Configure flag notes:
 #   1. Avoid installing to PREFIX/lib64 on x86_64.
 #   2. Location of linux-api-headers.
-#   3. Normal flags. See eglibc.morph.
+#   3. Normal flags. See glibc.morph.
 #   4. Force configuration values of certain things that can't be detected
 #      in a cross-compile.
 - |
+  case "$MORPH_ARCH" in
+      armv7*)
+          ARCH_FLAGS="--without-fp" ;;
+  esac
+
   export CFLAGS="-O2 $CFLAGS"; export CXX=false; \
-  cd o && ../libc/configure \
-    $(../morph-arch-config) \
-    --build=$(../libc/scripts/config.guess) --host=$TARGET_STAGE1 \
+  cd o && ../configure \
+    $ARCH_FLAGS \
+    --build=$(../scripts/config.guess) --host=$TARGET_STAGE1 \
     --prefix="$PREFIX" \
     `# [1]` --libdir="$PREFIX/lib" \
     `# [2]` --with-headers="$(pwd)/../../$PREFIX/include" \
     `# [3]` --disable-profile  --enable-kernel=2.6.25 \
-            --enable-add-ons=nptl,ports --without-cvs --without-selinux \
     `# [4]` libc_cv_c_cleanup=yes libc_cv_ctors_header=yes \
             libc_cv_forced_unwind=yes libc_cv_ssp=no
 
@@ -31,12 +32,12 @@ build-commands:
 
 install-commands:
 - cd o && make install_root="$DESTDIR" localtime=UTC install
-- sh stage2-eglibc-fix-specs
+- sh stage2-glibc-fix-specs
 
 # Install a symlink for the program interpreter (ld.so) so that binaries
-# built in stage 3 before the stage 3 eglibc is built can use it.
+# built in stage 3 before the stage 3 glibc is built can use it.
 # FIXME: get a better way of finding the name of the loader. The lib64
-# path is hardcoded into eglibc in the file
+# path is hardcoded into glibc in the file
 # sysdeps/unix/sysv/linux/configure.
 - install -d $DESTDIR/lib
 - |

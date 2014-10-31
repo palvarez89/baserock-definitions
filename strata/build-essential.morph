@@ -36,7 +36,7 @@ products:
   include:
   - fhs-dirs-.*
   - busybox-.*
-  - eglibc-nss
+  - glibc-nss
 chunks:
 - name: stage1-binutils
   morph: strata/build-essential/stage1-binutils.morph
@@ -65,11 +65,10 @@ chunks:
   - stage1-gcc
   build-mode: bootstrap
   prefix: /tools
-- name: stage2-eglibc
-  morph: strata/build-essential/stage2-eglibc.morph
-  repo: upstream:eglibc2
-  ref: 43ee5d250ad47d2bee8ec17954efb7f22d2b804c
-  unpetrify-ref: baserock/2.15-build-essential
+- name: stage2-glibc
+  morph: strata/build-essential/stage2-glibc.morph
+  repo: upstream:glibc
+  ref: baserock/pedroalvarez/build-essential
   build-depends:
   - stage1-binutils
   - stage1-gcc
@@ -84,7 +83,7 @@ chunks:
   build-depends:
   - stage1-binutils
   - stage1-gcc
-  - stage2-eglibc
+  - stage2-glibc
   build-mode: bootstrap
   prefix: /tools
 - name: stage2-gcc-fixed-headers
@@ -95,7 +94,7 @@ chunks:
   build-depends:
   - stage1-binutils
   - stage1-gcc
-  - stage2-eglibc
+  - stage2-glibc
   build-mode: bootstrap
   prefix: /tools
 - name: stage2-gcc
@@ -106,7 +105,7 @@ chunks:
   build-depends:
   - stage1-binutils
   - stage1-gcc
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-gcc-fixed-headers
   build-mode: bootstrap
   prefix: /tools
@@ -117,7 +116,7 @@ chunks:
   build-depends:
   - stage1-binutils
   - stage1-gcc
-  - stage2-eglibc
+  - stage2-glibc
   build-mode: bootstrap
   prefix: /tools
 - name: stage2-fake-bash
@@ -145,7 +144,7 @@ chunks:
   build-depends:
   - stage1-binutils
   - stage1-gcc
-  - stage2-eglibc
+  - stage2-glibc
   build-mode: bootstrap
   prefix: /tools
 - name: stage2-make
@@ -156,7 +155,7 @@ chunks:
   build-depends:
   - stage1-binutils
   - stage1-gcc
-  - stage2-eglibc
+  - stage2-glibc
   build-mode: bootstrap
   prefix: /tools
 - name: stage2-reset-specs
@@ -168,7 +167,7 @@ chunks:
   - stage1-binutils
   - stage1-gcc
   - stage2-linux-api-headers
-  - stage2-eglibc
+  - stage2-glibc
   build-mode: bootstrap
   prefix: /tools
 - name: fhs-dirs
@@ -179,7 +178,7 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
@@ -194,23 +193,22 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
   - stage2-linux-api-headers
   - stage2-make
   - stage2-reset-specs
-- name: eglibc
-  morph: strata/build-essential/eglibc.morph
-  repo: upstream:eglibc2
-  ref: df0258044f321990eadd647e03095a48ad04c1a8
-  unpetrify-ref: baserock/2.15-build-essential
+- name: glibc
+  morph: strata/build-essential/glibc.morph
+  repo: upstream:glibc
+  ref: baserock/pedroalvarez/build-essential
   build-depends:
   - stage2-binutils
   - stage2-busybox
   - stage2-fake-bash
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
@@ -219,9 +217,9 @@ chunks:
   - stage2-reset-specs
   - linux-api-headers
   artifacts:
-    eglibc-gconv: build-essential-runtime
-    eglibc-libs: build-essential-minimal
-    eglibc-nss: build-essential-runtime
+    glibc-gconv: build-essential-runtime
+    glibc-libs: build-essential-minimal
+    glibc-nss: build-essential-runtime
 - name: zlib
   morph: strata/build-essential/zlib.morph
   repo: upstream:zlib
@@ -230,14 +228,14 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
   - stage2-linux-api-headers
   - stage2-make
   - stage2-reset-specs
-  - eglibc
+  - glibc
   artifacts:
     zlib-libs: build-essential-minimal
 - name: binutils
@@ -248,14 +246,14 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
   - stage2-linux-api-headers
   - stage2-make
   - stage2-reset-specs
-  - eglibc
+  - glibc
   - zlib
 - name: busybox
   morph: strata/build-essential/busybox.morph
@@ -264,14 +262,14 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
   - stage2-linux-api-headers
   - stage2-make
   - stage2-reset-specs
-  - eglibc
+  - glibc
 - name: gawk
   morph: strata/build-essential/gawk.morph
   repo: upstream:gawk
@@ -280,14 +278,14 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
   - stage2-linux-api-headers
   - stage2-make
   - stage2-reset-specs
-  - eglibc
+  - glibc
 - name: gcc
   morph: strata/build-essential/gcc.morph
   repo: upstream:gcc-tarball
@@ -296,14 +294,14 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
   - stage2-linux-api-headers
   - stage2-make
   - stage2-reset-specs
-  - eglibc
+  - glibc
   - zlib
   artifacts:
     gcc-libs: build-essential-minimal
@@ -315,14 +313,14 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
   - stage2-linux-api-headers
   - stage2-make
   - stage2-reset-specs
-  - eglibc
+  - glibc
 - name: ccache
   morph: strata/build-essential/ccache.morph
   repo: upstream:ccache
@@ -331,12 +329,12 @@ chunks:
   build-depends:
   - stage2-binutils
   - stage2-busybox
-  - stage2-eglibc
+  - stage2-glibc
   - stage2-fhs-dirs
   - stage2-gawk
   - stage2-gcc
   - stage2-linux-api-headers
   - stage2-make
   - stage2-reset-specs
-  - eglibc
+  - glibc
   - zlib
