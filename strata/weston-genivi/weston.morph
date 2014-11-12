@@ -6,7 +6,7 @@ configure-commands:
 - autoreconf -ivf
 - |
   LDFLAGS='-L/lib64 -lrt' \
-  ./configure --prefix=$PREFIX --with-cairo-glesv2 --disable-xwayland \
+  ./configure --prefix=$PREFIX --disable-xwayland \
   --disable-x11-compositor \
   --disable-wayland-compositor  --enable-egl \
   --enable-clients --enable-demo-clients-install --enable-fbdev-compositor
