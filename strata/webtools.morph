@@ -19,8 +19,8 @@ chunks:
 - name: tar
   morph: strata/webtools/tar.morph
   repo: upstream:tar
-  ref: 0492b656656ca7973b126b8c117804d80952de48
-  unpetrify-ref: baserock/morph
+  ref: 9a58d148c26c220cb1b163c71e7a51a2e41f6b37 
+  unpetrify-ref: baserock/release_1_28
   build-depends: []
 - name: pip
   repo: upstream:pip.git
