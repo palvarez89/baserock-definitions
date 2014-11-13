@@ -13,6 +13,7 @@ configure-commands:
   *)
     DRIDRIVERS=yes
     GALLIUMDRIVERS=yes
+    EXTRAARGS="--enable-gallium-egl"
     ;;
   esac
   ./autogen.sh --prefix="$PREFIX" \
