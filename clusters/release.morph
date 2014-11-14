@@ -17,7 +17,7 @@ systems:
     build-system-x86_32:
       type: rawdisk
       location: build-system-x86_32.img
-      DISK_SIZE: 4G
+      DISK_SIZE: 6G
 - morph: systems/build-system-x86_64-chroot.morph
   deploy:
     build-system-x86_64-chroot:
@@ -28,13 +28,13 @@ systems:
     build-system-x86_64:
       type: rawdisk
       location: build-system-x86_64.img
-      DISK_SIZE: 4G
+      DISK_SIZE: 6G
 - morph: systems/build-system-armv7lhf-jetson.morph
   deploy:
     devel-system-armv7lhf-jetson:
       type: rawdisk
       location: build-system-armv7lhf-jetson.img
-      DISK_SIZE: 4G
+      DISK_SIZE: 2G
       ROOT_DEVICE: "/dev/mmcblk0p1"
       DTB_PATH: "boot/tegra124-jetson-tk1.dtb"
       BOOTLOADER_CONFIG_FORMAT: "extlinux"
