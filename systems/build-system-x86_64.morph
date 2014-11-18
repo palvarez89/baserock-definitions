@@ -21,6 +21,8 @@ strata:
   morph: strata/ansible.morph
 - name: cloudinit-support
   morph: strata/cloudinit-support.morph
+- name: openstack-clients
+  morph: strata/openstack-clients.morph
 configuration-extensions:
 - set-hostname
 - add-config-files
