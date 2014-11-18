@@ -4,7 +4,7 @@ description: |
   This is a template cluster morphology that can be adapted to set up a
   Mason.  Masons are composed of a trove and a distbuild system.
 systems:
-- morph: systems/distbuild-system-x86_64-openstack.morph
+- morph: systems/build-system-x86_64.morph
   deploy-defaults:
     ARTIFACT_CACHE_SERVER: example-cache-server
     CONTROLLERHOST: controller-hostname
