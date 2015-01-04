@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# Copyright (C) 2013  Codethink Limited
+#!/usr/bin/env python
+# Copyright (C) 2013-2015  Codethink Limited
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,11 +28,11 @@ Description=Ceph Monitor firstboot setup
 After=network-online.target
 
 [Service]
-ExecStart=/bin/bash -c "/root/setup-ceph-head | tee /root/monitor-setuplog"
-ExecStartPost=/bin/rm /etc/systemd/system/multi-user.target.wants/ceph-monitor-fboot.service
+ExecStart=/bin/sh /root/setup-ceph-head
+ExecStartPost=/bin/systemctl disable ceph-monitor-fboot.service
 
 [Install]
-Wanted-By=multi-user.target
+WantedBy=multi-user.target
 """
 
 systemd_monitor_fname_template = "ceph-monitor-fboot.service"
@@ -43,46 +43,71 @@ Description=Ceph osd firstboot setup
 After=network-online.target
 
 [Service]
-ExecStart=/bin/bash -c "/root/setup-ceph-node | tee /root/storage-setuplog"
-ExecStartPost=/bin/rm /etc/systemd/system/multi-user.target.wants/ceph-storage-fboot.service
+ExecStart=/bin/sh /root/setup-ceph-node
+ExecStartPost=/bin/systemctl disable ceph-storage-fboot.service
 
 [Install]
-Wanted-By=multi-user.target
+WantedBy=multi-user.target
 """
 systemd_osd_fname_template = "ceph-storage-fboot.service"
 
-ceph_monitor_config_template = """#!/bin/bash
-ceph-authtool --create-keyring /tmp/ceph.mon.keyring --gen-key -n mon. --cap mon 'allow *'
-ceph-authtool --create-keyring /etc/ceph/ceph.client.admin.keyring --gen-key -n client.admin --set-uid=0 --cap mon 'allow *' --cap osd 'allow *' --cap mds 'allow'
-ceph-authtool /tmp/ceph.mon.keyring --import-keyring /etc/ceph/ceph.client.admin.keyring
-monmaptool --create --add 0 10.0.100.2 --fsid 9ceb9257-7541-4de4-b34b-586079986700 /tmp/monmap
-mkdir /var/lib/ceph/mon/ceph-0
-ceph-mon --mkfs -i 0 --monmap /tmp/monmap --keyring /tmp/ceph.mon.keyring
-/etc/init.d/ceph start mon.0
-touch ~/monitor-configured
+ceph_monitor_config_template = """#!/bin/sh
+hn={self.hostname}
+monIp={self.mon_ip}
+clustFsid={self.cluster_fsid}
+ceph-authtool --create-keyring /tmp/ceph.mon.keyring \
+        --gen-key -n mon. --cap mon 'allow *'
+ceph-authtool /tmp/ceph.mon.keyring \
+        --import-keyring /etc/ceph/ceph.client.admin.keyring
+monmaptool --create --add "$hn" "$monIp" --fsid "$clustFsid" /tmp/monmap
+mkdir -p /var/lib/ceph/mon/ceph-"$hn"
+ceph-mon --mkfs -i "$hn" --monmap /tmp/monmap --keyring /tmp/ceph.mon.keyring
+systemctl enable ceph-mon@"$hn".service
+systemctl start ceph-mon@"$hn".service
 """
 
-ceph_storage_config_template = """#!/bin/bash
-scp 10.0.100.2:/var/lib/ceph/bootstrap-osd/ceph.keyring /var/lib/ceph/bootstrap-osd/
-echo -e "n\np\n1\n\n\nw\n" | fdisk /dev/sdb
-ceph-disk prepare --cluster ceph --cluster-uuid 9ceb9257-7541-4de4-b34b-586079986700 --fs-type ext4 /dev/sdb1
-sudo ceph-disk activate	/dev/sdb1
-/etc/init.d/ceph start osd.0
-touch ~/storage-configured
+ceph_storage_config_template = """#!/bin/sh
+storageDisk={self.osd_storage_dev}
+if `file -sL "$storageDisk" | grep -q ext4`; then
+    echo "ext4 disk detected. Proceding..."
+else
+    echo "ERROR: ext4 disk required." \
+         "Ensure $storageDisk is formated as ext4." >&2
+    exit 1
+fi
+hn={self.hostname}
+uuid="`uuidgen`"
+osdnum="`ceph osd create $uuid`"
+mkdir /var/lib/ceph/osd/ceph-"$osdnum"
+mount -o user_xattr "$storageDisk" /var/lib/ceph/osd/ceph-"$osdnum"
+ceph-osd -i "$osdnum" --mkfs --mkkey --osd-uuid "$uuid"
+ceph auth add osd."$osdnum" osd 'allow *' mon 'allow profile osd' \
+        -i /var/lib/ceph/osd/ceph-"$osdnum"/keyring
+ceph osd crush add-bucket "$hn" host
+ceph osd crush move "$hn" root=default
+ceph osd crush add  osd."$osdnum" 1.0 host="$hn"
+systmectl enable ceph-osd@"$osdnum".service
+systemctl start ceph-osd@"$osdnum".service
+echo "$storageDisk /var/lib/ceph/osd/ceph-$osdnum/ ext4 defaults 0 2" \
+        >> /etc/fstab
 """
 
-executable_file_permissions = stat.S_IRUSR | stat.S_IXUSR | stat.S_IWUSR | \
-                                             stat.S_IXGRP | stat.S_IRGRP | \
-                                             stat.S_IXOTH | stat.S_IROTH
+executable_file_permissions = (
+        stat.S_IRUSR | stat.S_IXUSR | stat.S_IWUSR |
+        stat.S_IXGRP | stat.S_IRGRP | stat.S_IXOTH |
+        stat.S_IROTH )
 
 class CephConfigurationExtension(writeexts.Extension):
     """
     Set up ceph server daemons.
 
+    Support for metadata server has not been tested.
+
     Must include the following environment variables:
 
     HOSTNAME - Must be defined it is used as the ID for
                the monitor and metadata daemons.
+
     CEPH_CONF - Provide a ceph configuration file.
 
     Optional environment variables:
@@ -91,6 +116,7 @@ class CephConfigurationExtension(writeexts.Extension):
 
     CEPH_BOOTSTRAP_OSD - Registered key capable of generating OSD
                          keys.
+
     CEPH_BOOTSTRAP_MDS - Registered key capable of generating MDS
                          keys.
 
@@ -99,13 +125,25 @@ class CephConfigurationExtension(writeexts.Extension):
     by 'ceph-deploy gatherkeys' but can be generated and registered
     separately.
 
+    CEPH_CLIENT_ADMIN - Key required by any ceph action that requires
+                        client admin authentication to run
+
     CEPH_MON - (Blank) Create a ceph monitor daemon on the image.
     CEPH_MON_KEYRING - Location of monitor keyring. Required by the
                        monitor if using cephx authentication.
+    CEPH_MON_IP - ip address that the monitor node will have. This is required
+                  if CEPH_MON is set. It should also be set in the CEPH_CONF
+                  file too.
+    CEPH_CLUSTER_FSID - A uuid for the ceph cluster. This is required if
+                        CEPH_MON is set. It should also be set in the
+                        CEPH_CONF file too.
 
+    CEPH_OSD - (Blank) Create a ceph object storage daemon on the image.
     CEPH_OSD_X_DATA_DIR - Location of data directory for OSD.
                           Create an OSD daemon on image. 'X' is an integer
                           id, many osd daemons may be run on same server.
+    CEPH_OSD_STORAGE_DEV - Location of the storage device to be used to host
+                           the osd file system. This is a required field.
 
     CEPH_MDS - (Blank) Create a metadata server daemon on server.
     """
@@ -113,21 +151,18 @@ class CephConfigurationExtension(writeexts.Extension):
     def process_args(self, args):
 
         if "HOSTNAME" not in os.environ:
-            print "ERROR: Need a hostname defined by 'HOSTNAME'"
-            sys.exit(1)
-        if "CEPH_CLUSTER" not in os.environ:
-            print "ERROR: Need a cluster name defined by 'CEPH_CLUSTER'"
-            sys.exit(1)
+            sys.exit( "ERROR: Need a hostname defined by 'HOSTNAME'" )
         if "CEPH_CONF" not in os.environ:
-            print "ERROR: Need a ceph conf file defined by 'CEPH_CONF'"
-            sys.exit(1)
+            sys.exit( "ERROR: Need a ceph conf file defined by 'CEPH_CONF'" )
 
         self.dest_dir = args[0]
 
-        self.cluster_name = os.environ["CEPH_CLUSTER"]
+        self.cluster_name = "ceph"
         self.hostname = os.environ["HOSTNAME"]
 
         self.conf_file = "/etc/ceph/{}.conf".format(self.cluster_name)
+        self.admin_file = os.path.join( "/etc/ceph/",
+            "{}.client.admin.keyring".format(self.cluster_name) )
         self.mon_dir = "/var/lib/ceph/mon/"
         self.osd_dir = "/var/lib/ceph/osd/"
         self.mds_dir = "/var/lib/ceph/mds/"
@@ -135,9 +170,17 @@ class CephConfigurationExtension(writeexts.Extension):
         self.bootstrap_mds_dir = "/var/lib/ceph/bootstrap-mds/"
         self.bootstrap_osd_dir = "/var/lib/ceph/bootstrap-osd/"
         self.systemd_dir = "/etc/systemd/system/"
-        self.systemd_multiuser_dir = "/etc/systemd/system/multi-user.target.wants/"
+        self.systemd_multiuser_dir = \
+                "/etc/systemd/system/multi-user.target.wants/"
 
+
+        print "Copying from " + os.getcwd()
         self.copy_to_img(os.environ["CEPH_CONF"], self.conf_file)
+
+
+        # If the clustername is provided set it accprdingly. Default is "ceph"
+        if "CEPH_CLUSTER" in os.environ:
+            self.cluster_name = os.environ["CEPH_CLUSTER"]
 
         # Copy over bootstrap keyrings
         if "CEPH_BOOTSTRAP_OSD" in os.environ:
@@ -145,22 +188,50 @@ class CephConfigurationExtension(writeexts.Extension):
         if "CEPH_BOOTSTRAP_MDS" in os.environ:
             self.copy_bootstrap_mds(os.environ["CEPH_BOOTSTRAP_MDS"]);
 
+        # Copy over admin keyring
+        if "CEPH_CLIENT_ADMIN" in os.environ:
+            self.copy_to_img(os.environ["CEPH_CLIENT_ADMIN"], self.admin_file);
+
         # Configure any monitor daemons
         if "CEPH_MON" in os.environ:
+
+            # check for and set self.mon_ip : needs static value.
+            if "CEPH_MON_IP" not in os.environ:
+                sys.exit("ERROR: Static ip required for the monitor node")
+            else:
+                self.mon_ip = os.environ["CEPH_MON_IP"]
+
+            # Check and set for cluster fsid : can have default
+            if "CEPH_CLUSTER_FSID" not in os.environ:
+                sys.exit("ERROR: UUID fsid value required for cluster.")
+            else:
+                self.cluster_fsid = os.environ["CEPH_CLUSTER_FSID"]
+
             self.create_mon_data_dir(os.environ.get("CEPH_MON_KEYRING"))
-        else:
-            self.create_osd_startup_script("None", "None")
 
         # Configure any object storage daemons
-        osd_re = r"CEPH_OSD_(\d+)_DATA_DIR$"
+        if "CEPH_OSD" in os.environ:
 
-        for env in os.environ.keys():
-            match = re.match(osd_re, env)
-            if match:
-                osd_data_dir_env = match.group(0)
-                osd_id = match.group(1)
+            # Check a osd storage device has been provided
+            if "CEPH_OSD_STORAGE_DEV" not in os.environ:
+                sys.exit("ERROR: Storage device required. \
+                                 Set 'CEPH_OSD_STORAGE_DEV'.")
+            else:
+                self.osd_storage_dev = os.environ["CEPH_OSD_STORAGE_DEV"]
 
-                self.create_osd_data_dir(osd_id, os.environ.get(osd_data_dir_env))
+            self.create_osd_startup_script()
+
+            osd_re = r"CEPH_OSD_(\d+)_DATA_DIR$"
+
+            for env in os.environ.keys():
+                match = re.match(osd_re, env)
+                if match:
+                    osd_data_dir_env = match.group(0)
+                    osd_id = match.group(1)
+
+                    self.create_osd_data_dir(osd_id,
+                            os.environ.get(osd_data_dir_env))
+
 
         # Configure any mds daemons
         if "CEPH_MDS" in os.environ:
@@ -179,88 +250,95 @@ class CephConfigurationExtension(writeexts.Extension):
 
     def copy_bootstrap_osd(self, src_file):
         self.copy_to_img(src_file,
-                os.path.join(self.bootstrap_osd_dir, "{}.keyring".format(self.cluster_name)))
+                os.path.join(self.bootstrap_osd_dir,
+                    "{}.keyring".format(self.cluster_name)))
 
     def copy_bootstrap_mds(self, src_file):
         self.copy_to_img(src_file,
-                os.path.join(self.bootstrap_mds_dir, "{}.keyring".format(self.cluster_name)))
+                os.path.join(self.bootstrap_mds_dir,
+                    "{}.keyring".format(self.cluster_name)))
 
     def symlink_to_multiuser(self, fname):
-        print >> sys.stderr, os.path.join("../", fname)
-        print >> sys.stderr, self.dest_dir + os.path.join(self.systemd_multiuser_dir, fname)
+        sys.stderr.write( os.path.join("../", fname) )
+        sys.stderr.write( self.dest_dir +
+                          os.path.join(self.systemd_multiuser_dir, fname) )
+        print "Linking: %s into %s"%(fname, self.systemd_multiuser_dir)
         os.symlink(os.path.join("../", fname),
-                   self.dest_dir + os.path.join(self.systemd_multiuser_dir, fname))
+                   self.dest_dir +
+                   os.path.join(self.systemd_multiuser_dir, fname))
 
     def create_mon_data_dir(self, src_keyring):
 
-        #Create the monitor data directory
-        mon_data_dir = os.path.join(self.mon_dir, "{}-{}".format(self.cluster_name, self.hostname))
-        os.makedirs(self.dest_dir + mon_data_dir)
-
-        #Create sysvinit file to start via sysvinit
-        sysvinit_file = os.path.join(mon_data_dir, "sysvinit")
-        open(self.dest_dir + sysvinit_file, 'a').close()
-
-        #Create systemd file to initialize the monitor data directory
+        # Create systemd file to initialize the monitor data directory
         keyring = ""
-        if src_keyring:
-            #Copy the keyring from local to the image
-            dest_keyring = os.path.join(self.tmp_dir,
-                    "{}-{}.mon.keyring".format(self.cluster_name, self.hostname))
-            self.copy_to_img(src_keyring, dest_keyring)
-            keyring = "--keyring " + dest_keyring
-
         mon_systemd_fname = systemd_monitor_fname_template
-        systemd_script_name = self.dest_dir + os.path.join(self.systemd_dir, mon_systemd_fname)
+
+        systemd_script_name = self.dest_dir \
+                + os.path.join(self.systemd_dir, mon_systemd_fname)
+        print "Write monitor systemd script to " + systemd_script_name
         mon_systemd = open(systemd_script_name, 'w')
         mon_systemd.write(systemd_monitor_template)
         mon_systemd.close()
-        #Create a symlink to the multi user target
+        # Create a symlink to the multi user target
         self.symlink_to_multiuser(mon_systemd_fname)
 
     def create_osd_data_dir(self, osd_id, data_dir):
         if not data_dir:
             data_dir = '/srv/osd' + osd_id
 
-        #Create the osd data dir
+        # Create the osd data dir
         os.makedirs(self.dest_dir + data_dir)
 
-    def create_osd_startup_script(self, osd_id, data_dir):
+    def create_osd_startup_script(self):
         osd_systemd_fname = systemd_osd_fname_template
-        osd_full_name = self.dest_dir + os.path.join(self.systemd_dir, osd_systemd_fname)
+
+        osd_full_name = self.dest_dir + \
+                os.path.join(self.systemd_dir, osd_systemd_fname)
+        print "Write Storage systemd script to " + osd_full_name
 
         osd_systemd = open(osd_full_name, 'w')
 
         osd_systemd.write(systemd_osd_template)
         osd_systemd.close()
 
-        #Create a symlink to the multi user target
+        # Create a symlink to the multi user target
         self.symlink_to_multiuser(osd_systemd_fname)
 
     def create_mds_data_dir(self):
 
-        #Create the monitor data directory
-        mds_data_dir = os.path.join(self.mds_dir, "{}-{}".format(self.cluster_name, self.hostname))
+        # Create the monitor data directory
+        mds_data_dir = os.path.join(self.mds_dir,
+                "{}-{}".format(self.cluster_name, self.hostname))
         os.makedirs(self.dest_dir + mds_data_dir)
 
-        #Create sysvinit file to start via sysvinit
+        # Create sysvinit file to start via sysvinit
         sysvinit_file = os.path.join(mds_data_dir, "sysvinit")
         open(self.dest_dir + sysvinit_file, 'a').close()
 
 
     def create_startup_scripts(self):
-        head_setup_file = os.path.join(self.dest_dir, "root", "setup-ceph-head")
+        print "Copying startup scripts to node:"
 
-        ceph_head_setup = open(head_setup_file, "w")
-        ceph_head_setup.write(ceph_monitor_config_template)
-        ceph_head_setup.close()
-        os.chmod(head_setup_file, executable_file_permissions)
+        # Write monitor script if monitor requested
+        if "CEPH_MON" in os.environ:
+            head_setup_file = \
+                    os.path.join(self.dest_dir,"root","setup-ceph-head")
+            with open(head_setup_file, "w") as hs_file:
+                hs_file.write( ceph_monitor_config_template.format(self=self) )
 
-        osd_setup_file = os.path.join(self.dest_dir, "root", "setup-ceph-node")
-        ceph_node_setup = open(osd_setup_file, "w")
-        ceph_node_setup.write(ceph_storage_config_template)
-        ceph_node_setup.close()
-        os.chmod(osd_setup_file, executable_file_permissions)
+            os.chmod(head_setup_file, executable_file_permissions)
 
+        # Write osd script if osd is requested
+        elif "CEPH_OSD" in os.environ:
+            osd_setup_file = \
+                    os.path.join(self.dest_dir, "root", "setup-ceph-node")
+            with open(osd_setup_file, "w") as os_file:
+                os_file.write( ceph_storage_config_template.format(self=self) )
+
+            os.chmod(osd_setup_file, executable_file_permissions)
+
+        else:
+            print ("No valid node type defined. "
+                   "A generic ceph node will be created.")
 
 CephConfigurationExtension().run()

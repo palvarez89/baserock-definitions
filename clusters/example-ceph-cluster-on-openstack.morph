@@ -1,0 +1,57 @@
+name:  example-ceph-cluster-on-openstack
+kind: cluster
+description: |
+    This cluster morphology will deploy a 3 node ceph storage cluster to an
+    openstack server.
+
+    It was written for use with the following guide on the baserock wiki:
+    http://wiki.baserock.org/guides/ceph-cluster-deploy/
+
+    See this guide for more information.
+
+    See the ceph.configure file for more informatiion on the ceph
+    specific fields used in this cluster morphology.
+
+systems:
+- morph: systems/ceph-service-x86_64-generic.morph
+  deploy:
+      ceph-mon-0-openstack:
+          # openstack info
+          <<:  &common-config
+            type: openstack
+            location: http://<BASEROCK_OPENSTACK_SERVER_IP>:5000/v2.0/
+            OPENSTACK_USER: demo
+            OPENSTACK_PASSWORD: demo
+            OPENSTACK_TENANT: demo
+            CLOUD_INIT: yes
+            KERNEL_ARGS: console=ttyS0 console=tty0
+            CEPH_CLUSTER: ceph
+            CEPH_CONF: ceph.conf
+            CEPH_CLIENT_ADMIN: ceph.client.admin.keyring
+            CEPH_MON_IP: <CEPH_MON_IP>
+            CEPH_CLUSTER_FSID: <CEPH_CLUSTER_FSID>
+
+          OPENSTACK_IMAGENAME: mon-0-nd
+          DISK_SIZE: 10G
+          # Ceph info
+          HOSTNAME: mon-0
+          CEPH_MON:
+      ceph-osd-0-openstack:
+          <<: *common-config
+
+          OPENSTACK_IMAGENAME: osd-0
+          DISK_SIZE: 7G
+          # ceph info
+          HOSTNAME: osd-0
+          CEPH_OSD:
+          CEPH_OSD_STORAGE_DEV: /dev/vdb
+      ceph-osd-1-openstack:
+          <<: *common-config
+
+          OPENSTACK_IMAGENAME: osd-1
+          DISK_SIZE: 7G
+          # ceph info
+          HOSTNAME: osd-1
+
+          CEPH_OSD:
+          CEPH_OSD_STORAGE_DEV: /dev/vdb
