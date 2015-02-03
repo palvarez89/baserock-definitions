@@ -4,6 +4,7 @@ description: the gtk3 stratum
 build-depends:
 - morph: strata/gtk-deps.morph
 - morph: strata/wayland-generic.morph
+- morph: strata/x-common.morph
 chunks:
 - name: libepoxy
   repo: upstream:libepoxy
