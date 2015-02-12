@@ -80,6 +80,7 @@ configure-commands:
 - scripts/config -e HOTPLUG_PCI_ACPI
 - scripts/config -e VLAN_8021Q
 - scripts/config -e BRIDGE_VLAN_FILTERING
+- scripts/config -e BLK_DEV_NBD
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
