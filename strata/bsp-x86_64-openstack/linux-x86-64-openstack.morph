@@ -1,0 +1,103 @@
+name: linux-x86-64-openstack
+kind: chunk
+products:
+- artifact: linux-x86-64-openstack-devel
+  include:
+  - (usr/)?src/linux/.*
+- artifact: linux-x86-64-openstack-bins
+  include:
+  - boot/.*
+- artifact: linux-x86-64-openstack-libs
+  include:
+  - lib/.*
+configure-commands:
+- make defconfig
+- scripts/config -e PACKET
+- scripts/config -e SATA_AHCI
+- scripts/config -e ATA_GENERIC
+- scripts/config -e HAVE_IDE
+- scripts/config -d BLK_DEV_IDE_SATA
+- scripts/config -e BTRFS_FS
+- scripts/config -e BTRFS_FS_POSIX_ACL
+- scripts/config -e DEVTMPFS
+- scripts/config -e DEVTMPFS_MOUNT
+- scripts/config -e CONFIG_FHANDLE
+- scripts/config -e CGROUPS
+- scripts/config -e AUTOFS4_FS
+- scripts/config --set-str UEVENT_HELPER_PATH ''
+- scripts/config -e EXT2_FS
+- scripts/config -e EXT2_FS_XATTR
+- scripts/config -e EXT2_FS_POSIX_ACL
+- scripts/config -e EXT2_FS_SECURITY
+- scripts/config -e EXT2_FS_XIP
+- scripts/config -e EXT3_FS
+- scripts/config -d EXT3_DEFAULTS_TO_ORDERED
+- scripts/config -e EXT3_FS_XATTR
+- scripts/config -e EXT3_FS_POSIX_ACL
+- scripts/config -e EXT3_FS_SECURITY
+- scripts/config -e EXT4_FS
+- scripts/config -e EXT4_FS_XATTR
+- scripts/config -e EXT4_FS_POSIX_ACL
+- scripts/config -e EXT4_FS_SECURITY
+- scripts/config -d EXT4_DEBUG
+- scripts/config -d JBD_DEBUG
+- scripts/config -d JBD2_DEBUG
+- scripts/config -e BLK_DEV_LOOP
+- scripts/config -d BLK_DEV_CRYPTOLOOP
+- scripts/config -e CEPH_FS
+- scripts/config --set-val BLK_DEV_LOOP_MIN_COUNT 8
+- scripts/config -e VIRTIO
+- scripts/config -e VIRTIO_RING
+- scripts/config -e VIRTIO_PCI
+- scripts/config -e VIRTIO_BALLOON
+- scripts/config -e VIRTIO_BLK
+- scripts/config -e VIRTIO_NET
+- scripts/config -e VIRTIO_CONSOLE
+- scripts/config -e HW_RANDOM_VIRTIO
+- scripts/config -e 9P_FS
+- scripts/config -e 9P_FSCACHE
+- scripts/config -e 9P_FS_POSIX_ACL
+- scripts/config -e NET_9P
+- scripts/config -e NET_9P_VIRTIO
+- scripts/config -e R8169
+- scripts/config -e 8139TOO
+- scripts/config -e 8139CP
+- scripts/config -e IKCONFIG
+- scripts/config -e IKCONFIG_PROC
+- scripts/config -e SECCOMP
+- scripts/config -d DEBUG_STACK_TRACE
+- scripts/config -e NFSD
+- scripts/config -e NFSD_V3
+- scripts/config -e KVM
+- scripts/config -e TUN
+- scripts/config -e BRIDGE
+- scripts/config -e VHOST_NET
+- scripts/config -e NF_NAT
+- scripts/config -e IP_NF_NAT
+- scripts/config -e IP_NF_TARGET_MASQUERADE
+- scripts/config -e FB_VESA
+- scripts/config -e HOTPLUG_PCI
+- scripts/config -e HOTPLUG_PCI_ACPI
+- scripts/config -e VLAN_8021Q
+- scripts/config -e BRIDGE_VLAN_FILTERING
+- yes '' | make oldconfig
+build-commands:
+- make $MAKEFLAGS
+install-commands:
+- mkdir -p "$DESTDIR"/boot
+- make INSTALL_PATH="$DESTDIR"/boot install
+- make INSTALL_MOD_PATH="$DESTDIR" modules_install
+- install -d "$DESTDIR$PREFIX/src/linux"
+- |
+  (
+      printf 'Makefile\0'
+      printf 'Module.symvers\0'
+      find arch/x86 -maxdepth 1 -name 'Makefile*' -print0
+      find arch/x86 \( -name 'module.lds' -o -name 'Kbuild.platforms' -o -name 'Platform' \) -print0
+      find arch/x86 \( -type d -a \( -name include -o -name scripts \) \) -o \
+                               \! -type d -a \( -path '*include/*' -o -path '*scripts/*' \) -print0
+      find include -name 'asm*' -prune -o -print0
+      find include/asm-generic -print0
+      find include/uapi -print0
+      find scripts -print0
+  ) | cpio -0pumd "$DESTDIR$PREFIX/src/linux"
