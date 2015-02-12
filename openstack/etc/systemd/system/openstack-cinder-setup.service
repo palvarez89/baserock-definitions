@@ -1,0 +1,11 @@
+[Unit]
+Description=Run openstack-cinder-setup (once)
+After=local-fs.target openstack-keystone-setup.service postgres-server.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/openstack/openstack-cinder-setup
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

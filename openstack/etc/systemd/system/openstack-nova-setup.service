@@ -1,0 +1,11 @@
+[Unit]
+Description=Run openstack-nova-setup (once)
+After=local-fs.target libvirtd.service openstack-keystone-setup.service postgres-server.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/openstack/openstack-nova-setup
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

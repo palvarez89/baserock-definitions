@@ -1,0 +1,11 @@
+[Unit]
+Description=Run openvswitch-setup (once)
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/openstack/openvswitch-setup
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

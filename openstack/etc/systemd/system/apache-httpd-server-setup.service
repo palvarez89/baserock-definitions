@@ -1,0 +1,11 @@
+[Unit]
+Description=Run apache-httpd-server-setup (once)
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/openstack/apache-httpd-server-setup
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# Copyright (C) 2014 Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+set -xe
+
+# Get the first ethernet driver and its ip
+eth_dev="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $1 } ')"
+eth_ip="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $2 } ')"
+
+ip link add proxy-br-eth1 type veth peer name eth1-br-proxy
+ip link add proxy-br-ex type veth peer name ex-br-proxy
+
+if [ -f /var/openstack/openvswitch-one-node-setup ]; then
+  exit 0
+fi
+
+# Create the bridges to use the External network mapped
+# This configuration is for 1 node and it was taken from:
+# https://fosskb.wordpress.com/2014/10/18/openstack-juno-on-ubuntu-14-10/
+# and https://fosskb.wordpress.com/2014/06/10/managing-openstack-internaldataexternal-network-in-one-interface/
+
+
+ovs-vsctl add-br br-eth0
+ovs-vsctl add-port br-eth0 $eth_dev
+ifconfig br-eth0 $eth_ip up
+ip link set br-eth0 promisc on
+ovs-vsctl add-br br-eth1
+ovs-vsctl add-br br-ex
+ovs-vsctl add-port br-eth1 eth1-br-proxy
+ovs-vsctl add-port br-ex ex-br-proxy
+ovs-vsctl add-port br-eth0 proxy-br-eth1
+ovs-vsctl add-port br-eth0 proxy-br-ex
+ip link set eth1-br-proxy up promisc on
+ip link set ex-br-proxy up promisc on
+ip link set proxy-br-eth1 up promisc on
+ip link set proxy-br-ex up promisc on
+
+install -D -m 644 /proc/self/fd/0 <<'EOF' /var/openstack/openvswitch-one-node-setup
+Openvswitch one node setup: success
+EOF
+
+exit 0

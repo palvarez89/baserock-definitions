@@ -1,0 +1,9 @@
+{
+    "name": "thrift",
+    "kind": "chunk",
+    "build-system": "autotools",
+    "configure-commands": [
+        "./bootstrap.sh",
+        "./configure --prefix=\"$PREFIX\" --without-erlang"
+    ]
+}

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run openvswitch-initialize-db (once)
+After=local-fs.target openvswitch-db-server.service
+
+ConditionPathExists=!/usr/local/var/run/openvswitch/openvswitch-initialize-db-flag
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ovs-vsctl --no-wait init
+ExecStart=/bin/touch /usr/local/var/run/openvswitch/openvswitch-initialize-db-flag

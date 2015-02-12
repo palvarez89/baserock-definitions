@@ -1,0 +1,74 @@
+#!/bin/sh
+
+# Copyright (C) 2014 Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+set -e
+
+ROOT="$1"
+
+##########################################################################
+# Substitutions in configuration files
+##########################################################################
+
+cat <<EOF > "$ROOT"/etc/openstack-nova-setup.sed
+s/##NOVA_SERVICE_USER##/$NOVA_SERVICE_USER/g
+s/##NOVA_SERVICE_PASSWORD##/$NOVA_SERVICE_PASSWORD/g
+s/##NOVA_PUBLIC_URL##/$NOVA_PUBLIC_URL/g
+s/##NOVA_INTERNAL_URL##/$NOVA_INTERNAL_URL/g
+s/##NOVA_ADMIN_URL##/$NOVA_ADMIN_URL/g
+s/##NOVA_HOST##/$NOVA_HOST/g
+s/##NOVA_REGION##/$NOVA_REGION/g
+s/##NOVA_NOVNCPROXY_BASE_URL##/$NOVA_NOVNCPROXY_BASE_URL/g
+s/##NOVA_DB_USER##/$NOVA_DB_USER/g
+s/##NOVA_DB_PASSWORD##/$NOVA_DB_PASSWORD/g
+EOF
+
+sed -f "$ROOT"/etc/openstack-nova-setup.sed -i \
+       "$ROOT"/etc/nova/nova.conf \
+       "$ROOT"/etc/neutron/neutron.conf \
+       "$ROOT"/etc/neutron/metadata_agent.ini \
+       "$ROOT"/usr/share/openstack/openstack-nova-setup 
+
+##########################################################################
+
+ln -sf "/etc/systemd/system/openstack-nova-setup.service" \
+    "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-nova-setup.service"
+
+##########################################################################
+# Enable libvirtd and libvirt-guests services
+##########################################################################
+
+wants_dir="$ROOT"/usr/lib/systemd/system/multi-user.target.wants
+mkdir -p "$wants_dir"
+mkdir -p "$ROOT"/var/lock/subsys
+ln -sf ../libvirtd.service "$wants_dir/libvirtd.service"
+ln -sf ../libvirt-guests.service "$wants_dir/libvirt-guests.service"
+
+##########################################################################
+# Change iprange for the interal libvirt to avoid clashes
+# with eth0 ip range
+##########################################################################
+
+sed -i "s/192\.168\.122\./192\.168\.1\./g" \
+       "$ROOT"/etc/libvirt/qemu/networks/default.xml
+
+##########################################################################
+# Add nova to sudoers controlling which commands is running as a root
+# using the openstack rootwrap.
+##########################################################################
+install -D -m 0440 /proc/self/fd/0 <<'EOF' "$ROOT"/etc/sudoers.d/nova-rootwrap
+nova ALL=(root) NOPASSWD: /usr/bin/nova-rootwrap /etc/nova/rootwrap.conf *
+EOF

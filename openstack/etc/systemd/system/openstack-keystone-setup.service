@@ -1,0 +1,11 @@
+[Unit]
+Description=Run openstack-keystone-setup (once)
+After=local-fs.target postgres-server.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/openstack/openstack-keystone-setup
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

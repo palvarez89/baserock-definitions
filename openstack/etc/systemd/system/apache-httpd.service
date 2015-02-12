@@ -1,0 +1,16 @@
+[Unit]
+Description=Apache Web Server
+Requires=apache-httpd-server-setup.service openstack-horizon-setup.service
+After=network.target remote-fs.target nss-lookup.target apache-httpd-server-setup.service openstack-horizon-setup.service
+
+[Service]
+Type=forking
+PIDFile=/var/run/httpd.pid
+ExecStart=/usr/sbin/apachectl start
+ExecStop=/usr/sbin/apachectl graceful-stop
+ExecReload=/usr/sbin/apachectl graceful
+PrivateTmp=true
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target

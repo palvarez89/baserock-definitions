@@ -1,0 +1,9 @@
+name: rabbitmq-server
+kind: chunk
+configure-commands:
+- mkdir -p codegen
+- cp /usr/lib/rabbitmq-codegen/* codegen
+build-commands:
+- make
+install-commands:
+- make install_bin TARGET_DIR="$DESTDIR$PREFIX" SBIN_DIR="$DESTDIR$PREFIX"/sbin MAN_DIR="$PREFIX"/share/man DOC_INSTALL_DIR="$PREFIX"/share

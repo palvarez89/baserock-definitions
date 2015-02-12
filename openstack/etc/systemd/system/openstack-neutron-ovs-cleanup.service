@@ -1,0 +1,14 @@
+[Unit]
+Description=Neutron OVS cleanup
+After=network-online.target openstack-neutron-setup.service
+ConditionFileIsExecutable=/usr/bin/neutron-ovs-cleanup
+
+[Service]
+Type=simple
+User=neutron
+ExecStart=/usr/bin/neutron-ovs-cleanup \
+  --log-file /var/log/neutron/ovs-cleanup.log \
+  --config-file /etc/neutron/neutron.conf --verbose
+
+[Install]
+WantedBy=multi-user.target

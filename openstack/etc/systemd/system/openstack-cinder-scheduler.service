@@ -1,0 +1,11 @@
+[Unit]
+Description=OpenStack Cinder scheduler server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=cinder
+ExecStart=/usr/bin/cinder-scheduler --config-file /etc/cinder/cinder.conf --log-file=/var/log/cinder/cinder-scheduler.log
+
+[Install]
+WantedBy=multi-user.target

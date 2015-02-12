@@ -1,0 +1,6 @@
+name: ipaddr-py
+kind: chunk
+build-commands:
+- cd trunk && python setup.py build
+install-commands:
+- cd trunk && python setup.py install --prefix "$PREFIX" --root "$DESTDIR"

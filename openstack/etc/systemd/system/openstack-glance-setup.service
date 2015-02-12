@@ -1,0 +1,11 @@
+[Unit]
+Description=Run openstack-glance-setup (once)
+After=local-fs.target openstack-keystone-setup.service postgres-server.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/openstack/openstack-glance-setup
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

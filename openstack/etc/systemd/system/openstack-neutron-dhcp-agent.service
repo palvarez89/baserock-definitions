@@ -1,0 +1,14 @@
+[Unit]
+Description=Neutron DHCP Agent
+After=network-online.target openstack-neutron-ovs-cleanup.service
+
+[Service]
+Type=simple
+User=neutron
+ExecStart=/usr/bin/neutron-dhcp-agent \
+  --config-file=/etc/neutron/neutron.conf \
+  --config-file=/etc/neutron/dhcp_agent.ini \
+  --log-file=/var/log/neutron/dhcp-agent.log
+
+[Install]
+WantedBy=multi-user.target

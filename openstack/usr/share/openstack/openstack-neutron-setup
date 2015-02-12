@@ -1,0 +1,95 @@
+#!/bin/sh
+#
+# Copyright (C) 2014 Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+set -xe
+
+if [ -f /var/openstack/openstack-neutron-setup ]; then
+  exit 0
+fi
+
+# Create required system users and groups
+
+getent group neutron >/dev/null || groupadd -r --gid 166 neutron
+getent passwd neutron >/dev/null || \
+	useradd --uid 166 -r -g neutron -d /var/lib/neutron -s /sbin/nologin \
+	-c "OpenStack Neutron Daemons" neutron
+
+chown -R neutron:neutron /var/lib/neutron
+
+# Create the keystone user and services
+export OS_SERVICE_TOKEN=##KEYSTONE_TEMPORARY_ADMIN_TOKEN##
+export OS_SERVICE_ENDPOINT='http://onenode:35357/v2.0'
+
+keystone user-create --name ##NEUTRON_SERVICE_USER## --pass ##NEUTRON_SERVICE_PASSWORD##
+keystone user-role-add --tenant service --user ##NEUTRON_SERVICE_USER## --role admin
+
+keystone service-create --name neutron --type network --description "OpenStack Networking"
+keystone endpoint-create  --service-id $(keystone service-list | awk '/ network / {print $2}') \
+	    	          --publicurl ##NEUTRON_PUBLIC_URL## \
+	                  --internalurl ##NEUTRON_INTERNAL_URL## \
+	                  --adminurl ##NEUTRON_ADMIN_URL## \
+			  --region regionOne
+
+# neutron.conf configuration
+service_tenant_id=$(keystone tenant-get service | grep id | tr -d " " | cut -d"|" -f3)
+sed -i "s/##SERVICE_TENANT_ID##/$service_tenant_id/g" /etc/neutron/neutron.conf
+
+# Neutron compute configuration
+if [ ! -d /var/run/neutron ]; then
+    mkdir -p /var/run/neutron
+    chown -R neutron:neutron /var/run/neutron
+fi
+
+if [ ! -d /var/lock/neutron ]; then
+    mkdir -p /var/lock/neutron
+    chown -R neutron:neutron /var/lock/neutron
+fi
+
+if [ ! -d /var/log/neutron ]; then
+    mkdir -p /var/log/neutron
+    chown -R neutron:neutron /var/log/neutron
+fi
+
+# Setup the neutron database
+if ! sudo -u postgres psql -lqt | grep -q neutron; then
+    # Create postgresSQL user
+    sudo -u postgres createuser \
+	      --pwprompt --encrypted \
+	      --no-adduser --no-createdb \
+	      --no-password \
+	      ##NEUTRON_DB_USER##
+    sudo -u postgres createdb \
+	      --owner=##NEUTRON_DB_USER## \
+	      neutron
+    # Stamp neutron database with the latest stamped version available,
+    # in this case "icehouse"
+    sudo -u neutron neutron-db-manage \
+	              --config-file /etc/neutron/neutron.conf \
+	              --config-file /etc/neutron/plugins/ml2/ml2_conf.ini \
+	              stamp icehouse
+    # Upgrade database to "juno"
+    sudo -u neutron neutron-db-manage \
+                      --config-file /etc/neutron/neutron.conf \
+                      --config-file /etc/neutron/plugins/ml2/ml2_conf.ini \
+                      upgrade juno
+fi
+
+install -D -m 644 /proc/self/fd/0 <<'EOF' /var/openstack/openstack-neutron-setup
+Openstack neutron setup: success
+EOF
+
+exit 0

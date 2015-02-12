@@ -1,0 +1,3 @@
+name: python-subunit
+kind: chunk
+build-system: python-distutils

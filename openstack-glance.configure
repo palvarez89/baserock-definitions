@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Copyright (C) 2014 Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+set -e
+
+ROOT="$1"
+
+##########################################################################
+# Substitutions in configuration files
+##########################################################################
+
+cat <<EOF > "$ROOT"/etc/openstack-glance-setup.sed
+s/##GLANCE_SERVICE_USER##/$GLANCE_SERVICE_USER/g
+s/##GLANCE_SERVICE_PASSWORD##/$GLANCE_SERVICE_PASSWORD/g
+s/##GLANCE_PUBLIC_URL##/$GLANCE_PUBLIC_URL/g
+s/##GLANCE_INTERNAL_URL##/$GLANCE_INTERNAL_URL/g
+s/##GLANCE_ADMIN_URL##/$GLANCE_ADMIN_URL/g
+s/##GLANCE_HOST##/$GLANCE_HOST/g
+s/##GLANCE_DB_USER##/$GLANCE_DB_USER/g
+s/##GLANCE_DB_PASSWORD##/$GLANCE_DB_PASSWORD/g
+EOF
+
+sed -f "$ROOT"/etc/openstack-glance-setup.sed -i \
+       "$ROOT"/etc/glance/glance-api.conf \
+       "$ROOT"/etc/glance/glance-registry.conf \
+       "$ROOT"/etc/glance/glance-scrubber.conf \
+       "$ROOT"/etc/glance/glance-cache.conf \
+       "$ROOT"/etc/cinder/cinder.conf \
+       "$ROOT"/etc/nova/nova.conf \
+       "$ROOT"/usr/share/openstack/openstack-glance-setup 
+
+##########################################################################
+
+ln -s "/etc/systemd/system/openstack-glance-setup.service" \
+    "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-glance-setup.service"

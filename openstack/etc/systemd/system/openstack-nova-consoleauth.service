@@ -1,0 +1,11 @@
+[Unit]
+Description=Openstack Console Auth (nova-consoleauth)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=nova
+ExecStart=/usr/bin/nova-consoleauth --config-file /etc/nova/nova.conf
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Database-access support for Compute nodes (nova-conductor)
+After=syslog.target network.target libvirtd.service
+Requires=libvirtd.service
+
+[Service]
+Type=simple
+User=nova
+ExecStart=/usr/bin/nova-conductor --config-file /etc/nova/nova.conf --logfile /var/log/nova/conductor.log
+
+[Install]
+WantedBy=multi-user.target
