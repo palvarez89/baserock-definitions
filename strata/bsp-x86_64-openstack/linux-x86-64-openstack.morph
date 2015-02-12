@@ -109,6 +109,7 @@ configure-commands:
 - scripts/config -e IP_NF_RAW
 - scripts/config -e IP_NF_SECURITY
 - scripts/config -e IP_NF_ARPTABLES
+- scripts/config -e KVM_INTEL
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
