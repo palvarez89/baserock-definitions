@@ -95,6 +95,7 @@ configure-commands:
 - scripts/config -e NET_SCH_HTB
 - scripts/config -e NET_SCH_HFSC
 - scripts/config -e VXLAN
+- scripts/config -e VETH
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
