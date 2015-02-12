@@ -228,6 +228,9 @@ configure-commands:
 - scripts/config -e NETFILTER_XT_MATCH_U32
 - scripts/config -e IP_VS
 - scripts/config -e BRIDGE_NETFILTER
+- scripts/config -e USB_NET_DM9601
+- scripts/config -e USB_USBNET
+- scripts/config -e E1000E
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
