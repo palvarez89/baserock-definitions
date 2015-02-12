@@ -81,6 +81,10 @@ configure-commands:
 - scripts/config -e VLAN_8021Q
 - scripts/config -e BRIDGE_VLAN_FILTERING
 - scripts/config -e BLK_DEV_NBD
+- scripts/config -e BRIDGE_NF_EBTABLES
+- scripts/config -e NETFILTER
+- scripts/config -e NETFILTER_ADVANCED
+- scripts/config -e NETFILTER_XT_MATCH_ADDRTYPE
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
