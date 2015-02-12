@@ -96,6 +96,19 @@ configure-commands:
 - scripts/config -e NET_SCH_HFSC
 - scripts/config -e VXLAN
 - scripts/config -e VETH
+- scripts/config -e IP_NF_MATCH_AH
+- scripts/config -e IP_NF_MATCH_ECN
+- scripts/config -e IP_NF_MATCH_RPFILTER
+- scripts/config -e IP_NF_MATCH_TTL
+- scripts/config -e IP_NF_TARGET_SYNPROXY
+- scripts/config -e IP_NF_TARGET_NETMAP
+- scripts/config -e IP_NF_TARGET_REDIRECT
+- scripts/config -e IP_NF_TARGET_CLUSTERIP
+- scripts/config -e IP_NF_TARGET_ECN
+- scripts/config -e IP_NF_TARGET_TTL
+- scripts/config -e IP_NF_RAW
+- scripts/config -e IP_NF_SECURITY
+- scripts/config -e IP_NF_ARPTABLES
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
