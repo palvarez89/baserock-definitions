@@ -73,7 +73,7 @@ configure-commands:
 - scripts/config -e BRIDGE
 - scripts/config -e VHOST_NET
 - scripts/config -e NF_NAT
-- scripts/config -e NF_NAT_IPV4
+- scripts/config -e IP_NF_NAT
 - scripts/config -e IP_NF_TARGET_MASQUERADE
 - scripts/config -e FB_VESA
 - scripts/config -e HOTPLUG_PCI
