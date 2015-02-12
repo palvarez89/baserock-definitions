@@ -1,0 +1,6 @@
+name: qpid-python
+kind: chunk
+build-commands:
+- cd qpid/python && python setup.py build
+install-commands:
+- cd qpid/python && python setup.py install --prefix "$PREFIX" --root "$DESTDIR"

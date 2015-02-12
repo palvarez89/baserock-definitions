@@ -1,0 +1,8 @@
+name: xattr
+kind: chunk
+configure-commands:
+- cp -r /usr/lib/python2.7/site-packages/cffi .
+build-commands:
+- python setup.py build
+install-commands:
+- python setup.py install --prefix "$PREFIX" --root "$DESTDIR"

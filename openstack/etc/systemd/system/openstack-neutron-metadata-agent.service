@@ -1,0 +1,14 @@
+[Unit]
+Description=Neutron Metadata Plugin Agent
+After=network-online.target openstack-neutron-setup.service
+
+[Service]
+Type=simple
+User=neutron
+ExecStart=/usr/bin/neutron-metadata-agent \
+  --config-file=/etc/neutron/neutron.conf \
+  --config-file=/etc/neutron/metadata_agent.ini \
+  --log-file=/var/log/neutron/metadata-agent.log
+
+[Install]
+WantedBy=multi-user.target

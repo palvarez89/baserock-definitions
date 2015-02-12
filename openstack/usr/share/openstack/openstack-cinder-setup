@@ -1,0 +1,132 @@
+#!/bin/sh
+#
+# Copyright (C) 2014 Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+set -e
+
+# Create required system users and groups
+
+getent group cinder >/dev/null || groupadd -r --gid 165 cinder
+getent passwd cinder >/dev/null || \
+	useradd --uid 165 -r -g cinder -d /var/lib/cinder -s /sbin/nologin \
+	-c "OpenStack Cinder Daemons" cinder
+
+# Create the keystone user and services
+
+export OS_SERVICE_TOKEN=##KEYSTONE_TEMPORARY_ADMIN_TOKEN##
+export OS_SERVICE_ENDPOINT='http://onenode:35357/v2.0'
+
+keystone user-create --name ##CINDER_USER## --pass ##CINDER_PASSWORD##
+keystone user-role-add --tenant service --user ##CINDER_USER## --role admin
+
+# Register the Block Storage service with the Identity service so other OpenStack services
+# can locate it
+keystone service-create --name ##CINDER_USER## --type volume --description "OpenStack Block Storage"
+keystone endpoint-create  --service-id $(keystone service-list | awk '/ volume / {print $2}') \
+	    	          --publicurl ##CINDER_PUBLIC_URL## \
+	                  --internalurl ##CINDER_INTERNAL_URL## \
+	                  --adminurl ##CINDER_ADMIN_URL##
+
+# Register a service and endpoint for version 2 of the Block Storage service API
+keystone service-create --name ##CINDER_USER_V2## \
+	                --type volumev2 --description "OpenStack Block Storage"
+keystone endpoint-create  --service-id $(keystone service-list | awk '/ volumev2 / {print $2}') \
+	    	          --publicurl ##CINDER_PUBLIC_URL_V2## \
+	                  --internalurl ##CINDER_INTERNAL_URL_V2## \
+	                  --adminurl ##CINDER_ADMIN_URL_V2##
+
+# Create run directory for cinder
+if [ ! -d /var/run/cinder ]; then
+    mkdir -p /var/run/cinder
+    chown -R cinder:cinder /var/run/cinder
+fi
+
+# Create the lock directory for cinder
+if [ ! -d /var/lock/cinder ]; then
+    mkdir -p /var/lock/cinder
+    chown -R cinder:cinder /var/lock/cinder
+fi
+
+# Create the log directory for cinder
+if [ ! -d /var/log/cinder ]; then
+    mkdir -p /var/log/cinder
+    chown -R cinder:cinder /var/log/cinder
+fi
+
+# Create the volumes directory for cinder
+if [ ! -d /var/lib/cinder/volumes ]; then
+    mkdir -p /var/lib/cinder/volumes
+    chown -R cinder:cinder /var/lib/cinder/volumes
+fi
+
+# Setup the cinder database
+if ! sudo -u postgres psql -lqt | grep -q cinder; then
+    # Create posgreSQL user
+    sudo -u postgres createuser \
+	    --pwprompt --encrypted \
+	    --no-adduser --no-createdb \
+	    --no-password \
+	    ##CINDER_DB_USER##
+
+    sudo -u postgres createdb \
+	    --owner=##CINDER_DB_USER## \
+	    cinder
+
+    sudo -u cinder cinder-manage db sync
+fi
+
+chown -R cinder:cinder /var/lib/cinder
+
+# This is only for testing purposes and we need to change it for
+# something more robust to deploy in production.
+# This also assumes that the user will add a second disk to its VM
+# and if it does not find sdb or vda it will fail.
+if [ $(ls /sys/block | grep -v sda | grep [vs]d | wc -l) -ne 1 ]; then
+  echo "Error: More than one or none block device found, cinder will not be able to create a VG."
+  exit 1
+else
+  device=/dev/$(ls /sys/block | grep -v sda | grep [vs]d)
+fi
+
+# Create a physical volume
+pvcreate -ff -y $device
+
+# Create a volume group named "cinder-volumes"
+vgcreate -y cinder-volumes $device
+
+# Remove the one-shot setup service
+rm /etc/systemd/system/multi-user.target.wants/openstack-cinder-setup.service
+
+# Start cinder services
+systemctl start openstack-cinder-api
+systemctl start openstack-cinder-scheduler
+systemctl start openstack-cinder-volume
+systemctl start openstack-cinder-backup
+
+# Create the links to run nova services when system start next times.
+ln -s "/etc/systemd/system/openstack-cinder-api.service" \
+    "/etc/systemd/system/multi-user.target.wants/openstack-cinder-api.service"
+
+ln -s "/etc/systemd/system/openstack-cinder-scheduler.service" \
+    "/etc/systemd/system/multi-user.target.wants/openstack-cinder-scheduler.service"
+
+ln -s "/etc/systemd/system/openstack-cinder-volume.service" \
+    "/etc/systemd/system/multi-user.target.wants/openstack-cinder-volume.service"
+
+ln -s "/etc/systemd/system/openstack-cinder-backup.service" \
+    "/etc/systemd/system/multi-user.target.wants/openstack-cinder-backup.service"
+
+exit 0

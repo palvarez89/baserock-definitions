@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Copyright (C) 2014-2015 Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+set -e
+
+ROOT="$1"
+
+##########################################################################
+# Substitutions in configuration files                                   #
+##########################################################################
+
+cat <<EOF > "$ROOT"/etc/openstack-neutron-setup.sed
+s/##NEUTRON_SERVICE_USER##/$NEUTRON_SERVICE_USER/g
+s/##NEUTRON_SERVICE_PASSWORD##/$NEUTRON_SERVICE_PASSWORD/g
+s/##NEUTRON_DB_USER##/$NEUTRON_DB_USER/g
+s/##NEUTRON_DB_PASSWORD##/$NEUTRON_DB_PASSWORD/g
+s/##NEUTRON_PUBLIC_URL##/$NEUTRON_PUBLIC_URL/g
+s/##NEUTRON_INTERNAL_URL##/$NEUTRON_INTERNAL_URL/g
+s/##NEUTRON_ADMIN_URL##/$NEUTRON_ADMIN_URL/g
+s/##METADATA_PROXY_SHARED_SECRET##/$METADATA_PROXY_SHARED_SECRET/g
+EOF
+
+sed -f "$ROOT"/etc/openstack-neutron-setup.sed -i \
+       "$ROOT"/etc/neutron/neutron.conf \
+       "$ROOT"/etc/neutron/metadata_agent.ini \
+       "$ROOT"/etc/nova/nova.conf \
+       "$ROOT"/usr/share/openstack/openstack-neutron-setup
+
+##########################################################################
+# Create the links to enable the neutron systemd services                #
+##########################################################################
+services=("openstack-neutron-network-configuration-one-node.service" \
+          "openvswitch-create-links-one-node.service" \
+          "openstack-neutron-dhcp-agent.service" \
+          "openstack-neutron-l3-agent.service" \
+          "openstack-neutron-metadata-agent.service" \
+          "openstack-neutron-ovs-cleanup.service" \
+          "openstack-neutron-plugin-openvswitch-agent.service" \
+          "openstack-neutron-server.service" \
+	  "openstack-neutron-setup.service")
+
+for service in ${services[@]}; do
+  ln -sf "/etc/systemd/system/$service" \
+    "$ROOT/etc/systemd/system/multi-user.target.wants/$service"
+done
+
+##########################################################################
+# Add neutron to sudoers controlling which commands is running as a root #
+# using the openstack rootwrap.                                          #
+##########################################################################
+install -D -m 0440 /proc/self/fd/0 <<'EOF' "$ROOT"/etc/sudoers.d/neutron-rootwrap
+neutron ALL=(root) NOPASSWD: /usr/bin/neutron-rootwrap /etc/neutron/rootwrap.conf *
+EOF

@@ -1,0 +1,13 @@
+[Unit]
+Description=Configuration script to set Openstack in one node networking
+Wants=network-online.target
+After=network-online.target openvswitch.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/openstack/openstack-neutron-network-configuration-for-one-node
+Restart=no
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

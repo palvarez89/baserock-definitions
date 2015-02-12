@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# Copyright (C) 2015  Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+set -e
+
+if [ -f /var/openstack/apache-http-setup ]; then
+  exit 0
+fi
+
+###############################################################################
+# Move suexec to the directory where apache is configured to have it          #
+# Check configure in strata/apache-httpd-server/httpd-server.morph            #
+###############################################################################
+mkdir -p /srv/www
+groupadd -r apache
+useradd -c "Apache Server" -d /srv/www -g apache \
+	-s /bin/false apache
+
+###############################################################################
+# Move suexec to the directory where apache is configured to have it          #
+# Check configure in strata/apache-httpd-server/httpd-server.morph            #
+###############################################################################
+mkdir -p /usr/lib/httpd
+mv -v /usr/sbin/suexec /usr/lib/httpd/suexec
+chgrp apache /usr/lib/httpd/suexec
+chmod 4754 /usr/lib/httpd/suexec
+chown -R apache:apache /srv/www
+
+install -D -m 644 /proc/self/fd/0 <<'EOF' /var/openstack/apache-http-setup
+Apache http setup: success
+EOF
+
+exit 0

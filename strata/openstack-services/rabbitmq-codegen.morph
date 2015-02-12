@@ -1,0 +1,7 @@
+name: rabbitmq-codegen
+kind: chunk
+configure-commands: []
+build-commands: []
+install-commands:
+- mkdir -p "$DESTDIR$PREFIX"/lib/rabbitmq-codegen
+- cp * "$DESTDIR$PREFIX"/lib/rabbitmq-codegen

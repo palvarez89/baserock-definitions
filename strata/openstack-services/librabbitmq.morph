@@ -1,0 +1,10 @@
+name: librabbitmq
+kind: chunk
+build-system: python-distutils
+configure-commands:
+- (cd rabbitmq-c; rm -rf codegen; ln -sf ../rabbitmq-codegen ./codegen)
+- (cd rabbitmq-c; autoreconf -fvi)
+- (cd rabbitmq-c; automake --add-missing)
+- (cd rabbitmq-c; ./configure --disable-tools --disable-docs)
+- (cd rabbitmq-c; make distdir)
+- mv rabbitmq-c/rabbitmq-c-0.5.3 clib

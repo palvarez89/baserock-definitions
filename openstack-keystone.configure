@@ -1,0 +1,56 @@
+#!/bin/sh
+
+# Copyright (C) 2014 Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+set -e
+
+ROOT="$1"
+
+##########################################################################
+# Substitutions in configuration files
+##########################################################################
+
+cat <<EOF > "$ROOT"/etc/openstack-keystone-setup.sed
+s/##KEYSTONE_TEMPORARY_ADMIN_TOKEN##/$KEYSTONE_TEMPORARY_ADMIN_TOKEN/g
+s/##KEYSTONE_TEMPORARY_ADMIN_PASSWORD##/$KEYSTONE_TEMPORARY_ADMIN_PASSWORD/g
+s/##KEYSTONE_PUBLIC_URL##/$KEYSTONE_PUBLIC_URL/g
+s/##KEYSTONE_INTERNAL_URL##/$KEYSTONE_INTERNAL_URL/g
+s/##KEYSTONE_ADMIN_URL##/$KEYSTONE_ADMIN_URL/g
+s/##OPENSTACK_AUTH_HOST##/$OPENSTACK_AUTH_HOST/g
+s/##OPENSTACK_AUTH_PORT##/$OPENSTACK_AUTH_PORT/g
+s/##IDENTITY_URI##/$IDENTITY_URI/g
+s/##KEYSTONE_DB_USER##/$KEYSTONE_DB_USER/g
+s/##KEYSTONE_DB_PASSWORD##/$KEYSTONE_DB_PASSWORD/g
+EOF
+
+sed -f "$ROOT"/etc/openstack-keystone-setup.sed -i \
+       "$ROOT"/etc/keystone/keystone.conf \
+       "$ROOT"/etc/glance/glance-api.conf \
+       "$ROOT"/etc/glance/glance-registry.conf \
+       "$ROOT"/etc/nova/nova.conf \
+       "$ROOT"/etc/cinder/cinder.conf \
+       "$ROOT"/etc/neutron/neutron.conf \
+       "$ROOT"/etc/neutron/metadata_agent.ini \
+       "$ROOT"/usr/share/openstack/openstack-keystone-setup \
+       "$ROOT"/usr/share/openstack/openstack-glance-setup \
+       "$ROOT"/usr/share/openstack/openstack-nova-setup \
+       "$ROOT"/usr/share/openstack/openstack-neutron-setup \
+       "$ROOT"/usr/share/openstack/openstack-cinder-setup
+
+##########################################################################
+
+ln -s "/etc/systemd/system/openstack-keystone-setup.service" \
+    "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-keystone-setup.service"

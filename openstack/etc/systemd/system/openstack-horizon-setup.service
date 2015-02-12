@@ -1,0 +1,11 @@
+[Unit]
+Description=Run openstack-horizon-setup (once)
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/openstack/openstack-horizon-setup
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

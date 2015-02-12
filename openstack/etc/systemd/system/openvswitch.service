@@ -1,0 +1,10 @@
+[Unit]
+Description=Open vSwitch Daemon
+After=openvswitch-initialize-db.service
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/ovs-vswitchd --pidfile --detach
+
+[Install]
+WantedBy=multi-user.target
