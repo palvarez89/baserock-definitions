@@ -110,6 +110,9 @@ configure-commands:
 - scripts/config -e IP_NF_SECURITY
 - scripts/config -e IP_NF_ARPTABLES
 - scripts/config -e KVM_INTEL
+- scripts/config -e NETFILTER_NETLINK_QUEUE
+- scripts/config -e SCSI_NETLINK
+- scripts/config -e NETFILTER_XT_TARGET_MARK
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
