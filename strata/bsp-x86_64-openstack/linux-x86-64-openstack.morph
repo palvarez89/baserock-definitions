@@ -85,6 +85,16 @@ configure-commands:
 - scripts/config -e NETFILTER
 - scripts/config -e NETFILTER_ADVANCED
 - scripts/config -e NETFILTER_XT_MATCH_ADDRTYPE
+- scripts/config -e OPENVSWITCH
+- scripts/config -e OPENVSWITCH_VXLAN
+- scripts/config -e CONFIG_OPENVSWITCH_GRE
+- scripts/config -e NET_CLS_BASIC
+- scripts/config -e NET_SCH_INGRESS
+- scripts/config -e NET_ACT_POLICE
+- scripts/config -e NET_IPGRE_DEMUX
+- scripts/config -e NET_SCH_HTB
+- scripts/config -e NET_SCH_HFSC
+- scripts/config -e VXLAN
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
