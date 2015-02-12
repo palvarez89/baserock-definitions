@@ -113,6 +113,23 @@ configure-commands:
 - scripts/config -e NETFILTER_NETLINK_QUEUE
 - scripts/config -e SCSI_NETLINK
 - scripts/config -e NETFILTER_XT_TARGET_MARK
+- scripts/config -e NETFILTER_XT_SET
+- scripts/config -e IP_SET
+- scripts/config -e IP_SET_BITMAP_IP
+- scripts/config -e IP_SET_BITMAP_IPMAC
+- scripts/config -e IP_SET_BITMAP_PORT
+- scripts/config -e IP_SET_HASH_IP
+- scripts/config -e IP_SET_HASH_IPMARK
+- scripts/config -e IP_SET_HASH_IPPORT
+- scripts/config -e IP_SET_HASH_IPPORTIP
+- scripts/config -e IP_SET_HASH_IPPORTNET
+- scripts/config -e IP_SET_HASH_MAC
+- scripts/config -e IP_SET_HASH_NETPORTNET
+- scripts/config -e IP_SET_HASH_NET
+- scripts/config -e IP_SET_HASH_NETNET
+- scripts/config -e IP_SET_HASH_NETPORT
+- scripts/config -e IP_SET_HASH_NETIFACE
+- scripts/config -e IP_SET_LIST_SET
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
