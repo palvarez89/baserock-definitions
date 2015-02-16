@@ -621,6 +621,7 @@ chunks:
   - posix-ipc-tarball
   - sqlparse
 - name: neutron
+  morph: strata/openstack-services/neutron.morph
   repo: upstream:openstack/neutron
   ref: dfa4b4b9b6b19a627cfb5eb5c6ab9db4961a06ea
   unpetrify-ref: 2014.2.1
@@ -680,6 +681,7 @@ chunks:
   unpetrify-ref: rfc3986-0.2.0
   build-depends: []
 - name: nova
+  morph: strata/openstack-services/nova.morph
   repo: upstream:openstack/nova
   ref: ba25e9ea6d0d42dd3b78cc6440710fd9362ae1b5
   unpetrify-ref: 2014.2.1
@@ -709,6 +711,7 @@ chunks:
   - rfc3986
   - oslo-vmware
 - name: cinder
+  morph: strata/openstack-services/cinder.morph
   repo: upstream:openstack/cinder
   ref: b48aee211ad9b2571c8554dd162b37b8a8d80a42
   unpetrify-ref: 2014.2.1

@@ -1,0 +1,9 @@
+name: cinder
+kind: chunk
+build-system: python-distutils
+post-install-commands:
+# Install rootwrap.conf
+- install -D -m 640 etc/cinder/rootwrap.conf "$DESTDIR"/etc/cinder/rootwrap.conf
+# Move rootwrap files to a proper location
+- mkdir -p "$DESTDIR"/etc/cinder/rootwrap.d
+- install -D -m 644 etc/cinder/rootwrap.d/* "$DESTDIR"/etc/cinder/rootwrap.d/

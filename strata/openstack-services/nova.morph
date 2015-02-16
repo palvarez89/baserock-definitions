@@ -1,0 +1,9 @@
+name: nova
+kind: chunk
+build-system: python-distutils
+post-install-commands:
+# Install rootwrap.conf
+- install -D -m 640 etc/nova/rootwrap.conf "$DESTDIR"/etc/nova/rootwrap.conf
+# Move rootwrap files to a proper location
+- mkdir -p "$DESTDIR"/etc/nova/rootwrap.d
+- install -D -m 644 etc/nova/rootwrap.d/* "$DESTDIR"/etc/nova/rootwrap.d/
