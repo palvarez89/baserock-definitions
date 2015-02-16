@@ -7,3 +7,10 @@ post-install-commands:
 # Move rootwrap files to a proper location
 - mkdir -p "$DESTDIR"/etc/nova/rootwrap.d
 - install -D -m 644 etc/nova/rootwrap.d/* "$DESTDIR"/etc/nova/rootwrap.d/
+# Add nova to sudoers controlling which commands will run as a root
+# using the openstack rootwrap.
+- mkdir -p "$DESTDIR"/etc/sudoers.d
+- |
+  install -D -m 0440 /proc/self/fd/0 <<'EOF' "$DESTDIR"/etc/sudoers.d/nova-rootwrap
+  nova ALL=(root) NOPASSWD: /usr/bin/nova-rootwrap /etc/nova/rootwrap.conf *
+  EOF

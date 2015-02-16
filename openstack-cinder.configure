@@ -45,11 +45,3 @@ sed -f "$ROOT"/etc/openstack-cinder-setup.sed -i \
 
 ln -sf "/etc/systemd/system/openstack-cinder-setup.service" \
     "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-cinder-setup.service"
-
-##########################################################################
-# Add cinder to sudoers controlling which commands is running as a root
-# using the openstack rootwrap.
-##########################################################################
-install -D -m 0440 /proc/self/fd/0 <<'EOF' "$ROOT"/etc/sudoers.d/cinder-rootwrap
-cinder ALL=(root) NOPASSWD: /usr/bin/cinder-rootwrap /etc/cinder/rootwrap.conf *
-EOF
