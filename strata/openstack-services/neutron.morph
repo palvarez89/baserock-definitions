@@ -1,0 +1,8 @@
+name: neutron
+kind: chunk
+build-system: python-distutils
+post-install-commands:
+# Move rootwrap files to a proper location
+- mkdir -p "$DESTDIR"/etc/neutron
+- mv "$DESTDIR$PREFIX"/etc/neutron/rootwrap.d "$DESTDIR"/etc/neutron/
+- mv "$DESTDIR$PREFIX"/etc/neutron/rootwrap.conf "$DESTDIR"/etc/neutron/
