@@ -7,3 +7,10 @@ post-install-commands:
 # Move rootwrap files to a proper location
 - mkdir -p "$DESTDIR"/etc/cinder/rootwrap.d
 - install -D -m 644 etc/cinder/rootwrap.d/* "$DESTDIR"/etc/cinder/rootwrap.d/
+# Add cinder to sudoers controlling which commands will run as a root
+# using the openstack rootwrap.
+- mkdir -p "$DESTDIR"/etc/sudoers.d
+- |
+  install -D -m 0440 /proc/self/fd/0 <<'EOF' "$DESTDIR"/etc/sudoers.d/cinder-rootwrap
+  cinder ALL=(root) NOPASSWD: /usr/bin/cinder-rootwrap /etc/cinder/rootwrap.conf *
+  EOF

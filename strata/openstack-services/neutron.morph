@@ -6,3 +6,10 @@ post-install-commands:
 - mkdir -p "$DESTDIR"/etc/neutron
 - mv "$DESTDIR$PREFIX"/etc/neutron/rootwrap.d "$DESTDIR"/etc/neutron/
 - mv "$DESTDIR$PREFIX"/etc/neutron/rootwrap.conf "$DESTDIR"/etc/neutron/
+# Add neutron to sudoers controlling which commands is running as a root
+# using the openstack rootwrap.
+- mkdir -p "$DESTDIR"/etc/sudoers.d
+- |
+  install -D -m 0440 /proc/self/fd/0 <<'EOF' "$DESTDIR"/etc/sudoers.d/neutron-rootwrap
+  neutron ALL=(root) NOPASSWD: /usr/bin/neutron-rootwrap /etc/neutron/rootwrap.conf *
+  EOF
