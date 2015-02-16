@@ -31,6 +31,8 @@ strata:
   morph: strata/connectivity.morph
 - name: networking-utils
   morph: strata/networking-utils.morph
+- name: nfs.morph
+  morph: strata/nfs.morph
 - name: databases
   morph: strata/databases.morph
 - name: erlang
