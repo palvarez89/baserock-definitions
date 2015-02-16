@@ -47,7 +47,7 @@ ln -sf /etc/horizon/openstack_dashboard/local_settings.py \
 mkdir -p /var/lib/horizon/openstack_dashboard/static
 
 # Create the horizon document root for apache configuration
-mkdir -p /var/lib/horizon/openstack_dashboard/.blackhole
+mkdir -p /var/lib/horizon/.blackhole
 
 # Link horizon configuration file for apache to the directory where our apache load
 # configurations files
