@@ -12,5 +12,7 @@ post-install-commands:
 - mkdir -p "$DESTDIR"/etc/sudoers.d
 - |
   install -D -m 0440 /proc/self/fd/0 <<'EOF' "$DESTDIR"/etc/sudoers.d/cinder-rootwrap
+  Defaults:cinder !requiretty
+
   cinder ALL=(root) NOPASSWD: /usr/bin/cinder-rootwrap /etc/cinder/rootwrap.conf *
   EOF
