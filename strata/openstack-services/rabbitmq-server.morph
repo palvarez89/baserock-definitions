@@ -6,4 +6,11 @@ configure-commands:
 build-commands:
 - make
 install-commands:
-- make install_bin TARGET_DIR="$DESTDIR$PREFIX" SBIN_DIR="$DESTDIR$PREFIX"/sbin MAN_DIR="$PREFIX"/share/man DOC_INSTALL_DIR="$PREFIX"/share
+- |
+  make install_bin TARGET_DIR="$DESTDIR$PREFIX" \
+                   SBIN_DIR="$DESTDIR$PREFIX"/sbin \
+                   MAN_DIR="$PREFIX"/share/man \
+                   DOC_INSTALL_DIR="$PREFIX"/share
+
+post-install-commands:
+- rm "$DESTDIR$PREFIX"/LICENSE* "$DESTDIR$PREFIX"/INSTALL
