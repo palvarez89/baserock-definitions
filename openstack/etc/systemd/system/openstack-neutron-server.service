@@ -1,7 +1,7 @@
 [Unit]
 Description=Neutron Api Server
 Wants=openvswitch-create-links-one-node.service
-After=network-online.target openstack-neutron-setup.service
+After=network-online.target openstack-neutron-setup.service openvswitch-create-links-one-node.service
 
 [Service]
 Type=simple

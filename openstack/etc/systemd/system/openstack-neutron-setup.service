@@ -1,5 +1,6 @@
 [Unit]
 Description=Run openstack-neutron-setup (once)
+Wants=openvswitch-create-links-one-node.service
 After=network-online.target openstack-keystone-setup.service openvswitch-create-links-one-node.service postgres-server.service
 
 [Service]
