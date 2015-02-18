@@ -52,7 +52,7 @@ mkdir -p /var/lib/horizon/.blackhole
 # Link horizon configuration file for apache to the directory where our apache load
 # configurations files
 ln -sf /etc/horizon/apache-horizon.conf \
-       /usr/httpd/conf.d/apache-horizon.conf
+       /etc/httpd/conf.d/apache-horizon.conf
 
 chown -R horizon:horizon /var/lib/horizon
 
