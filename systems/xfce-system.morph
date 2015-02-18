@@ -1,12 +1,14 @@
 name: xfce-system
 kind: system
-description: A GENIVI devel with XFCE
+description: A system with the XFCE desktop
 arch: x86_64
 strata:
 - name: build-essential
   morph: strata/build-essential.morph
 - name: core
   morph: strata/core.morph
+- name: coreutils-common
+  morph: strata/coreutils-common.morph
 - name: python-core
   morph: strata/python-core.morph
 - name: python3-core
@@ -19,22 +21,36 @@ strata:
   morph: strata/connectivity.morph
 - name: connman-common
   morph: strata/connman-common.morph
+- name: input-common
+  morph: strata/input-common.morph
 - name: audio-bluetooth
   morph: strata/audio-bluetooth.morph
+- name: libdrm-common
+  morph: strata/libdrm-common.morph
+- name: mesa-common
+  morph: strata/mesa-common.morph
+- name: graphics-common
+  morph: strata/graphics-common.morph
+- name: wayland-generic
+  morph: strata/wayland-generic.morph
 - name: x-common
   morph: strata/x-common.morph
 - name: x-generic
   morph: strata/x-generic.morph
+- name: x-drivers
+  morph: strata/x-drivers.morph
 - name: multimedia-common
   morph: strata/multimedia-common.morph
 - name: multimedia-gstreamer
   morph: strata/multimedia-gstreamer.morph
-- name: genivi
-  morph: strata/genivi.morph
+- name: gtk-deps
+  morph: strata/gtk-deps.morph
 - name: gtk2
   morph: strata/gtk2.morph
 - name: tools
   morph: strata/tools.morph
+- name: devtools
+  morph: strata/devtools.morph
 - name: python-cliapp
   morph: strata/python-cliapp.morph
 - name: python-pygobject
