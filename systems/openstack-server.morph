@@ -69,5 +69,4 @@ configuration-extensions:
 - openstack-cinder
 - openstack-neutron
 - openvswitch
-- postgres
 - apache-httpd-server

@@ -1,7 +1,5 @@
 [Unit]
 Description=PostgreSQL database server
-Requires=postgres-setup.service
-After=postgres-setup.service
  
 [Service]
 Type=forking
