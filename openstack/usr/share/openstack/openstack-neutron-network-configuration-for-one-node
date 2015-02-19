@@ -49,6 +49,21 @@ ip link set ex-br-proxy up promisc on
 ip link set proxy-br-eth1 up promisc on
 ip link set proxy-br-ex up promisc on
 
+# Disable dhcp on the ethernet device we've bound into Open vSwitch
+install -D -m 644 /proc/self/fd/0 <<EOF /etc/systemd/network/00-disable-$eth_dev-config.network
+[Match]
+Name=$eth_dev
+EOF
+
+# DHCP on the Open vSwitch device
+install -D -m 644 /proc/self/fd/0 <<EOF /etc/systemd/network/10-br-ex-dhcp.network
+[Match]
+Name=br-eth0
+
+[Network]
+DHCP=yes
+EOF
+
 install -D -m 644 /proc/self/fd/0 <<'EOF' /var/openstack/openvswitch-one-node-setup
 Openvswitch one node setup: success
 EOF
