@@ -1,0 +1,62 @@
+---
+- hosts: localhost
+  vars_files:
+  - "/etc/openstack/glance.conf"
+  tasks:
+  - name: Create the glance user.
+    user: name=glance comment="Openstack Glance Daemons" shell=/sbin/nologin home=/var/lib/glance
+
+  - name: Create the /var folders for glance
+    file: path={{ item }} state=directory owner=glance group=glance
+    with_items:
+    - /var/run/glance
+    - /var/lock/glance
+    - /var/log/glance
+    - /var/lib/glance
+    - /var/lib/glance/images
+    - /var/lib/glance/image-cache
+
+  - file: path=/etc/glance state=directory
+  - name: Add the configuration needed for glance in /etc/glance using templates
+    template: src=/usr/share/openstack/glance/{{ item }} dest=/etc/glance/{{ item }}
+    with_lines:
+    - (cd /usr/share/openstack/glance && find -type f)
+
+  - keystone_user: >
+        user={{ GLANCE_SERVICE_USER }}
+        password={{ GLANCE_SERVICE_PASSWORD }}
+        tenant=service
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - keystone_user: >
+        role=admin
+        user={{ GLANCE_SERVICE_USER }}
+        tenant=service
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - keystone_service: >
+        name=glance
+        type=image
+        description="Openstack Image Service"
+        publicurl={{ GLANCE_PUBLIC_URL }}
+        internalurl={{ GLANCE_INTERNAL_URL }}
+        adminurl={{ GLANCE_ADMIN_URL }}
+        region='RegionOne'
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - postgresql_user: name={{ GLANCE_DB_USER }} login_host={{ CONTROLLER_HOST }} password={{ GLANCE_DB_PASSWORD }}
+    sudo: yes
+    sudo_user: glance
+  - postgresql_db: name=glance owner={{ GLANCE_DB_USER }} login_host={{ CONTROLLER_HOST }}
+    sudo: yes
+    sudo_user: glance
+
+  - glance_manage: action=dbsync
+    sudo: yes
+    sudo_user: glance
+
+  - name: Enable and start openstack-glance service
+    service: name={{ item }} enabled=yes state=started
+    with_items:
+    - openstack-glance-api.service
+    - openstack-glance-registry.service
