@@ -1,11 +1,9 @@
 [Unit]
-Description=Run openstack-glance-setup (once)
+Description=Run glance-setup Ansible scripts
 After=local-fs.target openstack-keystone-setup.service postgres-server.service
 
 [Service]
-Type=oneshot
-ExecStart=/usr/share/openstack/openstack-glance-setup
-Restart=no
+ExecStart=/usr/bin/ansible-playbook -v -M /usr/share/ansible/ansible-openstack-modules -i /usr/share/openstack/hosts /usr/share/openstack/glance.yml
 
 [Install]
 WantedBy=multi-user.target
