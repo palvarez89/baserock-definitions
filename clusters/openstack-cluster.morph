@@ -4,10 +4,8 @@ systems:
 - morph: systems/openstack-server.morph
   deploy:
     release:
-      type: rawdisk
-      location: baserock-xx-openstack-system-x86_64.img
-     # type: kvm
-     # location: kvm+ssh://franred@refinery.ducie.codethink.co.uk/franred-openstack-test/home/franred/openstack.img
+      type: kvm
+      location: kvm+ssh://pedroalvarez@arcology.ducie.codethink.co.uk/pedroalvarez-os/home/pedroalvarez/openstack.img
       DISK_SIZE: 5G
       RAM_SIZE: 1G
       VCPUS: 1
@@ -25,6 +23,7 @@ systems:
       KEYSTONE_DB_USER: keystoneDB
       KEYSTONE_DB_PASSWORD: veryinsecure
       IDENTITY_URI: http:\/\/onenode:35357
+      CONTROLLER_HOST: onenode
       OPENSTACK_AUTH_HOST: onenode
       OPENSTACK_AUTH_PORT: 35357
       GLANCE_SERVICE_USER: glance
@@ -56,6 +55,7 @@ systems:
       CINDER_ADMIN_URL_V2: \"http:\/\/onenode:8776\/v2\/\%\(tenant_id\)s\"
       CINDER_DB_USER: cinderDB
       CINDER_DB_PASSWORD: veryinsecure
+      CINDER_DEVICE: /dev/sdb
       NEUTRON_SERVICE_USER: neutron
       NEUTRON_SERVICE_PASSWORD: veryinsecure
       NEUTRON_DB_USER: neutronDB
