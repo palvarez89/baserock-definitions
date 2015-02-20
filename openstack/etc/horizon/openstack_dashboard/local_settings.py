@@ -546,4 +546,6 @@ SECURITY_GROUP_RULES = {
 # auth_token middleware are using. Allowed values are the
 # algorithms supported by Python's hashlib library.
 # OPENSTACK_TOKEN_HASH_ALGORITHM = 'md5'
-
+LOGIN_URL='/horizon/auth/login/'
+LOGOUT_URL='/horizon/auth/logout/'
+LOGIN_REDIRECT_URL='/horizon/'
