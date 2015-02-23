@@ -65,7 +65,5 @@ configuration-extensions:
 - openstack-keystone
 - openstack-glance
 - openstack-nova
-- openstack-rabbitmq
 - openstack-cinder
-- openstack-neutron
 - openvswitch
