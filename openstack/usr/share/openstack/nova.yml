@@ -1,0 +1,72 @@
+---
+- hosts: localhost
+  vars_files:
+  - "/etc/openstack/nova.conf"
+  tasks:
+  - name: Create the nova user.
+    user: name=nova comment="Openstack Nova Daemons" shell=/sbin/nologin home=/var/lib/nova groups=libvirt append=yes
+
+  - name: Create the /var folders for nova
+    file: path={{ item }} state=directory owner=nova group=nova
+    with_items:
+    - /var/run/nova
+    - /var/lock/nova
+    - /var/log/nova
+    - /var/lib/nova
+    - /var/lib/nova/instances
+
+  - file: path=/etc/nova state=directory
+  - name: Add the configuration needed for nova in /etc/nova using templates
+    template: src=/usr/share/openstack/nova/{{ item }} dest=/etc/nova/{{ item }}
+    with_lines:
+    - (cd /usr/share/openstack/nova && find -type f)
+
+  - keystone_user: >
+        user={{ NOVA_SERVICE_USER }}
+        password={{ NOVA_SERVICE_PASSWORD }}
+        tenant=service
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - keystone_user: >
+        role=admin
+        user={{ NOVA_SERVICE_USER }}
+        tenant=service
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - keystone_service: >
+        name=nova
+        type=compute
+        description="Openstack Compute Service"
+        publicurl={{ NOVA_PUBLIC_URL  }}
+        internalurl={{ NOVA_INTERNAL_URL | default('http://127.0.0.1:8774/v2/%(tenant_id)s') }}
+        adminurl={{ NOVA_ADMIN_URL }}
+        region='RegionOne'
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - postgresql_user: name={{ NOVA_DB_USER }}
+    sudo: yes
+    sudo_user: nova
+  - postgresql_db: name=nova owner={{ NOVA_DB_USER }}
+    sudo: yes
+    sudo_user: nova
+
+  - nova_manage: action=dbsync
+    sudo: yes
+    sudo_user: nova
+
+
+
+# [1] Never enable openstack-nova-conductor service in a node with
+# openstack-nova-compute or the security benefits of removing
+# database access from nova-compute will be negated
+#systemctl start openstack-nova-conductor
+  - name: Enable and start openstack-nova services
+    service: name={{ item }} enabled=yes state=started
+    with_items:
+    - openstack-nova-api.service
+    - openstack-nova-cert.service
+    - openstack-nova-compute.service
+    - openstack-nova-consoleauth.service
+    - openstack-nova-novncproxy.service
+    - openstack-nova-scheduler.service
+#    - openstack-nova-conductor.service

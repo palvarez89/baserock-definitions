@@ -1,11 +1,9 @@
 [Unit]
-Description=Run openstack-nova-setup (once)
+Description=Run nova-setup Ansible scripts
 After=local-fs.target libvirtd.service openstack-keystone-setup.service postgres-server.service
 
 [Service]
-Type=oneshot
-ExecStart=/usr/share/openstack/openstack-nova-setup
-Restart=no
+ExecStart=/usr/bin/ansible-playbook -v -M /usr/share/ansible/ansible-openstack-modules -i /usr/share/openstack/hosts /usr/share/openstack/nova.yml
 
 [Install]
 WantedBy=multi-user.target
