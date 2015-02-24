@@ -1,0 +1,59 @@
+name: horizon
+kind: chunk
+configure-commands:
+# Remove unnecessary .mo files they will be generated
+# later during package build.
+- find . -name "django*.mo" -exec rm -f '{}' \;
+# Set COMPRESS_OFFLINE=True
+- |
+  sed -i 's:COMPRESS_OFFLINE.=.False:COMPRESS_OFFLINE = True:' \
+         openstack_dashboard/settings.py
+build-commands:
+# Compile message strings
+- cd horizon && django-admin.py compilemessages && cd ..
+- cd openstack_dashboard && django-admin.py compilemessages && cd ..
+- python setup.py build
+post-build-commands:
+# Use the local_settings.py example to compile and compress the css, js, etc files.
+# This is a hack to make SECRET_KEY work.
+- |
+  cp openstack_dashboard/local/local_settings.py.example \
+     openstack_dashboard/local/local_settings.py
+# Collect the static files and compress them.
+- python manage.py collectstatic --noinput
+- python manage.py compress --force
+install-commands:
+# Undo hack
+- |
+  cp openstack_dashboard/local/local_settings.py.example \
+     openstack_dashboard/local/local_settings.py
+# Install horizon
+- python setup.py install -O1 --skip-build --prefix "$PREFIX" --root "$DESTDIR"
+post-install-commands:
+# Remove unnecessary .po files
+- find "$DESTDIR" -name django.po -exec rm '{}' \;
+- find "$DESTDIR" -name djangojs.po -exec rm '{}' \;
+# Link Openstack local_settings where openstack_dashboard is installed.
+- mkdir -p "$DESTDIR"/var/lib/horizon/openstack_dashboard/local
+- |
+  ln -sf /etc/horizon/openstack_dashboard/local_settings.py \
+         "$DESTDIR$PREFIX"/lib/python2.7/site-packages/openstack_dashboard/local/local_settings.py
+# Create the static directory (STATIC_ROOT) used in local_settings.py to keep
+# the static objects like css files.
+- mkdir -p "$DESTDIR"/var/lib/horizon/openstack_dashboard/static
+# Copy the compressed static files to horizon.
+- cp -a openstack_dashboard/static/* "$DESTDIR"/var/lib/horizon/openstack_dashboard/static
+- cp -a horizon/static/* "$DESTDIR"/var/lib/horizon/openstack_dashboard/static
+- cp -a static/* "$DESTDIR"/var/lib/horizon/openstack_dashboard/static
+# Work around to make django.wsgi working with horizon
+# See: https://bugs.launchpad.net/osprofiler/+bug/1361235
+# and: https://git.openstack.org/cgit/openstack/tripleo-image-elements/commit/?id=41c9a1dfad23f8aee366afb6a0b20a6c57ec8f79
+- |
+  sed -i "s|'../..'|os.path.realpath('../..')|" \
+      "$DESTDIR$PREFIX"/lib/python2.7/site-packages/openstack_dashboard/wsgi/django.wsgi
+# And link this django.wsgi file to the horizon home directory
+- |
+  ln -sf "$PREFIX"/lib/python2.7/site-packages/openstack_dashboard/wsgi/django.wsgi \
+         "$DESTDIR"/var/lib/horizon/openstack_dashboard/django.wsgi
+# Create the horizon document root for apache configuration
+- mkdir -p "$DESTDIR"/var/lib/horizon/.blackhole

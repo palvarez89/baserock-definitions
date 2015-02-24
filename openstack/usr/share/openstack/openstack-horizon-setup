@@ -22,39 +22,16 @@ if [ -f /var/openstack/horizon-setup ]; then
 fi
 
 # Create required system users and groups
-mkdir -p /var/lib/horizon
 getent group horizon >/dev/null || groupadd -r --gid 167 horizon
 getent passwd neutron >/dev/null || \
 	useradd --uid 167 -r -g horizon -d /var/lib/horizon -s /sbin/nologin \
 	-c "Horizon user" horizon
 
-# Work around to make django.wsgi working with horizon
-# See: https://bugs.launchpad.net/osprofiler/+bug/1361235
-# and: https://git.openstack.org/cgit/openstack/tripleo-image-elements/commit/?id=41c9a1dfad23f8aee366afb6a0b20a6c57ec8f79
-sed -i "s|'../..'|os.path.realpath('../..')|" \
-	/usr/lib/python2.7/site-packages/openstack_dashboard/wsgi/django.wsgi
-
-# And link this django.wsgi file to the horizon home directory
-ln -sf /usr/lib/python2.7/site-packages/openstack_dashboard/wsgi/django.wsgi \
-       /var/lib/horizon/django.wsgi
-
-# Link Openstack local_settings where openstack_dashboard is installed.
-ln -sf /etc/horizon/openstack_dashboard/local_settings.py \
-       /usr/lib/python2.7/site-packages/openstack_dashboard/local/local_settings.py
-
-# Create the static directory (STATIC_ROOT) used in local_settings.py to keep
-# the static objects like css files.
-mkdir -p /var/lib/horizon/openstack_dashboard/static
-
-# Create the horizon document root for apache configuration
-mkdir -p /var/lib/horizon/.blackhole
+chown -R horizon:horizon /var/lib/horizon
 
 # Link horizon configuration file for apache to the directory where our apache load
 # configurations files
-ln -sf /etc/horizon/apache-horizon.conf \
-       /etc/httpd/conf.d/apache-horizon.conf
-
-chown -R horizon:horizon /var/lib/horizon
+ln -sf /etc/horizon/apache-horizon.conf /etc/httpd/conf.d/apache-horizon.conf
 
 install -D -m 644 /proc/self/fd/0 <<'EOF' /var/openstack/horizon-setup
 Horizon setup: success
