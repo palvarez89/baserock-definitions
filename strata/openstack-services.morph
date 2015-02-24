@@ -821,8 +821,10 @@ chunks:
   unpetrify-ref: 1.1.8
   build-depends: []
 - name: horizon
+  morph: strata/openstack-services/horizon.morph
   repo: upstream:openstack/horizon
   ref: 3d9a31e2a05288e9a48a51eb4fe693c42e92aac7
   unpetrify-ref: 2014.2.1
   build-depends:
   - django-openstack-auth
+  - lockfile
