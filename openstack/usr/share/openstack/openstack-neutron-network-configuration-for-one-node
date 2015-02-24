@@ -38,6 +38,9 @@ ovs-vsctl add-br br-eth0
 ovs-vsctl add-port br-eth0 $eth_dev
 ifconfig br-eth0 $eth_ip up
 ip link set br-eth0 promisc on
+# Deallocate ip address for external interface so we don't try to route
+# connections out of an interface that no longer works
+ip addr del $eth_ip dev $eth_dev
 ovs-vsctl add-br br-eth1
 ovs-vsctl add-br br-ex
 ovs-vsctl add-port br-eth1 eth1-br-proxy
