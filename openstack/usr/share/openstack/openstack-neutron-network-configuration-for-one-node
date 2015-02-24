@@ -33,10 +33,30 @@ fi
 # https://fosskb.wordpress.com/2014/10/18/openstack-juno-on-ubuntu-14-10/
 # and https://fosskb.wordpress.com/2014/06/10/managing-openstack-internaldataexternal-network-in-one-interface/
 
+# Disable dhcp on the bound physical interface, and all the internal interfaces
+for devname in $eth_dev br-eth1 br-ex eth1-br-proxy ex-br-proxy \
+               proxy-br-eth1 proxy-br-ex ovs-system; do
+    install -D -m 644 /proc/self/fd/0 <<EOF /etc/systemd/network/00-disable-$devname-config.network
+[Match]
+Name=$devname
+EOF
+done
+
+
+# DHCP on the Open vSwitch device that replaces our external interface
+install -D -m 644 /proc/self/fd/0 <<EOF /etc/systemd/network/10-br-ex-dhcp.network
+[Match]
+Name=br-eth0
+
+[Network]
+DHCP=yes
+EOF
+
+# restart networkd so it understands the new config
+systemctl restart systemd-networkd.service
 
 ovs-vsctl add-br br-eth0
 ovs-vsctl add-port br-eth0 $eth_dev
-ifconfig br-eth0 $eth_ip up
 ip link set br-eth0 promisc on
 # Deallocate ip address for external interface so we don't try to route
 # connections out of an interface that no longer works
@@ -51,21 +71,6 @@ ip link set eth1-br-proxy up promisc on
 ip link set ex-br-proxy up promisc on
 ip link set proxy-br-eth1 up promisc on
 ip link set proxy-br-ex up promisc on
-
-# Disable dhcp on the ethernet device we've bound into Open vSwitch
-install -D -m 644 /proc/self/fd/0 <<EOF /etc/systemd/network/00-disable-$eth_dev-config.network
-[Match]
-Name=$eth_dev
-EOF
-
-# DHCP on the Open vSwitch device
-install -D -m 644 /proc/self/fd/0 <<EOF /etc/systemd/network/10-br-ex-dhcp.network
-[Match]
-Name=br-eth0
-
-[Network]
-DHCP=yes
-EOF
 
 install -D -m 644 /proc/self/fd/0 <<'EOF' /var/openstack/openvswitch-one-node-setup
 Openvswitch one node setup: success
