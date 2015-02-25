@@ -1,11 +1,9 @@
 [Unit]
-Description=Run openstack-cinder-setup (once)
+Description=Run cinder-setup Ansile scripts
 After=local-fs.target openstack-keystone-setup.service postgres-server.service
 
 [Service]
-Type=oneshot
-ExecStart=/usr/share/openstack/openstack-cinder-setup
-Restart=no
+ExecStart=/usr/bin/ansible-playbook -v -M /usr/share/ansible/ansible-openstack-modules -i /usr/share/openstack/hosts /usr/share/openstack/cinder.yml
 
 [Install]
 WantedBy=multi-user.target
