@@ -20,28 +20,94 @@ set -e
 ROOT="$1"
 
 ##########################################################################
-# Substitutions in configuration files
-##########################################################################
-
-cat <<EOF > "$ROOT"/etc/openstack-cinder-setup.sed
-s/##CINDER_USER##/$CINDER_USER/g
-s/##CINDER_PASSWORD##/$CINDER_PASSWORD/g
-s/##CINDER_PUBLIC_URL##/$CINDER_PUBLIC_URL/g
-s/##CINDER_INTERNAL_URL##/$CINDER_INTERNAL_URL/g
-s/##CINDER_ADMIN_URL##/$CINDER_ADMIN_URL/g
-s/##CINDER_USER_V2##/$CINDER_USER_V2/g
-s/##CINDER_PUBLIC_URL_V2##/$CINDER_PUBLIC_URL_V2/g
-s/##CINDER_INTERNAL_URL_V2##/$CINDER_INTERNAL_URL_V2/g
-s/##CINDER_ADMIN_URL_V2##/$CINDER_ADMIN_URL_V2/g
-s/##CINDER_DB_USER##/$CINDER_DB_USER/g
-s/##CINDER_DB_PASSWORD##/$CINDER_DB_PASSWORD/g
-EOF
-
-sed -f "$ROOT"/etc/openstack-cinder-setup.sed -i \
-       "$ROOT"/etc/cinder/cinder.conf \
-       "$ROOT"/usr/share/openstack/openstack-cinder-setup 
-
-##########################################################################
 
 ln -sf "/etc/systemd/system/openstack-cinder-setup.service" \
     "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-cinder-setup.service"
+
+##########################################################################
+# Check variables
+##########################################################################
+
+if [ -z "$RABBITMQ_HOST" -a \
+     -z "$RABBITMQ_PORT" -a \
+     -z "$RABBITMQ_USER" -a \
+     -z "$RABBITMQ_PASSWORD" -a \
+     -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -a \
+     -z "$GLANCE_HOST" -a \
+     -z "$CINDER_DB_USER" -a \
+     -z "$CINDER_DB_PASSWORD" -a \
+     -z "$CONTROLLER_HOST" -a \
+     -z "$OPENSTACK_AUTH_HOST" -a \
+     -z "$OPENSTACK_AUTH_PORT" -a \
+     -z "$CINDER_USER" -a \
+     -z "$CINDER_PASSWORD" -a \
+     -z "$CINDER_DEVICE" -a \
+     -z "$CINDER_PUBLIC_URL" -a \
+     -z "$CINDER_INTERNAL_URL" -a \
+     -z "$CINDER_ADMIN_URL" -a \
+     -z "$CINDER_PUBLIC_URL_V2" -a \
+     -z "$CINDER_INTERNAL_URL_V2" -a \
+     -z "$CINDER_ADMIN_URL_V2" ]; then
+     # No Cinder options defined, do nothing.
+     exit 0
+fi
+
+if [ -z "$RABBITMQ_HOST" -o \
+     -z "$RABBITMQ_PORT" -o \
+     -z "$RABBITMQ_USER" -o \
+     -z "$RABBITMQ_PASSWORD" -o \
+     -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -o \
+     -z "$GLANCE_HOST" -o \
+     -z "$CINDER_DB_USER" -o \
+     -z "$CINDER_DB_PASSWORD" -o \
+     -z "$CONTROLLER_HOST" -o \
+     -z "$OPENSTACK_AUTH_HOST" -o \
+     -z "$OPENSTACK_AUTH_PORT" -o \
+     -z "$CINDER_USER" -o \
+     -z "$CINDER_PASSWORD" -o \
+     -z "$CINDER_DEVICE" -o \
+     -z "$CINDER_PUBLIC_URL" -o \
+     -z "$CINDER_INTERNAL_URL" -o \
+     -z "$CINDER_ADMIN_URL" -o \
+     -z "$CINDER_PUBLIC_URL_V2" -o \
+     -z "$CINDER_INTERNAL_URL_V2" -o \
+     -z "$CINDER_ADMIN_URL_V2" ]; then
+    echo Some options required for Cinder were defined, but not all.
+    exit 1
+fi
+
+##########################################################################
+# Generate config variable shell snippet
+##########################################################################
+
+OPENSTACK_DATA="$ROOT/etc/openstack"
+mkdir -p "$OPENSTACK_DATA"
+
+python <<'EOF' >"$OPENSTACK_DATA/cinder.conf"
+import os, sys, yaml
+
+cinder_configuration={
+    'RABBITMQ_HOST':os.environ['RABBITMQ_HOST'],
+    'RABBITMQ_PORT':os.environ['RABBITMQ_PORT'],
+    'RABBITMQ_USER':os.environ['RABBITMQ_USER'],
+    'RABBITMQ_PASSWORD':os.environ['RABBITMQ_PASSWORD'],
+    'KEYSTONE_TEMPORARY_ADMIN_TOKEN':os.environ['KEYSTONE_TEMPORARY_ADMIN_TOKEN'],
+    'GLANCE_HOST':os.environ['GLANCE_HOST'],
+    'CINDER_DB_USER':os.environ['CINDER_DB_USER'],
+    'CINDER_DB_PASSWORD':os.environ['CINDER_DB_PASSWORD'],
+    'CONTROLLER_HOST':os.environ['CONTROLLER_HOST'],
+    'OPENSTACK_AUTH_HOST':os.environ['OPENSTACK_AUTH_HOST'],
+    'OPENSTACK_AUTH_PORT':os.environ['OPENSTACK_AUTH_PORT'],
+    'CINDER_USER':os.environ['CINDER_USER'],
+    'CINDER_PASSWORD':os.environ['CINDER_PASSWORD'],
+    'CINDER_DEVICE':os.environ['CINDER_DEVICE'],
+    'CINDER_PUBLIC_URL':os.environ['CINDER_PUBLIC_URL'],
+    'CINDER_INTERNAL_URL':os.environ['CINDER_INTERNAL_URL'],
+    'CINDER_ADMIN_URL':os.environ['CINDER_ADMIN_URL'],
+    'CINDER_PUBLIC_URL_V2':os.environ['CINDER_PUBLIC_URL_V2'],
+    'CINDER_INTERNAL_URL_V2':os.environ['CINDER_INTERNAL_URL_V2'],
+    'CINDER_ADMIN_URL_V2':os.environ['CINDER_ADMIN_URL_V2'],
+}
+
+yaml.dump(cinder_configuration, sys.stdout, default_flow_style=False)
+EOF

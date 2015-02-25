@@ -1,0 +1,75 @@
+---
+- hosts: localhost
+  vars_files:
+  - "/etc/openstack/cinder.conf"
+  tasks:
+  - name: Create the cinder user.
+    user: name=cinder comment="Openstack Cinder Daemons" shell=/sbin/nologin home=/var/lib/cinder
+
+  - name: Create the /var folders for cinder
+    file: path={{ item }} state=directory owner=cinder group=cinder
+    with_items:
+    - /var/run/cinder
+    - /var/lock/cinder
+    - /var/log/cinder
+    - /var/lib/cinder
+    - /var/lib/cinder/volumer
+
+  - file: path=/etc/cinder state=directory
+  - name: Add the configuration needed for cinder in /etc/cinder using templates
+    template: src=/usr/share/openstack/cinder/{{ item }} dest=/etc/cinder/{{ item }}
+    with_lines:
+    - (cd /usr/share/openstack/cinder && find -type f)
+
+  - keystone_user: >
+        user={{ CINDER_USER }}
+        password={{ CINDER_PASSWORD }}
+        tenant=service
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - keystone_user: >
+        role=admin
+        user={{ CINDER_USER }}
+        tenant=service
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - keystone_service: >
+        name=cinderv1
+        type=volume
+        description="Openstack Block Storage"
+        publicurl={{ CINDER_PUBLIC_URL  }}
+        internalurl={{ CINDER_INTERNAL_URL | default('http://127.0.0.1:8776/v1/%(tenant_id)s') }}
+        adminurl={{ CINDER_ADMIN_URL }}
+        region='RegionOne'
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - keystone_service: >
+        name=cinderv2
+        type=volume
+        description="Openstack Block Storage"
+        publicurl={{ CINDER_PUBLIC_URL_V2 }}
+        internalurl={{ CINDER_INTERNAL_URL_V2 | default('http://127.0.0.1:8776/v2/%(tenant_id)s') }}
+        adminurl={{ CINDER_ADMIN_URL_V2 }}
+        region='RegionOne'
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - postgresql_user: name={{ CINDER_DB_USER }}
+    sudo: yes
+    sudo_user: cinder
+  - postgresql_db: name=cinder owner={{ CINDER_DB_USER }}
+    sudo: yes
+    sudo_user: cinder
+
+  - cinder_manage: action=dbsync
+    sudo: yes
+    sudo_user: cinder
+
+  - name: Enable and start openstack-cinder services
+    service: name={{ item }} enabled=yes state=started
+    with_items:
+    - openstack-cinder-api
+    - openstack-cinder-scheduler
+    - openstack-cinder-volume
+    - openstack-cinder-backup
+
+  - lvg:  vg=cinder-volumes pvs={{ CINDER_DEVICE }}
