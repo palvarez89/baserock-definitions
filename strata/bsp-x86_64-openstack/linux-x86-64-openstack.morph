@@ -40,6 +40,8 @@ configure-commands:
 - scripts/config -e EXT4_FS_POSIX_ACL
 - scripts/config -e EXT4_FS_SECURITY
 - scripts/config -d EXT4_DEBUG
+- scripts/config -e CONFIG_XFS_FS
+- scripts/config -e CONFIG_LIBCRC32C
 - scripts/config -d JBD_DEBUG
 - scripts/config -d JBD2_DEBUG
 - scripts/config -e BLK_DEV_LOOP
