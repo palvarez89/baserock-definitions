@@ -53,6 +53,8 @@ strata:
   morph: strata/openstack-services.morph
 - name: ansible
   morph: strata/ansible.morph
+- name: ntpd
+  morph: strata/ntpd.morph
 configuration-extensions:
 - set-hostname
 - add-config-files
