@@ -1,0 +1,11 @@
+name: novnc
+kind: chunk
+install-commands:
+- mkdir -p "$DESTDIR$PREFIX"/share/novnc/utils
+- install -m 444 *html "$DESTDIR$PREFIX"/share/novnc
+- install -m 444 vnc.html "$DESTDIR$PREFIX"/share/novnc/index.html
+- mkdir -p "$DESTDIR$PREFIX"/share/novnc/include
+- install -m 444 include/*.*  "$DESTDIR$PREFIX"/share/novnc/include
+- mkdir -p "$DESTDIR$PREFIX"/share/novnc/images
+- install -m 444 images/*.*  "$DESTDIR$PREFIX"/share/novnc/images
+- install -d "$DESTDIR"/etc/sysconfig

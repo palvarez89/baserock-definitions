@@ -828,3 +828,9 @@ chunks:
   build-depends:
   - django-openstack-auth
   - lockfile
+- name: novnc
+  morph: strata/openstack-services/novnc.morph
+  repo: https://github.com/kanaka/noVNC.git
+  ref: fc00821eba469641c6c94706726c3d78e46460a2
+  unpetrify-ref: v0.5.1
+  build-depends: []
