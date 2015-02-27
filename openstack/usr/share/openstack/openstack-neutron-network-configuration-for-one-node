@@ -20,6 +20,7 @@ set -xe
 # Get the first ethernet driver and its ip
 eth_dev="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $1 } ')"
 eth_ip="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $2 } ')"
+eth_mac="$(ip link show $eth_dev | tr -s '[:space:]' '\n' | sed -n '/link\/ether/{n;p}')"
 
 ip link add proxy-br-eth1 type veth peer name eth1-br-proxy
 ip link add proxy-br-ex type veth peer name ex-br-proxy
@@ -42,8 +43,24 @@ Name=$devname
 EOF
 done
 
+# restart networkd so it understands to not bring up these interfaces
+systemctl restart systemd-networkd.service
 
-# DHCP on the Open vSwitch device that replaces our external interface
+# Deallocate ip address for external interface so we don't try to route
+# connections out of an interface that no longer works
+ip addr del $eth_ip dev $eth_dev
+
+# Create our external bridge
+ovs-vsctl add-br br-eth0
+# Bind our external device to the bridge
+ovs-vsctl add-port br-eth0 $eth_dev
+# Tell the bridge that it has the mac address of the external device now
+ovs-vsctl set bridge br-eth0 other-config:hwaddr=$eth_mac
+ip link set br-eth0 promisc on
+
+# restart networkd again so it will DHCP on the Open vSwitch device that
+# replaces our external interface, but with the mac address of the external
+# interface, so it ought to get the same address back
 install -D -m 644 /proc/self/fd/0 <<EOF /etc/systemd/network/10-br-ex-dhcp.network
 [Match]
 Name=br-eth0
@@ -51,16 +68,10 @@ Name=br-eth0
 [Network]
 DHCP=yes
 EOF
-
-# restart networkd so it understands the new config
 systemctl restart systemd-networkd.service
 
-ovs-vsctl add-br br-eth0
-ovs-vsctl add-port br-eth0 $eth_dev
-ip link set br-eth0 promisc on
-# Deallocate ip address for external interface so we don't try to route
-# connections out of an interface that no longer works
-ip addr del $eth_ip dev $eth_dev
+
+# Add the rest of the bridges
 ovs-vsctl add-br br-eth1
 ovs-vsctl add-br br-ex
 ovs-vsctl add-port br-eth1 eth1-br-proxy
