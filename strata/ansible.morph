@@ -10,3 +10,8 @@ chunks:
   repo: upstream:ansible
   ref: ebc8d48d34296fe010096f044e2b7591df37a622
   unpetrify-ref: baserock/v1.8.4
+- name: openstack-ansible-modules
+  morph: strata/ansible/openstack-ansible-modules.morph
+  repo: upstream:openstack/openstack-ansible-modules
+  ref: 451dcdeadfd35615a867d5e59a684e4aa82959ae
+  unpetrify-ref: master
