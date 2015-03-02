@@ -1,0 +1,5 @@
+name: openstack-ansible-modules
+kind: chunk
+install-commands:
+- mkdir -p $DESTDIR$PREFIX/share/ansible/ansible-openstack-modules
+- cp -r * $DESTDIR$PREFIX/share/ansible/ansible-openstack-modules
