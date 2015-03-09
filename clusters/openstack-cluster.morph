@@ -17,9 +17,9 @@ systems:
       RABBITMQ_PASSWORD: veryinsecure
       KEYSTONE_TEMPORARY_ADMIN_TOKEN: 22f3aa1cf538e3f6d5e8
       KEYSTONE_TEMPORARY_ADMIN_PASSWORD: veryinsecure
-      KEYSTONE_PUBLIC_URL: http:\/\/onenode:5000\/v2.0
-      KEYSTONE_INTERNAL_URL: http:\/\/onenode:5000\/v2.0
-      KEYSTONE_ADMIN_URL: http:\/\/onenode:35357\/v2.0
+      KEYSTONE_PUBLIC_URL: http://onenode:5000/v2.0
+      KEYSTONE_INTERNAL_URL: http://onenode:5000/v2.0
+      KEYSTONE_ADMIN_URL: http://onenode:35357/v2.0
       KEYSTONE_DB_USER: keystoneDB
       KEYSTONE_DB_PASSWORD: veryinsecure
       IDENTITY_URI: http:\/\/onenode:35357
