@@ -1,10 +1,12 @@
 [Unit]
 Description=Neutron OVS cleanup
-After=network-online.target openstack-neutron-setup.service
+After=network-online.target openstack-neutron-setup.service openvswitch.service
+Before=openstack-neutron-plugin-openvswitch-agent.service
 ConditionFileIsExecutable=/usr/bin/neutron-ovs-cleanup
 
 [Service]
-Type=simple
+Type=oneshot
+RemainAfterExit=yes
 User=neutron
 ExecStart=/usr/bin/neutron-ovs-cleanup \
   --log-file /var/log/neutron/ovs-cleanup.log \
