@@ -22,9 +22,6 @@ eth_dev="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*ine
 eth_ip="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $2 } ')"
 eth_mac="$(ip link show $eth_dev | tr -s '[:space:]' '\n' | sed -n '/link\/ether/{n;p}')"
 
-ip link add proxy-br-eth1 type veth peer name eth1-br-proxy
-ip link add proxy-br-ex type veth peer name ex-br-proxy
-
 if [ -f /var/openstack/openvswitch-one-node-setup ]; then
   exit 0
 fi
@@ -51,12 +48,12 @@ systemctl restart systemd-networkd.service
 ip addr del $eth_ip dev $eth_dev
 
 # Create our external bridge
-ovs-vsctl add-br br-eth0
 # Bind our external device to the bridge
-ovs-vsctl add-port br-eth0 $eth_dev
 # Tell the bridge that it has the mac address of the external device now
-ovs-vsctl set bridge br-eth0 other-config:hwaddr=$eth_mac
-ip link set br-eth0 promisc on
+ovs-vsctl \
+    -- add-br br-eth0 \
+    -- add-port br-eth0 $eth_dev \
+    -- set bridge br-eth0 other-config:hwaddr=$eth_mac
 
 # restart networkd again so it will DHCP on the Open vSwitch device that
 # replaces our external interface, but with the mac address of the external
@@ -72,19 +69,18 @@ systemctl restart systemd-networkd.service
 
 
 # Add the rest of the bridges
-ovs-vsctl add-br br-eth1
-ovs-vsctl add-br br-ex
-ovs-vsctl add-port br-eth1 eth1-br-proxy
-ovs-vsctl add-port br-ex ex-br-proxy
-ovs-vsctl add-port br-eth0 proxy-br-eth1
-ovs-vsctl add-port br-eth0 proxy-br-ex
-ip link set eth1-br-proxy up promisc on
-ip link set ex-br-proxy up promisc on
-ip link set proxy-br-eth1 up promisc on
-ip link set proxy-br-ex up promisc on
+ovs-vsctl \
+    -- add-br br-eth1 \
+    -- add-port br-eth1 eth1-br-proxy \
+    -- set interface eth1-br-proxy type=patch options:peer=proxy-br-eth1 \
+    -- add-port br-eth0 proxy-br-eth1 \
+    -- set interface proxy-br-eth1 type=patch options:peer=eth1-br-proxy \
+    -- add-br br-ex \
+    -- add-port br-ex ex-br-proxy \
+    -- set interface ex-br-proxy type=patch options:peer=proxy-br-ex \
+    -- add-port br-eth0 proxy-br-ex \
+    -- set interface proxy-br-ex type=patch options:peer=ex-br-proxy
 
 install -D -m 644 /proc/self/fd/0 <<'EOF' /var/openstack/openvswitch-one-node-setup
 Openvswitch one node setup: success
 EOF
-
-exit 0

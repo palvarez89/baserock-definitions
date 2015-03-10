@@ -157,6 +157,4 @@
 0100644 0 0 /etc/horizon/apache-horizon.conf
 0100644 0 0 /etc/horizon/openstack_dashboard/local_settings.py
 0100644 0 0 /etc/sysctl.conf
-0100644 0 0 /etc/systemd/system/openvswitch-create-links-one-node.service
-0100755 0 0 /usr/share/openstack/create_openvswitch_veth_pairs
 0100644 0 0 /etc/hosts

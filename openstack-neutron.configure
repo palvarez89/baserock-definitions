@@ -44,7 +44,6 @@ sed -f "$ROOT"/etc/openstack-neutron-setup.sed -i \
 # Create the links to enable the neutron systemd services                #
 ##########################################################################
 services=("openstack-neutron-network-configuration-one-node.service" \
-          "openvswitch-create-links-one-node.service" \
           "openstack-neutron-dhcp-agent.service" \
           "openstack-neutron-l3-agent.service" \
           "openstack-neutron-metadata-agent.service" \
