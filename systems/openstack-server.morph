@@ -67,5 +67,4 @@ configuration-extensions:
 - openstack-nova
 - openstack-cinder
 - openvswitch
-- postgres
 - apache-httpd-server

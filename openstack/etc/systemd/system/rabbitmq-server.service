@@ -1,7 +1,6 @@
 [Unit]
 Description=RabbitMQ broker
-After=syslog.target network.target openstack-rabbitmq-setup.service
-Requires=openstack-rabbitmq-setup.service
+After=syslog.target network.target
 
 [Service]
 Type=notify

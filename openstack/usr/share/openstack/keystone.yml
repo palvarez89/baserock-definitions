@@ -3,6 +3,57 @@
   vars_files:
   - "/etc/openstack/keystone.conf"
   tasks:
+
+  # RabbitMQ configuration, this may end up in a different playbook
+  - name: Create rabbitmq user
+    user: name=rabbitmq comment="Rabbitmq server daemon" shell=/sbin/nologin home=/var/lib/rabbitmq
+
+  - name: Create the rabbitmq directories
+    file: path={{ item }} state=directory owner=rabbitmq group=rabbitmq
+    with_items:
+    - /var/run/rabbitmq
+    - /var/log/rabbitmq
+    - /etc/rabbitmq
+
+  - name: Add the configuration needed for rabbitmq in /etc/rabbitmq using templates
+    template: src=/usr/share/openstack/rabbitmq/{{ item }} dest=/etc/rabbitmq/{{ item }} owner=rabbitmq group=rabbitmq mode=0644
+    with_items:
+    - rabbitmq.config
+    - rabbitmq-env.conf
+
+  - name: Enable and start rabbitmq services
+    service: name={{ item }} enabled=yes state=started
+    with_items:
+    - rabbitmq-server
+
+  # Postgres configuration, this may end up in a different playbook
+  - name: Create postgres user
+    user: name=postgres comment="PostgreSQL Server" shell=/sbin/nologin home=/var/lib/pgsql
+
+  - name: Create the postgres directories
+    file: path={{ item }} state=directory owner=postgres group=postgres
+    with_items:
+    - /var/run/postgresql
+    - /var/lib/pgsql/data
+
+  - name: Initialise postgres database
+    shell: pg_ctl -D  /var/lib/pgsql/data initdb creates=/var/lib/pgsql/data/base
+    sudo: yes
+    sudo_user: postgres
+
+  - name: Add the configuration needed for postgres for Openstack
+    template: src=/usr/share/openstack/postgres/{{ item }} dest=/var/lib/pgsql/data/{{ item }} owner=postgres group=postgres mode=0600
+    with_items:
+    - postgresql.conf
+    - pg_hba.conf
+
+  - name: Enable and start postgres services
+    service: name={{ item }} enabled=yes state=started
+    with_items:
+    - postgres-server
+
+
+  # Keystone configuration
   - name: Create the keystone user.
     user: name=keystone comment="Openstack Keystone Daemons" shell=/sbin/nologin home=/var/lib/keystone
 
@@ -70,4 +121,3 @@
         region='RegionOne'
         token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
         endpoint={{ KEYSTONE_ADMIN_URL }}
-
