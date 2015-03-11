@@ -3,9 +3,11 @@ kind: chunk
 build-system: autotools
 configure-commands:
 - sh autogen.sh
-- ./configure --prefix="$PREFIX" --enable-xz --disable-manpages --sysconfdir=/etc
-  --localstatedir=/var --libdir="$PREFIX/lib" --libexecdir="$PREFIX/libexec" --with-rootprefix=
-  --with-rootlibdir=/lib
+- |
+  ./configure --prefix="$PREFIX" --enable-xz --disable-manpages \
+      --disable-tests --sysconfdir=/etc --localstatedir=/var \
+      --libdir="$PREFIX/lib" --libexecdir="$PREFIX/libexec" \
+      --with-rootprefix= --with-rootlibdir=/lib
 install-commands:
 - make DESTDIR="$DESTDIR" install
 - mkdir -p "$DESTDIR"/sbin
