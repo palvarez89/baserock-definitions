@@ -1,5 +1,5 @@
 [Unit]
-Description=OpenStack Compute Service (code-named Nova) API server
+Description=OpenStack Compute Service (code-named Nova) compute server
 After=syslog.target network.target libvirtd.service
 Requires=libvirtd.service
 
