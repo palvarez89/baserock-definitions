@@ -38,16 +38,16 @@
         name=glance
         type=image
         description="Openstack Image Service"
-        publicurl={{ GLANCE_PUBLIC_URL }}
-        internalurl={{ GLANCE_INTERNAL_URL }}
-        adminurl={{ GLANCE_ADMIN_URL }}
+        publicurl=http://{{ CONTROLLER_HOST_ADDRESS }}:9292
+        internalurl=http://{{ CONTROLLER_HOST_ADDRESS }}:9292
+        adminurl=http://{{ CONTROLLER_HOST_ADDRESS }}:9292
         region='RegionOne'
         token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
 
-  - postgresql_user: name={{ GLANCE_DB_USER }} login_host={{ CONTROLLER_HOST }} password={{ GLANCE_DB_PASSWORD }}
+  - postgresql_user: name={{ GLANCE_DB_USER }} login_host={{ CONTROLLER_HOST_ADDRESS }} password={{ GLANCE_DB_PASSWORD }}
     sudo: yes
     sudo_user: glance
-  - postgresql_db: name=glance owner={{ GLANCE_DB_USER }} login_host={{ CONTROLLER_HOST }}
+  - postgresql_db: name=glance owner={{ GLANCE_DB_USER }} login_host={{ CONTROLLER_HOST_ADDRESS }}
     sudo: yes
     sudo_user: glance
 

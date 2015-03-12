@@ -31,20 +31,13 @@ ln -s "/etc/systemd/system/openstack-glance-setup.service" \
 if [ -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -a \
      -z "$GLANCE_SERVICE_USER" -a \
      -z "$GLANCE_SERVICE_PASSWORD" -a \
-     -z "$GLANCE_PUBLIC_URL" -a \
-     -z "$GLANCE_INTERNAL_URL" -a \
-     -z "$GLANCE_ADMIN_URL" -a \
-     -z "$KEYSTONE_PUBLIC_URL" -a \
-     -z "$KEYSTONE_INTERNAL_URL" -a \
-     -z "$KEYSTONE_ADMIN_URL" -a \
-     -z "$IDENTITY_URI" -a \
      -z "$GLANCE_DB_USER" -a \
      -z "$GLANCE_DB_PASSWORD" -a \
      -z "$RABBITMQ_HOST" -a \
      -z "$RABBITMQ_PORT" -a \
      -z "$RABBITMQ_USER" -a \
      -z "$RABBITMQ_PASSWORD" -a \
-     -z "$CONTROLLER_HOST" ]; then
+     -z "$CONTROLLER_HOST_ADDRESS" ]; then
      # No Glance options defined, do nothing.
      exit 0
 fi
@@ -52,20 +45,13 @@ fi
 if [ -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -o \
      -z "$GLANCE_SERVICE_USER" -o \
      -z "$GLANCE_SERVICE_PASSWORD" -o \
-     -z "$GLANCE_PUBLIC_URL" -o \
-     -z "$GLANCE_INTERNAL_URL" -o \
-     -z "$GLANCE_ADMIN_URL" -o \
-     -z "$KEYSTONE_PUBLIC_URL" -o \
-     -z "$KEYSTONE_INTERNAL_URL" -o \
-     -z "$KEYSTONE_ADMIN_URL" -o \
-     -z "$IDENTITY_URI" -o \
      -z "$GLANCE_DB_USER" -o \
      -z "$GLANCE_DB_PASSWORD" -o \
      -z "$RABBITMQ_HOST" -o \
      -z "$RABBITMQ_PORT" -o \
      -z "$RABBITMQ_USER" -o \
      -z "$RABBITMQ_PASSWORD" -o \
-     -z "$CONTROLLER_HOST" ]; then
+     -z "$CONTROLLER_HOST_ADDRESS" ]; then
     echo Some options required for Glance were defined, but not all.
     exit 1
 fi
@@ -82,17 +68,11 @@ import os, sys, yaml
 
 glance_configuration={
     'KEYSTONE_TEMPORARY_ADMIN_TOKEN': os.environ['KEYSTONE_TEMPORARY_ADMIN_TOKEN'],
-    'KEYSTONE_PUBLIC_URL': os.environ['KEYSTONE_PUBLIC_URL'],
-    'KEYSTONE_ADMIN_URL': os.environ['KEYSTONE_ADMIN_URL'],
-    'IDENTITY_URI': os.environ['IDENTITY_URI'],
-    'GLANCE_ADMIN_URL': os.environ['GLANCE_ADMIN_URL'],
-    'GLANCE_INTERNAL_URL': os.environ['GLANCE_INTERNAL_URL'],
-    'GLANCE_PUBLIC_URL': os.environ['GLANCE_PUBLIC_URL'],
     'GLANCE_SERVICE_PASSWORD': os.environ['GLANCE_SERVICE_PASSWORD'],
     'GLANCE_SERVICE_USER': os.environ['GLANCE_SERVICE_USER'],
     'GLANCE_DB_USER': os.environ['GLANCE_DB_USER'],
     'GLANCE_DB_PASSWORD': os.environ['GLANCE_DB_PASSWORD'],
-    'CONTROLLER_HOST': os.environ['CONTROLLER_HOST'],
+    'CONTROLLER_HOST_ADDRESS': os.environ['CONTROLLER_HOST_ADDRESS'],
     'RABBITMQ_HOST': os.environ['RABBITMQ_HOST'],
     'RABBITMQ_PORT': os.environ['RABBITMQ_PORT'],
     'RABBITMQ_USER': os.environ['RABBITMQ_USER'],
