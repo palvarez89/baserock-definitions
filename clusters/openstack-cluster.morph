@@ -22,15 +22,15 @@ systems:
       KEYSTONE_ADMIN_URL: http://onenode:35357/v2.0
       KEYSTONE_DB_USER: keystoneDB
       KEYSTONE_DB_PASSWORD: veryinsecure
-      IDENTITY_URI: http:\/\/onenode:35357
+      IDENTITY_URI: http://onenode:35357
       CONTROLLER_HOST: onenode
       OPENSTACK_AUTH_HOST: onenode
       OPENSTACK_AUTH_PORT: 35357
       GLANCE_SERVICE_USER: glance
       GLANCE_SERVICE_PASSWORD: veryinsecure
-      GLANCE_PUBLIC_URL: http:\/\/onenode:9292
-      GLANCE_INTERNAL_URL: http:\/\/onenode:9292
-      GLANCE_ADMIN_URL: http:\/\/onenode:9292
+      GLANCE_PUBLIC_URL: http://onenode:9292
+      GLANCE_INTERNAL_URL: http://onenode:9292
+      GLANCE_ADMIN_URL: http://onenode:9292
       GLANCE_HOST: onenode
       GLANCE_DB_USER: glanceDB
       GLANCE_DB_PASSWORD: veryinsecure
