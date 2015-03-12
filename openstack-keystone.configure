@@ -30,38 +30,26 @@ ln -s "/etc/systemd/system/openstack-keystone-setup.service" \
 
 if [ -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -a \
      -z "$KEYSTONE_ADMIN_PASSWORD" -a \
-     -z "$KEYSTONE_PUBLIC_URL" -a \
-     -z "$KEYSTONE_INTERNAL_URL" -a \
-     -z "$KEYSTONE_ADMIN_URL" -a \
-     -z "$OPENSTACK_AUTH_HOST" -a \
-     -z "$OPENSTACK_AUTH_PORT" -a \
-     -z "$IDENTITY_URI" -a \
      -z "$KEYSTONE_DB_USER" -a \
      -z "$KEYSTONE_DB_PASSWORD" -a \
      -z "$RABBITMQ_HOST" -a \
      -z "$RABBITMQ_PORT" -a \
      -z "$RABBITMQ_USER" -a \
      -z "$RABBITMQ_PASSWORD" -a \
-     -z "$CONTROLLER_HOST" ]; then
+     -z "$CONTROLLER_HOST_ADDRESS" ]; then
      # No Keystone options defined, do nothing.
     exit 0
 fi
 
 if [ -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -o \
      -z "$KEYSTONE_ADMIN_PASSWORD" -o \
-     -z "$KEYSTONE_PUBLIC_URL" -o \
-     -z "$KEYSTONE_INTERNAL_URL" -o \
-     -z "$KEYSTONE_ADMIN_URL" -o \
-     -z "$OPENSTACK_AUTH_HOST" -o \
-     -z "$OPENSTACK_AUTH_PORT" -o \
-     -z "$IDENTITY_URI" -a \
      -z "$KEYSTONE_DB_USER" -o \
      -z "$KEYSTONE_DB_PASSWORD" -o \
      -z "$RABBITMQ_HOST" -o \
      -z "$RABBITMQ_PORT" -o \
      -z "$RABBITMQ_USER" -o \
      -z "$RABBITMQ_PASSWORD" -o \
-     -z "$CONTROLLER_HOST" ]; then
+     -z "$CONTROLLER_HOST_ADDRESS" ]; then
     echo Some options required for Keystone were defined, but not all.
     exit 1
 fi
@@ -79,15 +67,9 @@ import os, sys, yaml
 keystone_configuration={
     'KEYSTONE_TEMPORARY_ADMIN_TOKEN': os.environ['KEYSTONE_TEMPORARY_ADMIN_TOKEN'],
     'KEYSTONE_ADMIN_PASSWORD': os.environ['KEYSTONE_ADMIN_PASSWORD'],
-    'KEYSTONE_PUBLIC_URL': os.environ['KEYSTONE_PUBLIC_URL'],
-    'KEYSTONE_INTERNAL_URL': os.environ['KEYSTONE_INTERNAL_URL'],
-    'KEYSTONE_ADMIN_URL': os.environ['KEYSTONE_ADMIN_URL'],
-    'OPENSTACK_AUTH_HOST': os.environ['OPENSTACK_AUTH_HOST'],
-    'OPENSTACK_AUTH_PORT': os.environ['OPENSTACK_AUTH_PORT'],
-    'IDENTITY_URI': os.environ['IDENTITY_URI'],
     'KEYSTONE_DB_USER': os.environ['KEYSTONE_DB_USER'],
     'KEYSTONE_DB_PASSWORD': os.environ['KEYSTONE_DB_PASSWORD'],
-    'CONTROLLER_HOST': os.environ['CONTROLLER_HOST'],
+    'CONTROLLER_HOST_ADDRESS': os.environ['CONTROLLER_HOST_ADDRESS'],
     'RABBITMQ_HOST': os.environ['RABBITMQ_HOST'],
     'RABBITMQ_PORT': os.environ['RABBITMQ_PORT'],
     'RABBITMQ_USER': os.environ['RABBITMQ_USER'],
