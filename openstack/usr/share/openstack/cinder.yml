@@ -37,9 +37,9 @@
         name=cinderv1
         type=volume
         description="Openstack Block Storage"
-        publicurl={{ CINDER_PUBLIC_URL  }}
-        internalurl={{ CINDER_INTERNAL_URL | default('http://127.0.0.1:8776/v1/%(tenant_id)s') }}
-        adminurl={{ CINDER_ADMIN_URL }}
+        publicurl='http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v1/%(tenant_id)s'
+        internalurl='http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v1/%(tenant_id)s'
+        adminurl='http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v1/%(tenant_id)s'
         region='RegionOne'
         token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
 
@@ -47,9 +47,9 @@
         name=cinderv2
         type=volume
         description="Openstack Block Storage"
-        publicurl={{ CINDER_PUBLIC_URL_V2 }}
-        internalurl={{ CINDER_INTERNAL_URL_V2 | default('http://127.0.0.1:8776/v2/%(tenant_id)s') }}
-        adminurl={{ CINDER_ADMIN_URL_V2 }}
+        publicurl='http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v2/%(tenant_id)s'
+        internalurl='http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v2/%(tenant_id)s'
+        adminurl='http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v2/%(tenant_id)s'
         region='RegionOne'
         token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
 

@@ -33,21 +33,13 @@ if [ -z "$RABBITMQ_HOST" -a \
      -z "$RABBITMQ_USER" -a \
      -z "$RABBITMQ_PASSWORD" -a \
      -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -a \
-     -z "$GLANCE_HOST" -a \
      -z "$CINDER_DB_USER" -a \
      -z "$CINDER_DB_PASSWORD" -a \
-     -z "$CONTROLLER_HOST" -a \
-     -z "$OPENSTACK_AUTH_HOST" -a \
-     -z "$OPENSTACK_AUTH_PORT" -a \
+     -z "$CONTROLLER_HOST_ADDRESS" -a \
      -z "$CINDER_USER" -a \
      -z "$CINDER_PASSWORD" -a \
      -z "$CINDER_DEVICE" -a \
-     -z "$CINDER_PUBLIC_URL" -a \
-     -z "$CINDER_INTERNAL_URL" -a \
-     -z "$CINDER_ADMIN_URL" -a \
-     -z "$CINDER_PUBLIC_URL_V2" -a \
-     -z "$CINDER_INTERNAL_URL_V2" -a \
-     -z "$CINDER_ADMIN_URL_V2" ]; then
+     -z "$MANAGEMENT_INTERFACE_IP_ADDRESS" ]; then
      # No Cinder options defined, do nothing.
      exit 0
 fi
@@ -57,21 +49,13 @@ if [ -z "$RABBITMQ_HOST" -o \
      -z "$RABBITMQ_USER" -o \
      -z "$RABBITMQ_PASSWORD" -o \
      -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -o \
-     -z "$GLANCE_HOST" -o \
      -z "$CINDER_DB_USER" -o \
      -z "$CINDER_DB_PASSWORD" -o \
-     -z "$CONTROLLER_HOST" -o \
-     -z "$OPENSTACK_AUTH_HOST" -o \
-     -z "$OPENSTACK_AUTH_PORT" -o \
+     -z "$CONTROLLER_HOST_ADDRESS" -o \
      -z "$CINDER_USER" -o \
      -z "$CINDER_PASSWORD" -o \
      -z "$CINDER_DEVICE" -o \
-     -z "$CINDER_PUBLIC_URL" -o \
-     -z "$CINDER_INTERNAL_URL" -o \
-     -z "$CINDER_ADMIN_URL" -o \
-     -z "$CINDER_PUBLIC_URL_V2" -o \
-     -z "$CINDER_INTERNAL_URL_V2" -o \
-     -z "$CINDER_ADMIN_URL_V2" ]; then
+     -z "$MANAGEMENT_INTERFACE_IP_ADDRESS" ]; then
     echo Some options required for Cinder were defined, but not all.
     exit 1
 fi
@@ -92,21 +76,13 @@ cinder_configuration={
     'RABBITMQ_USER':os.environ['RABBITMQ_USER'],
     'RABBITMQ_PASSWORD':os.environ['RABBITMQ_PASSWORD'],
     'KEYSTONE_TEMPORARY_ADMIN_TOKEN':os.environ['KEYSTONE_TEMPORARY_ADMIN_TOKEN'],
-    'GLANCE_HOST':os.environ['GLANCE_HOST'],
     'CINDER_DB_USER':os.environ['CINDER_DB_USER'],
     'CINDER_DB_PASSWORD':os.environ['CINDER_DB_PASSWORD'],
-    'CONTROLLER_HOST':os.environ['CONTROLLER_HOST'],
-    'OPENSTACK_AUTH_HOST':os.environ['OPENSTACK_AUTH_HOST'],
-    'OPENSTACK_AUTH_PORT':os.environ['OPENSTACK_AUTH_PORT'],
+    'CONTROLLER_HOST_ADDRESS':os.environ['CONTROLLER_HOST_ADDRESS'],
     'CINDER_USER':os.environ['CINDER_USER'],
     'CINDER_PASSWORD':os.environ['CINDER_PASSWORD'],
     'CINDER_DEVICE':os.environ['CINDER_DEVICE'],
-    'CINDER_PUBLIC_URL':os.environ['CINDER_PUBLIC_URL'],
-    'CINDER_INTERNAL_URL':os.environ['CINDER_INTERNAL_URL'],
-    'CINDER_ADMIN_URL':os.environ['CINDER_ADMIN_URL'],
-    'CINDER_PUBLIC_URL_V2':os.environ['CINDER_PUBLIC_URL_V2'],
-    'CINDER_INTERNAL_URL_V2':os.environ['CINDER_INTERNAL_URL_V2'],
-    'CINDER_ADMIN_URL_V2':os.environ['CINDER_ADMIN_URL_V2'],
+    'MANAGEMENT_INTERFACE_IP_ADDRESS':os.environ['MANAGEMENT_INTERFACE_IP_ADDRESS'],
 }
 
 yaml.dump(cinder_configuration, sys.stdout, default_flow_style=False)
