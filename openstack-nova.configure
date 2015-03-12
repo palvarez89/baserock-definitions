@@ -47,58 +47,38 @@ sed -i "s/192\.168\.122\./192\.168\.1\./g" \
 ##########################################################################
 
 
-if [ -z "$IDENTITY_URI" -a \
-     -z "$KEYSTONE_INTERNAL_URL" -a \
-     -z "$NOVA_SERVICE_USER" -a \
+if [ -z "$NOVA_SERVICE_USER" -a \
      -z "$NOVA_SERVICE_PASSWORD" -a \
      -z "$NOVA_DB_USER" -a \
      -z "$NOVA_DB_PASSWORD" -a \
-     -z "$NOVA_NOVNCPROXY_BASE_URL" -a \
-     -z "$NOVA_HOST" -a \
-     -z "$NEUTRON_PUBLIC_URL" -a \
      -z "$NEUTRON_SERVICE_USER" -a \
      -z "$NEUTRON_SERVICE_PASSWORD" -a \
-     -z "$KEYSTONE_ADMIN_URL" -a \
      -z "$METADATA_PROXY_SHARED_SECRET" -a \
      -z "$RABBITMQ_HOST" -a \
      -z "$RABBITMQ_USER" -a \
      -z "$RABBITMQ_PASSWORD" -a \
      -z "$RABBITMQ_PORT" -a \
-     -z "$CONTROLLER_HOST" -a \
-     -z "$GLANCE_HOST" -a \
-     -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -a \
-     -z "$NOVA_PUBLIC_URL" -a \
-     -z "$NOVA_INTERNAL_URL" -a \
-     -z "$NOVA_ADMIN_URL" -a \
-     -z "$NOVA_REGION" ]; then
+     -z "$CONTROLLER_HOST_ADDRESS" -a \
+     -z "$MANAGEMENT_INTERFACE_IP_ADDRESS" -a \
+     -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" ]; then
      # No NOVA options defined, do nothing.
      exit 0
 fi
 
-if [ -z "$IDENTITY_URI" -o \
-     -z "$KEYSTONE_INTERNAL_URL" -o \
-     -z "$NOVA_SERVICE_USER" -o \
+if [ -z "$NOVA_SERVICE_USER" -o \
      -z "$NOVA_SERVICE_PASSWORD" -o \
      -z "$NOVA_DB_USER" -o \
      -z "$NOVA_DB_PASSWORD" -o \
-     -z "$NOVA_NOVNCPROXY_BASE_URL" -o \
-     -z "$NOVA_HOST" -o \
-     -z "$NEUTRON_PUBLIC_URL" -o \
      -z "$NEUTRON_SERVICE_USER" -o \
      -z "$NEUTRON_SERVICE_PASSWORD" -o \
-     -z "$KEYSTONE_ADMIN_URL" -o \
      -z "$METADATA_PROXY_SHARED_SECRET" -o \
      -z "$RABBITMQ_HOST" -o \
      -z "$RABBITMQ_USER" -o \
      -z "$RABBITMQ_PASSWORD" -o \
      -z "$RABBITMQ_PORT" -o \
-     -z "$CONTROLLER_HOST" -o \
-     -z "$GLANCE_HOST" -o \
-     -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" -o \
-     -z "$NOVA_PUBLIC_URL" -o \
-     -z "$NOVA_INTERNAL_URL" -o \
-     -z "$NOVA_ADMIN_URL" -o \
-     -z "$NOVA_REGION" ]; then
+     -z "$CONTROLLER_HOST_ADDRESS" -o \
+     -z "$MANAGEMENT_INTERFACE_IP_ADDRESS" -o \
+     -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" ]; then
     echo Some options required for Nova were defined, but not all.
     exit 1
 fi
@@ -114,30 +94,20 @@ python <<'EOF' >"$OPENSTACK_DATA/nova.conf"
 import os, sys, yaml
 
 nova_configuration={
-    'IDENTITY_URI': os.environ['IDENTITY_URI'],
-    'KEYSTONE_INTERNAL_URL': os.environ['KEYSTONE_INTERNAL_URL'],
     'NOVA_SERVICE_USER': os.environ['NOVA_SERVICE_USER'],
     'NOVA_SERVICE_PASSWORD': os.environ['NOVA_SERVICE_PASSWORD'],
     'NOVA_DB_USER': os.environ['NOVA_DB_USER'],
     'NOVA_DB_PASSWORD': os.environ['NOVA_DB_PASSWORD'],
-    'NOVA_NOVNCPROXY_BASE_URL': os.environ['NOVA_NOVNCPROXY_BASE_URL'],
-    'NOVA_HOST': os.environ['NOVA_HOST'],
-    'NEUTRON_PUBLIC_URL': os.environ['NEUTRON_PUBLIC_URL'],
     'NEUTRON_SERVICE_USER': os.environ['NEUTRON_SERVICE_USER'],
     'NEUTRON_SERVICE_PASSWORD': os.environ['NEUTRON_SERVICE_PASSWORD'],
-    'KEYSTONE_ADMIN_URL': os.environ['KEYSTONE_ADMIN_URL'],
     'METADATA_PROXY_SHARED_SECRET': os.environ['METADATA_PROXY_SHARED_SECRET'],
     'RABBITMQ_HOST': os.environ['RABBITMQ_HOST'],
     'RABBITMQ_USER': os.environ['RABBITMQ_USER'],
     'RABBITMQ_PASSWORD': os.environ['RABBITMQ_PASSWORD'],
     'RABBITMQ_PORT': os.environ['RABBITMQ_PORT'],
-    'CONTROLLER_HOST': os.environ['CONTROLLER_HOST'],
-    'GLANCE_HOST': os.environ['GLANCE_HOST'],
+    'CONTROLLER_HOST_ADDRESS': os.environ['CONTROLLER_HOST_ADDRESS'],
+    'MANAGEMENT_INTERFACE_IP_ADDRESS': os.environ['MANAGEMENT_INTERFACE_IP_ADDRESS'],
     'KEYSTONE_TEMPORARY_ADMIN_TOKEN': os.environ['KEYSTONE_TEMPORARY_ADMIN_TOKEN'],
-    'NOVA_PUBLIC_URL': os.environ['NOVA_PUBLIC_URL'],
-    'NOVA_INTERNAL_URL': os.environ['NOVA_INTERNAL_URL'],
-    'NOVA_ADMIN_URL': os.environ['NOVA_ADMIN_URL'],
-    'NOVA_REGION': os.environ['NOVA_REGION'],
 }
 
 yaml.dump(nova_configuration, sys.stdout, default_flow_style=False)

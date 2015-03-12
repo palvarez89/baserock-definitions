@@ -37,16 +37,16 @@
         name=nova
         type=compute
         description="Openstack Compute Service"
-        publicurl={{ NOVA_PUBLIC_URL  }}
-        internalurl={{ NOVA_INTERNAL_URL | default('http://127.0.0.1:8774/v2/%(tenant_id)s') }}
-        adminurl={{ NOVA_ADMIN_URL }}
+        publicurl='http://{{ CONTROLLER_HOST_ADDRESS }}:8774/v2/%(tenant_id)s'
+        internalurl='http://{{ CONTROLLER_HOST_ADDRESS }}:8774/v2/%(tenant_id)s'
+        adminurl='http://{{ CONTROLLER_HOST_ADDRESS }}:8774/v2/%(tenant_id)s'
         region='RegionOne'
         token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
 
-  - postgresql_user: name={{ NOVA_DB_USER }}
+  - postgresql_user: name={{ NOVA_DB_USER }} login_host={{ CONTROLLER_HOST_ADDRESS }} password={{ NOVA_DB_PASSWORD }}
     sudo: yes
     sudo_user: nova
-  - postgresql_db: name=nova owner={{ NOVA_DB_USER }}
+  - postgresql_db: name=nova owner={{ NOVA_DB_USER }} login_host={{ CONTROLLER_HOST_ADDRESS }}
     sudo: yes
     sudo_user: nova
 
