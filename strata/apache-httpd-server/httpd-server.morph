@@ -29,7 +29,7 @@ configure-commands:
               --with-suexec-caller=apache \
               --with-suexec-docroot=/var/www \
               --with-suexec-logfile=/var/log/httpd/suexec.log \
-              --with-suexec-bin="$PREFIX"/lib/httpd/suexec \
+              --with-suexec-bin="$PREFIX"/sbin/suexec \
               --with-suexec-uidmin=500 --with-suexec-gidmin=100\
               --with-suexec-userdir=public_html \
               --enable-pie \
