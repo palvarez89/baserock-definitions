@@ -24,6 +24,9 @@ ROOT="$1"
 ln -s "/etc/systemd/system/openstack-keystone-setup.service" \
     "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-keystone-setup.service"
 
+ln -s "/etc/systemd/system/openstack-horizon-setup.service" \
+    "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-horizon-setup.service"
+
 ##########################################################################
 # Check variables
 ##########################################################################

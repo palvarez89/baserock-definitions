@@ -69,4 +69,3 @@ configuration-extensions:
 - openstack-cinder
 - openstack-neutron
 - openvswitch
-- apache-httpd-server

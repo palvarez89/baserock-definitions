@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  tasks:
+
+# Setup apache, this may end up in apache.yml
+  - name: Create the apache user.
+    user: name=apache comment="Apache Server" shell=/sbin/nologin home=/var/www
+
+  - file: path=/usr/sbin/suexec group=apache mode=4750
+
+# Setup horizon
+  - name: Create the horizon user.
+    user: name=horizon comment="Openstack Horizon User" shell=/sbin/nologin home=/var/lib/horizon
+
+  - name: Create the /var folders for horizon
+    file: path={{ item }} state=directory owner=horizon group=horizon
+    with_items:
+    - /var/lib/horizon
+
+  - file: src=/etc/horizon/apache-horizon.conf dest=/etc/httpd/conf.d/apache-horizon.conf state=link
+
+  - name: Enable and start apache services needed by horizon
+    service: name={{ item }} enabled=yes state=started
+    with_items:
+    - apache-httpd.service

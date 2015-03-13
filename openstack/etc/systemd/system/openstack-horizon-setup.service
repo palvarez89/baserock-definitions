@@ -1,11 +1,9 @@
 [Unit]
-Description=Run openstack-horizon-setup (once)
+Description=Run horizon-setup Ansible scripts
 After=local-fs.target
 
 [Service]
-Type=oneshot
-ExecStart=/usr/share/openstack/openstack-horizon-setup
-Restart=no
+ExecStart=/usr/bin/ansible-playbook -v -M /usr/share/ansible/ansible-openstack-modules -i /usr/share/openstack/hosts /usr/share/openstack/horizon.yml
 
 [Install]
 WantedBy=multi-user.target
