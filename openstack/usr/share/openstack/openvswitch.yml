@@ -1,0 +1,37 @@
+#!/bin/sh
+---
+- hosts: localhost
+  tasks:
+
+  - name: Create openvswitch directories
+    file: path={{ item }} state=directory
+    with_items:
+    - /usr/local/etc/openvswitch
+    - /usr/local/var/run/openvswitch
+
+  - shell: >
+           ovsdb-tool create /usr/local/etc/openvswitch/conf.db /usr/share/openvswitch/vswitch.ovsschema
+           creates=/usr/local/etc/openvswitch/conf.db
+
+  # We enable the openvswitch-db-server in a different task to identify
+  # the first time we run this script by identifying when we enable the
+  # unit.
+  #
+  # We need to identify this to initialise the database.
+  - name: Enable openvswitch database service
+    service: name={{ item }} enabled=yes
+    with_items:
+    - openvswitch-db-server.service
+    register: openvswitch-db-enable
+
+  - name: Start openvswitch database service
+    service: name={{ item }} state=started
+    with_items:
+    - openvswitch-db-server.service
+
+  - name: initialise openvswitch-db
+    shell: ovs-vsctl --no-wait init
+    when: openvswitch-db-enable.changed
+
+  - name: Enable and start openstack-keystone service
+    service: name=openvswitch.service enabled=yes state=started

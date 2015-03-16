@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Copyright (C) 2015 Codethink Limited
 #
@@ -19,12 +19,5 @@ set -e
 
 ROOT="$1"
 
-services=("openvswitch-setup.service" \
-	  "openvswitch-db-server.service" \
-          "openvswitch-initialize-db.service" \
-          "openvswitch.service")
-
-for service in ${services[@]}; do
-  ln -sf "/etc/systemd/system/$service" \
-    "$ROOT/etc/systemd/system/multi-user.target.wants/$service"
-done
+ln -sf "/usr/lib/systemd/system/openvswitch-setup.service" \
+  "$ROOT/etc/systemd/system/multi-user.target.wants/openvswitch-setup.service"

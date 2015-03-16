@@ -1,11 +1,9 @@
 [Unit]
-Description=Run openvswitch-setup (once)
+Description=Run openvswitch-setup Ansible scripts
 After=local-fs.target
 
 [Service]
-Type=oneshot
-ExecStart=/usr/share/openstack/openvswitch-setup
-Restart=no
+ExecStart=/usr/bin/ansible-playbook -v -i /usr/share/openstack/hosts /usr/share/openstack/openvswitch.yml
 
 [Install]
 WantedBy=multi-user.target
