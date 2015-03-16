@@ -21,7 +21,7 @@ ROOT="$1"
 
 ##########################################################################
 
-ln -sf "/etc/systemd/system/openstack-cinder-setup.service" \
+ln -sf "/usr/lib/systemd/system/openstack-cinder-setup.service" \
     "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-cinder-setup.service"
 
 ##########################################################################

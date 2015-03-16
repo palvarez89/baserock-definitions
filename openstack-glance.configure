@@ -21,7 +21,7 @@ ROOT="$1"
 
 ##########################################################################
 
-ln -s "/etc/systemd/system/openstack-glance-setup.service" \
+ln -s "/usr/lib/systemd/system/openstack-glance-setup.service" \
         "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-glance-setup.service"
 
 ##########################################################################

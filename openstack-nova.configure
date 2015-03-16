@@ -44,8 +44,8 @@ sed -f "$ROOT"/etc/openstack-nova-setup.sed -i \
 
 ##########################################################################
 
-ln -sf "/etc/systemd/system/openstack-nova-setup.service" \
-    "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-nova-setup.service"
+ln -sf "/usr/lib/systemd/system/openstack-nova-setup.service" \
+        "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-nova-setup.service"
 
 ##########################################################################
 # Enable libvirtd and libvirt-guests services

@@ -53,7 +53,7 @@ services=("openstack-neutron-network-configuration-one-node.service" \
 	  "openstack-neutron-setup.service")
 
 for service in ${services[@]}; do
-  ln -sf "/etc/systemd/system/$service" \
+  ln -sf "/usr/lib/systemd/system/$service" \
     "$ROOT/etc/systemd/system/multi-user.target.wants/$service"
 done
 
