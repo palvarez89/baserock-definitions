@@ -31,7 +31,7 @@
 
   - name: initialise openvswitch-db
     shell: ovs-vsctl --no-wait init
-    when: openvswitch-db-enable.changed
+    when: openvswitch-db-enable|changed
 
   - name: Enable and start openstack-keystone service
     service: name={{ item }} enabled=yes state=started

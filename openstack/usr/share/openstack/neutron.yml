@@ -71,6 +71,105 @@
     sudo: yes
     sudo_user: neutron
 
+# Create the bridges to use the External network mapped
+# This configuration is for 1 node and it was taken from:
+# https://fosskb.wordpress.com/2014/10/18/openstack-juno-on-ubuntu-14-10/
+# and https://fosskb.wordpress.com/2014/06/10/managing-openstack-internaldataexternal-network-in-one-interface/
+
+  - name: Get the name of the network device
+    shell: |
+           ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $1 } '
+    register: eth_dev
+
+  - name: Disable dhcp on the bound physical interface
+    template: >
+        src=/usr/share/openstack/extras/00-disable-device.network
+        dest=/etc/systemd/network/00-disable-{{ eth_dev.stdout }}-config.network
+    register:
+    - eth_dev_disabled
+
+  - name: Get ip of the network device only if dhcp wasn't disabled
+    shell: |
+           ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $2 } '
+    register: eth_ip
+    when: eth_dev_disabled|changed
+
+  - name: >
+        Deallocate ip address for external interface so we don't try to route
+        connections out of an interface that not longer works. Run only when
+        dhcp wasn't disabled for that interface
+  - shell: ip addr del {{ eth_ip.stdout }} dev {{ eth_dev.stdout }}
+    when: eth_dev_disabled|changed
+
+  - name: Disable dhcp on all the internal interfaces
+    template: >
+        src=/usr/share/openstack/extras/00-disable-device.network
+        dest=/etc/systemd/network/00-disable-{{ item }}-config.network
+    with_items:
+    - eth_dev.stdout
+    - br-eth1
+    - br-ex
+    - eth1-br-proxy
+    - proxy-br-eth1
+    - proxy-br-ex
+    - ovs-system
+
+  - name: Restart networkd so it understands to not bring up the interfaces disabled
+    service: name=systemd-networkd.service state=restarted
+
+#ovs-vsctl \
+#    -- add-br br-eth0 \
+#    -- add-port br-eth0 $eth_dev \
+#    -- set bridge br-eth0 other-config:hwaddr=$eth_mac
+#
+
+  - name: Get mac of the network device only if dhcp wasn't disabled
+    shell: ip link show {{ eth_dev.stdout }} | sed -r 's/\s+/\n/g' | sed -n '/link\/ether/{n;p}'
+    register: eth_mac
+    when: eth_dev_disabled|changed
+
+  - openvswitch_bridge: bridge=br-eth0 state=present
+  - openvswitch_port: bridge=br-eth0 port={{ eht_dev.stdout }} state=present
+  - shell: ovs_vsctl set bridge br-eth0 other-config:hwaddr={{ eth_mac.stdout }}
+    when: eth_dev_disabled|changed
+
+  - name: Enable dhcp on the Open vSwitch device that replaces our external interface
+    template: >
+        src=/usr/share/openstack/extras/10-device-dhcp.network
+        dest=/etc/systemd/network/10-{{ item }}-dhcp.network
+    with_items:
+    - br-eth0
+
+  - name: Restart networkd again so it will DHCP in the Open vSwitch interface
+    service: name=systemd-networkd.service state=restarted
+
+#ovs-vsctl \
+#    -- add-br br-eth1 \
+#    -- add-port br-eth1 eth1-br-proxy \
+#    -- set interface eth1-br-proxy type=patch options:peer=proxy-br-eth1 \
+#    -- add-port br-eth0 proxy-br-eth1 \
+#    -- set interface proxy-br-eth1 type=patch options:peer=eth1-br-proxy \
+#    -- add-br br-ex \
+#    -- add-port br-ex ex-br-proxy \
+#    -- set interface ex-br-proxy type=patch options:peer=proxy-br-ex \
+#    -- add-port br-eth0 proxy-br-ex \
+#    -- set interface proxy-br-ex type=patch options:peer=ex-br-proxy
+
+
+- openvswitch_bridge: bridge=br-eth1 state=present
+- openvswitch_port: bridge=br-eth1 port=eth1-br-proxy state=present
+- shell: ovs-vsctl set interface eth1-br-proxy type=patch options:peer=proxy-br-eth1
+- openvswitch_port: bridge=br-eth0 port=proxy-br-eth1 state=present
+- shell: ovs-vsctl set interface proxy-br-eth1 type=patch options:peer=eth1-br-proxy \
+- openvswitch_bridge: bridge=br-ex state=present
+- openvswitch_port: bridge=br-ex port=ex-br-proxy state=present
+- shell: ovs-vsctl set interface ex-br-proxy type=patch options:peer=proxy-br-ex
+- openvswitch_port: bridge=br-eth0 port=proxy-br-ex state=present
+- shell: ovs-vsctl set interface proxy-br-ex type=patch options:peer=ex-br-proxy \
+
+
+
+
 
 ## SERVICES
   - name: Enable and start openstack-keystone service
