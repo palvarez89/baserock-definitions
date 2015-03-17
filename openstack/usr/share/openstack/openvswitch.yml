@@ -34,4 +34,7 @@
     when: openvswitch-db-enable.changed
 
   - name: Enable and start openstack-keystone service
-    service: name=openvswitch.service enabled=yes state=started
+    service: name={{ item }} enabled=yes state=started
+    with_items:
+    - openvswitch.service
+    - openstack-neutron-setup.service

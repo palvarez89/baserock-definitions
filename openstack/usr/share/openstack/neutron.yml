@@ -1,0 +1,78 @@
+---
+- hosts: localhost
+  vars_files:
+  - "/etc/openstack/neutron.conf"
+  tasks:
+
+  - name: Create the neutron user.
+    user: name=neutron comment="Openstack Neutron Daemons" shell=/sbin/nologin home=/var/lib/neutron
+
+  - name: Create the /var folders for neutron
+    file: path={{ item }} state=directory owner=neutron group=neutron
+    with_items:
+    - /var/run/neutron
+    - /var/lock/neutron
+    - /var/log/neutron
+
+  - name: Get service tenant id needed in neutron.conf
+    shell: |
+           keystone \
+               --os-endpoint http://{{ CONTROLLER_HOST_ADDRESS }}:35357/v2.0 \
+               --os-token {{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }} \
+               tenant-get service | grep id | tr -d " " | cut -d"|" -f3
+    register: tenant_service_id
+
+  - set_fact: SERVICE_TENANT_ID={{ tenant_service_id.stdout }}
+
+  - name: Create the directories needed for Neutron configuration files.
+    file: path=/etc/{{ item }} state=directory
+    with_lines:
+    - (cd /usr/share/openstack &&  find neutron -type d)
+
+  - name: Add configuration needed for neutron using templates
+    template: src=/usr/share/openstack/{{ item }} dest=/etc/{{ item }}
+    with_lines:
+    - (cd /usr/share/openstack && find neutron -type f)
+
+  - keystone_user: >
+        user={{ NEUTRON_SERVICE_USER }}
+        password={{ NEUTRON_SERVICE_PASSWORD }}
+        tenant=service
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - keystone_user: >
+        role=admin
+        user={{ NEUTRON_SERVICE_USER }}
+        tenant=service
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - keystone_service: >
+        name=neutron
+        type=network
+        description="Openstack Compute Networking"
+        publicurl=http://{{ CONTROLLER_HOST_ADDRESS }}:9696
+        internalurl=http://{{ CONTROLLER_HOST_ADDRESS }}:9696
+        adminurl=http://{{ CONTROLLER_HOST_ADDRESS }}:9696
+        region='regionOne'
+        token={{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}
+
+  - postgresql_user: name={{ NEUTRON_DB_USER }} password={{ NEUTRON_DB_PASSWORD }}
+    sudo: yes
+    sudo_user: neutron
+  - postgresql_db: name=neutron owner={{ NEUTRON_DB_USER }}
+    sudo: yes
+    sudo_user: neutron
+
+  - shell: |
+           neutron neutron-db-manage \
+               --config-file /etc/neutron/neutron.conf \
+               --config-file /etc/neutron/plugins/ml2/ml2_conf.ini \
+               upgrade juno
+    sudo: yes
+    sudo_user: neutron
+
+
+## SERVICES
+  - name: Enable and start openstack-keystone service
+    service: name=openstack-keystone.service enabled=yes state=started
+
