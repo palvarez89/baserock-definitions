@@ -56,3 +56,12 @@ for service in ${services[@]}; do
   ln -sf "/etc/systemd/system/$service" \
     "$ROOT/etc/systemd/system/multi-user.target.wants/$service"
 done
+
+#############################################
+# Ensure /var/run is an appropriate symlink #
+#############################################
+
+if ! link="$(readlink "$ROOT/var/run")" || [ "$link" != ../run ]; then
+    rm -rf "$ROOT/var/run"
+    ln -s ../run "$ROOT/var/run"
+fi
