@@ -95,38 +95,21 @@ usermod -a -G libvirt nova
 rm /etc/systemd/system/multi-user.target.wants/openstack-nova-setup.service
 
 # Start nova services
-systemctl start openstack-nova-compute
 # [1] Never enable openstack-nova-conductor service in a node with
 # openstack-nova-compute or the security benefits of removing
 # database access from nova-compute will be negated
 #systemctl start openstack-nova-conductor
-systemctl start openstack-nova-api
-systemctl start openstack-nova-cert
-systemctl start openstack-nova-consoleauth
-systemctl start openstack-nova-scheduler
-systemctl start openstack-nova-novncproxy
+for service in compute api cert consoleauth scheduler novncproxy; do
+    systemctl start openstack-nova-$service.service
+done
 #systemctl start openstack-nova-xvpnvncproxy
 
 # Create the links to run nova services when system start next times.
-ln -s "/etc/systemd/system/openstack-nova-compute.service" \
-    "/etc/systemd/system/multi-user.target.wants/openstack-nova-compute.service"
+for service in compute api cert consoleauth scheduler novncproxy; do
+    systemctl enable openstack-nova-$service.service
+done
 # See description of why this shouldn't run in a openstack in one node in [1]
 #ln -s "/etc/systemd/system/openstack-nova-conductor.service" \
 #    "/etc/systemd/system/multi-user.target.wants/openstack-nova-conductor.service"
-
-ln -s "/etc/systemd/system/openstack-nova-api.service" \
-    "/etc/systemd/system/multi-user.target.wants/openstack-nova-api.service"
-
-ln -s "/etc/systemd/system/openstack-nova-cert.service" \
-    "/etc/systemd/system/multi-user.target.wants/openstack-nova-cert.service"
-
-ln -s "/etc/systemd/system/openstack-nova-consoleauth.service" \
-    "/etc/systemd/system/multi-user.target.wants/openstack-nova-consoleauth.service"
-
-ln -s "/etc/systemd/system/openstack-nova-scheduler.service" \
-    "/etc/systemd/system/multi-user.target.wants/openstack-nova-scheduler.service"
-
-ln -s "/etc/systemd/system/openstack-nova-novncproxy.service" \
-    "/etc/systemd/system/multi-user.target.wants/openstack-nova-novncproxy.service"
 
 exit 0
