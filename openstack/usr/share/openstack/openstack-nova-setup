@@ -99,13 +99,13 @@ rm /etc/systemd/system/multi-user.target.wants/openstack-nova-setup.service
 # openstack-nova-compute or the security benefits of removing
 # database access from nova-compute will be negated
 #systemctl start openstack-nova-conductor
-for service in compute api cert consoleauth scheduler novncproxy; do
+for service in compute api cert consoleauth scheduler novncproxy serialproxy; do
     systemctl start openstack-nova-$service.service
 done
 #systemctl start openstack-nova-xvpnvncproxy
 
 # Create the links to run nova services when system start next times.
-for service in compute api cert consoleauth scheduler novncproxy; do
+for service in compute api cert consoleauth scheduler novncproxy serialproxy; do
     systemctl enable openstack-nova-$service.service
 done
 # See description of why this shouldn't run in a openstack in one node in [1]

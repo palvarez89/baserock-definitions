@@ -47,6 +47,7 @@
 0100644 0 0 /etc/systemd/system/openstack-nova-scheduler.service
 0100644 0 0 /etc/systemd/system/openstack-nova-consoleauth.service
 0100644 0 0 /etc/systemd/system/openstack-nova-novncproxy.service
+0100644 0 0 /etc/systemd/system/openstack-nova-serialproxy.service
 0100644 0 0 /etc/systemd/system/openstack-nova-cert.service
 0100644 0 0 /etc/systemd/system/openstack-rabbitmq-setup.service
 0100644 0 0 /etc/systemd/system/openstack-rabbitmq-server.service
