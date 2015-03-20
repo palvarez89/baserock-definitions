@@ -55,7 +55,6 @@ wants_dir="$ROOT"/usr/lib/systemd/system/multi-user.target.wants
 mkdir -p "$wants_dir"
 mkdir -p "$ROOT"/var/lock/subsys
 ln -sf ../libvirtd.service "$wants_dir/libvirtd.service"
-ln -sf ../libvirt-guests.service "$wants_dir/libvirt-guests.service"
 
 ##########################################################################
 # Change iprange for the interal libvirt to avoid clashes

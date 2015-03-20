@@ -17,40 +17,70 @@
 
 set -xe
 
-# Get the first ethernet driver and its ip
-eth_dev="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $1 } ')"
-eth_ip="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $2 } ')"
-
-ip link add proxy-br-eth1 type veth peer name eth1-br-proxy
-ip link add proxy-br-ex type veth peer name ex-br-proxy
-
 if [ -f /var/openstack/openvswitch-one-node-setup ]; then
   exit 0
 fi
+
+# Get the first ethernet driver and its ip
+eth_dev="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $1 } ')"
+eth_ip="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $2 } ')"
+eth_mac="$(ip link show $eth_dev | tr -s '[:space:]' '\n' | sed -n '/link\/ether/{n;p}')"
 
 # Create the bridges to use the External network mapped
 # This configuration is for 1 node and it was taken from:
 # https://fosskb.wordpress.com/2014/10/18/openstack-juno-on-ubuntu-14-10/
 # and https://fosskb.wordpress.com/2014/06/10/managing-openstack-internaldataexternal-network-in-one-interface/
 
+# Disable dhcp on the bound physical interface, and all the internal interfaces
+for devname in $eth_dev br-eth1 br-ex eth1-br-proxy ex-br-proxy \
+               proxy-br-eth1 proxy-br-ex ovs-system; do
+    install -D -m 644 /proc/self/fd/0 <<EOF /etc/systemd/network/00-disable-$devname-config.network
+[Match]
+Name=$devname
+EOF
+done
 
-ovs-vsctl add-br br-eth0
-ovs-vsctl add-port br-eth0 $eth_dev
-ifconfig br-eth0 $eth_ip up
-ip link set br-eth0 promisc on
-ovs-vsctl add-br br-eth1
-ovs-vsctl add-br br-ex
-ovs-vsctl add-port br-eth1 eth1-br-proxy
-ovs-vsctl add-port br-ex ex-br-proxy
-ovs-vsctl add-port br-eth0 proxy-br-eth1
-ovs-vsctl add-port br-eth0 proxy-br-ex
-ip link set eth1-br-proxy up promisc on
-ip link set ex-br-proxy up promisc on
-ip link set proxy-br-eth1 up promisc on
-ip link set proxy-br-ex up promisc on
+# restart networkd so it understands to not bring up these interfaces
+systemctl restart systemd-networkd.service
+
+# Deallocate ip address for external interface so we don't try to route
+# connections out of an interface that no longer works
+ip addr del $eth_ip dev $eth_dev
+
+# Create our external bridge
+# Bind our external device to the bridge
+# Tell the bridge that it has the mac address of the external device now
+ovs-vsctl \
+    -- add-br br-eth0 \
+    -- add-port br-eth0 $eth_dev \
+    -- set bridge br-eth0 other-config:hwaddr=$eth_mac
+
+# restart networkd again so it will DHCP on the Open vSwitch device that
+# replaces our external interface, but with the mac address of the external
+# interface, so it ought to get the same address back
+install -D -m 644 /proc/self/fd/0 <<EOF /etc/systemd/network/10-br-ex-dhcp.network
+[Match]
+Name=br-eth0
+
+[Network]
+DHCP=yes
+EOF
+systemctl restart systemd-networkd.service
+
+
+# Add the rest of the bridges
+ovs-vsctl \
+    -- add-br br-eth1 \
+    -- add-port br-eth1 eth1-br-proxy \
+    -- set interface eth1-br-proxy type=patch options:peer=proxy-br-eth1 \
+    -- add-port br-eth0 proxy-br-eth1 \
+    -- set interface proxy-br-eth1 type=patch options:peer=eth1-br-proxy \
+    -- add-br br-ex \
+    -- add-port br-ex ex-br-proxy \
+    -- set interface ex-br-proxy type=patch options:peer=proxy-br-ex \
+    -- add-port br-eth0 proxy-br-ex \
+    -- set interface proxy-br-ex type=patch options:peer=ex-br-proxy
 
 install -D -m 644 /proc/self/fd/0 <<'EOF' /var/openstack/openvswitch-one-node-setup
 Openvswitch one node setup: success
 EOF
-
-exit 0

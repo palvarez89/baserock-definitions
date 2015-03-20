@@ -1,6 +1,8 @@
 [Unit]
 Description=Open vSwitch Daemon
+Wants=network-pre.target
 After=openvswitch-initialize-db.service
+Before=network-pre.target
 
 [Service]
 Type=forking

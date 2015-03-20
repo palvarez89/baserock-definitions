@@ -74,8 +74,8 @@ chunks:
 - name: systemd
   morph: strata/foundation/systemd.morph
   repo: upstream:systemd
-  ref: a88abde72169ddc2df77df3fa5bed30725022253
-  unpetrify-ref: v219
+  ref: d736e4f3e76daca4ab1b1fc444737e5ee20a27cd
+  unpetrify-ref: master
   build-depends:
   - dbus-pre
   - gobject-introspection

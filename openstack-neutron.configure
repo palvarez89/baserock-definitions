@@ -44,7 +44,6 @@ sed -f "$ROOT"/etc/openstack-neutron-setup.sed -i \
 # Create the links to enable the neutron systemd services                #
 ##########################################################################
 services=("openstack-neutron-network-configuration-one-node.service" \
-          "openvswitch-create-links-one-node.service" \
           "openstack-neutron-dhcp-agent.service" \
           "openstack-neutron-l3-agent.service" \
           "openstack-neutron-metadata-agent.service" \
@@ -57,3 +56,12 @@ for service in ${services[@]}; do
   ln -sf "/etc/systemd/system/$service" \
     "$ROOT/etc/systemd/system/multi-user.target.wants/$service"
 done
+
+#############################################
+# Ensure /var/run is an appropriate symlink #
+#############################################
+
+if ! link="$(readlink "$ROOT/var/run")" || [ "$link" != ../run ]; then
+    rm -rf "$ROOT/var/run"
+    ln -s ../run "$ROOT/var/run"
+fi
