@@ -17,14 +17,14 @@
 
 set -xe
 
+if [ -f /var/openstack/openvswitch-one-node-setup ]; then
+  exit 0
+fi
+
 # Get the first ethernet driver and its ip
 eth_dev="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $1 } ')"
 eth_ip="$(ip addr | perl -pe 'if (/^\d+: ([^:]+)/) { $iface=$1; } if (m@^\s*inet ([^/]+)/@) { print "$iface $1\n"; } $_=undef;' | grep "^e" | head -1 | awk '{ print $2 } ')"
 eth_mac="$(ip link show $eth_dev | tr -s '[:space:]' '\n' | sed -n '/link\/ether/{n;p}')"
-
-if [ -f /var/openstack/openvswitch-one-node-setup ]; then
-  exit 0
-fi
 
 # Create the bridges to use the External network mapped
 # This configuration is for 1 node and it was taken from:
