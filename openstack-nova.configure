@@ -20,29 +20,6 @@ set -e
 ROOT="$1"
 
 ##########################################################################
-# Substitutions in configuration files
-##########################################################################
-
-cat <<EOF > "$ROOT"/etc/openstack-nova-setup.sed
-s/##NOVA_SERVICE_USER##/$NOVA_SERVICE_USER/g
-s/##NOVA_SERVICE_PASSWORD##/$NOVA_SERVICE_PASSWORD/g
-s/##NOVA_PUBLIC_URL##/$NOVA_PUBLIC_URL/g
-s/##NOVA_INTERNAL_URL##/$NOVA_INTERNAL_URL/g
-s/##NOVA_ADMIN_URL##/$NOVA_ADMIN_URL/g
-s/##NOVA_HOST##/$NOVA_HOST/g
-s/##NOVA_REGION##/$NOVA_REGION/g
-s/##NOVA_NOVNCPROXY_BASE_URL##/$NOVA_NOVNCPROXY_BASE_URL/g
-s/##NOVA_DB_USER##/$NOVA_DB_USER/g
-s/##NOVA_DB_PASSWORD##/$NOVA_DB_PASSWORD/g
-EOF
-
-sed -f "$ROOT"/etc/openstack-nova-setup.sed -i \
-       "$ROOT"/etc/nova/nova.conf \
-       "$ROOT"/etc/neutron/neutron.conf \
-       "$ROOT"/etc/neutron/metadata_agent.ini \
-       "$ROOT"/usr/share/openstack/openstack-nova-setup 
-
-##########################################################################
 
 ln -sf "/usr/lib/systemd/system/openstack-nova-setup.service" \
         "$ROOT/etc/systemd/system/multi-user.target.wants/openstack-nova-setup.service"
@@ -63,3 +40,77 @@ ln -sf ../libvirtd.service "$wants_dir/libvirtd.service"
 
 sed -i "s/192\.168\.122\./192\.168\.1\./g" \
        "$ROOT"/etc/libvirt/qemu/networks/default.xml
+
+##########################################################################
+# Check variables
+##########################################################################
+
+
+if [ -z "$NOVA_SERVICE_USER" -a \
+     -z "$NOVA_SERVICE_PASSWORD" -a \
+     -z "$NOVA_DB_USER" -a \
+     -z "$NOVA_DB_PASSWORD" -a \
+     -z "$NOVA_VIRT_TYPE" -a \
+     -z "$NEUTRON_SERVICE_USER" -a \
+     -z "$NEUTRON_SERVICE_PASSWORD" -a \
+     -z "$METADATA_PROXY_SHARED_SECRET" -a \
+     -z "$RABBITMQ_HOST" -a \
+     -z "$RABBITMQ_USER" -a \
+     -z "$RABBITMQ_PASSWORD" -a \
+     -z "$RABBITMQ_PORT" -a \
+     -z "$CONTROLLER_HOST_ADDRESS" -a \
+     -z "$MANAGEMENT_INTERFACE_IP_ADDRESS" -a \
+     -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" ]; then
+     # No NOVA options defined, do nothing.
+     exit 0
+fi
+
+if [ -z "$NOVA_SERVICE_USER" -o \
+     -z "$NOVA_SERVICE_PASSWORD" -o \
+     -z "$NOVA_DB_USER" -o \
+     -z "$NOVA_DB_PASSWORD" -o \
+     -z "$NOVA_VIRT_TYPE" -o \
+     -z "$NEUTRON_SERVICE_USER" -o \
+     -z "$NEUTRON_SERVICE_PASSWORD" -o \
+     -z "$METADATA_PROXY_SHARED_SECRET" -o \
+     -z "$RABBITMQ_HOST" -o \
+     -z "$RABBITMQ_USER" -o \
+     -z "$RABBITMQ_PASSWORD" -o \
+     -z "$RABBITMQ_PORT" -o \
+     -z "$CONTROLLER_HOST_ADDRESS" -o \
+     -z "$MANAGEMENT_INTERFACE_IP_ADDRESS" -o \
+     -z "$KEYSTONE_TEMPORARY_ADMIN_TOKEN" ]; then
+    echo Some options required for Nova were defined, but not all.
+    exit 1
+fi
+
+##########################################################################
+# Generate config variable shell snippet
+##########################################################################
+
+OPENSTACK_DATA="$ROOT/etc/openstack"
+mkdir -p "$OPENSTACK_DATA"
+
+python <<'EOF' >"$OPENSTACK_DATA/nova.conf"
+import os, sys, yaml
+
+nova_configuration={
+    'NOVA_SERVICE_USER': os.environ['NOVA_SERVICE_USER'],
+    'NOVA_SERVICE_PASSWORD': os.environ['NOVA_SERVICE_PASSWORD'],
+    'NOVA_DB_USER': os.environ['NOVA_DB_USER'],
+    'NOVA_DB_PASSWORD': os.environ['NOVA_DB_PASSWORD'],
+    'NOVA_VIRT_TYPE': os.environ['NOVA_VIRT_TYPE'],
+    'NEUTRON_SERVICE_USER': os.environ['NEUTRON_SERVICE_USER'],
+    'NEUTRON_SERVICE_PASSWORD': os.environ['NEUTRON_SERVICE_PASSWORD'],
+    'METADATA_PROXY_SHARED_SECRET': os.environ['METADATA_PROXY_SHARED_SECRET'],
+    'RABBITMQ_HOST': os.environ['RABBITMQ_HOST'],
+    'RABBITMQ_USER': os.environ['RABBITMQ_USER'],
+    'RABBITMQ_PASSWORD': os.environ['RABBITMQ_PASSWORD'],
+    'RABBITMQ_PORT': os.environ['RABBITMQ_PORT'],
+    'CONTROLLER_HOST_ADDRESS': os.environ['CONTROLLER_HOST_ADDRESS'],
+    'MANAGEMENT_INTERFACE_IP_ADDRESS': os.environ['MANAGEMENT_INTERFACE_IP_ADDRESS'],
+    'KEYSTONE_TEMPORARY_ADMIN_TOKEN': os.environ['KEYSTONE_TEMPORARY_ADMIN_TOKEN'],
+}
+
+yaml.dump(nova_configuration, sys.stdout, default_flow_style=False)
+EOF
