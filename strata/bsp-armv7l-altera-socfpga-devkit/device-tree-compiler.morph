@@ -1,0 +1,6 @@
+name: device-tree-compiler
+kind: chunk
+build-commands:
+- make all
+install-commands:
+- make install DESTDIR="$DESTDIR" PREFIX="$PREFIX"

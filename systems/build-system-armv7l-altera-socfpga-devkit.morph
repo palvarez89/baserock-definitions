@@ -1,0 +1,48 @@
+name: build-system-armv7l-altera-socfpga-devkit
+kind: system
+description: |
+  The system that should be used for building other Baserock systems. For
+  use on Altera SoCFPGA development kit, using little-endian word order.
+arch: armv7lhf
+strata:
+- name: build-essential
+  morph: strata/build-essential.morph
+- name: core
+  morph: strata/core.morph
+- name: foundation
+  morph: strata/foundation.morph
+- name: bsp-armv7l-altera-socfpga-devkit
+  morph: strata/bsp-armv7l-altera-socfpga-devkit.morph
+- name: python-core
+  morph: strata/python-core.morph
+- name: tools
+  morph: strata/tools.morph
+- name: python-cliapp
+  morph: strata/python-cliapp.morph
+- name: python-pygobject
+  morph: strata/python-pygobject.morph
+- name: python-wsgi
+  morph: strata/python-wsgi.morph
+- name: morph-utils
+  morph: strata/morph-utils.morph
+- name: nfs
+  morph: strata/nfs.morph
+- name: python-common
+  morph: strata/python-common.morph
+- name: ansible
+  morph: strata/ansible.morph
+- name: devtools
+  morph: strata/devtools.morph
+- name: libsoup-common
+  morph: strata/libsoup-common.morph
+- name: ostree-core
+  morph: strata/ostree-core.morph
+configuration-extensions:
+- extensions/set-hostname
+- extensions/add-config-files
+- extensions/nfsboot
+- extensions/install-files
+- extensions/distbuild
+- extensions/fstab
+- extensions/mason
+- extensions/install-essential-files

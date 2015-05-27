@@ -1,0 +1,14 @@
+name: u-boot-tools@socfpga-devkit
+kind: chunk
+configure-commands:
+- git status
+- make ARCH=arm socfpga_cyclone5_config
+build-commands:
+- make ARCH=arm tools
+install-commands:
+- mkdir -p "$DESTDIR$PREFIX/bin"
+- install -m 755 tools/img2brec.sh "$DESTDIR$PREFIX/bin/."
+- install -m 755 tools/jtagconsole "$DESTDIR$PREFIX/bin/."
+- install -m 755 tools/netconsole "$DESTDIR$PREFIX/bin/."
+- install -m 755 tools/mkenvimage "$DESTDIR$PREFIX/bin/."
+- install -m 755 tools/mkimage "$DESTDIR$PREFIX/bin/."

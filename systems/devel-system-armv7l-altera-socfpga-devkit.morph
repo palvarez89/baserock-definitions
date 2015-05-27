@@ -1,0 +1,60 @@
+name: devel-system-armv7l-altera-socfpga-devkit
+kind: system
+description: |
+  A system with useful tools for doing Baserock development.
+
+  For use on Altera SoCFPGA development kit, using little-endian word
+  order.
+arch: armv7lhf
+strata:
+- name: build-essential
+  morph: strata/build-essential.morph
+- name: core
+  morph: strata/core.morph
+- name: foundation
+  morph: strata/foundation.morph
+- name: bsp-armv7l-altera-socfpga-devkit
+  morph: strata/bsp-armv7l-altera-socfpga-devkit.morph
+- name: tools
+  morph: strata/tools.morph
+- name: python-cliapp
+  morph: strata/python-cliapp.morph
+- name: python-pygobject
+  morph: strata/python-pygobject.morph
+- name: python-wsgi
+  morph: strata/python-wsgi.morph
+- name: morph-utils
+  morph: strata/morph-utils.morph
+- name: nodejs
+  morph: strata/nodejs.morph
+- name: ruby
+  morph: strata/ruby.morph
+- name: lorry
+  morph: strata/lorry.morph
+- name: baserock-import
+  morph: strata/baserock-import.morph
+- name: nfs
+  morph: strata/nfs.morph
+- name: python-core
+  morph: strata/python-core.morph
+- name: python-tools
+  morph: strata/python-tools.morph
+- name: python-common
+  morph: strata/python-common.morph
+- name: devtools
+  morph: strata/devtools.morph
+- name: ansible
+  morph: strata/ansible.morph
+- name: swift
+  morph: strata/swift.morph
+- name: libsoup-common
+  morph: strata/libsoup-common.morph
+- name: ostree-core
+  morph: strata/ostree-core.morph
+configuration-extensions:
+- extensions/set-hostname
+- extensions/add-config-files
+- extensions/nfsboot
+- extensions/install-files
+- extensions/fstab
+- extensions/install-essential-files

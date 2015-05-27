@@ -1,0 +1,17 @@
+name: preloader@socfpga-devkit
+kind: chunk
+configure-commands:
+- mkdir uboot-socfpga
+- find -maxdepth 1 | egrep -v '^./uboot-socfpga|\.$' | xargs -I {} mv {} uboot-socfpga
+- cp -R /tmp/preloader/spl_bsp/* .
+- cp -R /tmp/preloader/hps_hps_0 .
+build-commands:
+- make
+- mkimage -T socfpgaimage -d uboot-socfpga/spl/u-boot-spl.bin preloader.bin
+# Signed preloader needs to be duplicated four times
+# which U-Boot's mkimage tool doesn't support
+- dd if=/dev/zero of=socfpga-preloader.img bs=64K count=4
+- for i in $(seq 0 3); do dd if=preloader.bin of=socfpga-preloader.img bs=64K seek="$i" conv=notrunc; done
+install-commands:
+- mkdir -p "$DESTDIR/boot"
+- install -m 755 socfpga-preloader.img "$DESTDIR/boot"

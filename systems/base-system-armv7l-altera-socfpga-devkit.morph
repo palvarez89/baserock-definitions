@@ -1,0 +1,21 @@
+name: base-system-armv7l-altera-socfpga-devkit
+kind: system
+description: |
+  The set of strata required to have a minimal system for use on Altera SoCFPGA
+  development kit, using little-endian word order.
+arch: armv7lhf
+strata:
+- name: build-essential
+  morph: strata/build-essential.morph
+- name: core
+  morph: strata/core.morph
+- name: foundation
+  morph: strata/foundation.morph
+- name: bsp-armv7l-altera-socfpga-devkit
+  morph: strata/bsp-armv7l-altera-socfpga-devkit.morph
+configuration-extensions:
+- extensions/set-hostname
+- extensions/add-config-files
+- extensions/nfsboot
+- extensions/install-files
+- extensions/install-essential-files
