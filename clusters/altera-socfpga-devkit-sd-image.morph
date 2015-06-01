@@ -1,0 +1,14 @@
+name: altera-socfpga-devkit-sd-image
+kind: cluster
+description: |
+  This cluster morph deploys a little endian Baserock system to
+  an SD image for the Altera Cyclone V development kit
+systems:
+- morph: systems/build-system-armv7l-altera-socfpga-devkit.morph
+  deploy:
+    self:
+      type: extensions/rawdisk
+      location: build-system-armv7l-altera-socfpga-devkit.img
+      DISK_SIZE: 7G
+      USE_PARTITIONING: yes
+      PARTITION_FILE: partitioning/socfpga-devkit
