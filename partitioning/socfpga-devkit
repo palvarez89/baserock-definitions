@@ -1,0 +1,26 @@
+start_offset: 2048
+partition_table_format: mbr
+partitions:
+- description: pre-loader
+  filesystem: none
+  fdisk_type: 0xa2
+  number: 3
+  size: 1M
+  raw_files:
+  - file: boot/socfpga-preloader.img
+  - file: boot/u-boot.img
+- description: boot
+  filesystem: vfat
+  mountpoint: /boot
+  fdisk_type: 0x0b
+  number: 1
+  size: 100M
+- description: root
+  filesystem: btrfs
+  mountpoint: /
+  fdisk_type: 0x83
+  number: 2
+  size: fill
+raw_files:
+- file: boot/socfpga-devkit-env.img
+  offset_bytes: 512
