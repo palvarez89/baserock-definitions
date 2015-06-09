@@ -1,11 +1,12 @@
 name: ca-certificates
 kind: chunk
-build-system: autotools
-configure-commands: []
-pre-install-commands:
+build-system: manual
+build-commands:
+- make
+install-commands:
 - mkdir -p "$DESTDIR"/usr/share/ca-certificates
 - mkdir -p "$DESTDIR"/usr/sbin
-post-install-commands:
+- make DESTDIR="$DESTDIR" install
 - mkdir "$DESTDIR"/etc
 - |
   cd "$DESTDIR"/usr/share/ca-certificates
