@@ -16,20 +16,13 @@ chunks:
   build-system: python-distutils
   build-depends:
   - python-setuptools
-- name: pip
-  repo: upstream:pip
-  ref: ea680f204fb0e48789710c22c8f597a9bf01bc16
-  unpetrify-ref: baserock/master
-  build-system: python-distutils
-  build-depends:
-  - python-setuptools
 - name: pbr
   repo: upstream:pbr
   ref: aef4f7ef4faec987d553d1ca40b55951235af0b1
   unpetrify-ref: 0.10.7
   build-system: python-distutils
   build-depends:
-  - pip
+  - python-setuptools
 - name: python-requests
   repo: upstream:python-requests
   ref: b83131779c701720a9ae9efae78996277d416269

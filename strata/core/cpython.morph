@@ -5,6 +5,7 @@ configure-commands:
 - |
   ./configure --prefix="$PREFIX"  \
               --enable-shared     \
+              --with-ensurepip=upgrade \
               --with-system-expat \
               --with-system-ffi
 post-install-commands:
