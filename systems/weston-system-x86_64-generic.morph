@@ -41,6 +41,8 @@ strata:
   morph: strata/x-generic.morph
 - name: tools
   morph: strata/tools.morph
+- name: glib-common
+  morph: strata/glib-common.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

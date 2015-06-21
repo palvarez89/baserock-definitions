@@ -13,6 +13,8 @@ strata:
   morph: strata/bsp-x86_64-generic.morph
 - name: tools
   morph: strata/tools.morph
+- name: glib-common
+  morph: strata/glib-common.morph
 - name: cxmanage
   morph: strata/cxmanage.morph
 configuration-extensions:

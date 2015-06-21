@@ -1,6 +1,7 @@
 name: graphics-common
 kind: stratum
 build-depends:
+- morph: strata/glib-common.morph
 - morph: strata/mesa-common.morph
 - morph: strata/x-common.morph
 chunks:

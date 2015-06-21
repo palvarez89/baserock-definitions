@@ -2,6 +2,7 @@ name: libsoup-common
 kind: stratum
 build-depends:
 - morph: strata/core.morph
+- morph: strata/glib-common.morph
 chunks:
 - name: libsoup
   morph: strata/libsoup-common/libsoup.morph

@@ -13,6 +13,8 @@ strata:
   morph: strata/core.morph
 - name: tools
   morph: strata/tools.morph
+- name: glib-common
+  morph: strata/glib-common.morph
 - name: nfs
   morph: strata/nfs.morph
 - name: databases

@@ -2,6 +2,7 @@ name: connman-common
 kind: stratum
 build-depends:
 - morph: strata/connectivity.morph
+- morph: strata/glib-common.morph
 chunks:
 - name: connman
   morph: strata/connman-common/connman.morph

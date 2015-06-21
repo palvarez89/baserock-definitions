@@ -2,6 +2,7 @@ name: audio-bluetooth
 kind: stratum
 description: Components required for audio and bluetooth.
 build-depends:
+- morph: strata/glib-common.morph
 - morph: strata/foundation.morph
 chunks:
 - name: libatomic_ops

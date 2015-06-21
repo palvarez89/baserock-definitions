@@ -3,6 +3,7 @@ kind: stratum
 description: Various tools
 build-depends:
 - morph: strata/core.morph
+- morph: strata/glib-common.morph
 chunks:
 - name: distcc
   morph: strata/tools/distcc.morph
