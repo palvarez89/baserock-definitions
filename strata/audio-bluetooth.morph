@@ -32,11 +32,17 @@ chunks:
   build-depends:
   - libical
   - alsa-lib
+- name: dbus-glib
+  repo: upstream:dbus-glib
+  ref: 397e8297d433547c9bf4150ddd2b9e0b4c39628c
+  unpetrify-ref: dbus-glib_0.102
 - name: bluez-tools
   morph: strata/audio-bluetooth/bluez-tools.morph
   repo: upstream:bluez-tools
   ref: 7350787e96a6ecf2cc5d4afddb3321ccad9fa461
   unpetrify-ref: baserock/morph
+  build-depends:
+  - dbus-glib
 - name: obexd
   repo: upstream:obexd
   ref: 4225280022c206762c91beee47c62d05e1baeacc

@@ -100,12 +100,6 @@ chunks:
   repo: baserock:baserock/tbdiff
   ref: 235e95c3479f96b04d33edecc684f985bda50e53
   unpetrify-ref: master
-- name: dbus-glib
-  repo: upstream:dbus-glib
-  ref: 397e8297d433547c9bf4150ddd2b9e0b4c39628c
-  unpetrify-ref: dbus-glib_0.102
-  build-depends:
-  - dbus
 - name: rsync
   morph: strata/foundation/rsync.morph
   repo: upstream:rsync
