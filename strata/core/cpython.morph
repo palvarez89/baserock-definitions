@@ -2,6 +2,10 @@ name: cpython
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./configure --prefix="$PREFIX" --enable-shared
+- |
+  ./configure --prefix="$PREFIX"  \
+              --enable-shared     \
+              --with-system-expat \
+              --with-system-ffi
 post-install-commands:
 - test -x "$DESTDIR"/"$PREFIX"/bin/python2 || ln -s python2.7 "$DESTDIR"/"$PREFIX"/bin/python2
