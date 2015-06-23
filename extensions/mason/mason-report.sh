@@ -6,6 +6,7 @@ set -x
 
 REPORT_PATH=/var/mason/report.html
 SERVER_PATH=/srv/mason
+SERVER_REPORT_PATH="$SERVER_PATH/index.html"
 
 sed_escape() {
     printf "%s\n" "$1" | sed -e 's/\W/\\&/g'
@@ -63,6 +64,12 @@ table tr.nonet {
 table tr.nonet:hover {
 	background: #ffeeaa;
 }
+table tr.progress {
+	background: #00CCFF;
+}
+table tr.progress:hover {
+	background: #91E9FF;
+}
 table tr.headings th {
 	font-weight: bold;
 	text-align: left;
@@ -98,6 +105,12 @@ tr.nonet td.result a {
 }
 tr.nonet td.result a:hover {
 	color: #962;
+}
+tr.progress td.result a {
+	color: #000066;
+}
+tr.progress td.result a:hover {
+	color: #0000CC;
 }
 td.ref {
 	font-family: monospace;
@@ -177,6 +190,8 @@ update_report() {
     build_sha1="$4"
     build_duration="$5"
     build_result="$6"
+    report_path="$7"
+    build_log="$8"
 
     # Generate template if report file is not there
     if [ ! -f $REPORT_PATH ]; then
@@ -185,13 +200,13 @@ update_report() {
 
     # Build table row for insertion into report file
     if [ "$build_result" = nonet ]; then
-        msg='<tr class="'"${build_result}"'"><td>'"${build_start_time}"'</td><td class="ref">Failed to contact '"${build_trove_host}"'</a></td><td>'"${build_duration}s"'</td><td class="result"><a href="log/'"${build_sha1}"'--'"${build_start_time}"'.log">'"${build_result}"'</a></td></tr>'
+        msg='<tr class="'"${build_result}"'"><td>'"${build_start_time}"'</td><td class="ref">Failed to contact '"${build_trove_host}"'</a></td><td>'"${build_duration}s"'</td><td class="result"><a href="'"${build_log}"'">'"${build_result}"'</a></td></tr>'
     else
-        msg='<tr class="'"${build_result}"'"><td>'"${build_start_time}"'</td><td class="ref"><a href="http://'"${build_trove_host}"'/cgi-bin/cgit.cgi/baserock/baserock/definitions.git/commit/?h='"${build_ref}"'&id='"${build_sha1}"'">'"${build_sha1}"'</a></td><td>'"${build_duration}s"'</td><td class="result"><a href="log/'"${build_sha1}"'--'"${build_start_time}"'.log">'"${build_result}"'</a></td></tr>'
+        msg='<tr class="'"${build_result}"'"><td>'"${build_start_time}"'</td><td class="ref"><a href="http://'"${build_trove_host}"'/cgi-bin/cgit.cgi/baserock/baserock/definitions.git/commit/?h='"${build_ref}"'&id='"${build_sha1}"'">'"${build_sha1}"'</a></td><td>'"${build_duration}s"'</td><td class="result"><a href="'"${build_log}"'">'"${build_result}"'</a></td></tr>'
     fi
 
     # Insert report line, newest at top
-    sed -i 's/<!--INSERTION POINT-->/<!--INSERTION POINT-->\n'"$(sed_escape "$msg")"'/' $REPORT_PATH
+    sed -i 's/<!--INSERTION POINT-->/<!--INSERTION POINT-->\n'"$(sed_escape "$msg")"'/' $report_path
 }
 
 update_report_time() {
@@ -210,6 +225,23 @@ update_report_time "$START_TIME"
 cp "$REPORT_PATH" "$SERVER_PATH/index.html"
 
 logfile="$(mktemp)"
+
+#Update current.log symlink to point to the current build log
+ln -sf "$logfile" "$SERVER_PATH"/current.log
+
+#Copy current server report, to restore when result is "skip"
+cp "$SERVER_REPORT_PATH" "$SERVER_REPORT_PATH".bak
+
+update_report "$START_TIME" \
+              "$UPSTREAM_TROVE_ADDRESS" \
+              "$DEFINITIONS_REF" \
+              "" \
+              " - " \
+              "progress" \
+              "$SERVER_REPORT_PATH" \
+              "current.log"
+
+
 /usr/lib/mason/mason.sh 2>&1 | tee "$logfile"
 case "${PIPESTATUS[0]}" in
 0)
@@ -228,25 +260,32 @@ esac
 
 # TODO: Update page with last executed time
 if [ "$RESULT" = skip ]; then
+    # Restore copied server report, otherwise the 'progress' row will
+    # be still present with a broken link after we remove the $logfile
+    mv "$SERVER_REPORT_PATH".bak "$SERVER_REPORT_PATH"
+
     rm "$logfile"
     exit 0
 fi
 
 DURATION=$(( $(date +%s) - $(date --date="$START_TIME" +%s) ))
 SHA1="$(cd "ws/$DEFINITIONS_REF/$UPSTREAM_TROVE_ADDRESS/baserock/baserock/definitions" && git rev-parse HEAD)"
+BUILD_LOG="log/${SHA1}--${START_TIME}.log"
 
 update_report "$START_TIME" \
               "$UPSTREAM_TROVE_ADDRESS" \
               "$DEFINITIONS_REF" \
               "$SHA1" \
               "$DURATION" \
-              "$RESULT"
+              "$RESULT" \
+              "$REPORT_PATH" \
+              "$BUILD_LOG"
 
 
 #
 # Copy report into server directory
 #
 
-cp "$REPORT_PATH" "$SERVER_PATH/index.html"
+cp "$REPORT_PATH" "$SERVER_REPORT_PATH"
 mkdir "$SERVER_PATH/log"
-mv "$logfile" "$SERVER_PATH/log/$SHA1--$START_TIME.log"
+mv "$logfile" "$SERVER_PATH/$BUILD_LOG"
