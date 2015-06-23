@@ -54,6 +54,8 @@ strata:
   morph: strata/unionfs-fuse-group.morph
 - name: coreutils-common
   morph: strata/coreutils-common.morph
+- name: compilers-extra
+  morph: strata/compilers-extra.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

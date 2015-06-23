@@ -1,0 +1,10 @@
+name: clang
+kind: chunk
+build-system: cmake
+configure-commands:
+- mkdir o
+- cd o && cmake -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release ..
+build-commands:
+- cd o && make
+install-commands:
+- cd o && make DESTDIR="$DESTDIR" install
