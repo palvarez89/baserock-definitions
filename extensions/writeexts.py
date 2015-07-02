@@ -369,7 +369,7 @@ class WriteExtension(Extension):
                 '--features', '^skinny-metadata',
                 '--features', '^mixed-bg',
                 '--nodesize', '4096',
-                location])
+                location], stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError as e:
             if 'unrecognized option \'--features\'' in e.output:
                 # Old versions of mkfs.btrfs (including v0.20, present in many
