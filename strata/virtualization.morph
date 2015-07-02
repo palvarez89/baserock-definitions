@@ -13,17 +13,13 @@ build-depends:
 - morph: strata/lvm.morph
 - morph: strata/xorg-util-macros-common.morph
 - morph: strata/networking-utils.morph
+- morph: strata/docutils.morph
 chunks:
 - name: yajl
   morph: strata/virtualization/yajl.morph
   repo: upstream:yajl
   ref: 52fc681857228c65c1cb439782da485554875481
   unpetrify-ref: baserock/morph
-- name: xml-catalog
-  morph: strata/virtualization/xml-catalog.morph
-  repo: baserock:baserock/xml-catalog
-  ref: 1d4a2abc875c4dda1b5eadc0a097a48a8d2ec82b
-  unpetrify-ref: master
 - name: dnsmasq
   morph: strata/virtualization/dnsmasq.morph
   repo: upstream:dnsmasq

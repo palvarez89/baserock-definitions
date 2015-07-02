@@ -12,6 +12,7 @@ description: |
 build-depends:
 - morph: strata/foundation.morph
 - morph: strata/python-cliapp.morph
+- morph: strata/pcre-utils.morph # for swig
 chunks:
 - name: bzr-tarball
   repo: upstream:bzr-tarball
@@ -64,11 +65,11 @@ chunks:
   build-depends:
   - libapr
   - libapr-util
-- name: swig-tarball
-  morph: strata/lorry/swig-tarball.morph
-  repo: upstream:swig-tarball
-  ref: 1f6cb46b6a4b3ebf9352fa10198b0b286f84138b
-  unpetrify-ref: baserock/morph
+- name: swig
+  morph: strata/lorry/swig.morph
+  repo: upstream:swig
+  ref: 4e23595704d6ddffe4e50ca41bbc90e4b8893f4d
+  unpetrify-ref: rel-3.0.6
 - name: neon
   morph: strata/lorry/neon.morph
   repo: upstream:neon
@@ -77,10 +78,10 @@ chunks:
 - name: subversion-tarball
   morph: strata/lorry/subversion-tarball.morph
   repo: upstream:subversion-tarball
-  ref: 2d02ea6f31311bf1b72f28c48d784b8d851ff2e0
-  unpetrify-ref: baserock/morph
+  ref: bb0ef45f7c46b0ae221b26265ef98a768c33f820
+  unpetrify-ref: subversion-1.8.13
   build-depends:
-  - swig-tarball
+  - swig
   - libapr
   - libapr-util
   - libserf

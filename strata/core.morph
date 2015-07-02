@@ -32,8 +32,8 @@ chunks:
 - name: perl
   morph: strata/core/perl.morph
   repo: upstream:perl
-  ref: 78f9a3c880f11578fb9ff9c7d5f7e34b602d2ad1
-  unpetrify-ref: baserock/morph
+  ref: 70f63a4c7dba89e8e48b44de7978faae4319e693
+  unpetrify-ref: v5.22.0
   build-depends:
   - gdbm
 - name: texinfo-tarball

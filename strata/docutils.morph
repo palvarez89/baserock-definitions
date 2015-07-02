@@ -1,0 +1,50 @@
+name: docutils
+kind: stratum
+description: Stuff for generating documentation
+build-depends:
+- morph: strata/core.morph
+chunks:
+- name: xml-catalog
+  morph: strata/docutils/xml-catalog.morph
+  repo: baserock:baserock/xml-catalog
+  ref: 1d4a2abc875c4dda1b5eadc0a097a48a8d2ec82b
+  unpetrify-ref: master
+- name: docbook-xml
+  morph: strata/docutils/docbook-xml.morph
+  repo: upstream:docbook-xml
+  ref: c8f0ce32a8075e9ab21e5cf734fb96195455264d
+  unpetrify-ref: docbook-xml-4.5
+  build-depends:
+  # This is a little awkward, we don't really build-depend on xml-catalog,
+  # but if we don't include it as a build dependency
+  # then we won't have the existing xml catalog in our staging area
+  # which would cause this chunk to create a new catalog which would
+  # overwrite the catalog created by the 'xml-catalog' chunk.
+  #
+  # construction of the catalog cannot be done at system-integration time
+  # because we need the catalog *here* in order to build nasm complete with
+  # man pages.
+  - xml-catalog
+- name: docbook-xsl
+  morph: strata/docutils/docbook-xsl.morph
+  repo: upstream:docbook-xsl
+  ref: 802da9dd5d4bc18f46a916eedc0c5c1980a15e59
+  unpetrify-ref: docbook-xsl-1.78.1
+  build-depends:
+  # Same issue as above, except this time we don't want to overwrite
+  # the catalog that now contains the XML DTDs.
+  - docbook-xml
+- name: asciidoc
+  repo: upstream:asciidoc
+  ref: d3a6df0caa94edaf8180bd71bf2fc68390f56520
+  unpetrify-ref: 8.6.9
+  build-depends:
+  - docbook-xml
+  - docbook-xsl
+- name: xmlto
+  repo: upstream:xmlto-tarball
+  ref: 6a590aba95cbcce0f184381fb19d16558e56832d
+  unpetrify-ref: xmlto-0.0.26
+  build-depends:
+  - docbook-xml
+  - docbook-xsl

@@ -1,0 +1,50 @@
+name: docbook-xsl
+kind: chunk
+install-commands:
+- install -v -m755 -d "$DESTDIR$PREFIX/share/xml/docbook/xsl-stylesheets-1.78.1"
+- |
+  cp -v -R VERSION common eclipse epub extensions fo highlighting html \
+           htmlhelp images javahelp lib manpages params profiling \
+           roundtrip slides template tests tools webhelp website \
+           xhtml xhtml-1_1 \
+           "$DESTDIR$PREFIX/share/xml/docbook/xsl-stylesheets-1.78.1"
+
+- ln -s VERSION "$DESTDIR$PREFIX/share/xml/docbook/xsl-stylesheets-1.78.1/VERSION.xsl"
+
+- install -v -m644 -D README "$DESTDIR$PREFIX/share/doc/docbook-xsl-1.78.1/README.txt"
+- |
+  install -v -m644    RELEASE-NOTES* NEWS* \
+                      "$DESTDIR$PREFIX/share/doc/docbook-xsl-1.78.1"
+post-install-commands:
+- if [ ! -d "$DESTDIR/etc/xml" ]; then install -v -m755 -d "$DESTDIR/etc/xml"; fi
+- |
+  if [ ! -e /etc/xml/catalog ]; then
+    echo "Creating new xml catalog"
+    xmlcatalog --noout --create "$DESTDIR/etc/xml/catalog"
+  else
+    cp /etc/xml/catalog "$DESTDIR/etc/xml/catalog"
+  fi
+
+- |
+  xmlcatalog --noout --add "rewriteSystem" \
+        "http://docbook.sourceforge.net/release/xsl/1.78.1" \
+        "/usr/share/xml/docbook/xsl-stylesheets-1.78.1" \
+    "$DESTDIR/etc/xml/catalog"
+
+- |
+  xmlcatalog --noout --add "rewriteURI" \
+        "http://docbook.sourceforge.net/release/xsl/1.78.1" \
+        "/usr/share/xml/docbook/xsl-stylesheets-1.78.1" \
+    "$DESTDIR/etc/xml/catalog"
+
+- |
+  xmlcatalog --noout --add "rewriteSystem" \
+         "http://docbook.sourceforge.net/release/xsl/current" \
+         "/usr/share/xml/docbook/xsl-stylesheets-1.78.1" \
+    "$DESTDIR/etc/xml/catalog"
+
+- |
+  xmlcatalog --noout --add "rewriteURI" \
+        "http://docbook.sourceforge.net/release/xsl/current" \
+        "/usr/share/xml/docbook/xsl-stylesheets-1.78.1" \
+    "$DESTDIR/etc/xml/catalog"

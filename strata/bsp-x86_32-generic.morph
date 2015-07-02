@@ -3,7 +3,9 @@ kind: stratum
 description: The set of platform specific components required for booting a 32-bit
   x86 based system.
 build-depends:
-- morph: strata/core.morph
+# nasm wants asciidoc and xmlto for generating its docs
+# so include docutils here
+- morph: strata/docutils.morph
 chunks:
 - name: linux-x86-32-generic
   morph: strata/bsp-x86_32-generic/linux-x86-32-generic.morph
@@ -13,8 +15,8 @@ chunks:
 - name: nasm
   morph: strata/bsp-x86_32-generic/nasm.morph
   repo: upstream:nasm
-  ref: 78bdad3d14fb875d5f2062957e326ba2a9e4ccb0
-  unpetrify-ref: baserock/morph
+  ref: 8fa0fe16408afc76ce1ae4387e1a9d46893cfda6
+  unpetrify-ref: nasm-2.11.08
 - name: syslinux
   morph: strata/bsp-x86_32-generic/syslinux.morph
   repo: upstream:syslinux
