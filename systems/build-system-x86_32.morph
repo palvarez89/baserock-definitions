@@ -40,8 +40,6 @@ strata:
   morph: strata/openstack-clients.morph
 - name: devtools
   morph: strata/devtools.morph
-- name: bsp-x86_both-tools
-  morph: strata/bsp-x86_both-tools.morph
 - name: libsoup-common
   morph: strata/libsoup-common.morph
 - name: ostree-core
