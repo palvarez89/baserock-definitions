@@ -47,7 +47,7 @@ chunks:
   repo: upstream:libnet
   ref: 05df365769597e1d64d02af931d6127762ff2658
   unpetrify-ref: libnet-1.2
-- name: arping
+- name: iputils
   morph: strata/networking-utils/iputils.morph
   repo: upstream:iputils
   ref: d25e54e25107bc7c5d14737ed65f5f52b54f1472

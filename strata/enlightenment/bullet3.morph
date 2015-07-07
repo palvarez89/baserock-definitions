@@ -1,4 +1,4 @@
-name: bullet
+name: bullet3
 kind: chunk
 configure-commands:
 - cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON

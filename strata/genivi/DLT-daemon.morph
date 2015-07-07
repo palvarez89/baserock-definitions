@@ -1,4 +1,4 @@
-name: DLT-deamon
+name: DLT-daemon
 kind: chunk
 build-system: cmake
 configure-commands:

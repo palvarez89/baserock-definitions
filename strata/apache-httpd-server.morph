@@ -11,7 +11,7 @@ chunks:
   repo: upstream:apache/apr
   ref: 3c818c6d7351f0130282d212a69035642f5fecad
   unpetrify-ref: trunk
-- name: httpd
+- name: httpd-server
   morph: strata/apache-httpd-server/httpd-server.morph
   repo: upstream:apache/httpd
   ref: 6d8e0b2fd95268fcba96326ba9dce7bb8f712c19

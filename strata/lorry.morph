@@ -56,7 +56,7 @@ chunks:
   unpetrify-ref: baserock/morph
   build-depends:
   - perl-dbi-tarball
-- name: libserf-tarball
+- name: libserf
   morph: strata/lorry/libserf.morph
   repo: upstream:libserf-tarball
   ref: 6f61a1acd01dc2ad1d2f5c1f7458702c77c69f9c

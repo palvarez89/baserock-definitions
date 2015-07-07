@@ -71,8 +71,8 @@ chunks:
   unpetrify-ref: v1.2.5
   build-depends:
   - hoe-master
-- name: ipaddress-master
-  morph: strata/chef/ipaddress-master.morph
+- name: ipaddress-0.8.0
+  morph: strata/chef/ipaddress-0.8.0.morph
   repo: upstream:ruby-gems/ipaddress
   ref: dae93ad0e4fb9a5d547a15dae0c3f2417078c845
   unpetrify-ref: master

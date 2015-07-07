@@ -7,7 +7,7 @@ description:
 build-depends:
 - morph: strata/core.morph
 chunks:
-- name: linux-armv5l-openbmc-aspeed-wedge
+- name: linux-armv5l-openbmc-aspeed
   morph: strata/bsp-armv5l-openbmc-aspeed/linux-armv5l-openbmc-aspeed.morph
   repo: upstream:linux-stable
   ref: 5cbce86c2115075b8054e4dba8cdf328aa6fa5b6

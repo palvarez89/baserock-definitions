@@ -14,7 +14,7 @@ build-depends:
 - morph: strata/foundation.morph
 
 chunks:
-  - name: unionfs.fuse
+  - name: unionfs-fuse
     morph: strata/unionfs-fuse-group/unionfs-fuse.morph
     repo: upstream:unionfs-fuse
     ref: efac5b7aa91ec860f8f430a8d21060fe53a07002
