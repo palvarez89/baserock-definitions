@@ -1,0 +1,4 @@
+name: CPAN-Mini-Inject
+kind: chunk
+build-system: module-build
+test-commands: []   # disable test commands

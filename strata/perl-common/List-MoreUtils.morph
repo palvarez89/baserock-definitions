@@ -1,0 +1,9 @@
+name: List-MoreUtils
+kind: chunk
+build-system: cpan
+pre-configure-commands:
+# List::MoreUtils will assume that it needs to try and build a release
+# if there's a .git present, we don't want that so we remove the .git here.
+# an issue has been filed at
+# https://github.com/perl5-utils/List-MoreUtils/issues/14
+- rm -rf .git
