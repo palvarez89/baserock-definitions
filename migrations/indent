@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+# Copyright (C) 2015  Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+'''Automatically reformat a set of Baserock definition files.
+
+This tool expects to be able to use ruamel.yaml to load and write YAML.
+It will totally ruin things if used with PyYAML.
+
+It makes sense to run this script on your definitions, and check through
+and commit the result, before running any of the automated migrations. This
+way, you can be sure that the migrations will only change things that they need 
+to in the .morph files.
+
+'''
+
+
+import migrations
+
+
+def force_rewrite(contents, filename):
+    return True
+
+migrations.process_definitions(path='.', modify_cb=force_rewrite)

@@ -1,12 +1,56 @@
-README for morphs
-=================
+Baserock reference system definitions
+=====================================
 
-These are some morphologies for Baserock. Baserock is a system
-for developing embedded and appliance Linux systems. For
+Baserock is a system for developing embedded and appliance Linux systems. For
 more information, see <http://wiki.baserock.org>.
+
+These are some example definitions for use with Baserock tooling. You can fork
+this repo and develop your own systems directly within it, or use it as a
+reference point when developing your own set of definitions.
+
+These definitions follow the Baserock definitions format, which is described at
+<http://wiki.baserock.org/definitions/>.
 
 The systems listed in the systems/ directory are example systems
 that build and run at some point. The only ones we can be sure
 that still build in current master of definitions are the ones that
 we keep building in our ci system; they are listed in
 http://git.baserock.org/cgi-bin/cgit.cgi/baserock/baserock/definitions.git/tree/clusters/ci.morph
+
+
+Keeping up to date
+------------------
+
+The Baserock definitions format is evolving. A set of automated migrations is
+provided in the migrations/ directory, for use when the format has changed and
+you want to bring your definitions up to date.
+
+Before running the migrations, you can use the 'migrations/indent' tool to
+format the definitions in the specific style that the migrations expect.
+The migrations use the 'ruamel.yaml' Python library for editing the .morph
+files. This library preserves comments, ordering and some of the formatting
+when it rewrites a .morph file. However, it does impose a certain line width
+and indent style.
+
+It makes a lot of sense to run the migrations with a *clean Git working tree*,
+so you can clearly see what changes they made, and can then choose to either
+commit them, tweak them, or revert them with `git reset --hard` and write an
+angry email.
+
+The suggested workflow is:
+
+    git status  # ensure a clean Git tree
+    migrations/indent
+    git diff    # check for any spurious changes
+    git commit -a -m "Fix formatting"
+    migrations/run-all
+    git diff    # check the results
+    git commit -a -m "Migrate to version xx of Baserock definitions format"
+
+If you are working in a fork of the Baserock definitions.git repo, you can
+also keep to date with using changes in 'master' using `git merge`. In general,
+we recommend first running the migrations, committing any changes they make,
+*then* merging in changes using `git merge`. This should minimise the number of
+merge conflicts, although merge conflicts are still possible.
+
+See migrations/GUIDELINES for information on how to write new migrations.
