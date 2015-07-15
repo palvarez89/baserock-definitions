@@ -1,0 +1,10 @@
+name: wget
+kind: chunk
+build-system: autotools
+pre-configure-commands:
+# rsync is needed if we want the bootstrap script to download .po files,
+# we can't download into our chroot so we remove this dependency
+- sed -i '/^buildreq="/,/"/ { /^rsync.*/ d }' bootstrap.conf
+- ./bootstrap --no-bootstrap-sync --skip-po
+configure-commands:
+- ./configure --prefix="$PREFIX" --with-ssl=openssl

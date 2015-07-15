@@ -36,3 +36,8 @@ chunks:
   repo: upstream:git-review
   ref: 79262a52301c146a6b60d09a828661a83a5f5ba7
   unpetrify-ref: master
+- name: wget
+  morph: strata/devtools/wget.morph
+  repo: upstream:wget
+  ref: b4440d96cf8173d68ecaa07c36b8f4316ee794d0
+  unpetrify-ref: v1.16
