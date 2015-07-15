@@ -35,5 +35,5 @@ chunks:
   unpetrify-ref: 4.4.5
   build-depends:
   - apr
-  - httpd
+  - httpd-server
   - mod_wsgi-metrics

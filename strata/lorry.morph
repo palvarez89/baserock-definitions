@@ -83,7 +83,7 @@ chunks:
   - swig-tarball
   - libapr
   - libapr-util
-  - libserf-tarball
+  - libserf
   - neon
 - name: mercurial-tarball
   morph: strata/lorry/mercurial-tarball.morph
