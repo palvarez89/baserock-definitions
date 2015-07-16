@@ -46,12 +46,13 @@ systems:
       type: extensions/rawdisk
       location: build-system-armv7lhf-jetson.img
       DISK_SIZE: 2G
-      BOOT_DEVICE: "/dev/mmcblk0p1"
-      ROOT_DEVICE: "/dev/mmcblk0p2"
-      DTB_PATH: "boot/tegra124-jetson-tk1.dtb"
-      BOOTLOADER_CONFIG_FORMAT: "extlinux"
-      BOOTLOADER_INSTALL: "none"
-      KERNEL_ARGS: cma=256M console=tty0 console=ttyS0,115200n8 no_console_suspend=1 nouveau.pstate=1
+      BOOT_DEVICE: /dev/mmcblk0p1
+      ROOT_DEVICE: /dev/mmcblk0p2
+      DTB_PATH: boot/tegra124-jetson-tk1.dtb
+      BOOTLOADER_CONFIG_FORMAT: extlinux
+      BOOTLOADER_INSTALL: none
+      KERNEL_ARGS: cma=256M console=tty0 console=ttyS0,115200n8 no_console_suspend=1
+        nouveau.pstate=1
       HOSTNAME: build-system-armv7lhf-jetson
 - morph: systems/genivi-baseline-system-x86_64-generic.morph
   deploy:
@@ -74,10 +75,11 @@ systems:
       type: extensions/rawdisk
       location: genivi-baseline-system-armv7lhf-jetson.img
       DISK_SIZE: 4G
-      BOOT_DEVICE: "/dev/mmcblk0p1"
-      ROOT_DEVICE: "/dev/mmcblk0p2"
-      DTB_PATH: "boot/tegra124-jetson-tk1.dtb"
-      BOOTLOADER_CONFIG_FORMAT: "extlinux"
-      BOOTLOADER_INSTALL: "none"
-      KERNEL_ARGS: cma=256M console=tty0 console=ttyS0,115200n8 no_console_suspend=1 nouveau.pstate=1
+      BOOT_DEVICE: /dev/mmcblk0p1
+      ROOT_DEVICE: /dev/mmcblk0p2
+      DTB_PATH: boot/tegra124-jetson-tk1.dtb
+      BOOTLOADER_CONFIG_FORMAT: extlinux
+      BOOTLOADER_INSTALL: none
+      KERNEL_ARGS: cma=256M console=tty0 console=ttyS0,115200n8 no_console_suspend=1
+        nouveau.pstate=1
       HOSTNAME: genivi-baseline-system-armv7lhf-jetson

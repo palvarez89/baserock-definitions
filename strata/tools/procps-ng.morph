@@ -9,11 +9,11 @@ description: |
 build-system: autotools
 
 configure-commands:
-  - NOCONFIGURE=1 ./autogen.sh
+- NOCONFIGURE=1 ./autogen.sh
   # Setting exec-prefix to /usr causes a bunch of stuff to go in /usr/usr/bin
   # Setting prefix to / causes files to go in /include and /share
   # So don't do either of those things!
-  - ./configure --prefix="$PREFIX" --exec-prefix=/
+- ./configure --prefix="$PREFIX" --exec-prefix=/
 
 post-install-commands:
 # We need to link the binaries into /bin so that they override the Busybox

@@ -1,21 +1,20 @@
 name: unionfs-fuse-group
 kind: stratum
 
-description:
+description: |
   User-space union file system.
 
-  This is used by Morph for systems which are unable to use 'overlayfs'.
-  It is slower than 'overlayfs', because it runs outside rather than
-  inside the kernel, but 'overlayfs' is only available in Linux 3.18 and
-  newer.
+  This is used by Morph for systems which are unable to use 'overlayfs'. It is slower
+  than 'overlayfs', because it runs outside rather than inside the kernel, but 'overlayfs'
+  is only available in Linux 3.18 and newer.
 
 build-depends:
 # Depends on foundation for 'fuse', and maybe other stuff.
 - morph: strata/foundation.morph
 
 chunks:
-  - name: unionfs-fuse
-    morph: strata/unionfs-fuse-group/unionfs-fuse.morph
-    repo: upstream:unionfs-fuse
-    ref: efac5b7aa91ec860f8f430a8d21060fe53a07002
-    unpetrify-ref: v0.26
+- name: unionfs-fuse
+  morph: strata/unionfs-fuse-group/unionfs-fuse.morph
+  repo: upstream:unionfs-fuse
+  ref: efac5b7aa91ec860f8f430a8d21060fe53a07002
+  unpetrify-ref: v0.26

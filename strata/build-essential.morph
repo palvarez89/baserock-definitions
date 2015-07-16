@@ -147,7 +147,7 @@ chunks:
   morph: strata/build-essential/stage2-busybox.morph
   repo: upstream:busybox
   ref: 1ecfe811fe2f70380170ef7d820e8150054e88ca
-  unpetrify-ref: 1_23_1
+  unpetrify-ref: '1_23_1'
   build-depends:
   - stage1-binutils
   - stage1-gcc
@@ -305,7 +305,7 @@ chunks:
   morph: strata/build-essential/busybox.morph
   repo: upstream:busybox
   ref: 1ecfe811fe2f70380170ef7d820e8150054e88ca
-  unpetrify-ref: 1_23_1
+  unpetrify-ref: '1_23_1'
   build-depends:
   - stage2-binutils
   - stage2-busybox

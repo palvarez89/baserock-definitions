@@ -1,6 +1,7 @@
 name: zookeeper-server
 kind: stratum
-description: This Stratum installs a zookeeper server and small program to populate it with default data.
+description: This Stratum installs a zookeeper server and small program to populate
+  it with default data.
 build-depends:
 - morph: strata/zookeeper.morph
 chunks:

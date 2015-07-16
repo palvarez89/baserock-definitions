@@ -3,7 +3,8 @@ kind: chunk
 build-system: autotools
 configure-commands:
 - NOCONFIGURE=1 ./autogen.sh
-- ./configure --prefix="$PREFIX" --disable-nfsv4 --disable-nfsv41 --disable-gss --with-rpcgen=internal --without-tcp-wrappers
+- ./configure --prefix="$PREFIX" --disable-nfsv4 --disable-nfsv41 --disable-gss --with-rpcgen=internal
+  --without-tcp-wrappers
 install-commands:
 - make DESTDIR="$DESTDIR" install
 - mkdir -p "$DESTDIR"/lib/systemd/system

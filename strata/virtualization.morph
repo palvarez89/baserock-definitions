@@ -1,10 +1,10 @@
 name: virtualization
 kind: stratum
 description: |
-    Virtualization for baserock
-    NOTE: this stratum requires kernel support, please see openstack bsp
-    kernel history to check which config are needed for openvswitch or libvirt,
-    for example.
+  Virtualization for baserock
+  NOTE: this stratum requires kernel support, please see openstack bsp
+  kernel history to check which config are needed for openvswitch or libvirt,
+  for example.
 build-depends:
 - morph: strata/libsoup-common.morph
 - morph: strata/python-core.morph

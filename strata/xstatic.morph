@@ -1,13 +1,13 @@
 name: xstatic
 kind: stratum
 description: |
-    Stratum with Xstatic and some xstatic libraries.
+  Stratum with Xstatic and some xstatic libraries.
 
-    XStatic is a packaging standard to package external static files as
-    a python package, so they are easily usable on all OSes.
+  XStatic is a packaging standard to package external static files as
+  a python package, so they are easily usable on all OSes.
 
-    This conflicts with the 'everything from Git' policy of Baserock,
-    but it is required right now for the Openstack system to work.
+  This conflicts with the 'everything from Git' policy of Baserock,
+  but it is required right now for the Openstack system to work.
 build-depends:
 - morph: strata/foundation.morph
 - morph: strata/python-core.morph

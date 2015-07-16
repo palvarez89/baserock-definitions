@@ -1,6 +1,7 @@
 name: build-system-armv7lhf-jetson
 kind: system
-description: The system that should be used for building all other Baserock systems for ARMv7 little-endian hard-float NVIDIA Jetson TK1 computers.
+description: The system that should be used for building all other Baserock systems
+  for ARMv7 little-endian hard-float NVIDIA Jetson TK1 computers.
 arch: armv7lhf
 strata:
 - name: build-essential

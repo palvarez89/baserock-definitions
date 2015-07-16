@@ -3,7 +3,8 @@ kind: chunk
 build-system: autotools
 configure-commands:
 - NOCONFIGURE=1 ./autogen.sh
-- ./configure --with-nss --prefix="$PREFIX" --sysconfdir=/etc --without-fuse --without-libatomic-ops --without-libxfs
+- ./configure --with-nss --prefix="$PREFIX" --sysconfdir=/etc --without-fuse --without-libatomic-ops
+  --without-libxfs
 build-commands:
 - make
 install-commands:

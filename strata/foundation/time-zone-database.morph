@@ -7,4 +7,5 @@ install-commands:
 # ETCDIR is actually where the 'tzselect', 'zdump' and 'zic' commands get
 # installed. Note that tzselect from this chunk will overlap with and override
 # the tzselect binary from GLIBC.
-- make TOPDIR="$PREFIX" ETCDIR="$PREFIX/bin" TZDIR="$PREFIX/share/zoneinfo" DESTDIR="$DESTDIR" install
+- make TOPDIR="$PREFIX" ETCDIR="$PREFIX/bin" TZDIR="$PREFIX/share/zoneinfo" DESTDIR="$DESTDIR"
+  install

@@ -1,11 +1,11 @@
 name: networking-utils
 kind: stratum
 description: |
-    Stratum which contains utils to works with networks: create, enable, filter...
+  Stratum which contains utils to works with networks: create, enable, filter...
 
-    This stratum requires kernel config flags which are not enabled in the default
-    Baserock kernel found in the BSP strata. See the Openstack BSP stratum to get
-    an idea of what is needed.
+  This stratum requires kernel config flags which are not enabled in the default
+  Baserock kernel found in the BSP strata. See the Openstack BSP stratum to get
+  an idea of what is needed.
 build-depends:
 - morph: strata/foundation.morph
 chunks:

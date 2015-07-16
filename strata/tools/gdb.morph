@@ -2,4 +2,5 @@ name: gdb
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./configure --prefix="$PREFIX" --disable-werror --disable-gas --disable-binutils --disable-ld --disable-gold --disable-gprof
+- ./configure --prefix="$PREFIX" --disable-werror --disable-gas --disable-binutils
+  --disable-ld --disable-gold --disable-gprof

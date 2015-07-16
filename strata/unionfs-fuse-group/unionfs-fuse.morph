@@ -1,8 +1,7 @@
 name: unionfs-fuse
 kind: chunk
 
-description:
-  User-space union file system.
+description: User-space union file system.
 
 build-system: manual
 

@@ -1,6 +1,7 @@
 name: build-system-x86_32
 kind: system
-description: The system that should be used for building all other Baserock systems for 32-bit Intel x86 computers.
+description: The system that should be used for building all other Baserock systems
+  for 32-bit Intel x86 computers.
 arch: x86_32
 strata:
 - name: build-essential

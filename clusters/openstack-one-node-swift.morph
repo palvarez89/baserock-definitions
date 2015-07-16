@@ -51,7 +51,7 @@ systems:
       ## Swift config options
       #########################################################################
 
-      SWIFT_CONTROLLER: True
+      SWIFT_CONTROLLER: true
 
       SWIFT_ADMIN_PASSWORD: insecure
 
@@ -59,13 +59,13 @@ systems:
       SWIFT_REPLICAS: 3
       SWIFT_MIN_PART_HOURS: 1
 
-      SWIFT_STORAGE_DEVICES: [{ ip: <storage node 0 management ip>, device: sdb, weight: 100 },
-                              { ip: <storage node 0 management ip>, device: sdc, weight: 100 },
-                              { ip: <storage node 0 management ip>, device: sdd, weight: 100 },
-
-                              { ip: <storage node 1 management ip>, device: sdb, weight: 100 },
-                              { ip: <storage node 1 management ip>, device: sdc, weight: 100 },
-                              { ip: <storage node 1 management ip>, device: sdd, weight: 100 }]
+      SWIFT_STORAGE_DEVICES:
+      - {ip: <storage node 0 management ip>, device: sdb, weight: 100}
+      - {ip: <storage node 0 management ip>, device: sdc, weight: 100}
+      - {ip: <storage node 0 management ip>, device: sdd, weight: 100}
+      - {ip: <storage node 1 management ip>, device: sdb, weight: 100}
+      - {ip: <storage node 1 management ip>, device: sdc, weight: 100}
+      - {ip: <storage node 1 management ip>, device: sdd, weight: 100}
 
       # This value can be any random string or number
       # but each node in your swift cluster must have the same values
@@ -91,13 +91,13 @@ systems:
       CONTROLLER_HOST_ADDRESS: onenode
       MANAGEMENT_INTERFACE_IP_ADDRESS: <management ip>
 
-      KEYSTONE_ENABLE_SERVICE: True
+      KEYSTONE_ENABLE_SERVICE: true
       KEYSTONE_TEMPORARY_ADMIN_TOKEN: 22f3aa1cf538e3f6d5e8
       KEYSTONE_ADMIN_PASSWORD: veryinsecure
       KEYSTONE_DB_USER: keystoneDB
       KEYSTONE_DB_PASSWORD: veryinsecure
 
-      GLANCE_ENABLE_SERVICE: True
+      GLANCE_ENABLE_SERVICE: true
       GLANCE_SERVICE_USER: glance
       GLANCE_SERVICE_PASSWORD: veryinsecure
       GLANCE_DB_USER: glanceDB
@@ -108,7 +108,7 @@ systems:
       NOVA_DB_USER: novaDB
       NOVA_DB_PASSWORD: veryinsecure
       NOVA_VIRT_TYPE: qemu
-      NOVA_BAREMETAL_SCHEDULING: no
+      NOVA_BAREMETAL_SCHEDULING: false
 
       CINDER_SERVICE_USER: cinder
       CINDER_SERVICE_PASSWORD: veryinsecure
@@ -123,7 +123,7 @@ systems:
       NEUTRON_DB_PASSWORD: veryinsecure
       METADATA_PROXY_SHARED_SECRET: novaneutronmetasecret
 
-      IRONIC_ENABLE_SERVICE: True
+      IRONIC_ENABLE_SERVICE: true
       IRONIC_SERVICE_USER: ironic
       IRONIC_SERVICE_PASSWORD: veryinsecure
       IRONIC_DB_USER: ironicDB

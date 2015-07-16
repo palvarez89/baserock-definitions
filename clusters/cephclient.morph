@@ -3,18 +3,18 @@ kind: cluster
 systems:
 - morph: systems/ceph-service-x86_64-generic.morph
   deploy:
-      ceph-node-virtualbox-image:
-          type: extensions/virtualbox-ssh
-          SYSTEM: systems/ceph-service-x86_64-generic.morph
-          location: vbox+ssh://user@machine/ChefNode4/home/user/chefnode4.vdi
-          # HOST_IPADDR and NETMASK should be set to the IP address and netmask of the virtualbox host on the host-only interface.
-          #HOST_IPADDR: 10.0.100.100
-          #NETMASK: 255.255.255.0
+    ceph-node-virtualbox-image:
+      type: extensions/virtualbox-ssh
+      SYSTEM: systems/ceph-service-x86_64-generic.morph
+      location: vbox+ssh://user@machine/ChefNode4/home/user/chefnode4.vdi
+      # HOST_IPADDR and NETMASK should be set to the IP address and netmask of the virtualbox host on the host-only interface.
+      #HOST_IPADDR: 10.0.100.100
+      #NETMASK: 255.255.255.0
 
-          # This is an example of how to configure the three interfaces necessary to support ceph in the BCPC configuration.
-          #NETWORK_CONFIG: lo:loopback;enp0s3:static,address=10.0.100.14,netmask=255.255.255.0;enp0s8:static,address=172.16.100.14,netmask=255.255.255.0;enp0s9:static,address=192.168.100.14,netmask=255.255.255.0
-          DISK_SIZE: 8G
-          HOSTNAME: CephNode4
+      # This is an example of how to configure the three interfaces necessary to support ceph in the BCPC configuration.
+      #NETWORK_CONFIG: lo:loopback;enp0s3:static,address=10.0.100.14,netmask=255.255.255.0;enp0s8:static,address=172.16.100.14,netmask=255.255.255.0;enp0s9:static,address=192.168.100.14,netmask=255.255.255.0
+      DISK_SIZE: 8G
+      HOSTNAME: CephNode4
 
-          # You must install authorized_keys in chef/root/.ssh/ before this will work.
-          INSTALL_FILES: install-files/chef/manifest
+      # You must install authorized_keys in chef/root/.ssh/ before this will work.
+      INSTALL_FILES: install-files/chef/manifest

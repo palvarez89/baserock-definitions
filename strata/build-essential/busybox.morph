@@ -5,12 +5,14 @@ configure-commands:
 # Busybox's default config has everything enabled.
 - make defconfig KCONFIG_NOTIMESTAMP=1
 
-- sed -e 's|.*UDHCPC_DEFAULT_SCRIPT.*|CONFIG_UDHCPC_DEFAULT_SCRIPT="'"$PREFIX"/share/udhcpc/default.script'"|' -i .config
-- sed -e 's|.*IFUPDOWN_IFSTATE_PATH.*|CONFIG_IFUPDOWN_IFSTATE_PATH="/run/ifstate"|' -i .config
+- sed -e 's|.*UDHCPC_DEFAULT_SCRIPT.*|CONFIG_UDHCPC_DEFAULT_SCRIPT="'"$PREFIX"/share/udhcpc/default.script'"|'
+  -i .config
+- sed -e 's|.*IFUPDOWN_IFSTATE_PATH.*|CONFIG_IFUPDOWN_IFSTATE_PATH="/run/ifstate"|'
+  -i .config
 
 # Avoid dividing applets between $PREFIX/[s]bin and $PREFIX/usr/[s]bin.
-- '[ "$PREFIX" = /usr ] || sed -e ''s/.*INSTALL_NO_USR.*/CONFIG_INSTALL_NO_USR=y/'' -i .config'
-
+- '[ "$PREFIX" = /usr ] || sed -e ''s/.*INSTALL_NO_USR.*/CONFIG_INSTALL_NO_USR=y/''
+  -i .config'
 # We have GAWK, but in GENIVI baseline we want to get rid of it
 # - sed -e 's/CONFIG_AWK=y.*/# CONFIG_AWK is not set/' -i .config
 
@@ -31,11 +33,16 @@ configure-commands:
 - sed -e 's/CONFIG_RMMOD=y.*/# CONFIG_RMMOD is not set/' -i .config
 
 # General features that we don't need.
-- sed -e 's/CONFIG_FEATURE_MOUNT_CIFS=y.*/# CONFIG_FEATURE_MOUNT_CIFS is not set/' -i .config
-- sed -e 's/CONFIG_FEATURE_EXTRA_QUIET=y.*/# CONFIG_FEATURE_EXTRA_QUIET is not set/' -i .config
-- sed -e 's/CONFIG_FEATURE_INIT_COREDUMPS=y.*/# CONFIG_FEATURE_INIT_COREDUMPS is not set/' -i .config
-- sed -e 's/CONFIG_FEATURE_INIT_SCTTY=y.*/# CONFIG_FEATURE_INIT_SCTTY is not set/' -i .config
-- sed -e 's/CONFIG_FEATURE_INIT_SYSLOG=y.*/# CONFIG_FEATURE_INIT_SYSLOG is not set/' -i .config
+- sed -e 's/CONFIG_FEATURE_MOUNT_CIFS=y.*/# CONFIG_FEATURE_MOUNT_CIFS is not set/'
+  -i .config
+- sed -e 's/CONFIG_FEATURE_EXTRA_QUIET=y.*/# CONFIG_FEATURE_EXTRA_QUIET is not set/'
+  -i .config
+- sed -e 's/CONFIG_FEATURE_INIT_COREDUMPS=y.*/# CONFIG_FEATURE_INIT_COREDUMPS is not
+  set/' -i .config
+- sed -e 's/CONFIG_FEATURE_INIT_SCTTY=y.*/# CONFIG_FEATURE_INIT_SCTTY is not set/'
+  -i .config
+- sed -e 's/CONFIG_FEATURE_INIT_SYSLOG=y.*/# CONFIG_FEATURE_INIT_SYSLOG is not set/'
+  -i .config
 - sed -e 's/CONFIG_FEATURE_INITRD=y.*/# CONFIG_FEATURE_INITRD is not set/' -i .config
 - sed -e 's/CONFIG_FEATURE_MINIX2=y.*/# CONFIG_FEATURE_MINIX2 is not set/' -i .config
 - sed -e 's/CONFIG_FSCK_MINIX=y.*/# CONFIG_FSCK_MINIX is not set/' -i .config
@@ -52,8 +59,10 @@ configure-commands:
 
 # Now turn on some little bits we do need
 - sed -e 's/# CONFIG_BBCONFIG is not set/CONFIG_BBCONFIG=y/' -i .config
-- sed -e 's/# CONFIG_FEATURE_COMPRESS_BBCONFIG is not set/CONFIG_FEATURE_COMPRESS_BBCONFIG=y/' -i .config
-- sed -e 's/# CONFIG_FEATURE_MOUNT_HELPERS is not set/CONFIG_FEATURE_MOUNT_HELPERS=y/' -i .config
+- sed -e 's/# CONFIG_FEATURE_COMPRESS_BBCONFIG is not set/CONFIG_FEATURE_COMPRESS_BBCONFIG=y/'
+  -i .config
+- sed -e 's/# CONFIG_FEATURE_MOUNT_HELPERS is not set/CONFIG_FEATURE_MOUNT_HELPERS=y/'
+  -i .config
 
 
 build-commands:
@@ -64,7 +73,6 @@ install-commands:
   if [ "$PREFIX" = /usr ]; then PREFIX=; fi &&
     make CONFIG_PREFIX="$DESTDIR$PREFIX" KCONFIG_NOTIMESTAMP=1 install &&
     chmod 6755 "$DESTDIR$PREFIX"/bin/busybox
-
 # Set up man environment variables
 - mkdir -p "$DESTDIR"/etc
 - |

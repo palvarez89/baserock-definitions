@@ -4,6 +4,6 @@ build-commands:
 - make
 install-commands:
 - mkdir -p "$DESTDIR$PREFIX"/lib
-- mkdir -p "$DESTDIR$PREFIX"/include 
+- mkdir -p "$DESTDIR$PREFIX"/include
 - cp --preserve=links libleveldb.* "$DESTDIR$PREFIX"/lib
 - cp -r include/leveldb "$DESTDIR$PREFIX"/include

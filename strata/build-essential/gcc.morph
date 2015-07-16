@@ -15,8 +15,7 @@ products:
   # everything else gcc produces is required for compiling
   # this is the -devel artifact instead of -misc, since it goes in -devel
   # stratum artifacts by default
-  include: [ .* ]
-
+  include: [.*]
 configure-commands:
 - mkdir o
 
@@ -58,7 +57,7 @@ build-commands:
 install-commands:
 - cd o && make DESTDIR="$DESTDIR" install
 - ln -s gcc "$DESTDIR/$PREFIX/bin/cc"
-- >
+- |
   for fortran_alias in f77 f90 f95; do
-      ln -s gfortran "$DESTDIR/$PREFIX/bin/$fortran_alias"
+    ln -s gfortran "$DESTDIR/$PREFIX/bin/$fortran_alias"
   done

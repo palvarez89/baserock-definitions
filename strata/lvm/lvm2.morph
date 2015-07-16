@@ -8,7 +8,7 @@ configure-commands:
 # '${exec_prefix}/sbin' in the generated .service files.
 #
 # udev rules *must* go in /lib, they'll be ignored if they go in /usr/lib.
-- >
+- |
   ./configure --prefix="$PREFIX" \
     --sbindir="$PREFIX"/sbin \
     --with-udev-prefix=/ \

@@ -3,6 +3,6 @@ kind: chunk
 configure-commands:
 - ./bootstrap.sh
 build-commands:
-- ./b2 
+- ./b2
 install-commands:
 - ./b2 install --prefix="$DESTDIR$PREFIX"

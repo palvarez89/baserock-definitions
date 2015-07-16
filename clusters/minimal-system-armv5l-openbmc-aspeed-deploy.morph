@@ -6,8 +6,8 @@ systems:
     minimal-system-armv5l-openbmc-aspeed:
       type: extensions/jffs2
       location: minimal-system-armv5l-openbmc-aspeed.img
-      ROOT_DEVICE: "/dev/mtdblock"
-      BOOTLOADER_CONFIG_FORMAT: "extlinux"
-      BOOTLOADER_INSTALL: "none"
+      ROOT_DEVICE: /dev/mtdblock
+      BOOTLOADER_CONFIG_FORMAT: extlinux
+      BOOTLOADER_INSTALL: none
       ERASE_BLOCK: 64
       INIT_SYSTEM: busybox

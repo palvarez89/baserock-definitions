@@ -6,7 +6,8 @@ install-commands:
 # Rewrite prefix and exec_prefix which are set to "/usr" and "/" respectively
 - make prefix="$PREFIX" exec_prefix="$PREFIX" DESTDIR="$DESTDIR" install
 # Install iscsistart app which is not listed by default in PROGRAMS
-- make prefix="$PREFIX" exec_prefix="$PREFIX" DESTDIR="$DESTDIR" PROGRAMS="usr/iscsistart" install
+- make prefix="$PREFIX" exec_prefix="$PREFIX" DESTDIR="$DESTDIR" PROGRAMS="usr/iscsistart"
+  install
 post-install-commands:
 # Configure iscsi daemon
 # Point the startup to the installed binary

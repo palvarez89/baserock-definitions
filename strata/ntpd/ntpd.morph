@@ -2,7 +2,7 @@ name: ntpd
 kind: chunk
 build-system: autotools
 configure-commands:
-  - ./configure --prefix="$PREFIX" --enable-linuxcaps
+- ./configure --prefix="$PREFIX" --enable-linuxcaps
 post-install-commands:
 - |
   cat > ntpd.service << EOF

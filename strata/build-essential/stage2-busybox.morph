@@ -8,8 +8,8 @@ configure-commands:
 - make HOSTCC="/usr/bin/gcc" CROSS_COMPILE=$TARGET_STAGE1- KCONFIG_NOTIMESTAMP=1 defconfig
 
 # Avoid dividing applets between $PREFIX/[s]bin and $PREFIX/usr/[s]bin.
-- '[ "$PREFIX" = /usr ] || sed -e ''s/.*INSTALL_NO_USR.*/CONFIG_INSTALL_NO_USR=y/'' -i .config'
-
+- '[ "$PREFIX" = /usr ] || sed -e ''s/.*INSTALL_NO_USR.*/CONFIG_INSTALL_NO_USR=y/''
+  -i .config'
 # We have GAWK.
 - sed -e 's/CONFIG_AWK=y.*/# CONFIG_AWK is not set/' -i .config
 
@@ -30,13 +30,19 @@ configure-commands:
 - sed -e 's/CONFIG_RMMOD=y.*/# CONFIG_RMMOD is not set/' -i .config
 
 # General features that we don't need.
-- sed -e 's/CONFIG_FEATURE_MOUNT_CIFS=y.*/# CONFIG_FEATURE_MOUNT_CIFS is not set/' -i .config
-- sed -e 's/CONFIG_FEATURE_EXTRA_QUIET=y.*/# CONFIG_FEATURE_EXTRA_QUIET is not set/' -i .config
-- sed -e 's/CONFIG_FEATURE_INIT_COREDUMPS=y.*/# CONFIG_FEATURE_INIT_COREDUMPS is not set/' -i .config
-- sed -e 's/CONFIG_FEATURE_INIT_SCTTY=y.*/# CONFIG_FEATURE_INIT_SCTTY is not set/' -i .config
-- sed -e 's/CONFIG_FEATURE_INIT_SYSLOG=y.*/# CONFIG_FEATURE_INIT_SYSLOG is not set/' -i .config
+- sed -e 's/CONFIG_FEATURE_MOUNT_CIFS=y.*/# CONFIG_FEATURE_MOUNT_CIFS is not set/'
+  -i .config
+- sed -e 's/CONFIG_FEATURE_EXTRA_QUIET=y.*/# CONFIG_FEATURE_EXTRA_QUIET is not set/'
+  -i .config
+- sed -e 's/CONFIG_FEATURE_INIT_COREDUMPS=y.*/# CONFIG_FEATURE_INIT_COREDUMPS is not
+  set/' -i .config
+- sed -e 's/CONFIG_FEATURE_INIT_SCTTY=y.*/# CONFIG_FEATURE_INIT_SCTTY is not set/'
+  -i .config
+- sed -e 's/CONFIG_FEATURE_INIT_SYSLOG=y.*/# CONFIG_FEATURE_INIT_SYSLOG is not set/'
+  -i .config
 - sed -e 's/CONFIG_FEATURE_INITRD=y.*/# CONFIG_FEATURE_INITRD is not set/' -i .config
-- sed -e 's/CONFIG_FEATURE_USE_INITTAB=y.*/# CONFIG_FEATURE_USE_INITTAB is not set/' -i .config
+- sed -e 's/CONFIG_FEATURE_USE_INITTAB=y.*/# CONFIG_FEATURE_USE_INITTAB is not set/'
+  -i .config
 - sed -e 's/CONFIG_FEATURE_MINIX2=y.*/# CONFIG_FEATURE_MINIX2 is not set/' -i .config
 - sed -e 's/CONFIG_FSCK_MINIX=y.*/# CONFIG_FSCK_MINIX is not set/' -i .config
 - sed -e 's/CONFIG_HALT=y.*/# CONFIG_HALT is not set/' -i .config

@@ -15,16 +15,16 @@ systems:
       PXEBOOT_CONFIG_TFTP_ADDRESS: sftp://192.168.0.1/srv/nfsboot/tftp/
       PXEBOOT_ROOTFS_RSYNC_ADDRESS: rsync://192.168.0.1/srv/nfsboot/
       PXEBOOT_PXE_REBOOT_COMMAND: |
-          ssh Administrator@10.0.1.10 set node power off force c31n1
-          ssh Administrator@10.0.1.10 set node boot pxe c31n1
-          # Nodes are powered on twice as sometimes powering them on
-          # once is not enough
-          ssh Administrator@10.0.1.10 set node power on c31n1
-          ssh Administrator@10.0.1.10 set node power on c31n1
-      PXE_INSTALLER: no
+        ssh Administrator@10.0.1.10 set node power off force c31n1
+        ssh Administrator@10.0.1.10 set node boot pxe c31n1
+        # Nodes are powered on twice as sometimes powering them on
+        # once is not enough
+        ssh Administrator@10.0.1.10 set node power on c31n1
+        ssh Administrator@10.0.1.10 set node power on c31n1
+      PXE_INSTALLER: false
 
       HOSTNAME: baserock-c31n1
       DTB_PATH: boot/m400-1003.dtb
       KERNEL_ARGS: console=ttyS0,9600n8r rw
       INSTALL_FILES: install-files/moonshot/manifest
-      MOONSHOT_KERNEL: yes
+      MOONSHOT_KERNEL: true

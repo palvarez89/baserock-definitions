@@ -1,8 +1,8 @@
 name: openstack-common
 kind: stratum
 description: |
-             Stratum with the python packages needed to compile openstack
-             clients and services.
+  Stratum with the python packages needed to compile openstack
+  clients and services.
 build-depends:
 - morph: strata/python-common.morph
 - morph: strata/foundation.morph

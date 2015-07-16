@@ -245,7 +245,7 @@ chunks:
   morph: strata/openstack-services/qpid-python.morph
   repo: upstream:python-packages/qpid-python
   ref: 587b0febaf1996db1e483137ed6addb45580ee9e
-  unpetrify-ref: 0.30
+  unpetrify-ref: '0.30'
 - name: simplegeneric-tarball
   repo: upstream:python-packages/simplegeneric-tarball
   ref: 601fab9b154c557dfd848d531a8969f4697d1aa2
@@ -364,7 +364,6 @@ chunks:
   unpetrify-ref: 0.9.0
   build-depends:
   - oslo-context
-  build-depends:
   - oslo-messaging
   - posix-ipc-tarball
 - name: keystonemiddleware
@@ -659,7 +658,7 @@ chunks:
   morph: strata/openstack-services/tempest.morph
   repo: upstream:openstack/tempest
   ref: 26149b612d01ad605e4d0f41a2d67280c8088cda
-  unpetrify-ref: "4"
+  unpetrify-ref: '4'
   build-depends:
   - tempest-lib
 - name: tftp-hpa

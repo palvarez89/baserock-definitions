@@ -100,7 +100,7 @@ chunks:
 - name: xcb-proto
   repo: upstream:xcb-proto
   ref: 4b384d2a015c50d0e93dcacda4b8260a3fd37640
-  unpetrify-ref: "1.11"
+  unpetrify-ref: '1.11'
 - name: xorg-lib-libxshmfence
   repo: upstream:xorg-lib-libxshmfence
   ref: 9c4f070e1304a3503cfab08f68573443025fc4c9
@@ -116,7 +116,7 @@ chunks:
 - name: xcb-libxcb
   repo: upstream:xcb-libxcb
   ref: d1e8ec96fca4862f37ec9f0e9407bb989c4c161a
-  unpetrify-ref: "1.11"
+  unpetrify-ref: '1.11'
   build-depends:
   - xcb-proto
   - xorg-lib-libXau

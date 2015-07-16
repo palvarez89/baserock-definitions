@@ -17,6 +17,6 @@ systems:
       KERNEL_ARGS: console=ttyS0,9600n8r rw
       DTB_PATH: boot/m400-1003.dtb
       HOSTNAME: baserock-m400-node31
-      MOONSHOT_KERNEL: yes
+      MOONSHOT_KERNEL: true
       INSTALL_FILES: install-files/moonshot/manifest
-      PXE_INSTALLER: no
+      PXE_INSTALLER: false

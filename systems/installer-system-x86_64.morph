@@ -1,6 +1,7 @@
 name: installer-system-x86_64
 kind: system
-description: The system that should be used as an Installer to install other Baserock systems.
+description: The system that should be used as an Installer to install other Baserock
+  systems.
 arch: x86_64
 strata:
 - name: build-essential

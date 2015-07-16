@@ -1,6 +1,7 @@
 name: build-system-ppc64
 kind: system
-description: The system that should be used for building all other Baserock systems for 64-bit POWER computers.
+description: The system that should be used for building all other Baserock systems
+  for 64-bit POWER computers.
 arch: ppc64
 strata:
 - name: build-essential

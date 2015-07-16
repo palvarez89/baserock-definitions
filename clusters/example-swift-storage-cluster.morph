@@ -11,13 +11,13 @@ systems:
     SWIFT_REPLICAS: 3
     SWIFT_MIN_PART_HOURS: 1
 
-    SWIFT_STORAGE_DEVICES: [{ ip: <node0 management ip>, device: sdb, weight: 100 },
-                            { ip: <node0 management ip>, device: sdc, weight: 100 },
-                            { ip: <node0 management ip>, device: sdd, weight: 100 },
-
-                            { ip: <node1 management ip>, device: sdb, weight: 100 },
-                            { ip: <node1 management ip>, device: sdc, weight: 100 },
-                            { ip: <node1 management ip>, device: sdd, weight: 100 }]
+    SWIFT_STORAGE_DEVICES:
+    - {ip: <node0 management ip>, device: sdb, weight: 100}
+    - {ip: <node0 management ip>, device: sdc, weight: 100}
+    - {ip: <node0 management ip>, device: sdd, weight: 100}
+    - {ip: <node1 management ip>, device: sdb, weight: 100}
+    - {ip: <node1 management ip>, device: sdc, weight: 100}
+    - {ip: <node1 management ip>, device: sdd, weight: 100}
 
     # This value can be any random string or number
     # but each node in your swift cluster must have the same value

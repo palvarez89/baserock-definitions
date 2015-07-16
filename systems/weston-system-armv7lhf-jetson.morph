@@ -1,6 +1,7 @@
 name: weston-system-armv7lhf-jetson
 kind: system
-description: A weston system for ARMv7 little-endian hard-float NVIDIA Jetson TK1 computers.
+description: A weston system for ARMv7 little-endian hard-float NVIDIA Jetson TK1
+  computers.
 arch: armv7lhf
 strata:
 - name: build-essential

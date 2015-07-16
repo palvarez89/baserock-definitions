@@ -1,6 +1,7 @@
 name: installer-system-armv8b64
 kind: system
-description: The system that should be used as an Installer to install other Baserock systems.
+description: The system that should be used as an Installer to install other Baserock
+  systems.
 arch: armv8b64
 strata:
 - name: build-essential

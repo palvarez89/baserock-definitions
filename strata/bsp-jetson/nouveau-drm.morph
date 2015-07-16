@@ -1,12 +1,14 @@
 name: nouveau-drm
 kind: chunk
 build-commands:
- - sed -e 's/.*android\/sync.*/#ifdef CONFIG_SYNC\n&\n#endif/' -i drm/nouveau/nouveau_fence.c
- - cd drm/nouveau && make ARCH=arm M=$(pwd) -C /usr/src/linux/ modules
+- sed -e 's/.*android\/sync.*/#ifdef CONFIG_SYNC\n&\n#endif/' -i drm/nouveau/nouveau_fence.c
+- cd drm/nouveau && make ARCH=arm M=$(pwd) -C /usr/src/linux/ modules
 install-commands:
- - cd drm/nouveau && make ARCH=arm M="$(pwd)" -C /usr/src/linux/ INSTALL_MOD_PATH="$DESTDIR" modules_install
+- cd drm/nouveau && make ARCH=arm M="$(pwd)" -C /usr/src/linux/ INSTALL_MOD_PATH="$DESTDIR"
+  modules_install
 system-integration:
-   nouveau-drm-misc:
-       00-earlyconf:
-          - (cd /lib/modules && for version in *; do rm "$version/kernel/drivers/gpu/drm/nouveau/nouveau.ko"; done)
-          - (cd /lib/modules && for version in *; do depmod -a "$version"; done)
+  nouveau-drm-misc:
+    00-earlyconf:
+    - (cd /lib/modules && for version in *; do rm "$version/kernel/drivers/gpu/drm/nouveau/nouveau.ko";
+      done)
+    - (cd /lib/modules && for version in *; do depmod -a "$version"; done)

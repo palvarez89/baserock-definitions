@@ -34,6 +34,6 @@ systems:
       OPENSTACK_TENANT_ID: 7d7ebfe23367490b973a10fa426c3aec
       OPENSTACK_IMAGENAME: mason-openstack
       OPENSTACK_NETWORK_ID: 71f5151a-b7c3-405d-a841-d1b07e5db099
-      CLOUD_INIT: yes
+      CLOUD_INIT: true
       KERNEL_ARGS: console=ttyS0 console=tty0
       TEST_INFRASTRUCTURE_TYPE: openstack

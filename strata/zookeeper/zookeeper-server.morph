@@ -1,30 +1,30 @@
 name: zookeeper-server
 kind: chunk
 build-commands:
- - mkdir -p "$DESTDIR$PREFIX"/zookeeper_server
- - cp -r * "$DESTDIR$PREFIX"/zookeeper_server
- - make -C "$DESTDIR$PREFIX"/zookeeper_server/zkServerFileSetup/Release/ 
+- mkdir -p "$DESTDIR$PREFIX"/zookeeper_server
+- cp -r * "$DESTDIR$PREFIX"/zookeeper_server
+- make -C "$DESTDIR$PREFIX"/zookeeper_server/zkServerFileSetup/Release/
 post-install-commands:
- - |
-   install -D -m 644 /proc/self/fd/0 << 'EOF' "$DESTDIR"/etc/systemd/system/zookeeper-server.service
-   [unit]
-       Description=Zookeeper server
-   [Service]
-       ExecStart=/usr/zookeeper/bin/zkServer.sh start
-       RemainAfterExit=yes
-   [Install]
-       WantedBy=multi-user.target
-   EOF
- - |
-   install -D -m 644 /proc/self/fd/0 << 'EOF' "$DESTDIR"/etc/systemd/system/zookeeper-init.service
-   [unit]
-       Description=Zookeeper server init
-   [Service]
-       ExecStart=/usr/zookeeper_server/zkServerFileSetup/Release/zkServerFileSetup
-       RemainAfterExit=no
-   [Install]
-       WantedBy=multi-user.target
-   EOF
- - mkdir "$DESTDIR"/etc/systemd/system/multi-user.target.wants
- - ln -s "$DESTDIR"/etc/systemd/system/zookeeper-server.service "$DESTDIR"/etc/systemd/system/multi-user.target.wants/zookeeper-server.service 
- - ln -s "$DESTDIR"/etc/systemd/system/zookeeper-init.service "$DESTDIR"/etc/systemd/system/multi-user.target.wants/zookeeper-init.service
+- |
+  install -D -m 644 /proc/self/fd/0 << 'EOF' "$DESTDIR"/etc/systemd/system/zookeeper-server.service
+  [unit]
+      Description=Zookeeper server
+  [Service]
+      ExecStart=/usr/zookeeper/bin/zkServer.sh start
+      RemainAfterExit=yes
+  [Install]
+      WantedBy=multi-user.target
+  EOF
+- |
+  install -D -m 644 /proc/self/fd/0 << 'EOF' "$DESTDIR"/etc/systemd/system/zookeeper-init.service
+  [unit]
+      Description=Zookeeper server init
+  [Service]
+      ExecStart=/usr/zookeeper_server/zkServerFileSetup/Release/zkServerFileSetup
+      RemainAfterExit=no
+  [Install]
+      WantedBy=multi-user.target
+  EOF
+- mkdir "$DESTDIR"/etc/systemd/system/multi-user.target.wants
+- ln -s "$DESTDIR"/etc/systemd/system/zookeeper-server.service "$DESTDIR"/etc/systemd/system/multi-user.target.wants/zookeeper-server.service
+- ln -s "$DESTDIR"/etc/systemd/system/zookeeper-init.service "$DESTDIR"/etc/systemd/system/multi-user.target.wants/zookeeper-init.service

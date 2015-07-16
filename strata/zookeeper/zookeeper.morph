@@ -1,14 +1,14 @@
 name: zookeeper
 kind: chunk
 configure-commands:
-  - mkdir -p "$DESTDIR$PREFIX"/lib/zookeeper
+- mkdir -p "$DESTDIR$PREFIX"/lib/zookeeper
 build-commands:
-  - ant -p compile_jute
-  - mkdir -p "$DESTDIR$PREFIX"/zookeeper
-  - cp -r * "$DESTDIR$PREFIX"/zookeeper
-  - cd "$DESTDIR$PREFIX"/zookeeper/src/c && autoreconf -i
-  - cd "$DESTDIR$PREFIX"/zookeeper/src/c && ./configure --prefix="$PREFIX" --libdir="$PREFIX"/lib/
-  - make -C "$DESTDIR$PREFIX"/zookeeper/src/c
-  - cd "$DESTDIR$PREFIX"/zookeeper/src/c && make install
-  - mv "$DESTDIR$PREFIX"/zookeeper/conf/zoo_sample.cfg "$DESTDIR$PREFIX"/zookeeper/conf/zoo.cfg 
-  - make -C "$DESTDIR$PREFIX"/zookeeper/src/c zktest-mt
+- ant -p compile_jute
+- mkdir -p "$DESTDIR$PREFIX"/zookeeper
+- cp -r * "$DESTDIR$PREFIX"/zookeeper
+- cd "$DESTDIR$PREFIX"/zookeeper/src/c && autoreconf -i
+- cd "$DESTDIR$PREFIX"/zookeeper/src/c && ./configure --prefix="$PREFIX" --libdir="$PREFIX"/lib/
+- make -C "$DESTDIR$PREFIX"/zookeeper/src/c
+- cd "$DESTDIR$PREFIX"/zookeeper/src/c && make install
+- mv "$DESTDIR$PREFIX"/zookeeper/conf/zoo_sample.cfg "$DESTDIR$PREFIX"/zookeeper/conf/zoo.cfg
+- make -C "$DESTDIR$PREFIX"/zookeeper/src/c zktest-mt

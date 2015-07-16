@@ -1,21 +1,21 @@
 name: zookeeper
 kind: cluster
 systems:
-  - morph: systems/zookeeper-client-x86_64.morph
-    deploy:
-      my-client-system:
-        type: extensions/kvm
-        location: kvm+ssh://username@HOSTNAME/machinename/path/to/zookeeper-client.img
-        DISK_SIZE: 4G
-        RAM_SIZE: 1G
-        VCPUS: 1
-        HOSTNAME: zkclient
-  - morph: systems/zookeeper-server-x86_64.morph
-    deploy:
-      my-server-system:
-        type: extensions/kvm
-        location: kvm+ssh://username@HOSTNAME/machinename/path/to/zookeeper-server.img
-        DISK_SIZE: 4G
-        RAM_SIZE: 1G
-        VCPUS: 1
-        HOSTNAME: zkserver
+- morph: systems/zookeeper-client-x86_64.morph
+  deploy:
+    my-client-system:
+      type: extensions/kvm
+      location: kvm+ssh://username@HOSTNAME/machinename/path/to/zookeeper-client.img
+      DISK_SIZE: 4G
+      RAM_SIZE: 1G
+      VCPUS: 1
+      HOSTNAME: zkclient
+- morph: systems/zookeeper-server-x86_64.morph
+  deploy:
+    my-server-system:
+      type: extensions/kvm
+      location: kvm+ssh://username@HOSTNAME/machinename/path/to/zookeeper-server.img
+      DISK_SIZE: 4G
+      RAM_SIZE: 1G
+      VCPUS: 1
+      HOSTNAME: zkserver

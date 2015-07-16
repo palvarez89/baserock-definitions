@@ -1,6 +1,7 @@
 name: build-system-x86_64-chroot
 kind: system
-description: The system that should be used for building all other Baserock systems for 64-bit Intel x86 computers, chroot variant.
+description: The system that should be used for building all other Baserock systems
+  for 64-bit Intel x86 computers, chroot variant.
 arch: x86_64
 strata:
 - name: build-essential

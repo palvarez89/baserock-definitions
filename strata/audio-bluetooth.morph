@@ -64,7 +64,7 @@ chunks:
   morph: strata/audio-bluetooth/ofono.morph
   repo: upstream:ofono
   ref: d05b718cc0b0d367227fbfbf52e60fc5462cc549
-  unpetrify-ref: "1.15"
+  unpetrify-ref: '1.15'
   build-depends:
   - mobile-broadband-provider-info
   - bluez
@@ -81,7 +81,7 @@ chunks:
 - name: pulseaudio
   morph: strata/audio-bluetooth/pulseaudio.morph
   repo: upstream:pulseaudio
-  ref:  53ad8aa7caa33caac52e35f71253e29d5a15f6e7
+  ref: 53ad8aa7caa33caac52e35f71253e29d5a15f6e7
   unpetrify-ref: v6.0
   build-depends:
   - libsndfile

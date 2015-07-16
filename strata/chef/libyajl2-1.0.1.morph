@@ -9,5 +9,5 @@ build-commands:
 - USE_SYSTEM_LIBYAJL2=yes gem build libyajl2.gemspec
 install-commands:
 - mkdir -p "$DESTDIR/$(gem environment home)"
-- USE_SYSTEM_LIBYAJL2=yes gem install --install-dir "$DESTDIR/$(gem environment home)" --bindir "$DESTDIR/$PREFIX/bin"
-  --ignore-dependencies --local ./libyajl2-1.0.1.gem
+- USE_SYSTEM_LIBYAJL2=yes gem install --install-dir "$DESTDIR/$(gem environment home)"
+  --bindir "$DESTDIR/$PREFIX/bin" --ignore-dependencies --local ./libyajl2-1.0.1.gem

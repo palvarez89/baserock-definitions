@@ -1,17 +1,17 @@
 name: zookeeper-client
 kind: chunk
 build-commands:
- - mkdir -p "$DESTDIR$PREFIX"/zookeeper-client
- - cp -r * "$DESTDIR$PREFIX"/zookeeper-client
- - make -C "$DESTDIR$PREFIX"/zookeeper-client/ZKTest/Release/
+- mkdir -p "$DESTDIR$PREFIX"/zookeeper-client
+- cp -r * "$DESTDIR$PREFIX"/zookeeper-client
+- make -C "$DESTDIR$PREFIX"/zookeeper-client/ZKTest/Release/
 post-install-commands:
- - |
-   install -D -m 644 /proc/self/fd/0 << 'EOF' "$DESTDIR"/etc/systemd/system/zookeeper-client.service
-   [unit]
-       Description=Zookeeper client init
-   [Service]
-       ExecStart=/usr/zookeeper-client/ZKTest/Release/ZKTest nodeTypeOne 10.24.1.198
-       RemainAfterExit=yes
-   [Install]
-       WantedBy=multi-user.target
-   EOF
+- |
+  install -D -m 644 /proc/self/fd/0 << 'EOF' "$DESTDIR"/etc/systemd/system/zookeeper-client.service
+  [unit]
+      Description=Zookeeper client init
+  [Service]
+      ExecStart=/usr/zookeeper-client/ZKTest/Release/ZKTest nodeTypeOne 10.24.1.198
+      RemainAfterExit=yes
+  [Install]
+      WantedBy=multi-user.target
+  EOF

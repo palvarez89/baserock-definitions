@@ -8,7 +8,8 @@ pre-configure-commands:
 
 - cd libnet && ./autogen.sh
 configure-commands:
-- cd libnet && ./configure --prefix="$PREFIX" --disable-samples --enable-shared=yes --with-pic
+- cd libnet && ./configure --prefix="$PREFIX" --disable-samples --enable-shared=yes
+  --with-pic
 build-commands:
 - cd libnet && make
 install-commands:

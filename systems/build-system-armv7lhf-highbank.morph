@@ -1,6 +1,7 @@
 name: build-system-armv7lhf-highbank
 kind: system
-description: The system that should be used for building all other Baserock systems for ARMv7 little-endian hard-float Calxeda Highbank computers.
+description: The system that should be used for building all other Baserock systems
+  for ARMv7 little-endian hard-float Calxeda Highbank computers.
 arch: armv7lhf
 strata:
 - name: build-essential

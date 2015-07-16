@@ -1,58 +1,57 @@
 name: openstack-two-node-installer
 kind: cluster
 description: |
+  This is a cluster morphology for deploying an installer for an x86_64
+  OpenStack system spread across three nodes.
 
-    This is a cluster morphology for deploying an installer for an x86_64
-    OpenStack system spread across three nodes.
+  This cluster creates disk images that may be `dd`'d onto install media to
+  produce an OpenStack cluster when instantiated.
 
-    This cluster creates disk images that may be `dd`'d onto install media to
-    produce an OpenStack cluster when instantiated.
+  Alternatively it may be used to install directly onto a physical disk by
+  running:
 
-    Alternatively it may be used to install directly onto a physical disk by
-    running:
+      morph deploy clusters/openstack-two-node-installer.morph \
+          controller-installer controller-installer.location=/dev/vdb
 
-        morph deploy clusters/openstack-two-node-installer.morph \
-            controller-installer controller-installer.location=/dev/vdb
+  Substituting contrller-installer for compute-installer will produce
+  different configurations, and it is possible to substitue /dev/vdb for a
+  different path to a disk image to install to a different disk image.
 
-    Substituting contrller-installer for compute-installer will produce
-    different configurations, and it is possible to substitue /dev/vdb for a
-    different path to a disk image to install to a different disk image.
+  Substitute the values of HOSTNAME, NETWORK_CONFIG, EXTERNAL_INTERFACE,
+  MANAGEMENT_IP_ADDRESS, CONTROLLER_HOST_ADDRESS, RABBITMQ_HOST and HOSTS_* to
+  match your hardware and networking configuration.
 
-    Substitute the values of HOSTNAME, NETWORK_CONFIG, EXTERNAL_INTERFACE,
-    MANAGEMENT_IP_ADDRESS, CONTROLLER_HOST_ADDRESS, RABBITMQ_HOST and HOSTS_* to
-    match your hardware and networking configuration.
+  Requirements to be able to run and test the system:
 
-    Requirements to be able to run and test the system:
+  - DISK_SIZE should be bigger than 5G
+  - The system has to have available at least 4G of RAM, but once
+    you start instantiating VMs you will need more.
+  - The IP of the system can't change, and you need to know it beforehand,
+    that is, the system needs a static IP address.
 
-    - DISK_SIZE should be bigger than 5G
-    - The system has to have available at least 4G of RAM, but once
-      you start instantiating VMs you will need more.
-    - The IP of the system can't change, and you need to know it beforehand,
-      that is, the system needs a static IP address.
+  This cluster is configurable, but with the following constraints:
 
-    This cluster is configurable, but with the following constraints:
+  - The hostname in RABBITMQ_HOST has to match CONTROLLER_HOST_ADDRESS,
+    and HOST_CONTROLLER.
+  - HOSTS_CONTROLLER is only needed if the hostname (see previous point)
+    is not a FQDN.
+  - The IP listed in MANAGEMENT_INTERFACE_IP_ADDRESS has to match the one
+    used in HOSTS_CONTROLLER.
+  - CINDER_DEVICE should be a path to a storage device ready to be
+    used/formated for cinder data.
+  - EXTERNAL_INTERFACE is required when the system has more than one network
+    interface.
 
-    - The hostname in RABBITMQ_HOST has to match CONTROLLER_HOST_ADDRESS,
-      and HOST_CONTROLLER.
-    - HOSTS_CONTROLLER is only needed if the hostname (see previous point)
-      is not a FQDN.
-    - The IP listed in MANAGEMENT_INTERFACE_IP_ADDRESS has to match the one
-      used in HOSTS_CONTROLLER.
-    - CINDER_DEVICE should be a path to a storage device ready to be
-      used/formated for cinder data.
-    - EXTERNAL_INTERFACE is required when the system has more than one network
-      interface.
+  You can also have a look at the following suggestions:
 
-    You can also have a look at the following suggestions:
-
-    - NOVA_VIRT_TYPE can be either 'kvm' or 'qemu', depending on where the
-      system is being deployed to.
-    - We recommend changing all the PASSWORDs variables, also the
-      KEYSTONE_TEMPORARY_ADMIN_TOKEN, METADATA_PROXY_SHARED_SECRET and
-      METERING_SECRET.
-    - Setting NOVA_BAREMETAL_SCHEDULING with a YAML truth value will configure
-      Nova to schedule baremetal machines through the Ironic driver, instead of
-      sheduling virtual machines.
+  - NOVA_VIRT_TYPE can be either 'kvm' or 'qemu', depending on where the
+    system is being deployed to.
+  - We recommend changing all the PASSWORDs variables, also the
+    KEYSTONE_TEMPORARY_ADMIN_TOKEN, METADATA_PROXY_SHARED_SECRET and
+    METERING_SECRET.
+  - Setting NOVA_BAREMETAL_SCHEDULING with a YAML truth value will configure
+    Nova to schedule baremetal machines through the Ironic driver, instead of
+    sheduling virtual machines.
 
 systems:
 - morph: systems/installer-system-x86_64.morph
@@ -65,7 +64,7 @@ systems:
       HOSTNAME: installer-x86_64
       INSTALLER_TARGET_STORAGE_DEVICE: /dev/sda
       INSTALLER_ROOTFS_TO_INSTALL: /rootfs
-      INSTALLER_POST_INSTALL_COMMAND: 'sync; poweroff -f'
+      INSTALLER_POST_INSTALL_COMMAND: sync; poweroff -f
       INITRAMFS_PATH: boot/initramfs.gz
   subsystems:
   - morph: systems/initramfs-x86_64.morph
@@ -89,30 +88,30 @@ systems:
         RABBITMQ_PASSWORD: veryinsecure
 
         # This token needs to be unique and secret
-        KEYSTONE_ENABLE_SERVICE: True
+        KEYSTONE_ENABLE_SERVICE: true
         KEYSTONE_TEMPORARY_ADMIN_TOKEN: 22f3aa1cf538e3f6d5e8
         KEYSTONE_ADMIN_PASSWORD: veryinsecure
         KEYSTONE_DB_USER: keystoneDB
         KEYSTONE_DB_PASSWORD: veryinsecure
 
-        GLANCE_ENABLE_SERVICE: True
+        GLANCE_ENABLE_SERVICE: true
         GLANCE_SERVICE_USER: glance
         GLANCE_SERVICE_PASSWORD: veryinsecure
         GLANCE_DB_USER: glanceDB
         GLANCE_DB_PASSWORD: veryinsecure
 
-        NOVA_ENABLE_CONTROLLER: True
-        NOVA_ENABLE_COMPUTE: False
+        NOVA_ENABLE_CONTROLLER: true
+        NOVA_ENABLE_COMPUTE: false
         NOVA_SERVICE_USER: nova
         NOVA_SERVICE_PASSWORD: veryinsecure
         NOVA_DB_USER: novaDB
         NOVA_DB_PASSWORD: veryinsecure
         NOVA_VIRT_TYPE: kvm
-        NOVA_BAREMETAL_SCHEDULING: no
+        NOVA_BAREMETAL_SCHEDULING: false
 
-        CINDER_ENABLE_CONTROLLER: True
-        CINDER_ENABLE_COMPUTE: False
-        CINDER_ENABLE_STORAGE: False
+        CINDER_ENABLE_CONTROLLER: true
+        CINDER_ENABLE_COMPUTE: false
+        CINDER_ENABLE_STORAGE: false
         CINDER_SERVICE_USER: cinder
         CINDER_SERVICE_PASSWORD: veryinsecure
         CINDER_DB_USER: cinderDB
@@ -120,16 +119,16 @@ systems:
         # Storage device to be used by Cinder
         CINDER_DEVICE: /dev/sdb
 
-        NEUTRON_ENABLE_AGENT: False
-        NEUTRON_ENABLE_MANAGER: True
-        NEUTRON_ENABLE_CONTROLLER: True
+        NEUTRON_ENABLE_AGENT: false
+        NEUTRON_ENABLE_MANAGER: true
+        NEUTRON_ENABLE_CONTROLLER: true
         NEUTRON_SERVICE_USER: neutron
         NEUTRON_SERVICE_PASSWORD: veryinsecure
         NEUTRON_DB_USER: neutronDB
         NEUTRON_DB_PASSWORD: veryinsecure
         METADATA_PROXY_SHARED_SECRET: novaneutronmetasecret
 
-        IRONIC_ENABLE_SERVICE: True
+        IRONIC_ENABLE_SERVICE: true
         IRONIC_SERVICE_USER: ironic
         IRONIC_SERVICE_PASSWORD: veryinsecure
         IRONIC_DB_USER: ironicDB
@@ -139,8 +138,8 @@ systems:
         CEILOMETER_SERVICE_PASSWORD: veryinsecure
         CEILOMETER_DB_USER: ceilometerDB
         CEILOMETER_DB_PASSWORD: veryinsecure
-        CEILOMETER_ENABLE_CONTROLLER: True
-        CEILOMETER_ENABLE_COMPUTE: False
+        CEILOMETER_ENABLE_CONTROLLER: true
+        CEILOMETER_ENABLE_COMPUTE: false
         METERING_SECRET: insecureceilometersecret
 
         CONTROLLER_HOST_ADDRESS: twonode-controller.os-mgmt
@@ -151,7 +150,7 @@ systems:
         HOSTS_COMPUTE: 10.0.0.3 twonode-compute.os-mgmt
         EXTERNAL_INTERFACE: enp3s0
         NETWORK_CONFIG: enp3s0:dhcp;enp2s0:static,address=10.0.0.1,netmask=255.255.255.0
-        SYNC_TIME_WITH_CONTROLLER: False
+        SYNC_TIME_WITH_CONTROLLER: false
     subsystems:
     - morph: systems/initramfs-x86_64.morph
       deploy:
@@ -171,31 +170,31 @@ systems:
         <<: *stack-node
         HOSTNAME: twonode-compute
 
-        KEYSTONE_ENABLE_SERVICE: False
+        KEYSTONE_ENABLE_SERVICE: false
 
-        GLANCE_ENABLE_SERVICE: False
+        GLANCE_ENABLE_SERVICE: false
 
-        NOVA_ENABLE_COMPUTE: True
-        NOVA_ENABLE_CONTROLLER: False
+        NOVA_ENABLE_COMPUTE: true
+        NOVA_ENABLE_CONTROLLER: false
 
-        CINDER_ENABLE_CONTROLLER: False
-        CINDER_ENABLE_COMPUTE: True
-        CINDER_ENABLE_STORAGE: True
+        CINDER_ENABLE_CONTROLLER: false
+        CINDER_ENABLE_COMPUTE: true
+        CINDER_ENABLE_STORAGE: true
 
-        NEUTRON_ENABLE_AGENT: True
-        NEUTRON_ENABLE_MANAGER: False
-        NEUTRON_ENABLE_CONTROLLER: False
+        NEUTRON_ENABLE_AGENT: true
+        NEUTRON_ENABLE_MANAGER: false
+        NEUTRON_ENABLE_CONTROLLER: false
 
-        IRONIC_ENABLE_SERVICE: False
+        IRONIC_ENABLE_SERVICE: false
 
-        CEILOMETER_ENABLE_CONTROLLER: False
-        CEILOMETER_ENABLE_COMPUTE: True
+        CEILOMETER_ENABLE_CONTROLLER: false
+        CEILOMETER_ENABLE_COMPUTE: true
 
         MANAGEMENT_INTERFACE_IP_ADDRESS: 10.0.0.3
         HOSTS_SELF: 10.0.0.3 twonode-compute
         EXTERNAL_INTERFACE: eno1
         NETWORK_CONFIG: eno1:dhcp;enp0s29u1u3:static,address=10.0.0.3,netmask=255.255.255.0
-        SYNC_TIME_WITH_CONTROLLER: True
+        SYNC_TIME_WITH_CONTROLLER: true
     subsystems:
     - morph: systems/initramfs-x86_64.morph
       deploy:

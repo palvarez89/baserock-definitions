@@ -1,7 +1,7 @@
 name: python-tools
 kind: stratum
-description: "A stratum for non-essential python tools:
-useful python tools that we don't want to include in core."
+description: |
+  A stratum for useful python tools that we don't want to include in core.
 build-depends:
 - morph: strata/python-core.morph
 chunks:
