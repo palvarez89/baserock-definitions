@@ -14,6 +14,8 @@ strata:
   morph: strata/foundation.morph
 - name: python-core
   morph: strata/python-core.morph
+- name: python3-core
+  morph: strata/python3-core.morph
 - name: bsp-armv5l-openbmc-aspeed
   morph: strata/bsp-armv5l-openbmc-aspeed.morph
 - name: tools

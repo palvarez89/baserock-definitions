@@ -13,6 +13,8 @@ strata:
   morph: strata/core.morph
 - name: python-core
   morph: strata/python-core.morph
+- name: python3-core
+  morph: strata/python3-core.morph
 - name: tools
   morph: strata/tools.morph
 - name: python-cliapp

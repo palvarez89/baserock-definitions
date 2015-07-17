@@ -17,6 +17,8 @@ strata:
   morph: strata/ntpd.morph
 - name: python-core
   morph: strata/python-core.morph
+- name: python3-core
+  morph: strata/python3-core.morph
 - name: python-common
   morph: strata/python-common.morph
 - name: ansible

@@ -11,6 +11,8 @@ strata:
   morph: strata/foundation.morph
 - name: python-core
   morph: strata/python-core.morph
+- name: python3-core
+  morph: strata/python3-core.morph
 - name: bsp-x86_32-generic
   morph: strata/bsp-x86_32-generic.morph
 - name: tools
