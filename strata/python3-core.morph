@@ -7,5 +7,5 @@ chunks:
 - name: python3
   morph: strata/python3-core/python3.morph
   repo: upstream:cpython
-  ref: d1414cefaddc7b56caef75eea87226b1fce5ca7c
-  unpetrify-ref: v3.4.2
+  ref: 3f1e8a3de39ff8a807720d57f49a91d7449435ad
+  unpetrify-ref: v3.4.3
