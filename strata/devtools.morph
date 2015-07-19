@@ -39,5 +39,5 @@ chunks:
 - name: wget
   morph: strata/devtools/wget.morph
   repo: upstream:wget
-  ref: b4440d96cf8173d68ecaa07c36b8f4316ee794d0
-  unpetrify-ref: v1.16
+  ref: 71d79f4f3043cf4ca3b2fb7f5328eae725c1293f
+  unpetrify-ref: baserock/v1.16.3
