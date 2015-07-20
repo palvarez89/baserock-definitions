@@ -1,0 +1,12 @@
+name: samba
+kind: stratum
+description: Simple samba server
+build-depends:
+- morph: strata/core.morph
+- morph: strata/foundation.morph
+chunks:
+- name: samba
+  morph: strata/samba/samba.morph
+  repo: upstream:samba
+  ref: 704592c14dfedbe98e95d43860d062dc6338bca3
+  unpetrify-ref: master

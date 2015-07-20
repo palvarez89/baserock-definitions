@@ -1,0 +1,127 @@
+name: samba
+kind: chunk
+configure-commands:
+- |
+  # Here are really really ugly hacks:
+  #
+  # This fixes a problem with ./configure and recent compilers
+  # which implement c9x by default.
+  sed -i "s/#define bool int//" source3/lib/util_sec.c
+  #
+  # This fixes the problem with Baserock build environments running
+  # as root but sandboxed, and preventing certain privileged operations
+  # from taking effect.  eg. seteuid()
+  # Instead, convince it that we're not running as root so that it
+  # doesn't run these tests.
+  sed -i "s/getuid() != 0/1/" source3/lib/util_sec.c
+  #
+  #
+  ./configure \
+    --without-ldap \
+    --disable-gnutls \
+    --without-ad-dc \
+    --without-acl-support \
+    --without-ads \
+    --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var --enable-fhs
+build-commands:
+- make
+install-commands:
+- make install DESTDIR="$DESTDIR"
+# systemd configuration
+- mkdir -p "$DESTDIR/etc/tmpfiles.d"
+- install -m 644 ./packaging/systemd/samba.conf.tmp "$DESTDIR/etc/tmpfiles.d/samba.conf"
+- mkdir -p "$DESTDIR/lib/systemd/system/multi-user.target.wants"
+- |
+  cat <<EOF >"$DESTDIR/lib/systemd/system/nmb.service"
+  [Unit]
+  Description=Samba NMB Daemon
+  After=syslog.target network-online.target
+
+  [Service]
+  Type=forking
+  PIDFile=/var/run/samba/nmbd.pid
+  EnvironmentFile=-/etc/sysconfig/samba
+  ExecStart=$PREFIX/sbin/nmbd \$NMBDOPTIONS
+  ExecReload=$PREFIX/bin/kill -HUP \$MAINPID
+
+  [Install]
+  WantedBy=multi-user.target
+  EOF
+- |
+  cat <<EOF >"$DESTDIR/lib/systemd/system/smb.service"
+  [Unit]
+  Description=Samba SMB Daemon
+  After=syslog.target network-online.target nmb.service winbind.service
+
+  [Service]
+  Type=forking
+  PIDFile=/var/run/samba/smbd.pid
+  EnvironmentFile=-/etc/sysconfig/samba
+  ExecStart=$PREFIX/sbin/smbd \$NMBDOPTIONS
+  ExecReload=$PREFIX/bin/kill -HUP \$MAINPID
+
+  [Install]
+  WantedBy=multi-user.target
+  EOF
+- |
+  cat <<EOF >"$DESTDIR/lib/systemd/system/winbind.service"
+  [Unit]
+  Description=Samba winbind Daemon
+  After=syslog.target network-online.target nmb.service
+
+  [Service]
+  Type=forking
+  PIDFile=/var/run/samba/winbindd.pid
+  EnvironmentFile=-/etc/sysconfig/samba
+  ExecStart=$PREFIX/sbin/winbindd \$NMBDOPTIONS
+  ExecReload=$PREFIX/bin/kill -HUP \$MAINPID
+
+  [Install]
+  WantedBy=multi-user.target
+  EOF
+- |
+  for i in nmb smb winbind
+  do
+    ln -s ../$i.service "$DESTDIR/lib/systemd/system/multi-user.target.wants/$i.service"
+  done
+- mkdir -p "$DESTDIR/var/log/samba"
+# Install a sample configuration
+- mkdir -p "$DESTDIR/etc/samba"
+- |
+  cat <<EOF >"$DESTDIR/etc/samba/smb.conf"
+  [global]
+  workgroup = WORKGROUP
+  dns proxy = no
+  local master = yes
+  preferred master = yes
+  os level = 2
+  log file = /var/log/samba/log.%m
+  max log size = 1000
+  syslog = 0
+  server role = standalone server
+  passdb backend = tdbsam
+  obey pam restrictions = yes
+  unix password sync = yes
+  pam password change = yes
+  map to guest = bad user
+  usershare allow guests = yes
+  [homes]
+  comment = Home Directories
+  browseable = no
+  read only = yes
+  create mask = 0700
+  valid users = %S
+  ;[printers]
+  ;comment = All Printers
+  ;browseable = no
+  ;path = /var/spool/samba
+  ;printable = yes
+  ;guest ok = no
+  ;read only = yes
+  ;create mask = 0700
+  ;[src]
+  ;comment = Source code
+  ;path = /src
+  ;read only = yes
+  ;guest ok = yes
+  EOF
