@@ -48,7 +48,6 @@ chunks:
   - libpciaccess
   - dnsmasq
   - qemu
-  - xml-catalog
   - yajl
   - dmidecode
 - name: pycurl
