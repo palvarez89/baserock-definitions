@@ -55,7 +55,8 @@ try:
     for fname in sorted(os.listdir(migration_dir)):
         migration_fpath = os.path.join(migration_dir, fname)
         if is_executable(migration_fpath):
-            if not os.path.samefile(migration_fpath, __file__):
+            if not os.path.samefile(migration_fpath, __file__) and \
+                    fname != 'indent':
                 migrations_found += 1
                 sys.stdout.write(migration_fpath + ":\n")
                 subprocess.check_call(
