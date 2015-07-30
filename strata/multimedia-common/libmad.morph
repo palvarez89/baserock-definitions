@@ -1,0 +1,10 @@
+name: libmad
+kind: chunk
+build-system: autotools
+configure-commands:
+- |
+  OPTS=
+  case $MORPH_ARCH in
+      mips64*)  ARCH_FLAGS="--enable-fpm=64bit" ;;
+  esac
+  ./configure --prefix="$PREFIX" $ARCH_FLAGS
