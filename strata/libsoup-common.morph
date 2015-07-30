@@ -6,5 +6,5 @@ chunks:
 - name: libsoup
   morph: strata/libsoup-common/libsoup.morph
   repo: upstream:libsoup
-  ref: ce764489e358bad6b49418f5c8bc7b25a4b1815e
-  unpetrify-ref: baserock/morph
+  ref: c29630a8fdb4e6997ec27da4af545bddefab35ad
+  unpetrify-ref: 2.48.0
