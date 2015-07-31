@@ -1,7 +1,6 @@
 name: bsp-armv8l64-generic
 kind: stratum
-description:
-- |
+description: |
   The set of platform specific components required for booting
   armv8l64-based systems, like the 64-bit APM XGene ARM based m400
   Moonshot cartridge.

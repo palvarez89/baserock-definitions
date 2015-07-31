@@ -1,7 +1,6 @@
 name: build-system-armv5l-openbmc-aspeed
 kind: system
-description:
-- |
+description: |
   The system that should be used for building other Baserock systems
   for little endian ARMv5 computers.
 arch: armv5l

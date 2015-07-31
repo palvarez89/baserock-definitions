@@ -1,7 +1,6 @@
 name: build-system-armv8l64
 kind: system
-description:
-- |
+description: |
   The system that should be used for building all other Baserock systems
   for little endian 64-bit ARMv8 computers.
 arch: armv8l64

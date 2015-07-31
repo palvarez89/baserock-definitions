@@ -1,7 +1,6 @@
 name: build-system-armv8b64
 kind: system
-description:
-- |
+description: |
   The system that should be used for building all other Baserock systems
   for 64-bit ARMv8 computers running in big-endian mode.
 arch: armv8b64

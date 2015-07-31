@@ -1,7 +1,6 @@
 name: bsp-armv5l-openbmc-aspeed
 kind: stratum
-description:
-- |
+description: |
   The set of platform specific components required for booting
   armvl5-openbmc-aspeed based systems
 build-depends:
