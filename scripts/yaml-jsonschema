@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+# Copyright (C) 2015  Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+'''A tool to validate YAML files against the JSON-Schema schemas.
+
+This wraps Python `jsonschema` module so that YAML schemas can be understood
+and YAML data can be validated.
+
+Usage: yaml-jsonschema SCHEMA INPUT1 [INPUT2, ...]
+
+'''
+
+
+import jsonschema
+import yaml
+
+import sys
+
+
+schema_file = sys.argv[1]
+input_files = sys.argv[2:]
+
+
+with open(schema_file) as f:
+    schema = yaml.load(f)
+
+
+for input_file in input_files:
+    with open(input_file) as f:
+        data = yaml.load(f)
+
+    try:
+        jsonschema.validate(data, schema)
+        print("%s: valid" % input_file)
+    except jsonschema.ValidationError as e:
+        # Print 'e' instead of 'e.message' for more information!
+        print("%s: %s" % (input_file, e.message))

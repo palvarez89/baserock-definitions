@@ -9,14 +9,14 @@ this repo and develop your own systems directly within it, or use it as a
 reference point when developing your own set of definitions.
 
 These definitions follow the Baserock definitions format, which is described at
-<http://wiki.baserock.org/definitions/>.
+<http://wiki.baserock.org/definitions/>, and also partly in the schemas/
+subdirectory.
 
 The systems listed in the systems/ directory are example systems
 that build and run at some point. The only ones we can be sure
 that still build in current master of definitions are the ones that
 we keep building in our ci system; they are listed in
 http://git.baserock.org/cgi-bin/cgit.cgi/baserock/baserock/definitions.git/tree/clusters/ci.morph
-
 
 Keeping up to date
 ------------------
