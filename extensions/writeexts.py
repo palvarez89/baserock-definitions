@@ -18,6 +18,8 @@ import errno
 import fcntl
 import logging
 import os
+import partitioning
+import pyfdisk
 import re
 import select
 import shutil
@@ -228,7 +230,8 @@ class Extension(object):
             sys.stdout.write('ERROR: %s\n' % e)
             sys.exit(1)
 
-    def status(self, **kwargs):
+    @staticmethod
+    def status(**kwargs):
         '''Provide status output.
 
         The ``msg`` keyword argument is the actual message,
@@ -264,12 +267,18 @@ class WriteExtension(Extension):
                 'Error: Btrfs is required for this deployment, but was not '
                 'detected in the kernel of the machine that is running Morph.')
 
-    def create_local_system(self, temp_root, raw_disk):
+    def create_local_system(self, temp_root, location):
         '''Create a raw system image locally.'''
 
-        with self.created_disk_image(raw_disk):
-            self.format_btrfs(raw_disk)
-            self.create_system(temp_root, raw_disk)
+        with self.created_disk_image(location):
+            self.create_baserock_system(temp_root, location)
+
+    def create_baserock_system(self, temp_root, location):
+        if self.get_environment_boolean('USE_PARTITIONING', 'no'):
+            self.create_partitioned_system(temp_root, location)
+        else:
+            self.format_btrfs(location)
+            self.create_system(temp_root, location)
 
     @contextlib.contextmanager
     def created_disk_image(self, location):
@@ -295,7 +304,7 @@ class WriteExtension(Extension):
             try:
                 self.create_btrfs_system_layout(
                     temp_root, mp, version_label='factory',
-                    disk_uuid=self.get_uuid(raw_disk))
+                    rootfs_uuid=self.get_uuid(raw_disk))
             except BaseException as e:
                 sys.stderr.write('Error creating Btrfs system layout')
                 raise
@@ -384,11 +393,20 @@ class WriteExtension(Extension):
             else:
                 raise
 
-    def get_uuid(self, location):
-        '''Get the UUID of a block device's file system.'''
-        # Requires util-linux blkid; busybox one ignores options and
-        # lies by exiting successfully.
-        return subprocess.check_output(['blkid', '-s', 'UUID', '-o', 'value',
+    def get_uuid(self, location, offset=0):
+        '''Get the filesystem UUID of a block device's file system.
+
+        Requires util-linux blkid; the busybox version ignores options and
+        lies by exiting successfully.
+
+        Args:
+            location: Path of device or image to inspect
+            offset: A byte offset - which should point to the start of a
+                    partition containing a filesystem
+        '''
+
+        return subprocess.check_output(['blkid', '-s', 'UUID', '-o',
+                                        'value', '-p', '-O', str(offset),
                                         location]).strip()
 
     @contextlib.contextmanager
@@ -413,7 +431,7 @@ class WriteExtension(Extension):
             os.rmdir(mount_point)
 
     def create_btrfs_system_layout(self, temp_root, mountpoint, version_label,
-                                   disk_uuid):
+                                   rootfs_uuid, device=None):
         '''Separate base OS versions from state using subvolumes.
 
         '''
@@ -424,11 +442,9 @@ class WriteExtension(Extension):
         os.makedirs(version_root)
         os.makedirs(state_root)
 
-        self.create_orig(version_root, temp_root)
-        system_dir = os.path.join(version_root, 'orig')
-
+        system_dir = self.create_orig(version_root, temp_root)
         state_dirs = self.complete_fstab_for_btrfs_layout(system_dir,
-                                                          disk_uuid)
+                                                          rootfs_uuid, device)
 
         for state_dir in state_dirs:
             self.create_state_subvolume(system_dir, mountpoint, state_dir)
@@ -444,11 +460,52 @@ class WriteExtension(Extension):
                 self.install_dtb(version_root, temp_root)
             self.install_syslinux_menu(mountpoint, version_root)
             if initramfs is not None:
+                # Using initramfs - can boot a rootfs with a filesystem UUID
                 self.install_initramfs(initramfs, version_root)
-                self.generate_bootloader_config(mountpoint, disk_uuid)
+                self.generate_bootloader_config(mountpoint,
+                                                rootfs_uuid=rootfs_uuid)
             else:
-                self.generate_bootloader_config(mountpoint)
+                if device:
+                    # A partitioned disk or image - boot with partition UUID
+                    root_part = device.get_partition_by_mountpoint('/')
+                    root_guid = device.get_partition_uuid(root_part)
+                    self.generate_bootloader_config(mountpoint,
+                                                    root_guid=root_guid)
+                    if self.get_bootloader_install() == 'extlinux':
+                        self.install_syslinux_blob(device, system_dir)
+                else:
+                    # Unpartitioned and no initramfs - cannot boot with a UUID
+                    self.generate_bootloader_config(mountpoint)
             self.install_bootloader(mountpoint)
+
+        if device:
+            self.create_partition_mountpoints(device, system_dir)
+
+    def create_partition_mountpoints(self, device, system_dir):
+        '''Create (or empty) partition mountpoints in the root filesystem
+
+        Delete contents of partition mountpoints in the rootfs to leave an
+        empty mount drectory (files are copied to the actual partition in
+        create_partitioned_system()), or create an empty mount directory in
+        the rootfs if the mount path doesn't exist.
+
+        Args:
+            device: A pyfdisk.py Device object describing the partitioning
+            system_dir: A path to the Baserock rootfs to be modified
+        '''
+
+        for part in device.partitionlist:
+            if hasattr(part, 'mountpoint') and part.mountpoint != '/':
+                part_mount_dir = os.path.join(system_dir,
+                                     re.sub('^/', '', part.mountpoint))
+                if os.path.exists(part_mount_dir):
+                    self.status(msg='Deleting files in mountpoint '
+                                    'for %s partition' % part.mountpoint)
+                    self.empty_dir(part_mount_dir)
+                else:
+                    self.status(msg='Creating empty mount directory '
+                                    'for %s partition' % part.mountpoint)
+                    os.mkdir(part_mount_dir)
 
     def create_orig(self, version_root, temp_root):
         '''Create the default "factory" system.'''
@@ -459,6 +516,8 @@ class WriteExtension(Extension):
         subprocess.check_call(['btrfs', 'subvolume', 'create', orig])
         self.status(msg='Copying files to orig subvolume')
         subprocess.check_call(['cp', '-a', temp_root + '/.', orig + '/.'])
+
+        return orig
 
     def create_run(self, version_root):
         '''Create the 'run' snapshot.'''
@@ -484,16 +543,41 @@ class WriteExtension(Extension):
         os.chmod(subvolume, 0o755)
 
         existing_state_dir = os.path.join(system_dir, state_subdir)
-        files = []
-        if os.path.exists(existing_state_dir):
-            files = os.listdir(existing_state_dir)
-        if len(files) > 0:
-            self.status(msg='Moving existing data to %s subvolume' % subvolume)
-        for filename in files:
-            filepath = os.path.join(existing_state_dir, filename)
-            subprocess.check_call(['mv', filepath, subvolume])
+        self.move_dir_contents(existing_state_dir, subvolume)
 
-    def complete_fstab_for_btrfs_layout(self, system_dir, rootfs_uuid=None):
+    def move_dir_contents(self, source_dir, target_dir):
+        '''Move all files source_dir, to target_dir'''
+
+        n = self.__cmd_files_in_dir(['mv'], source_dir, target_dir)
+        if n:
+            self.status(msg='Moved %d files to %s' % (n, target_dir))
+
+    def copy_dir_contents(self, source_dir, target_dir):
+        '''Copy all files source_dir, to target_dir'''
+
+        n = self.__cmd_files_in_dir(['cp', '-a', '-r'], source_dir, target_dir)
+        if n:
+            self.status(msg='Copied %d files to %s' % (n, target_dir))
+
+    def empty_dir(self, directory):
+        '''Empty the contents of a directory, but not the directory itself'''
+
+        n = self.__cmd_files_in_dir(['rm', '-rf'], directory)
+        if n:
+            self.status(msg='Deleted %d files in %s' % (n, directory))
+
+    def __cmd_files_in_dir(self, cmd, source_dir, target_dir=None):
+        files = []
+        if os.path.exists(source_dir):
+            files = os.listdir(source_dir)
+        for filename in files:
+            filepath = os.path.join(source_dir, filename)
+            add_params = [filepath, target_dir] if target_dir else [filepath]
+            subprocess.check_call(cmd + add_params)
+        return len(files)
+
+    def complete_fstab_for_btrfs_layout(self, system_dir,
+                                        rootfs_uuid=None, device=None):
         '''Fill in /etc/fstab entries for the default Btrfs disk layout.
 
         In the future we should move this code out of the write extension and
@@ -521,9 +605,33 @@ class WriteExtension(Extension):
                            'UUID=%s' % rootfs_uuid)
             fstab.add_line('%s  / btrfs defaults,rw,noatime 0 1' % root_device)
 
+        # Add fstab entries for partitions
+        if device:
+            mount_parts = set(p for p in device.partitionlist
+                          if hasattr(p, 'mountpoint') and p.mountpoint != '/')
+            part_mountpoints = set(p.mountpoint for p in mount_parts)
+            for part in mount_parts:
+                if part.mountpoint not in existing_mounts:
+                    # Get filesystem UUID
+                    part_uuid = self.get_uuid(device.location,
+                                              part.extent.start *
+                                              device.sector_size)
+                    self.status(msg='Adding fstab entry for %s '
+                                    'partition' % part.mountpoint)
+                    fstab.add_line('UUID=%s  %s %s defaults,rw,noatime '
+                                   '0 2' % (part_uuid, part.mountpoint,
+                                            part.filesystem))
+                else:
+                    self.status(msg='WARNING: an entry already exists in '
+                                    'fstab for %s partition, skipping' %
+                                    part.mountpoint)
+
+        # Add entries for state dirs
         state_dirs_to_create = set()
         for state_dir in shared_state_dirs:
-            if '/' + state_dir not in existing_mounts:
+            mp = '/' + state_dir
+            if (mp not in existing_mounts and
+                    (device and mp not in part_mountpoints)):
                 state_dirs_to_create.add(state_dir)
                 state_subvol = os.path.join('/state', state_dir)
                 fstab.add_line(
@@ -601,7 +709,7 @@ class WriteExtension(Extension):
     def get_root_device(self):
         return os.environ.get('ROOT_DEVICE', '/dev/sda')
 
-    def generate_bootloader_config(self, real_root, disk_uuid=None):
+    def generate_bootloader_config(self, *args, **kwargs):
         '''Install extlinux on the newly created disk image.'''
         config_function_dict = {
             'extlinux': self.generate_extlinux_config,
@@ -609,13 +717,22 @@ class WriteExtension(Extension):
 
         config_type = self.get_bootloader_config_format()
         if config_type in config_function_dict:
-            config_function_dict[config_type](real_root, disk_uuid)
+            config_function_dict[config_type](*args, **kwargs)
         else:
             raise ExtensionError(
                 'Invalid BOOTLOADER_CONFIG_FORMAT %s' % config_type)
 
-    def generate_extlinux_config(self, real_root, disk_uuid=None):
-        '''Install extlinux on the newly created disk image.'''
+    def generate_extlinux_config(self, real_root,
+                                 rootfs_uuid=None, root_guid=None):
+        '''Generate the extlinux configuration file
+
+        Args:
+            real_root: Path to the mounted top level of the root filesystem
+            rootfs_uuid: Specify a filesystem UUID which can be loaded using
+                         an initramfs aware of filesystems
+            root_guid: Specify a partition GUID, can be used without an
+                       initramfs
+        '''
 
         self.status(msg='Creating extlinux.conf')
         config = os.path.join(real_root, 'extlinux.conf')
@@ -631,29 +748,40 @@ class WriteExtension(Extension):
             'rootfstype=btrfs ' # required when using initramfs, also boots
                                 # faster when specified without initramfs
             'rootflags=subvol=systems/default/run ') # boot runtime subvol
-        kernel_args += 'root=%s ' % (self.get_root_device()
-                                     if disk_uuid is None
-                                     else 'UUID=%s' % disk_uuid)
+
+        # See init/do_mounts.c:182 in the kernel source, in the comment above
+        # function name_to_dev_t(), for an explanation of the available
+        # options for the kernel parameter 'root', particularly when using
+        # GUID/UUIDs
+        if rootfs_uuid:
+            root_device = 'UUID=%s' % rootfs_uuid
+        elif root_guid:
+            root_device = 'PARTUUID=%s' % root_guid
+        else:
+            # Fall back to the root partition named in the cluster
+            root_device = self.get_root_device()
+        kernel_args += 'root=%s ' % root_device
+
         kernel_args += self.get_extra_kernel_args()
         with open(config, 'w') as f:
             f.write('default linux\n')
             f.write('timeout 1\n')
             f.write('label linux\n')
             f.write('kernel /systems/default/kernel\n')
-            if disk_uuid is not None:
+            if rootfs_uuid is not None:
                 f.write('initrd /systems/default/initramfs\n')
             if self.get_dtb_path() != '':
                 f.write('devicetree /systems/default/dtb\n')
             f.write('append %s\n' % kernel_args)
 
-    def install_bootloader(self, real_root):
+    def install_bootloader(self, *args, **kwargs):
         install_function_dict = {
             'extlinux': self.install_bootloader_extlinux,
         }
 
         install_type = self.get_bootloader_install()
         if install_type in install_function_dict:
-            install_function_dict[install_type](real_root)
+            install_function_dict[install_type](*args, **kwargs)
         elif install_type != 'none':
             raise ExtensionError(
                 'Invalid BOOTLOADER_INSTALL %s' % install_type)
@@ -665,6 +793,33 @@ class WriteExtension(Extension):
         # FIXME this hack seems to be necessary to let extlinux finish
         subprocess.check_call(['sync'])
         time.sleep(2)
+
+    def install_syslinux_blob(self, device, orig_root):
+        '''Install Syslinux MBR blob
+
+        This is the first stage of boot (for partitioned images) on x86
+        machines. It is not required where there is no partition table. The
+        syslinux bootloader is written to the MBR, and is capable of loading
+        extlinux. This only works when the partition is set as bootable (MBR),
+        or the legacy boot flag is set (GPT). The blob is built with extlinux,
+        and found in the rootfs'''
+
+        pt_format = device.partition_table_format.lower()
+        if pt_format in ('gpb', 'mbr'):
+            blob = 'mbr.bin'
+        elif pt_format == 'gpt':
+            blob = 'gptmbr.bin'
+        blob_name = 'usr/share/syslinux/' + blob
+        self.status(msg='Installing syslinux %s blob' % pt_format.upper())
+        blob_location = os.path.join(orig_root, blob_name)
+        if os.path.exists(blob_location):
+            subprocess.check_call(['dd', 'if=%s' % blob_location,
+                                         'of=%s' % device.location,
+                                         'bs=440', 'count=1', 'conv=notrunc'])
+        else:
+            raise ExtensionError('MBR blob not found. Is this the correct'
+                   'architecture? The MBR blob will only be built for x86'
+                   'systems. You may wish to configure BOOTLOADER_INSTALL')
 
     def install_syslinux_menu(self, real_root, version_root):
         '''Make syslinux/extlinux menu binary available.
@@ -712,13 +867,13 @@ class WriteExtension(Extension):
 
         return True
 
-    def get_environment_boolean(self, variable):
+    def get_environment_boolean(self, variable, default='no'):
         '''Parse a yes/no boolean passed through the environment.'''
 
-        value = os.environ.get(variable, 'no').lower()
-        if value in ['no', '0', 'false']:
+        value = os.environ.get(variable, default).lower()
+        if value in ('no', '0', 'false'):
             return False
-        elif value in ['yes', '1', 'true']:
+        elif value in ('yes', '1', 'true'):
             return True
         else:
             raise ExtensionError('Unexpected value for %s: %s' %
@@ -744,3 +899,91 @@ class WriteExtension(Extension):
             if e.errno == errno.ENOENT:
                 return False
             raise
+
+    def create_partitioned_system(self, temp_root, location):
+        '''Create a Baserock system in a partitioned disk image or device'''
+
+        part_spec = os.environ.get('PARTITION_FILE', 'partitioning/default')
+
+        disk_size = self.get_disk_size()
+        if not disk_size:
+            raise writeexts.ExtensionError('DISK_SIZE is not defined')
+
+        dev = partitioning.do_partitioning(location, disk_size,
+                                           temp_root, part_spec)
+
+        for part in dev.partitionlist:
+            if not hasattr(part, 'mountpoint'):
+                continue
+            if part.mountpoint == '/':
+                # Re-format the rootfs, to include needed extra features
+                with pyfdisk.create_loopback(location,
+                                             part.extent.start *
+                                             dev.sector_size, part.size) as l:
+                    self.mkfs_btrfs(l)
+
+            self.status(msg='Mounting partition %d' % part.number)
+            offset = part.extent.start * dev.sector_size
+            with self.mount_partition(location,
+                                      offset, part.size) as part_mount_dir:
+                if part.mountpoint == '/':
+                    # Install root filesystem
+                    rfs_uuid = self.get_uuid(location, part.extent.start *
+                                                dev.sector_size)
+                    self.create_btrfs_system_layout(temp_root, part_mount_dir,
+                                                    'factory', rfs_uuid, dev)
+                else:
+                    # Copy files to partition from unpacked rootfs
+                    src_dir = os.path.join(temp_root,
+                                           re.sub('^/', '', part.mountpoint))
+                    self.status(msg='Copying files to %s partition' %
+                                     part.mountpoint)
+                    self.copy_dir_contents(src_dir, part_mount_dir)
+
+        # Write raw files to disk with dd
+        partitioning.process_raw_files(dev, temp_root)
+
+    @contextlib.contextmanager
+    def mount_partition(self, location, offset_bytes, size_bytes):
+        '''Mount a partition in a partitioned device or image'''
+
+        with pyfdisk.create_loopback(location, offset=offset_bytes,
+                                     size=size_bytes) as loop:
+            with self.mount(loop) as mountpoint:
+                yield mountpoint
+
+    @contextlib.contextmanager
+    def find_and_mount_rootfs(self, location):
+        '''
+        Mount a Baserock rootfs inside a partitioned device or image
+
+        This function searches a disk image or device, with unknown
+        partitioning scheme, for a Baserock rootfs. This is done by finding
+        offsets and sizes of partitions in the partition table, mounting each
+        partition, and checking whether a known path exists in the mount.
+
+        Args:
+            location: the location of the disk image or device to search
+        Returns:
+            A path to the mount point of the mounted Baserock rootfs
+        '''
+
+        if pyfdisk.get_pt_type(location) == 'none':
+            with self.mount(location) as mountpoint:
+                yield mountpoint
+
+        sector_size = pyfdisk.get_sector_size(location)
+        partn_sizes = pyfdisk.get_partition_sector_sizes(location)
+        for i, offset in enumerate(pyfdisk.get_partition_offsets(location)):
+            try:
+                with self.mount_partition(location, offset * sector_size,
+                                          partn_sizes[i] * sector_size) as mp:
+                    path = os.path.join(mp, 'systems/default/orig/baserock')
+                    if os.path.exists(path):
+                        self.status(msg='Found a Baserock rootfs at '
+                                        'offset %d sectors/%d bytes' %
+                                         (offset, offset * sector_size))
+                        yield mp
+            except BaseException:
+                # Probably a partition without a filesystem, carry on
+                pass

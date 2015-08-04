@@ -17,7 +17,10 @@
 '''A Morph deployment write extension for raw disk images.'''
 
 
+import contextlib
 import os
+import pyfdisk
+import re
 import subprocess
 import sys
 import time
@@ -44,54 +47,64 @@ class RawDiskWriteExtension(writeexts.WriteExtension):
             try:
                 if not self.is_device(location):
                     with self.created_disk_image(location):
-                        self.format_btrfs(location)
-                        self.create_system(temp_root, location)
+                        self.create_baserock_system(temp_root, location)
                     self.status(msg='Disk image has been created at %s' %
                                      location)
                 else:
-                    self.format_btrfs(location)
-                    self.create_system(temp_root, location)
+                    self.create_baserock_system(temp_root, location)
                     self.status(msg='System deployed to %s' % location)
             except Exception:
                 self.status(msg='Failure to deploy system to %s' %
                                  location)
                 raise
 
-    def upgrade_local_system(self, raw_disk, temp_root):
+    def upgrade_local_system(self, location, temp_root):
         self.complete_fstab_for_btrfs_layout(temp_root)
 
-        with self.mount(raw_disk) as mp:
-            version_label = self.get_version_label(mp)
-            self.status(msg='Updating image to a new version with label %s' %
-                        version_label)
+        try:
+            with self.mount(location) as mp:
+                self.do_upgrade(mp, temp_root)
+                return
+        except subprocess.CalledProcessError:
+            pass
 
-            version_root = os.path.join(mp, 'systems', version_label)
-            os.mkdir(version_root)
+        # At this point, we have failed to mount a raw image, so instead
+        # search for a Baserock root filesystem in the device's partitions
+        with self.find_and_mount_rootfs(location) as mp:
+            self.do_upgrade(mp, temp_root)
 
-            old_orig = os.path.join(mp, 'systems', 'default', 'orig')
-            new_orig = os.path.join(version_root, 'orig')
-            subprocess.check_call(
-                ['btrfs', 'subvolume', 'snapshot', old_orig, new_orig])
+    def do_upgrade(self, mp, temp_root):
+        version_label = self.get_version_label(mp)
+        self.status(msg='Updating image to a new version with label %s' %
+                    version_label)
 
-            subprocess.check_call(
-                ['rsync', '-a', '--checksum', '--numeric-ids', '--delete',
-                 temp_root + os.path.sep, new_orig])
+        version_root = os.path.join(mp, 'systems', version_label)
+        os.mkdir(version_root)
 
-            self.create_run(version_root)
+        old_orig = os.path.join(mp, 'systems', 'default', 'orig')
+        new_orig = os.path.join(version_root, 'orig')
+        subprocess.check_call(
+            ['btrfs', 'subvolume', 'snapshot', old_orig, new_orig])
 
-            default_path = os.path.join(mp, 'systems', 'default')
-            if os.path.exists(default_path):
-                os.remove(default_path)
-            else:
-                # we are upgrading and old system that does
-                # not have an updated extlinux config file
-                if self.bootloader_config_is_wanted():
-                    self.generate_bootloader_config(mp)
-                self.install_bootloader(mp)
-            os.symlink(version_label, default_path)
+        subprocess.check_call(
+            ['rsync', '-a', '--checksum', '--numeric-ids', '--delete',
+             temp_root + os.path.sep, new_orig])
 
+        self.create_run(version_root)
+
+        default_path = os.path.join(mp, 'systems', 'default')
+        if os.path.exists(default_path):
+            os.remove(default_path)
+        else:
+            # we are upgrading and old system that does
+            # not have an updated extlinux config file
             if self.bootloader_config_is_wanted():
-                self.install_kernel(version_root, temp_root)
+                self.generate_bootloader_config(mp)
+            self.install_bootloader(mp)
+        os.symlink(version_label, default_path)
+
+        if self.bootloader_config_is_wanted():
+            self.install_kernel(version_root, temp_root)
 
     def get_version_label(self, mp):
         version_label = os.environ.get('VERSION_LABEL')

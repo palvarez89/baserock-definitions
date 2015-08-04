@@ -51,7 +51,7 @@ class OpenStackWriteExtension(writeexts.WriteExtension):
     def set_extlinux_root_to_virtio(self, raw_disk):
         '''Re-configures extlinux to use virtio disks'''
         self.status(msg='Updating extlinux.conf')
-        with self.mount(raw_disk) as mp:
+        with self.find_and_mount_rootfs(raw_disk) as mp:
             path = os.path.join(mp, 'extlinux.conf')
 
             with open(path) as f:
