@@ -1,0 +1,9 @@
+start_offset: 2048
+partition_table_format: mbr
+partitions:
+- description: rootfs
+  size: fill
+  fdisk_type: 0x83
+  filesystem: btrfs
+  mountpoint: /
+  boot: yes
