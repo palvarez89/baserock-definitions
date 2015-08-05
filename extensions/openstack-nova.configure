@@ -115,6 +115,7 @@ case "$NOVA_BAREMETAL_SCHEDULING" in
         export SCHEDULER_HOST_MANAGER=nova.scheduler.ironic_host_manager.IronicHostManager
         export RAM_ALLOCATION_RATIO=1.0
         export COMPUTE_DRIVER=nova.virt.ironic.IronicDriver
+        export SCHEDULER_USE_BAREMETAL_FILTERS=true
         ;;
     *)
         export COMPUTE_MANAGER=nova.compute.manager.ComputeManager
@@ -122,6 +123,7 @@ case "$NOVA_BAREMETAL_SCHEDULING" in
         export SCHEDULER_HOST_MANAGER=nova.scheduler.host_manager.HostManager
         export RAM_ALLOCATION_RATIO=1.5
         export COMPUTE_DRIVER=libvirt.LibvirtDriver
+        export SCHEDULER_USE_BAREMETAL_FILTERS=false
         ;;
 esac
 
@@ -141,6 +143,7 @@ nova_configuration={
     'RESERVED_HOST_MEMORY_MB': os.environ['RESERVED_HOST_MEMORY_MB'],
     'SCHEDULER_HOST_MANAGER': os.environ['SCHEDULER_HOST_MANAGER'],
     'RAM_ALLOCATION_RATIO': os.environ['RAM_ALLOCATION_RATIO'],
+    'SCHEDULER_USE_BAREMETAL_FILTERS': os.environ['SCHEDULER_USE_BAREMETAL_FILTERS'],
     'COMPUTE_DRIVER': os.environ['COMPUTE_DRIVER'],
     'NEUTRON_SERVICE_USER': os.environ['NEUTRON_SERVICE_USER'],
     'NEUTRON_SERVICE_PASSWORD': os.environ['NEUTRON_SERVICE_PASSWORD'],
