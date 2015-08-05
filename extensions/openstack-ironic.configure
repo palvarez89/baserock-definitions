@@ -153,3 +153,5 @@ r ^/tftpboot/ $tftp_root\2
 EOF
 
 cp "$ROOT"/usr/share/syslinux/pxelinux.0 "$ROOT/$tftp_root"
+cp "$ROOT"/usr/share/syslinux/chain.c32 "$ROOT/$tftp_root"
+
