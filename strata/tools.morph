@@ -9,10 +9,6 @@ chunks:
   repo: upstream:distcc
   ref: c9691a9604fdf9d6711204999787d332b7141692
   unpetrify-ref: baserock/morph
-- name: file
-  repo: upstream:file
-  ref: f69c3fd9bcb108292e7887dd889e8b49f68c4a52
-  unpetrify-ref: file-5.22
 - name: gdb
   morph: strata/tools/gdb.morph
   repo: upstream:binutils-gdb
@@ -71,8 +67,6 @@ chunks:
   repo: upstream:ipmitool
   ref: be7917f9f58c8a354bc0960ed57516af5d2bd29a
   unpetrify-ref: IPMITOOL_1_8_14
-  build-depends:
-  - file
 - name: parted
   morph: strata/tools/parted.morph
   repo: upstream:parted

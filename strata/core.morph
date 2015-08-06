@@ -85,6 +85,10 @@ chunks:
   repo: upstream:libtool-tarball
   ref: c026ca36e37d2643623a75d0d3e9e451023139f3
   unpetrify-ref: libtool-2.4.6
+- name: file
+  repo: upstream:file
+  ref: f69c3fd9bcb108292e7887dd889e8b49f68c4a52
+  unpetrify-ref: file-5.22
 - name: libexpat
   morph: strata/core/libexpat.morph
   repo: upstream:libexpat
@@ -93,6 +97,7 @@ chunks:
   build-depends:
   - autoconf
   - automake
+  - file
   - libtool-tarball
 - name: gettext-tarball
   morph: strata/core/gettext-tarball.morph
@@ -113,6 +118,7 @@ chunks:
   unpetrify-ref: baserock/build-essential
   build-depends:
   - automake
+  - file
   - gettext-tarball
 - name: openssl-new
   morph: strata/core/openssl-new.morph
@@ -201,6 +207,7 @@ chunks:
   build-depends:
   - autoconf
   - automake
+  - file
   - gettext-tarball
   - libtool-tarball
 # Note: libtool's version number must be set in libtool's chunk morph,
@@ -214,6 +221,7 @@ chunks:
   build-depends:
   - autoconf
   - automake
+  - file
   - help2man
   - patch
   - texinfo-tarball
@@ -225,6 +233,7 @@ chunks:
   build-depends:
   - autoconf
   - automake
+  - file
   - cpython
   - libtool
   - xz
@@ -244,6 +253,7 @@ chunks:
   build-depends:
   - autoconf
   - automake
+  - file
   - libtool
   - openssl-new
   - ca-certificates
@@ -295,7 +305,9 @@ chunks:
   ref: 4b005410f865895d4dcd56e2c135278a7a315877
   unpetrify-ref: baserock/morph
   build-depends:
+  - file
   - autoconf
+  - automake
   - gettext-tarball
   - libtool
 - name: acl
@@ -383,6 +395,7 @@ chunks:
   - autoconf
   - libtool
   - automake
+  - file
   - libxml2
 - name: gnome-common
   repo: upstream:gnome-common
@@ -398,6 +411,7 @@ chunks:
   build-depends:
   - autoconf
   - automake
+  - file
   - cpython
   - gettext-tarball
   - libffi
@@ -409,6 +423,7 @@ chunks:
   build-depends:
   - autoconf
   - automake
+  - file
   - bash
   - bison
   - cpython
@@ -424,3 +439,4 @@ chunks:
   build-depends:
   - pkg-config
   - util-linux
+  - file
