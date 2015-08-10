@@ -146,7 +146,6 @@ systems:
         CONTROLLER_HOST_ADDRESS: threenode-controller.os-mgmt
         MANAGEMENT_INTERFACE_IP_ADDRESS: 10.0.0.1
 
-        HOSTS_SELF: 10.0.0.1 threenode-network
         HOSTS_NETWORK: 10.0.0.1 threenode-network.os-mgmt
         HOSTS_CONTROL: 10.0.0.2 threenode-controller.os-mgmt
         HOSTS_COMPUTE: 10.0.0.3 threenode-compute.os-mgmt
@@ -194,7 +193,6 @@ systems:
         CEILOMETER_ENABLE_COMPUTE: false
 
         MANAGEMENT_INTERFACE_IP_ADDRESS: 10.0.0.2
-        HOSTS_SELF: 10.0.0.2 threenode-controller
         EXTERNAL_INTERFACE: enp2s0
         NETWORK_CONFIG: enp2s0:dhcp;enp0s26u1u2:static,address=10.0.0.2,netmask=255.255.255.0
         SYNC_TIME_WITH_CONTROLLER: false
@@ -231,7 +229,6 @@ systems:
         CEILOMETER_ENABLE_COMPUTE: true
 
         MANAGEMENT_INTERFACE_IP_ADDRESS: 10.0.0.3
-        HOSTS_SELF: 10.0.0.3 threenode-compute
         EXTERNAL_INTERFACE: eno1
         NETWORK_CONFIG: eno1:dhcp;enp0s29u1u3:static,address=10.0.0.3,netmask=255.255.255.0
         SYNC_TIME_WITH_CONTROLLER: true

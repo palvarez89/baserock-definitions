@@ -134,9 +134,9 @@
         name: keystone
         type: identity
         description: Keystone Identity Service
-        publicurl: http://{{ CONTROLLER_HOST_ADDRESS }}:5000/v2.0
+        publicurl: http://{{ ansible_hostname }}:5000/v2.0
         internalurl: http://{{ CONTROLLER_HOST_ADDRESS }}:5000/v2.0
-        adminurl: http://{{ CONTROLLER_HOST_ADDRESS }}:35357/v2.0
+        adminurl: http://{{ ansible_hostname }}:35357/v2.0
         region: regionOne
         token: "{{ KEYSTONE_TEMPORARY_ADMIN_TOKEN }}"
         endpoint: http://{{ CONTROLLER_HOST_ADDRESS }}:35357/v2.0

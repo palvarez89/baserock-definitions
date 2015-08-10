@@ -49,7 +49,7 @@
         name: ironic
         type: baremetal
         description: Openstack Ironic Service
-        publicurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:6385'
+        publicurl: 'http://{{ ansible_hostname }}:6385'
         internalurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:6385'
         adminurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:6385'
         region: 'regionOne'

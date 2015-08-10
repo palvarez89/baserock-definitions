@@ -22,7 +22,7 @@
         name: cinder
         type: volume
         description: Openstack Block Storage
-        publicurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v1/%(tenant_id)s'
+        publicurl: 'http://{{ ansible_hostname }}:8776/v1/%(tenant_id)s'
         internalurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v1/%(tenant_id)s'
         adminurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v1/%(tenant_id)s'
         region: regionOne
@@ -33,7 +33,7 @@
         name: cinderv2
         type: volumev2
         description: Openstack Block Storage
-        publicurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v2/%(tenant_id)s'
+        publicurl: 'http://{{ ansible_hostname }}:8776/v2/%(tenant_id)s'
         internalurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v2/%(tenant_id)s'
         adminurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:8776/v2/%(tenant_id)s'
         region: regionOne

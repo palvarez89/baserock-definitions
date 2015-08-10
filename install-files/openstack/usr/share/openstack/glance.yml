@@ -55,7 +55,7 @@
         name: glance
         type: image
         description: Openstack Image Service
-        publicurl: http://{{ CONTROLLER_HOST_ADDRESS }}:9292
+        publicurl: http://{{ ansible_hostname }}:9292
         internalurl: http://{{ CONTROLLER_HOST_ADDRESS }}:9292
         adminurl: http://{{ CONTROLLER_HOST_ADDRESS }}:9292
         region: regionOne

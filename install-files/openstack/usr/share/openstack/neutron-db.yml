@@ -21,7 +21,7 @@
         name: neutron
         type: network
         description: Openstack Compute Networking
-        publicurl: http://{{ CONTROLLER_HOST_ADDRESS }}:9696
+        publicurl: http://{{ ansible_hostname }}:9696
         internalurl: http://{{ CONTROLLER_HOST_ADDRESS }}:9696
         adminurl: http://{{ CONTROLLER_HOST_ADDRESS }}:9696
         region: regionOne

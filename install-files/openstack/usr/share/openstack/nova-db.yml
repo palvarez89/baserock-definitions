@@ -22,7 +22,7 @@
         name: nova
         type: compute
         description: Openstack Compute Service
-        publicurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:8774/v2/%(tenant_id)s'
+        publicurl: 'http://{{ ansible_hostname }}:8774/v2/%(tenant_id)s'
         internalurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:8774/v2/%(tenant_id)s'
         adminurl: 'http://{{ CONTROLLER_HOST_ADDRESS }}:8774/v2/%(tenant_id)s'
         region: 'regionOne'

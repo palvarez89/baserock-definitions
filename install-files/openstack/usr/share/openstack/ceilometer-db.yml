@@ -22,7 +22,7 @@
         name: ceilometer
         type: metering
         description: Openstack Metering Service
-        publicurl: http://{{ CONTROLLER_HOST_ADDRESS }}:8777
+        publicurl: http://{{ ansible_hostname }}:8777
         internalurl: http://{{ CONTROLLER_HOST_ADDRESS }}:8777
         adminurl: http://{{ CONTROLLER_HOST_ADDRESS }}:8777
         region: regionOne

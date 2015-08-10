@@ -99,8 +99,6 @@ systems:
       CEILOMETER_DB_PASSWORD: veryinsecure
       METERING_SECRET: insecureceilometersecret
 
-      HOSTS_CONTROLLER: <management ip> onenode
-
       # Network interface to be used, only needed if there are more
       # than one available.
       # EXTERNAL_INTERFACE: eno1
