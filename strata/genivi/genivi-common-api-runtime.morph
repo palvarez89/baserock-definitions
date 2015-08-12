@@ -1,5 +1,3 @@
 name: genivi-common-api-runtime
 kind: chunk
-build-system: autotools
-pre-configure-commands:
-- ln -s . build-aux
+build-system: cmake

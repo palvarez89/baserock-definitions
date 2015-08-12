@@ -37,19 +37,19 @@ chunks:
 - name: genivi-common-api-runtime
   morph: strata/genivi/genivi-common-api-runtime.morph
   repo: upstream:genivi-common-api-runtime
-  ref: 188abb5e24d6a2a7fdd7e5d150439a162621292c
-  unpetrify-ref: 2.1.6
+  ref: 56d1059459c24971bcbf45adef60f6dfd0b44667
+  unpetrify-ref: 3.1.2p1
 - name: genivi-common-api-dbus-runtime
   morph: strata/genivi/genivi-common-api-dbus-runtime.morph
   repo: upstream:genivi-common-api-dbus-runtime
-  ref: 3372155b32a2cf3b05e1a2a13f6f8413069de33f
-  unpetrify-ref: 2.1.6-p1
+  ref: 49d0b428ca19852d49965f35328a314f22d88807
+  unpetrify-ref: 3.1.2
   build-depends:
   - genivi-common-api-runtime
 - name: audiomanager
   repo: upstream:audiomanager
-  ref: 00caae1e41e8891d9a1bafa76028e8119f06fd8a
-  unpetrify-ref: baserock/6.0
+  ref: 8725157e248c6706de59a02996f869b6ccdccb13
+  unpetrify-ref: "7.0"
   build-depends:
   - DLT-daemon
   - googletest
@@ -102,8 +102,8 @@ chunks:
   - node-state-manager
 - name: node-health-monitor
   repo: upstream:genivi/node-health-monitor
-  ref: 2af264563ef1b60ba2636cbf5e8cd6a7ed07b0c0
-  unpetrify-ref: baserock/1.3.3
+  ref: 61f88bc9fc03c278664e05431ffb5933ff6007f1
+  unpetrify-ref: baserock/1.3.5
   build-depends:
   - node-state-manager
   - persistence-client-library
