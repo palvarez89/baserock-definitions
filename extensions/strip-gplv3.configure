@@ -60,7 +60,7 @@ class StripGPLv3ConfigureExtension(writeexts.Extension):
 
         for chunk in self.gplv3_chunks:
             regex = os.path.join(meta_dir, "%s-[^-]\+\.meta" % chunk[0])
-            artifacts = subprocess.check_output(['find', meta_dir,
+            artifacts = subprocess.check_output(['busybox', 'find', meta_dir,
                                                  '-regex', regex])
 
             for artifact in artifacts.split():
