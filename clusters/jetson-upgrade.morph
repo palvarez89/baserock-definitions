@@ -3,8 +3,6 @@ kind: cluster
 systems:
 - morph: systems/devel-system-armv7lhf-jetson.morph
   deploy-defaults:
-    TROVE_HOST: TROVE_HOST
-    TROVE_ID: TROVE_ID
     BOOT_DEVICE: /dev/mmcblk0p1
     ROOT_DEVICE: /dev/mmcblk0p2
     DTB_PATH: boot/tegra124-jetson-tk1.dtb
@@ -15,5 +13,5 @@ systems:
     FSTAB_SRC: LABEL=src /src auto defaults,rw,noatime,nofail 0 2
   deploy:
     self:
-      type: extensions/ssh-rsync
-      location: root@127.0.0.1
+      upgrade-type: extensions/ssh-rsync
+      upgrade-location: root@127.0.0.1

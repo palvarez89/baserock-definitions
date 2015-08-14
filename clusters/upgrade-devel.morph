@@ -18,7 +18,7 @@ description: |
 
   To upgrade, select a sensible a value for VERSION_LABEL and run:
 
-    morph deploy --upgrade upgrade-devel.morph self.HOSTNAME=$(hostname) self.VERSION_LABEL=$VERSION_LABEL
+    morph upgrade clusters/upgrade-devel.morph self.HOSTNAME=$(hostname) self.VERSION_LABEL=$VERSION_LABEL
 
   Your configuration in /etc should be propagated to the new system, but there
   may be merge conflicts. Check /etc for files named '.rej' and '.orig' in the
@@ -35,5 +35,5 @@ systems:
 - morph: systems/devel-system-x86_64-generic.morph
   deploy:
     self:
-      type: extensions/ssh-rsync
-      location: root@127.0.0.1
+      upgrade-type: extensions/ssh-rsync
+      upgrade-location: root@127.0.0.1
