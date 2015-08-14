@@ -60,6 +60,18 @@ class ReleaseApp(cliapp.Application):
                              'Baserock version of the systems being built',
                              default='yy.ww')
 
+    def error(self, message):
+        raise cliapp.AppException(message)
+
+    def check_args(self, args):
+        if len(args) == 0:
+            self.error(
+                "Please pass the name of the release cluster (e.g. "
+                "clusters/release.morph)")
+
+        if len(args) > 1:
+            self.error("Too many arguments given.")
+
     def process_args(self, args):
         '''Process the command line'''
         self.controllers = {}
@@ -70,11 +82,12 @@ class ReleaseApp(cliapp.Application):
 
         self.ref = cliapp.runcmd(['git', 'rev-parse', 'HEAD']).strip()
 
-        sb = morphlib.sysbranchdir.open_from_within('.')
-        definitions = sb.get_git_directory_name(sb.root_repository_url)
-        defs_repo = morphlib.gitdir.GitDirectory(definitions)
+        defs_repo = morphlib.definitions_repo.open(
+            '.', search_for_root=True, search_workspace=True)
         self.loader = morphlib.morphloader.MorphologyLoader()
         self.finder = morphlib.morphologyfinder.MorphologyFinder(defs_repo)
+
+        self.check_args(args)
 
         cluster_name = args[0]
         cluster, cluster_path = self.load_morphology(cluster_name)
