@@ -2,7 +2,6 @@ name: util-linux
 kind: chunk
 build-system: autotools
 pre-configure-commands:
-- echo "2.26.1" > .tarball-version
 - ./autogen.sh
 configure-commands:
 # Installing to /bin so that they overwrite busybox login.

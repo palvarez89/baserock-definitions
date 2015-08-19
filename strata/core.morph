@@ -166,71 +166,6 @@ chunks:
   unpetrify-ref: 0.22
   build-depends:
   - cpython
-# Note: bison's version number must be set in bison's chunk morph,
-# so if you update bison be sure to also update the version number
-# in strata/core/bison.morph
-- name: bison
-  morph: strata/core/bison.morph
-  repo: upstream:bison
-  ref: 2ab6d1daaccf32fc4314e4b2fe44da977f11a308
-  unpetrify-ref: baserock/v3.0.2
-  build-depends:
-  - autoconf
-  - automake
-  - flex
-  - gettext-tarball
-  - help2man
-  - mini-utils
-# Note: patch's version number must be set in patch's chunk morph,
-# so if you update patch be sure to also update the version number
-# in strata/core/patch.morph
-- name: patch
-  morph: strata/core/patch.morph
-  repo: upstream:patch
-  ref: 3bbb26c928a147cfcf0756f1cc0a1307e5cc663f
-  unpetrify-ref: baserock/v2.7.1
-  build-depends:
-  - autoconf
-  - automake
-  - mini-utils
-  - bison
-- name: xz
-  repo: upstream:xz
-  ref: a0cd05ee71d330b79ead6eb9222e1b24e1559d3a
-  unpetrify-ref: v5.2.0
-  build-depends:
-  - autoconf
-  - automake
-  - file
-  - gettext-tarball
-  - libtool-tarball
-# Note: libtool's version number must be set in libtool's chunk morph,
-# so if you update libtool be sure to also update the version number
-# in strata/core/libtool.morph
-- name: libtool
-  morph: strata/core/libtool.morph
-  repo: upstream:libtool
-  ref: 5e11a17c39a2a976a09c33a568431a9f7ad00d48
-  unpetrify-ref: baserock/v2.4.6
-  build-depends:
-  - autoconf
-  - automake
-  - file
-  - help2man
-  - patch
-  - texinfo-tarball
-  - xz
-- name: libxml2
-  repo: upstream:libxml2
-  ref: ee8f1d4cda8dc1a6f2c515fe234f7bc89cdc9f80
-  unpetrify-ref: baserock/morph
-  build-depends:
-  - autoconf
-  - automake
-  - file
-  - cpython
-  - libtool
-  - xz
 - name: ca-certificates
   morph: strata/core/ca-certificates.morph
   repo: upstream:ca-certificates
@@ -248,16 +183,9 @@ chunks:
   - autoconf
   - automake
   - file
-  - libtool
+  - libtool-tarball
   - openssl-new
   - ca-certificates
-- name: XML-Parser
-  repo: upstream:XML-Parser
-  ref: e1a3ec157140a699e3020836475a0df622f70f1b
-  unpetrify-ref: baserock/morph
-  build-depends:
-  - libexpat
-  - perl
 - name: git
   morph: strata/core/git.morph
   repo: upstream:git
@@ -270,6 +198,72 @@ chunks:
   - gettext-tarball
   - libexpat
   - openssl-new
+- name: bison
+  morph: strata/core/bison.morph
+  repo: upstream:bison
+  ref: 2ab6d1daaccf32fc4314e4b2fe44da977f11a308
+  unpetrify-ref: baserock/v3.0.2
+  build-depends:
+  - autoconf
+  - automake
+  - flex
+  - gettext-tarball
+  - git
+  - help2man
+  - mini-utils
+- name: patch
+  morph: strata/core/patch.morph
+  repo: upstream:patch
+  ref: 3bbb26c928a147cfcf0756f1cc0a1307e5cc663f
+  unpetrify-ref: baserock/v2.7.1
+  build-depends:
+  - autoconf
+  - automake
+  - bison
+  - git
+  - mini-utils
+- name: xz
+  repo: upstream:xz
+  ref: a0cd05ee71d330b79ead6eb9222e1b24e1559d3a
+  unpetrify-ref: v5.2.0
+  build-depends:
+  - autoconf
+  - automake
+  - file
+  - gettext-tarball
+  - libtool-tarball
+- name: libtool
+  morph: strata/core/libtool.morph
+  repo: upstream:libtool
+  ref: 5e11a17c39a2a976a09c33a568431a9f7ad00d48
+  unpetrify-ref: baserock/v2.4.6
+  build-depends:
+  - autoconf
+  - automake
+  - file
+  - help2man
+  - git
+  - patch
+  - texinfo-tarball
+  - xz
+- name: libxml2
+  repo: upstream:libxml2
+  ref: ee8f1d4cda8dc1a6f2c515fe234f7bc89cdc9f80
+  unpetrify-ref: baserock/morph
+  build-depends:
+  - autoconf
+  - automake
+  - file
+  - cpython
+  - libtool
+  - xz
+- name: XML-Parser
+  repo: upstream:XML-Parser
+  ref: e1a3ec157140a699e3020836475a0df622f70f1b
+  unpetrify-ref: baserock/morph
+  build-depends:
+  - libexpat
+  - perl
 - name: gperf
   morph: strata/core/gperf.morph
   repo: upstream:gperf
@@ -358,9 +352,6 @@ chunks:
   - acl
   - linux-pam
   - libcap2
-# Note: util-linux's version number must be set in util-linux's chunk morph,
-# so if you update util-linux be sure to also update the version number
-# in strata/core/util-linux.morph
 - name: util-linux
   morph: strata/core/util-linux.morph
   repo: upstream:util-linux
@@ -370,6 +361,7 @@ chunks:
   - autoconf
   - automake
   - gettext-tarball
+  - git
   - libtool
   - pkg-config
   - linux-pam

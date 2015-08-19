@@ -2,5 +2,4 @@ name: bison
 kind: chunk
 build-system: autotools
 pre-configure-commands:
-- echo "3.0.2" > .tarball-version
 - sh bootstrap --skip-po --no-git --gnulib-srcdir=gnulib
