@@ -3,7 +3,7 @@ kind: stratum
 description: xfce stratum
 build-depends:
 - morph: strata/gtk2.morph
-- morph: strata/x-generic.morph
+- morph: strata/audio-bluetooth.morph
 chunks:
 - name: libcroco
   repo: upstream:libcroco
@@ -14,6 +14,8 @@ chunks:
   repo: upstream:librsvg
   ref: 61171ca59d02b58b7da1697ca1d924bff93e66cb
   unpetrify-ref: baserock/morph
+  build-depends:
+  - libcroco
 - name: xfce-dev-tools
   repo: upstream:xfce/xfce4-dev-tools
   ref: 9244250ac0c15ba160688758c5dccf97f3f160ef
@@ -21,23 +23,23 @@ chunks:
 - name: libxfce4util
   morph: strata/xfce/libxfce4util.morph
   repo: upstream:xfce/libxfce4util
-  ref: fc0437fe503c3eaa5ccd4fa68f098bc428f27cad
-  unpetrify-ref: baserock/morph
+  ref: 5f56641e09b081f7d76d3feeee307589b21840c1
+  unpetrify-ref: libxfce4util-4.11.0
   build-depends:
   - xfce-dev-tools
 - name: xfconf
   morph: strata/xfce/xfconf.morph
   repo: upstream:xfce/xfconf
-  ref: ed6ed2f7656a0d5d8cb453cb643061c9a157f2ae
-  unpetrify-ref: baserock/morph
+  ref: e5261e292130c96b6e62a8c897b1cc85bbb786ac
+  unpetrify-ref: master
   build-depends:
   - xfce-dev-tools
   - libxfce4util
 - name: libxfce4ui
   morph: strata/xfce/libxfce4ui.morph
   repo: upstream:xfce/libxfce4ui
-  ref: a9c2a379709915dfda255d3ca9181fac3f8484d8
-  unpetrify-ref: baserock/morph
+  ref: b9e6a57385ff6f0c15bbc637b76472211e3696b0
+  unpetrify-ref: libxfce4ui-4.11.2
   build-depends:
   - xfce-dev-tools
   - libxfce4util
@@ -45,10 +47,11 @@ chunks:
 - name: garcon
   morph: strata/xfce/garcon.morph
   repo: upstream:xfce/garcon
-  ref: febd4136365714556f6afbccf4302e8f4550e5d1
+  ref: 69ff09cf0a9ee3ff9518822614637dc2d4f89ce6
   unpetrify-ref: baserock/morph
   build-depends:
   - libxfce4util
+  - libxfce4ui
 - name: perl-uri
   repo: upstream:libwww-perl/uri
   ref: 3dd72ded7f043a4f6973781fe594722e2e95f491
@@ -90,8 +93,8 @@ chunks:
 - name: xfce4-settings
   morph: strata/xfce/xfce4-settings.morph
   repo: upstream:xfce/xfce4-settings
-  ref: 697ce5cd4bf4860a0a20c27b557be296c9adf469
-  unpetrify-ref: baserock/morph
+  ref: f04388fae30685b5038358674dec69406ba87f2c
+  unpetrify-ref: xfce4-settings-4.11.3
   build-depends:
   - xfce-dev-tools
   - xfconf
@@ -105,8 +108,8 @@ chunks:
 - name: xfce4-session
   morph: strata/xfce/xfce4-session.morph
   repo: upstream:xfce/xfce4-session
-  ref: 2c89b2f12409ca617fc094e2942cb0d69318c7b5
-  unpetrify-ref: baserock/morph
+  ref: d4e20cbb9b1df864b502e9e8879a538f089fd5d2
+  unpetrify-ref: xfce4-session-4.11.1
   build-depends:
   - iceauth
   - exo
@@ -123,8 +126,8 @@ chunks:
 - name: xfdesktop
   morph: strata/xfce/xfdesktop.morph
   repo: upstream:xfce/xfdesktop
-  ref: d2f7404da32f29cfec4a704389112fe7183edda5
-  unpetrify-ref: baserock/morph
+  ref: f32d76856e6eee9bc3d772b2fb6c2b8810ae63dc
+  unpetrify-ref: xfdesktop-4.11.8
   build-depends:
   - exo
   - libxfce4ui
@@ -133,8 +136,8 @@ chunks:
 - name: xfwm4
   morph: strata/xfce/xfwm4.morph
   repo: upstream:xfce/xfwm4
-  ref: 523ef8a6861af772be3468cd700ad14172c86768
-  unpetrify-ref: baserock/morph
+  ref: f5c1c74e1436deff7f16ef92c98097ac3baae290
+  unpetrify-ref: xfwm4-4.11.3_plus_fallback_theme
   build-depends:
   - exo
   - libxfce4util
@@ -144,8 +147,8 @@ chunks:
 - name: xfce4-appfinder
   morph: strata/xfce/xfce4-appfinder.morph
   repo: upstream:xfce/xfce4-appfinder
-  ref: 5c069f13fde648913a59f022957b2c83b5764f39
-  unpetrify-ref: baserock/morph
+  ref: 6c2bc7a09dd6e85bb78913cdc8af2292a9361e04
+  unpetrify-ref: xfce4-appfinder-4.11.0
   build-depends:
   - exo
   - libxfce4ui
@@ -153,12 +156,12 @@ chunks:
 - name: tumbler
   morph: strata/xfce/tumbler.morph
   repo: upstream:xfce/tumbler
-  ref: f8191f286227a045fbdabd7684c9da81ade518c8
-  unpetrify-ref: baserock/morph
+  ref: 073c2080c79075fdf574064fa2098c4b5bb79a11
+  unpetrify-ref: tumbler-0.1.30
   build-depends:
   - xfce-dev-tools
 - name: elementary-xfce
   morph: strata/xfce/elementary-xfce.morph
   repo: upstream:elementary-xfce
-  ref: 81e683bb46f8ba58c49c60ed75124951b7ba0779
-  unpetrify-ref: baserock/morph
+  ref: 9681d40e7a3545c96dfb1670e00514acfad5b089
+  unpetrify-ref: v0.5
