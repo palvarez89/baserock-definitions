@@ -79,6 +79,10 @@ chunks:
   repo: upstream:xorg-proto-xf86bigfontproto
   ref: f805b328b2195de384c0fb6b82ef5f88c179b2c0
   unpetrify-ref: baserock/morph
+- name: xorg-proto-xf86dgaproto
+  repo: upstream:xorg-proto-xf86dgaproto
+  ref: c52b205c3175309be7952774668c87dd2d5ce30e
+  unpetrify-ref: baserock/morph
 - name: xorg-proto-xf86driproto
   repo: upstream:xorg-proto-xf86driproto
   ref: cb03b8d49bf063860859c1ed8bcecd055551e93a
@@ -187,6 +191,14 @@ chunks:
   build-depends:
   - xorg-lib-libXext
   - xorg-proto-fixesproto
+- name: xorg-lib-libXcomposite
+  repo: upstream:xorg-lib-libXcomposite
+  ref: eda48b1bedaa344ada8e13930c9ab3058b836190
+  unpetrify-ref: baserock/morph
+  build-depends:
+  - xorg-lib-libX11
+  - xorg-lib-libXfixes
+  - xorg-proto-compositeproto
 - name: xorg-lib-libXrender
   repo: upstream:xorg-lib-libXrender
   ref: 1af52cb334377611233d7dc156bc1e6f7923756d
@@ -205,6 +217,15 @@ chunks:
   - xorg-proto-randrproto
   - xorg-proto-renderproto
   - xorg-proto-xextproto
+- name: xorg-lib-libXinerama
+  repo: upstream:xorg-lib-libXinerama
+  ref: 470b9356af961ff7d3968b164aa73872b49a5dcc
+  unpetrify-ref: baserock/morph
+  build-depends:
+  - xorg-lib-libX11
+  - xorg-lib-libXext
+  - xorg-proto-xextproto
+  - xorg-proto-xineramaproto
 - name: xorg-lib-libXtst
   repo: upstream:xorg-lib-libXtst
   ref: 2aafac9474a0a0a0c39797862f823255918cf368
