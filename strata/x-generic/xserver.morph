@@ -5,7 +5,6 @@ configure-commands:
 - |
   ./autogen.sh --prefix="$PREFIX" \
   --disable-glx \
-  --disable-xorg \
   --disable-xvfb \
   --disable-xnest \
   --disable-xquartz \
