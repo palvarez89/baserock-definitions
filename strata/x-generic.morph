@@ -47,3 +47,7 @@ chunks:
   unpetrify-ref: baserock/morph
   build-depends:
   - xorg-lib-libxkbfile
+- name: xorg-app-xinit
+  repo: upstream:xorg-app-xinit
+  ref: 4e85bce64acef1fa0ddff04d59737444e942ff12
+  unpetrify-ref: baserock/morph
