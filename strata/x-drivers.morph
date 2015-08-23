@@ -1,0 +1,26 @@
+name: x-drivers
+kind: stratum
+build-depends:
+- morph: strata/input-common.morph
+- morph: strata/x-generic.morph
+chunks:
+- name: xorg-driver-xf86-video-fbdev
+  repo: upstream:xorg-driver-xf86-video-fbdev
+  ref: 679ed9a4e6b54227df191c580e3ef641e075db19
+  unpetrify-ref: xf86-video-fbdev-0.4.4
+- name: xorg-driver-xf86-video-vesa
+  repo: upstream:xorg-driver-xf86-video-vesa
+  ref: b49c293e67cd88424ff40a2ca4e58b28528691d7
+  unpetrify-ref: xf86-video-vesa-2.3.4
+- name: xorg-driver-xf86-input-evdev
+  repo: upstream:xorg-driver-xf86-input-evdev
+  ref: 24368d8379cc47693dd1623168a6125faff57311
+  unpetrify-ref: xf86-input-evdev-2.9.2
+- name: xorg-driver-xf86-input-keyboard
+  repo: upstream:xorg-driver-xf86-input-keyboard
+  ref: 13d320076e5de2d6c3cbc170fc7e31c526ed8499
+  unpetrify-ref: xf86-input-keyboard-1.8.1
+- name: xorg-driver-xf86-input-mouse
+  repo: upstream:xorg-driver-xf86-input-mouse
+  ref: 6886084b192e681739fc55892f30681efb4f79f0
+  unpetrify-ref: xf86-input-mouse-1.9.1
