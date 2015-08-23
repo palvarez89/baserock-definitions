@@ -3,10 +3,10 @@ kind: stratum
 description: the gtk2 stratum
 build-depends:
 - morph: strata/gtk-deps.morph
-- morph: strata/x-generic.morph
+- morph: strata/x-common.morph
 chunks:
 - name: gtk+
   morph: strata/gtk2/gtk+.morph
   repo: upstream:gtk+
-  ref: e6333a1a374591fef456f7fe73942226b5b8b388
-  unpetrify-ref: 2.24.27
+  ref: b5b055721378ffe0269613e49ab5741a315eeb00
+  unpetrify-ref: 2.24.28
