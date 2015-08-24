@@ -8,6 +8,7 @@ chunks:
   repo: upstream:libevent
   ref: 0b49ae34594533daa82c06a506078de9e336a013
   unpetrify-ref: release-2.1.5-beta
+  build-system: autotools
 - name: ti-rpc
   morph: strata/nfs/ti-rpc.morph
   repo: upstream:ti-rpc

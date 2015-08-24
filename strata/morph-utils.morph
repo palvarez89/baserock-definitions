@@ -34,10 +34,12 @@ chunks:
   repo: upstream:python-packages/pylru
   ref: 221dd259f5c34562c835611d1cf62384b9019da4
   unpetrify-ref: master
+  build-system: python-distutils
 - name: morph
   repo: baserock:baserock/morph
   ref: 60c378c55d5d0ef89184b49ae95e445f8de422e3
   unpetrify-ref: master
+  build-system: python-distutils
   build-depends:
   - cmdtest
   - pyfilesystem
@@ -49,3 +51,4 @@ chunks:
   repo: upstream:python-packages/ruamel.yaml
   ref: f3de88b82bf5e3902c44f6c30aed065e56626ee6
   unpetrify-ref: 0.10.5
+  build-system: python-distutils

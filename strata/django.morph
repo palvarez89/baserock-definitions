@@ -9,24 +9,29 @@ chunks:
   repo: upstream:python-packages/django
   ref: 811508b0512d3fa6b2328f8647fbf9eace68eceb
   unpetrify-ref: 1.6.8
+  build-system: python-distutils
 - name: django-appconf
   repo: upstream:python-packages/django-appconf
   ref: 0c9835f95b44db1b3eb1a9409f95a3ecd63b8ff5
   unpetrify-ref: 0.6
+  build-system: python-distutils
 - name: django-compressor
   repo: upstream:python-packages/django-compressor
   ref: e747dce3d7e04fe595bbfed54f9554c2725eb757
   unpetrify-ref: 1.4
+  build-system: python-distutils
   build-depends:
   - django-appconf
 - name: pyscss
   repo: upstream:python-packages/pyscss
   ref: 85e8806e39e840c4402ee813c3e38fefaf9212b4
   unpetrify-ref: 1.2.1
+  build-system: python-distutils
 - name: django-pyscss
   repo: upstream:python-packages/django-pyscss
   ref: 665270b54eea5de5aca379a78673b411ed6b1f04
   unpetrify-ref: v1.0.6
+  build-system: python-distutils
   build-depends:
   - django
   - pyscss

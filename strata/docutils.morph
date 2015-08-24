@@ -38,6 +38,7 @@ chunks:
   repo: upstream:asciidoc
   ref: d3a6df0caa94edaf8180bd71bf2fc68390f56520
   unpetrify-ref: 8.6.9
+  build-system: autotools
   build-depends:
   - docbook-xml
   - docbook-xsl
@@ -45,6 +46,7 @@ chunks:
   repo: upstream:xmlto-tarball
   ref: 6a590aba95cbcce0f184381fb19d16558e56832d
   unpetrify-ref: xmlto-0.0.26
+  build-system: autotools
   build-depends:
   - docbook-xml
   - docbook-xsl

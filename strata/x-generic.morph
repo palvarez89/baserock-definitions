@@ -11,24 +11,29 @@ chunks:
   repo: upstream:libepoxy
   ref: 7422de5b4be7b19d789136b3bb5f932de42db27c
   unpetrify-ref: v1.2
+  build-system: autotools
 - name: xorg-lib-libxkbfile
   repo: upstream:xorg-lib-libxkbfile
   ref: 7381c2f9013ef7784c78091fa671e652a62ca706
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-font-util
   repo: upstream:xorg-font-util
   ref: 5f01ea79f1cb2328bfc4130b1e693f71be916b87
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-lib-libfontenc
   repo: upstream:xorg-lib-libfontenc
   ref: f5d1208172e965fdd7fae8927bd3e29b3cc3a975
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-font-util
 - name: xorg-lib-libXfont
   repo: upstream:xorg-lib-libXfont
   ref: ad4f4d8a2d0730c0ea3c09210bf921638b4682bc
   unpetrify-ref: libXfont-1.5.0
+  build-system: autotools
   build-depends:
   - xorg-lib-libfontenc
 - name: xserver
@@ -45,9 +50,11 @@ chunks:
   repo: upstream:xorg-app-xkbcomp
   ref: 705b9bbb426410f9510601c7010da51184919b36
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libxkbfile
 - name: xorg-app-xinit
   repo: upstream:xorg-app-xinit
   ref: 4e85bce64acef1fa0ddff04d59737444e942ff12
   unpetrify-ref: baserock/morph
+  build-system: autotools

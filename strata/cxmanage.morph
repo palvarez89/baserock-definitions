@@ -8,6 +8,7 @@ chunks:
   repo: upstream:ipmitool
   ref: 830d5a3787b265e5dde154d2f0e08b10ae9a7bcd
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: pexpect
   morph: strata/cxmanage/pexpect.morph
   repo: upstream:pexpect
@@ -17,14 +18,17 @@ chunks:
   repo: upstream:pyipmi
   ref: bb7dba84578c05ba87db3c4186a2989c89e4e519
   unpetrify-ref: baserock/morph
+  build-system: python-distutils
 - name: tftpy
   repo: upstream:tftpy
   ref: f3d2fc4c62c1e64dd49adfaf8e65097eb8ea307b
   unpetrify-ref: baserock/morph
+  build-system: python-distutils
 - name: cxmanage
   repo: upstream:cxmanage
   ref: 54116d3c486ed7aa49f284e4cad9e6e7c293bea6
   unpetrify-ref: baserock/morph
+  build-system: python-distutils
   build-depends:
   - ipmitool
   - pexpect

@@ -8,6 +8,7 @@ chunks:
   repo: upstream:bash-completion
   ref: 3085c7e12179817a02a611016606391295c69942
   unpetrify-ref: 2.1
+  build-system: autotools
 - name: groff
   morph: strata/foundation/groff.morph
   repo: upstream:groff-git
@@ -41,6 +42,7 @@ chunks:
 - name: libgcrypt
   repo: upstream:libgcrypt
   ref: 412eed473b557ed2172d81d76fa1e1f53c973a67
+  build-system: autotools
   build-depends:
   - libgpg-error
 - name: systemd
@@ -56,12 +58,14 @@ chunks:
   repo: upstream:libusb
   ref: e11525c66c7dd2db466c8f5785ff0b37d6a99ec9
   unpetrify-ref: v1.0.19
+  build-system: autotools
   build-depends:
   - systemd
 - name: usbutils
   repo: upstream:usbutils
   ref: c37f146eb2c6642c600f1b025a6d56996b0697ff
   unpetrify-ref: baserock/v008
+  build-system: autotools
   build-depends:
   - libusb
 - name: lzo

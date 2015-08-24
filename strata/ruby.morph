@@ -19,6 +19,7 @@ chunks:
   repo: upstream:libyaml-hg
   ref: 0577078d6625a7bf06e6bc7fb26a43e27400b17e
   unpetrify-ref: master
+  build-system: autotools
 - name: ruby
   morph: strata/ruby/ruby.morph
   repo: upstream:ruby

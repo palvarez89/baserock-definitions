@@ -7,9 +7,11 @@ chunks:
   repo: upstream:xorg-util-macros
   ref: 9a54b858601bd305de2737b06e609084a2a114c2
   unpetrify-ref: util-macros-1.19.0
+  build-system: autotools
 - name: xcb-pthread-stubs
   repo: upstream:xcb-pthread-stubs
   ref: 431d2c0be218d878b9dd3862e4232243c599df4b
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-util-macros

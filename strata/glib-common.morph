@@ -8,17 +8,21 @@ chunks:
   repo: upstream:gtk-doc-stub
   ref: 58ec0d8593541ef7ae522ce42ebec6f98536c4e0
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: gnome-common
   repo: upstream:gnome-common
   ref: 5d61b55e8bea32fe2b52e21682ee4b3719b290c5
   unpetrify-ref: 3.14.0
+  build-system: autotools
 - name: glib
   repo: upstream:glib
   ref: 966ffb16f6bd54cb3d928a55d00d0eda73592094
   unpetrify-ref: 2.44.0
+  build-system: autotools
 - name: gobject-introspection
   repo: upstream:gobject-introspection
   ref: c0243e116c5e261c262dded9f4d7726a770c5a19
   unpetrify-ref: GOBJECT_INTROSPECTION_1_44_0
+  build-system: autotools
   build-depends:
   - glib

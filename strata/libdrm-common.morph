@@ -7,6 +7,7 @@ chunks:
   repo: upstream:xorg-lib-libpciaccess
   ref: f99c2e4199ce37f6f94428df504427f67c3ec543
   unpetrify-ref: libpciaccess-0.13.3
+  build-system: autotools
 - name: drm
   repo: upstream:drm
   morph: strata/libdrm-common/drm.morph

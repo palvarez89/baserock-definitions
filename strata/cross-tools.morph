@@ -8,3 +8,4 @@ chunks:
   repo: upstream:patchelf
   ref: 21a85cc1c63cf3ef060ece59cdd82455e2884703
   unpetrify-ref: baserock/morph
+  build-system: autotools

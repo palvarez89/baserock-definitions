@@ -49,7 +49,8 @@ chunks:
 - name: audiomanager
   repo: upstream:audiomanager
   ref: 8725157e248c6706de59a02996f869b6ccdccb13
-  unpetrify-ref: "7.0"
+  unpetrify-ref: '7.0'
+  build-system: cmake
   build-depends:
   - DLT-daemon
   - googletest
@@ -82,6 +83,7 @@ chunks:
   repo: upstream:node-state-manager
   ref: 30add4659e002f1df205cc36f71ef3141c10c1fb
   unpetrify-ref: baserock/systemd_v216
+  build-system: autotools
   build-depends:
   - DLT-daemon
   - persistence-client-library
@@ -104,6 +106,7 @@ chunks:
   repo: upstream:genivi/node-health-monitor
   ref: 61f88bc9fc03c278664e05431ffb5933ff6007f1
   unpetrify-ref: baserock/1.3.5
+  build-system: autotools
   build-depends:
   - node-state-manager
   - persistence-client-library

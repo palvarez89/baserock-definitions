@@ -9,13 +9,16 @@ chunks:
   repo: upstream:python-packages/ansicolor
   ref: 9d3adbaff35bb6cde1d63414a8cc72f572c4d0ef
   unpetrify-ref: 0.2.4
+  build-system: python-distutils
 - name: requests-cache
   repo: upstream:python-packages/requests-cache
   ref: a1b5e65ccd715f1e8434f18f27913715340d6aaf
   unpetrify-ref: 0.4.6
+  build-system: python-distutils
 - name: baserock-import
   repo: baserock:baserock/import
   ref: 461979515ca30cd8e5acdec4cdb5ca3adeb6a9e7
   unpetrify-ref: master
+  build-system: python-distutils
   build-depends:
   - ansicolor

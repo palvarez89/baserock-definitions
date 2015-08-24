@@ -22,10 +22,12 @@ chunks:
   repo: upstream:python-packages/psutil
   ref: 2bc8555f0428af81c2d067aa76168ed7bc5e0179
   unpetrify-ref: release-2.2.0
+  build-system: python-distutils
 - name: mod_wsgi-metrics
   repo: upstream:python-packages/mod_wsgi-metrics
   ref: ec715eb593255229f9f45f3f323edbb845c691d8
   unpetrify-ref: 1.1.1
+  build-system: python-distutils
   build-depends:
   - psutil
 - name: mod_wsgi

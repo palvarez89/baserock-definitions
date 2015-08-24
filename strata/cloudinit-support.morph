@@ -11,6 +11,7 @@ chunks:
   repo: upstream:python-cheetah
   ref: 831aa6b99d9b4fb012ee644d8e80e0bc0eb6d6ed
   unpetrify-ref: baserock/morph
+  build-system: python-distutils
 - name: cloud-init
   morph: strata/cloudinit-support/cloud-init.morph
   repo: upstream:cloud-init

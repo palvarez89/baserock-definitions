@@ -18,16 +18,19 @@ chunks:
   repo: upstream:libunwind
   ref: d7322f0f64dab715c4feb5f08edef5660d8719c0
   unpetrify-ref: v1.1
+  build-system: autotools
 - name: gperftools
   repo: upstream:gperftools
   ref: 846b775dfadb77901202ae7ddbac30ad1de7df01
   unpetrify-ref: gperftools-2.2
+  build-system: autotools
   build-depends:
   - libunwind
 - name: snappy
   repo: upstream:snappy-git
   ref: 1ff9be9b8fafc8528ca9e055646f5932aa5db9c4
   unpetrify-ref: master
+  build-system: autotools
 - name: leveldb
   morph: strata/ceph-service/leveldb.morph
   repo: upstream:leveldb
@@ -40,6 +43,7 @@ chunks:
   repo: upstream:libeditline-tarball
   ref: 7503ff5f8610734521f40e276b59b3b6291830e7
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: boost
   morph: strata/ceph-service/boost.morph
   repo: upstream:boost-tarball

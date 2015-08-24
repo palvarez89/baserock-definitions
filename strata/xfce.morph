@@ -9,6 +9,7 @@ chunks:
   repo: upstream:libcroco
   ref: 611f624a6e15065792b41eb5ce14811293f3fb0a
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: librsvg
   morph: strata/xfce/librsvg.morph
   repo: upstream:librsvg
@@ -20,6 +21,7 @@ chunks:
   repo: upstream:xfce/xfce4-dev-tools
   ref: 9244250ac0c15ba160688758c5dccf97f3f160ef
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: libxfce4util
   morph: strata/xfce/libxfce4util.morph
   repo: upstream:xfce/libxfce4util
@@ -56,6 +58,7 @@ chunks:
   repo: upstream:libwww-perl/uri
   ref: 3dd72ded7f043a4f6973781fe594722e2e95f491
   unpetrify-ref: baserock/morph
+  build-system: cpan
 - name: exo
   morph: strata/xfce/exo.morph
   repo: upstream:xfce/exo
@@ -105,6 +108,7 @@ chunks:
   repo: upstream:iceauth
   ref: c07d443d43e53cfe21b53a9a0eafcd6189432867
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xfce4-session
   morph: strata/xfce/xfce4-session.morph
   repo: upstream:xfce/xfce4-session

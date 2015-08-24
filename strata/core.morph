@@ -50,6 +50,7 @@ chunks:
   repo: upstream:help2man
   ref: 83bab7e2e8e24a380266a9a247c029c49b0de666
   unpetrify-ref: baserock/v1.46.5
+  build-system: autotools
   build-depends:
   - autoconf-tarball
   - automake
@@ -75,6 +76,7 @@ chunks:
   repo: upstream:file
   ref: f69c3fd9bcb108292e7887dd889e8b49f68c4a52
   unpetrify-ref: file-5.22
+  build-system: autotools
 - name: libexpat
   morph: strata/core/libexpat.morph
   repo: upstream:libexpat
@@ -116,6 +118,7 @@ chunks:
   repo: upstream:sqlite3
   ref: 24adc227bc29cd17e39df097fbca389c7724cd14
   unpetrify-ref: sqlite-autoconf-3080801
+  build-system: autotools
 - name: cpython
   morph: strata/core/cpython.morph
   repo: upstream:cpython
@@ -210,6 +213,7 @@ chunks:
   repo: upstream:xz
   ref: a0cd05ee71d330b79ead6eb9222e1b24e1559d3a
   unpetrify-ref: v5.2.0
+  build-system: autotools
   build-depends:
   - autoconf
   - automake
@@ -331,6 +335,7 @@ chunks:
   repo: upstream:libxml2
   ref: ee8f1d4cda8dc1a6f2c515fe234f7bc89cdc9f80
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - autoconf
   - automake
@@ -342,6 +347,7 @@ chunks:
   repo: upstream:libxslt
   ref: 73e08bf7c36a9145d38f51d37e66529b873c011a
   unpetrify-ref: master
+  build-system: autotools
   build-depends:
   - autoconf
   - libtool
@@ -352,6 +358,7 @@ chunks:
   repo: upstream:XML-Parser
   ref: e1a3ec157140a699e3020836475a0df622f70f1b
   unpetrify-ref: baserock/morph
+  build-system: cpan
   build-depends:
   - libexpat
   - perl
@@ -359,6 +366,7 @@ chunks:
   repo: upstream:intltool
   ref: 12f04c88be9ff8a578d8fd6990ee2448c66dc5f4
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - XML-Parser
   - autoconf
@@ -378,6 +386,7 @@ chunks:
   repo: upstream:cython
   ref: 4dd8e762fa51d01775506fbbc102c45dbcea065d
   unpetrify-ref: 0.22
+  build-system: python-distutils
   build-depends:
   - cpython
 - name: gperf
@@ -389,6 +398,7 @@ chunks:
   repo: upstream:bc-tarball
   ref: 0956d119432ff6a2e85bae1fa336df799cad70b0
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - flex
   - texinfo-tarball

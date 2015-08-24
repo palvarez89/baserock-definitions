@@ -9,10 +9,12 @@ chunks:
   repo: upstream:libatomic_ops
   ref: 0a58f5d63969c10d2141af89cb7a53df786909ab
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: alsa-lib
   repo: upstream:alsa-lib
   ref: 9cfd1faa27511edbb8bebbab85030125f33590ae
   unpetrify-ref: v1.0.28
+  build-system: autotools
 - name: alsa-utils
   morph: strata/audio-bluetooth/alsa-utils.morph
   repo: upstream:alsa-utils
@@ -37,6 +39,7 @@ chunks:
   repo: upstream:dbus-glib
   ref: 397e8297d433547c9bf4150ddd2b9e0b4c39628c
   unpetrify-ref: dbus-glib_0.102
+  build-system: autotools
 - name: bluez-tools
   morph: strata/audio-bluetooth/bluez-tools.morph
   repo: upstream:bluez-tools
@@ -48,6 +51,7 @@ chunks:
   repo: upstream:obexd
   ref: 4225280022c206762c91beee47c62d05e1baeacc
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - bluez
   - libical
@@ -55,6 +59,7 @@ chunks:
   repo: upstream:speex
   ref: e5dc987a403426ee3d0d81768afffa0fe74e20fa
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: nohands
   morph: strata/audio-bluetooth/nohands.morph
   repo: upstream:nohands
@@ -67,6 +72,7 @@ chunks:
   repo: upstream:mobile-broadband-provider-info
   ref: 4ed19e11c2975105b71b956440acdb25d46a347d
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: ofono
   morph: strata/audio-bluetooth/ofono.morph
   repo: upstream:ofono

@@ -7,3 +7,4 @@ chunks:
   repo: upstream:pcre
   ref: 2720152c58e13e7cc7403642ec33127101b9971b
   unpetrify-ref: baserock/morph
+  build-system: autotools

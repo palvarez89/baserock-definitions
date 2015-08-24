@@ -8,14 +8,17 @@ chunks:
   repo: upstream:warlock
   ref: 408ccb82347aabf3dc7cf6eccbd2ed2475cb0d60
   unpetrify-ref: 1.1.0
+  build-system: python-distutils
 - name: python-keystoneclient
   repo: upstream:openstack/python-keystoneclient
   ref: 8fa6b6f0b5e95493342ce71489d04f73db2418b8
   unpetrify-ref: 1.3.1
+  build-system: python-distutils
 - name: python-glanceclient
   repo: upstream:openstack/python-glanceclient
   ref: b176c28bbdae3eb5b3280c1981ad2b3b255e234e
   unpetrify-ref: 0.17.1
+  build-system: python-distutils
   build-depends:
   - python-keystoneclient
   - warlock
@@ -23,20 +26,24 @@ chunks:
   repo: upstream:openstack/python-novaclient
   ref: e0f5072907a00d48a183dd8fc91a6cf6038ca279
   unpetrify-ref: 2.23.0
+  build-system: python-distutils
   build-depends:
   - python-keystoneclient
 - name: python-swiftclient
   repo: upstream:openstack/python-swiftclient
   ref: bb4d2ab59c4de9389667eeed255642f51e276f1e
   unpetrify-ref: 2.3.1
+  build-system: python-distutils
 - name: python-troveclient
   repo: upstream:openstack/python-troveclient
   ref: e010a919750f07493afd42a4db867853b925bcbf
   unpetrify-ref: 1.0.7
+  build-system: python-distutils
 - name: python-cinderclient
   repo: upstream:openstack/python-cinderclient
   ref: ac9b0913904c43f4bf12c8164324d6e6a55dc1ab
   unpetrify-ref: 1.1.1
+  build-system: python-distutils
   build-depends:
   - python-keystoneclient
 - name: pyparsing
@@ -48,12 +55,14 @@ chunks:
   repo: upstream:python-packages/cmd2-hg
   ref: c0d606bdeb88717ad92ba198bc9232615b83c4cd
   unpetrify-ref: 0.6.7
+  build-system: python-distutils
   build-depends:
   - pyparsing
 - name: cliff
   repo: upstream:openstack/cliff
   ref: b703ad32743026d253f872caa1ff2cd727803d14
   unpetrify-ref: 1.10.1
+  build-system: python-distutils
   build-depends:
   - cmd2
   - pyparsing
@@ -71,6 +80,7 @@ chunks:
   repo: upstream:openstack/python-neutronclient
   ref: aa1215a5ad063b299d32ef319eb63d5210249a9b
   unpetrify-ref: 2.4.0
+  build-system: python-distutils
   build-depends:
   - cliff
   - python-keystoneclient
@@ -78,18 +88,21 @@ chunks:
   repo: upstream:openstack/python-ceilometerclient
   ref: 127aadfd2b2daf9884ad7003e23440048e2efbd8
   unpetrify-ref: 1.0.14
+  build-system: python-distutils
   build-depends:
   - python-keystoneclient
 - name: python-heatclient
   repo: upstream:openstack/python-heatclient
   ref: 6d528f005742263837d05250662bf6214a703da8
   unpetrify-ref: 0.4.0
+  build-system: python-distutils
   build-depends:
   - python-keystoneclient
 - name: python-designateclient
   repo: upstream:openstack/python-designateclient
   ref: a900b41e4d8a9eb40e1812295ba16d773e2b9618
   unpetrify-ref: 1.1.0
+  build-system: python-distutils
   build-depends:
   - cliff
   - python-keystoneclient
@@ -97,6 +110,7 @@ chunks:
   repo: upstream:openstack/python-barbicanclient
   ref: 2919366867af335d59913764a55ca8e95569947d
   unpetrify-ref: 3.0.3
+  build-system: python-distutils
   build-depends:
   - python-keystoneclient
   - cliff
@@ -104,6 +118,7 @@ chunks:
   repo: upstream:openstack/python-saharaclient
   ref: 319ceb6acf55382218dcd971367613aecb3e4afc
   unpetrify-ref: 0.8.0
+  build-system: python-distutils
   build-depends:
   - python-keystoneclient
 - name: python-ironicclient

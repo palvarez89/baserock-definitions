@@ -34,6 +34,7 @@ chunks:
   repo: upstream:libpciaccess
   ref: b9c068896914b4132a24839c9ef7f9fcd6282d88
   unpetrify-ref: master
+  build-system: autotools
 - name: dmidecode
   morph: strata/virtualization/dmidecode.morph
   repo: upstream:dmidecode
@@ -54,16 +55,19 @@ chunks:
   repo: upstream:pycurl
   ref: 5ca370827d88817eeca3c56cbb37e4ddccc16c6e
   unpetrify-ref: baserock/morph
+  build-system: python-distutils
 - name: urlgrabber
   repo: upstream:urlgrabber
   ref: bf0a0be71373dec515bbb54e0613a3b9b0c00b04
   unpetrify-ref: master
+  build-system: python-distutils
   build-depends:
   - pycurl
 - name: libvirt-python
   repo: upstream:libvirt-python
   ref: 8e09c79a07b097a6ba9af83be4916fb9c9538500
   unpetrify-ref: v1.2.10
+  build-system: python-distutils
   build-depends:
   - libvirt
   - urlgrabber
@@ -76,6 +80,7 @@ chunks:
   repo: upstream:virt-manager
   ref: 8b7ebd4538ffbd2d246fdeee4f1bb1c452585575
   unpetrify-ref: v1.0.1
+  build-system: python-distutils
   build-depends:
   - libvirt-python
   - libosinfo

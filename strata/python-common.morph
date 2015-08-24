@@ -13,10 +13,12 @@ chunks:
   repo: upstream:python-packages/ecdsa
   ref: 36e9cfa80fcf8b53119adc787e54a5892ec1eb2c
   unpetrify-ref: python-ecdsa-0.11
+  build-system: python-distutils
 - name: paramiko
   repo: upstream:paramiko
   ref: 424ba615c2a94d3b059e7f24db1a1093a92d8d22
   unpetrify-ref: v1.15.2
+  build-system: python-distutils
   build-depends:
   - pycrypto
   - ecdsa
@@ -24,51 +26,63 @@ chunks:
   repo: upstream:markupsafe
   ref: feb1d70c16df62f60dcb521d127fdad8819fc036
   unpetrify-ref: 0.23
+  build-system: python-distutils
 - name: jinja2
   repo: upstream:jinja2
   ref: 762c612e7276889aac265645da00e62e33d1573c
   unpetrify-ref: 2.7.3
+  build-system: python-distutils
   build-depends:
   - markupsafe
 - name: python-json-pointer
   repo: upstream:python-json-pointer
   ref: 34073e561261cb413b9bdff5beac31b070d98ea2
   unpetrify-ref: v1.4
+  build-system: python-distutils
 - name: python-json-patch
   repo: upstream:python-json-patch
   ref: e4da658a5dc9f68d3386017ffdcc8e07d22b51a3
   unpetrify-ref: v1.8
+  build-system: python-distutils
   build-depends:
   - python-json-pointer
 - name: python-prettytable
   repo: upstream:python-prettytable
   ref: bea6a50e4da00074b35b57232771cea58b89b3e0
   unpetrify-ref: 0.7.2-RELEASE
+  build-system: python-distutils
 - name: configobj
   repo: upstream:configobj-git
   ref: 9d2aab01c77dce600b296ba9da1163cc0bbc14e0
   unpetrify-ref: v5.0.6
+  build-system: python-distutils
 - name: python-mimeparse
   repo: upstream:python-packages/python-mimeparse.git
   ref: 2d600d3fc4a386af69d20fba433843b4df2b3c92
   unpetrify-ref: master
+  build-system: python-distutils
 - name: kazoo
   repo: upstream:python-packages/kazoo.git
   ref: 93a718ea4c20df797766742c3d74de281613c651
   unpretrify-ref: 2.0
+  build-system: python-distutils
 - name: webob
   repo: upstream:python-packages/webob
   ref: ae0ac90f22f9e1ff351e445f92330efd89195f51
   unpetrify-ref: 1.4
+  build-system: python-distutils
 - name: python-decorator
   repo: upstream:python-packages/python-decorator
   ref: b02f7a254c3679dfac57a824e08dd02ced850636
   unpetrify-ref: decorator-3.4.0
+  build-system: python-distutils
 - name: networkx
   repo: upstream:python-packages/networkx
   ref: 8ac796aba866ade1a56b83e30f25ed392ca3512c
   unpetrify-ref: networkx-1.9.1
+  build-system: python-distutils
 - name: boto
   repo: upstream:boto
   ref: 2517f660f8ef9012708d46da3a36ab967993d2f6
   unpetrify-ref: 2.33.0
+  build-system: python-distutils

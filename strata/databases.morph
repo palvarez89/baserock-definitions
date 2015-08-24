@@ -10,6 +10,7 @@ chunks:
   repo: upstream:postgresql
   ref: d4f8dde3c1c2c90c723ab550e7f449fc75599316
   unpetrify-ref: REL9_3_4
+  build-system: autotools
 - name: redis
   morph: strata/databases/redis.morph
   repo: upstream:redis
@@ -24,9 +25,11 @@ chunks:
   repo: upstream:python-packages/psycopg2
   ref: 00cafbe85bb82d85cbfe0f062a73c562433b5bc8
   unpetrify-ref: 2.5.4
+  build-system: python-distutils
   build-depends:
   - postgresql
 - name: python-memcached
   repo: upstream:python-packages/python-memcached
   ref: 156ee975ff6e5c69e1d6c58b09bedf03c182c5db
   unpetrify-ref: master
+  build-system: python-distutils

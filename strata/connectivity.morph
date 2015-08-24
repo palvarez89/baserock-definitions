@@ -7,6 +7,7 @@ chunks:
   repo: upstream:libnl
   ref: a2c4bd8f094a7247903578860a9c42049991860b
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: wpa_supplicant
   morph: strata/connectivity/wpa_supplicant.morph
   repo: upstream:hostap
@@ -18,3 +19,4 @@ chunks:
   repo: upstream:iptables
   ref: 482c6d3731e2681cb4baae835c294840300197e6
   unpetrify-ref: v1.4.21
+  build-system: autotools

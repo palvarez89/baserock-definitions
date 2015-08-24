@@ -10,22 +10,26 @@ chunks:
   repo: upstream:orc
   ref: 16e053b8f2359196fd50b111f1c10b93590f5cb9
   unpetrify-ref: orc-0.4.22
+  build-system: autotools
 - name: gstreamer
   repo: upstream:gstreamer
   ref: c61dea148ca3f14586d8eddf0b7e6ca47c164c86
   unpetrify-ref: baserock/1.4.4+bison_fix
+  build-system: autotools
   build-depends:
   - orc
 - name: gstreamer-plugins-base
   repo: upstream:gstreamer-plugins-base
   ref: 3b38ad94a2d58c07c24e4647e08afa1fe4dd7d46
   unpetrify-ref: baserock/1.4
+  build-system: autotools
   build-depends:
   - gstreamer
 - name: gstreamer-plugins-good
   repo: upstream:gstreamer-plugins-good
   ref: 9d48c2f7a7b63fd967de7eec72434bc876c02667
   unpetrify-ref: baserock/1.4
+  build-system: autotools
   build-depends:
   - gstreamer
   - gstreamer-plugins-base
@@ -34,6 +38,7 @@ chunks:
   repo: upstream:gstreamer-plugins-bad
   ref: bb2a4669ff57af90c8101c54744d3228aa060475
   unpetrify-ref: baserock/1.4
+  build-system: autotools
   build-depends:
   - gstreamer
   - gstreamer-plugins-base

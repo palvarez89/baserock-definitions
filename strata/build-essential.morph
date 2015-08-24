@@ -269,6 +269,7 @@ chunks:
   repo: upstream:zlib
   ref: 50893291621658f355bc5b4d450a8d06a563053d
   unpetrify-ref: v1.2.8
+  build-system: autotools
   build-depends:
   - stage2-binutils
   - stage2-busybox

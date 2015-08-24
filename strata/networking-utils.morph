@@ -23,6 +23,7 @@ chunks:
   repo: upstream:libmnl
   ref: c9f19b98cd8e108617e825e071091df14f78c53a
   unpetrify-ref: master
+  build-system: autotools
 - name: ipset
   morph: strata/networking-utils/ipset.morph
   repo: upstream:ipset

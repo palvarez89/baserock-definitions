@@ -8,18 +8,22 @@ chunks:
   repo: upstream:python-packages/python-test-extras.git
   ref: cdeb596f01241e9c779332e86f6edcd0c2e8e9f0
   unpetrify-ref: master
+  build-system: python-distutils
 - name: check
   repo: upstream:check
   ref: 8c872aca6675e95fa47e7514e28fbdf25fce6170
   unpetrify-ref: 0.9.8
+  build-system: autotools
 - name: cppunit
   repo: upstream:cppunit
   ref: 8133cf2b977f013216f0a41b6fcb740410d83926
   unpetrify-ref: 1.13.2
+  build-system: autotools
 - name: testtools
   repo: upstream:python-packages/testtools
   ref: ee9946228ce5a03a84cf146027de0a8a9a46c4fe
   unpetrify-ref: testools-1.1.0
+  build-system: python-distutils
   build-depends:
   - python-test-extras
 - name: subunit
@@ -36,12 +40,14 @@ chunks:
   repo: upstream:python-packages/fixtures
   ref: 9f9d89ce718463b24cd3910b9a99efb60b3c9e1b
   unpetrify-ref: 0.3.16
+  build-system: python-distutils
   build-depends:
   - testtools
 - name: testrepository
   repo: upstream:python-packages/testrepository
   ref: 6419a3dcaabaf09eaf438c6d8d85c90eba7a2b91
   unpetrify-ref: 0.0.19
+  build-system: python-distutils
   build-depends:
   - fixtures
   - subunit
@@ -50,20 +56,24 @@ chunks:
   repo: upstream:python-packages/testscenarios
   ref: bccfaa71a2def5590161b6d1a247cf23c45a8b4d
   unpetrify-ref: trunk
+  build-system: python-distutils
   build-depends:
   - testtools
 - name: mox
   repo: upstream:python-packages/mox
   ref: 160491d0384285698d726b1af21277f336107f51
   unpetrify-ref: master
+  build-system: python-distutils
 - name: mock
   repo: upstream:python-packages/mock
   ref: 35b35f7ad239005a950f870af57b44dbdc99d66b
   unpetrify-ref: master
+  build-system: python-distutils
 - name: oslotest
   repo: upstream:openstack/oslotest
   ref: cfdb562a6e07728570ca624a8c4faf3f5b61423b
   unpetrify-ref: 1.2.0
+  build-system: python-distutils
   build-depends:
   - fixtures
   - subunit
@@ -76,31 +86,38 @@ chunks:
   repo: upstream:python-packages/pymox
   ref: 444fa40f4edb529efbffa2da8dbd97e9b8564b5c
   unpetrify-ref: master
+  build-system: python-distutils
 - name: mocker
   repo: upstream:python-packages/mocker
   ref: f7f87e4ac1c52342162cf2035f5fe3d273f8b07f
   unpetrify-ref: master
+  build-system: python-distutils
 - name: zake
   repo: upstream:python-packages/zake
   ref: 436bab3306aeec420f1281f34bd5d26d7f81038c
   unpetrify-ref: 0.2.1
+  build-system: python-distutils
   build-depends:
   - testtools
 - name: nose
   repo: upstream:python-packages/nose
   ref: 08d134270b035dac3310cd877bb0fe9ab678303a
   unpetrify-ref: release_1.3.4
+  build-system: python-distutils
 - name: beautifulsoup4
   repo: upstream:python-packages/beautifulsoup4.git
   ref: bcd7af0e9159d97aa511fb2d879424d1c1c5aadf
+  build-system: python-distutils
 - name: waitress
   repo: upstream:python-packages/waitress.git
   ref: b795d573a5a9e6e39b46a6e82da367a6a5db8dbd
   unpetrify-ref: 0.8.9
+  build-system: python-distutils
 - name: webtest
   repo: upstream:python-packages/webtest.git
   ref: 6a24fba456d1c4ac2609b90f1fdc377c595608a4
   unpetrify-ref: 2.0.16
+  build-system: python-distutils
   build-depends:
   - waitress
   - beautifulsoup4
@@ -108,6 +125,7 @@ chunks:
   repo: upstream:python-packages/testresources
   ref: ef938bcce0e436f9e9ffef932a898dc248a1d6ea
   unpetrify-ref: 0.2.7
+  build-system: python-distutils
   build-depends:
   - testtools
   - fixtures

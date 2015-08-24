@@ -10,6 +10,7 @@ chunks:
   repo: upstream:python-packages/dnspython
   ref: e1369c62d14f82b80ef11197a490ace5d43bb3f3
   unpetrify-ref: v1.12.0
+  build-system: python-distutils
 - name: xattr
   morph: strata/swift/xattr.morph
   repo: upstream:python-packages/xattr
@@ -29,12 +30,14 @@ chunks:
   repo: upstream:jerasure
   ref: ff7032153ea230fb59596f1f8a0e9ad8653addfb
   unpetrify-ref: v2
+  build-system: autotools
   build-depends:
   - gf-complete
 - name: pyeclib
   repo: upstream:python-packages/pyeclib
   ref: aa58aa887c2327e1394d6f28b3b6b7ab8f190b2b
   unpetrify-ref: v1.0.7
+  build-system: python-distutils
   build-depends:
   - liberasurecode
   - gf-complete
@@ -43,6 +46,7 @@ chunks:
   repo: upstream:openstack/swift
   ref: f8dee761bd36f857aa1288c27e095907032fad68
   unpetrify-ref: 2.3.0
+  build-system: python-distutils
   build-depends:
   - dnspython
   - xattr

@@ -19,6 +19,7 @@ chunks:
   repo: upstream:linux-user-chroot
   ref: d25cc110f69e6e71a95b4ac532dcfc5423d4a16b
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: lsof
   morph: strata/tools/lsof.morph
   repo: upstream:lsof
@@ -28,6 +29,7 @@ chunks:
   repo: upstream:strace
   ref: 6d8c0637e8dd0f65c667af33c612230552419db1
   unpetrify-ref: v4.8
+  build-system: autotools
 - name: vala-bootstrap
   morph: strata/tools/vala-bootstrap.morph
   repo: upstream:vala
@@ -37,6 +39,7 @@ chunks:
   repo: upstream:vala
   ref: 5f6ebe007050be12bdc4aa7c902ae4059f28874a
   unpetrify-ref: 0.28.0
+  build-system: autotools
   build-depends:
   - vala-bootstrap
 - name: u-boot
@@ -58,6 +61,7 @@ chunks:
   repo: upstream:sudo
   ref: a4769dc7999b53260325fb89945bef85714fb338
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: procps-ng
   morph: strata/tools/procps-ng.morph
   repo: upstream:procps-ng

@@ -13,6 +13,7 @@ chunks:
   repo: upstream:fribidi
   ref: c9916f2ab289126a32febcc4754efc73a011fb0c
   unpetrify-ref: baserock/morph/0.19.6
+  build-system: autotools
 - name: bullet3
   morph: strata/enlightenment/bullet3.morph
   repo: upstream:bullet3

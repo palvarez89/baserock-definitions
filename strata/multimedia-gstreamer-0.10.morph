@@ -11,22 +11,26 @@ chunks:
   repo: upstream:orc
   ref: b4f7fcaf99a4d952e59f2a9fa9286d24cc4b3a5a
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: gstreamer@0.10
   repo: upstream:gstreamer
   ref: 1bb950008f4656f6a6153fa88a8ebb5a39fbe84f
   unpetrify-ref: baserock/morph/0.10
+  build-system: autotools
   build-depends:
   - orc
 - name: gstreamer-plugins-base@0.10
   repo: upstream:gstreamer-plugins-base
   ref: 960c596309dbb983a1d733259adccc45c47006a2
   unpetrify-ref: baserock/morph/0.10
+  build-system: autotools
   build-depends:
   - gstreamer@0.10
 - name: gstreamer-plugins-good@0.10
   repo: upstream:gstreamer-plugins-good
   ref: 725e80e0c6b7f8e66d9b3fcaffd283ecbd8498d3
   unpetrify-ref: baserock/morph/0.10
+  build-system: autotools
   build-depends:
   - gstreamer@0.10
   - gstreamer-plugins-base@0.10

@@ -13,28 +13,33 @@ chunks:
   repo: upstream:python-packages/mako.git
   ref: 285bc818a50ccc0f9549630f7c4f4c250585c3e7
   unpetrify-ref: rel_1_0_0
+  build-system: python-distutils
   build-depends:
   - python-setuptools
 - name: pip
   repo: upstream:pip
   ref: ea680f204fb0e48789710c22c8f597a9bf01bc16
   unpetrify-ref: baserock/master
+  build-system: python-distutils
   build-depends:
   - python-setuptools
 - name: pbr
   repo: upstream:pbr
   ref: aef4f7ef4faec987d553d1ca40b55951235af0b1
   unpetrify-ref: 0.10.7
+  build-system: python-distutils
   build-depends:
   - pip
 - name: python-requests
   repo: upstream:python-requests
   ref: b83131779c701720a9ae9efae78996277d416269
   unpetrify-ref: v2.5.1
+  build-system: python-distutils
 - name: six
   repo: upstream:six
   ref: 8cfbff6b764af86d825086fa1637aa009e90d75a
   unpetrify-ref: 1.9.0
+  build-system: python-distutils
 - name: pyyaml
   morph: strata/python-core/pyyaml.morph
   repo: upstream:pyyaml
@@ -46,7 +51,9 @@ chunks:
   repo: upstream:python-lxml
   ref: 14505bc62f5f1fc9fb0ff007955f3e67ab4562bb
   unpetrify-ref: lxml-3.4.0
+  build-system: python-distutils
 - name: python-markdown
   repo: upstream:python-markdown
   ref: f0c5b71acbc02af60a33d67c59558bb513b25e74
   unpetrify-ref: 2.5.1-final
+  build-system: python-distutils

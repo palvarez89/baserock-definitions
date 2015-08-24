@@ -9,14 +9,17 @@ chunks:
   repo: upstream:libndp
   ref: f3a3a63d5b5abced8f75731d7b995606933c6e33
   unpetrify-ref: v1.4
+  build-system: autotools
 - name: readline6
   repo: upstream:readline
   ref: 7628b745a813aac53586b640da056a975f1c443e
   unpetrify-ref: readline-6.3
+  build-system: autotools
 - name: libgudev
   repo: upstream:libgudev
   ref: d722339aae9065a379acc0c421e8bbab866d5a38
   unpetrify-ref: 230
+  build-system: autotools
 - name: NetworkManager
   morph: strata/NetworkManager-common/NetworkManager.morph
   repo: upstream:NetworkManager

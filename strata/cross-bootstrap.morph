@@ -21,6 +21,7 @@ chunks:
   repo: upstream:linux-user-chroot
   ref: d25cc110f69e6e71a95b4ac532dcfc5423d4a16b
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: rsync
   morph: strata/cross-bootstrap/rsync.morph
   repo: upstream:rsync

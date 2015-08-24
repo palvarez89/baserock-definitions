@@ -7,120 +7,149 @@ chunks:
   repo: upstream:xorg-proto-bigreqsproto
   ref: d6ed3e927a756900ad4c9fd7235f8f7f34f376db
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-compositeproto
   repo: upstream:xorg-proto-compositeproto
   ref: 39738dbe9438dc80fc6b9e221d9ed26a6d42da6b
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-damageproto
   repo: upstream:xorg-proto-damageproto
   ref: 015b980e5091492dbe681af59569768ba89fbfe0
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-dmxproto
   repo: upstream:xorg-proto-dmxproto
   ref: 395f6fcc0a5635907b5e45829e86b29431316184
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-fixesproto
   repo: upstream:xorg-proto-fixesproto
   ref: b6c6bc2aa4b83f8763c75c90e6671052272a2af2
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-fontsproto
   repo: upstream:xorg-proto-fontsproto
   ref: df8c05f7c0253a36589d96efa52938215eff9d4d
   unpetrify-ref: fontsproto-2.1.3
+  build-system: autotools
 - name: xorg-proto-glproto
   repo: upstream:xorg-proto-glproto
   ref: f84853d97d5749308992412a215fa518b6536eb3
   unpetrify-ref: glproto-1.4.17
+  build-system: autotools
 - name: xorg-proto-inputproto
   repo: upstream:xorg-proto-inputproto
   ref: 343ff0938f592876b9d82c966f166bf45a78c3c8
   unpetrify-ref: inputproto-2.3.1
+  build-system: autotools
 - name: xorg-proto-kbproto
   repo: upstream:xorg-proto-kbproto
   ref: f7022f5775350dce3348b7151845a32390e98791
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-xineramaproto
   repo: upstream:xorg-proto-xineramaproto
   ref: 4e77b45e0d6b42a448dab2ec316eeb5c490ecfed
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-randrproto
   repo: upstream:xorg-proto-randrproto
   ref: ca7cc541c2e43e6c784df19b4583ac35829d2f72
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-recordproto
   repo: upstream:xorg-proto-recordproto
   ref: 0fd4f8e57c1e637b2aaaaa0f539ddbac8cc50575
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-renderproto
   repo: upstream:xorg-proto-renderproto
   ref: 935f5ec95a3718c184ff685f5b79b467483b7844
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-resourceproto
   repo: upstream:xorg-proto-resourceproto
   ref: ada91f54c98b5a61d3e116fca6bf239a8604730f
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-scrnsaverproto
   repo: upstream:xorg-proto-scrnsaverproto
   ref: 614532026e8ec7496216316fb584d6f2af6a7f7b
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-videoproto
   repo: upstream:xorg-proto-videoproto
   ref: e42cf822e230cff5c6550ca2c050dfa27d2c9611
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-xcmiscproto
   repo: upstream:xorg-proto-xcmiscproto
   ref: 83549077a3c2140b9862709004cd873f1c55e395
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-xextproto
   repo: upstream:xorg-proto-xextproto
   ref: 66afec3f49e8eb0d4c2e9af7088fc3116d4bafd7
   unpetrify-ref: xextproto-7.3.0
+  build-system: autotools
 - name: xorg-proto-xf86bigfontproto
   repo: upstream:xorg-proto-xf86bigfontproto
   ref: f805b328b2195de384c0fb6b82ef5f88c179b2c0
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-xf86dgaproto
   repo: upstream:xorg-proto-xf86dgaproto
   ref: c52b205c3175309be7952774668c87dd2d5ce30e
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-xf86driproto
   repo: upstream:xorg-proto-xf86driproto
   ref: cb03b8d49bf063860859c1ed8bcecd055551e93a
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-x11proto
   repo: upstream:xorg-proto-x11proto
   ref: 03cbbf6c3e811c026c86e3a60d2f9af56606e155
   unpetrify-ref: xproto-7.0.26
+  build-system: autotools
 - name: xorg-proto-dri2proto
   repo: upstream:xorg-proto-dri2proto
   ref: ead89ad84877551cc15d26b95cb19a3e205df71f
   unpetrify-ref: baserock/morph
+  build-system: autotools
 - name: xorg-proto-dri3proto
   repo: upstream:xorg-proto-dri3proto
   ref: 91df0f88b70c268f3580385a7b37543ab8c544c8
+  build-system: autotools
 - name: xorg-proto-presentproto
   repo: upstream:xorg-proto-presentproto
   ref: ef84007fc4a23d3897b4776906139de9d0698c2a
+  build-system: autotools
 - name: xcb-proto
   repo: upstream:xcb-proto
   ref: 4b384d2a015c50d0e93dcacda4b8260a3fd37640
   unpetrify-ref: '1.11'
+  build-system: autotools
 - name: xorg-lib-libxshmfence
   repo: upstream:xorg-lib-libxshmfence
   ref: 9c4f070e1304a3503cfab08f68573443025fc4c9
   unpetrify-ref: master
+  build-system: autotools
   build-depends:
   - xorg-proto-x11proto
 - name: xorg-lib-libXau
   repo: upstream:xorg-lib-libXau
   ref: 1a8a1b2c68967b48c07b56142799b1020f017027
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-proto-x11proto
 - name: xcb-libxcb
   repo: upstream:xcb-libxcb
   ref: d1e8ec96fca4862f37ec9f0e9407bb989c4c161a
   unpetrify-ref: '1.11'
+  build-system: autotools
   build-depends:
   - xcb-proto
   - xorg-lib-libXau
@@ -128,24 +157,28 @@ chunks:
   repo: upstream:xcb-util
   ref: 4de010f122da40e17b52866d07d1d501a66bf007
   unpetrify-ref: baserock/0.4.0
+  build-system: autotools
   build-depends:
   - xcb-libxcb
 - name: util-wm
   repo: upstream:util-wm
   ref: fb7afc3f291c8cc072d327cd8d97ab1db3283c21
   unpetrify-ref: baserock/0.4.1
+  build-system: autotools
   build-depends:
   - xcb-libxcb
 - name: util-keysyms
   repo: upstream:util-keysyms
   ref: edb763a8837d3932690b9d6d77cb7e20a9ab8013
   unpetrify-ref: baserock/0.4.0
+  build-system: autotools
   build-depends:
   - xcb-libxcb
 - name: util-image
   repo: upstream:util-image
   ref: f20f25a1c017c58d5d7dfffc6e9adc8d31879152
   unpetrify-ref: baserock/0.4.0
+  build-system: autotools
   build-depends:
   - xcb-libxcb
   - xcb-util
@@ -153,10 +186,12 @@ chunks:
   repo: upstream:xorg-lib-libxtrans
   ref: 7cbad9fe2e61cd9d5caeaf361826a6f4bd320f03
   unpetrify-ref: xtrans-1.3.5
+  build-system: autotools
 - name: xorg-lib-libX11
   repo: upstream:xorg-lib-libX11
   ref: cb107760df33ffc8630677e66e2e50aa37950a5c
   unpetrify-ref: libX11-1.6.2
+  build-system: autotools
   build-depends:
   - xcb-libxcb
   - xorg-lib-libxtrans
@@ -169,6 +204,7 @@ chunks:
   repo: upstream:xorg-lib-libXext
   ref: 8eee1236041d46a21faba32e0d27c26985267d89
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libX11
   - xorg-lib-libXau
@@ -178,6 +214,7 @@ chunks:
   repo: upstream:xorg-lib-libXi
   ref: 9b26b81477cf3486e5aa0ef8d81af68a0f04df1b
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libX11
   - xorg-lib-libXext
@@ -188,6 +225,7 @@ chunks:
   repo: upstream:xorg-lib-libXfixes
   ref: 0cb446962381f750e05d97bfb974ca1e32481d5d
   unpetrify-ref: libXfixes-5.0.1
+  build-system: autotools
   build-depends:
   - xorg-lib-libXext
   - xorg-proto-fixesproto
@@ -195,6 +233,7 @@ chunks:
   repo: upstream:xorg-lib-libXcomposite
   ref: eda48b1bedaa344ada8e13930c9ab3058b836190
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libX11
   - xorg-lib-libXfixes
@@ -203,6 +242,7 @@ chunks:
   repo: upstream:xorg-lib-libXrender
   ref: 1af52cb334377611233d7dc156bc1e6f7923756d
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libX11
   - xorg-proto-renderproto
@@ -210,6 +250,7 @@ chunks:
   repo: upstream:xorg-lib-libXrandr
   ref: 99a63d10cbbab7d69a52d25d78795a3278506ea9
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libX11
   - xorg-lib-libXext
@@ -221,6 +262,7 @@ chunks:
   repo: upstream:xorg-lib-libXinerama
   ref: 470b9356af961ff7d3968b164aa73872b49a5dcc
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libX11
   - xorg-lib-libXext
@@ -230,6 +272,7 @@ chunks:
   repo: upstream:xorg-lib-libXtst
   ref: 2aafac9474a0a0a0c39797862f823255918cf368
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libX11
   - xorg-lib-libXext
@@ -241,6 +284,7 @@ chunks:
   repo: upstream:xorg-lib-libXdamage
   ref: 0d35761dc39409b70e04dd0786aef6537f92976a
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libXfixes
   - xorg-proto-damageproto
@@ -248,6 +292,7 @@ chunks:
   repo: upstream:xorg-lib-libXcursor
   ref: 1b98fd6a2e8c00a563187849a585e68c7344468b
   unpetrify-ref: baserock/morph
+  build-system: autotools
   build-depends:
   - xorg-lib-libXrender
   - xorg-lib-libXfixes
@@ -258,6 +303,7 @@ chunks:
   repo: upstream:xorg-lib-libICE
   ref: b0cc7794c89d64fc54d0c75b2bba79fd7a1c7e0a
   unpetrify-ref: libICE-1.0.9
+  build-system: autotools
   build-depends:
   - xorg-proto-x11proto
   - xorg-lib-libxtrans
@@ -265,12 +311,14 @@ chunks:
   repo: upstream:xorg-lib-libSM
   ref: d0659dcd3aa23598b38826ac78f85071772c436f
   unpetrify-ref: libSM-1.2.2
+  build-system: autotools
   build-depends:
   - xorg-lib-libICE
 - name: xorg-lib-libXt
   repo: upstream:xorg-lib-libXt
   ref: e7411e7e5299116604ff1f01d9415802607f1051
   unpetrify-ref: libXt-1.1.5
+  build-system: autotools
   build-depends:
   - xorg-proto-kbproto
   - xorg-lib-libX11

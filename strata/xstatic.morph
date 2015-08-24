@@ -16,111 +16,139 @@ chunks:
   repo: upstream:xstatic
   ref: 6c8604a422ba7f176ce6b372a8e182c293d06fb2
   unpetrify-ref: 1.0.1
+  build-system: python-distutils
 - name: xstatic-angular
   repo: upstream:xstatic-packages/xstatic-angular
   ref: dac047df05da5bb20de4e78876bc03820d0c6671
   unpetrify-ref: 1.3.7.0
+  build-system: python-distutils
 - name: xstatic-angular-animate
   repo: upstream:xstatic-packages/xstatic-angular-animate
   ref: 91b9d3197f67213e4e35e9a35ba7196b898731e7
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-angular-bootstrap
   repo: upstream:xstatic-packages/xstatic-angular-bootstrap
   ref: b581edb6975175a564fd02766aef2f9043702c80
   unpetrify-ref: 0.11.0.3
+  build-system: python-distutils
 - name: xstatic-angular-lrdragndrop
   repo: upstream:xstatic-packages/xstatic-angular-lrdragndrop
   ref: 55c7494492e6da2a6664aa00941864dd64589396
   unpetrify-ref: 1.0.2.3
+  build-system: python-distutils
 - name: xstatic-angular-cookies
   repo: upstream:xstatic-packages/xstatic-angular-cookies
   ref: 66141a33ae7ad84b82ba9384a8101ae15ccd6da5
   unpetrify-ref: 1.2.1.1
+  build-system: python-distutils
 - name: xstatic-angular-fileupload
   repo: upstream:xstatic-packages/xstatic-angular-fileupload
   ref: 04bcd774dae17cfff5e826fc0874f6403b4a6cae
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-angular-mock
   repo: upstream:xstatic-packages/xstatic-angular-mock
   ref: 20fdada109b167bcdcacec22986b43fdb42866f3
   unpetrify-ref: 1.2.1.1
+  build-system: python-distutils
 - name: xstatic-angular-sanitize
   repo: upstream:xstatic-packages/xstatic-angular-sanitize
   ref: 9e0f03ada6fc00f8583903aeb6d9fc6516784999
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-angular-smart-table
   repo: upstream:xstatic-packages/xstatic-angular-smart-table
   ref: e0fbf69fb156b995547471d71c5c6a7f88989d47
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-bootstrap-datepicker
   repo: upstream:xstatic-packages/xstatic-bootstrap-datepicker
   ref: 60caf41e32d49f9bc715c39570f01449ebfbd37a
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-bootstrap-scss
   repo: upstream:xstatic-packages/xstatic-bootstrap-scss
   ref: d81b7b71c6c088406e90d1bdba0e10f0a304bbdc
   unpetrify-ref: 3.1.1.1
+  build-system: python-distutils
 - name: xstatic-d3
   repo: upstream:xstatic-packages/xstatic-d3
   ref: 1e754e73c801fb9315995ffeb95ae51233c4fcaf
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-hogan
   repo: upstream:xstatic-packages/xstatic-hogan
   ref: 9e39977f6a6744810b08fa0323147e9f31dbd363
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-font-awesome
   repo: upstream:xstatic-packages/xstatic-font-awesome
   ref: c13aad1b95b1d84e73f2565a18a5a8e2bd2194a7
   unpetrify-ref: 4.2.0.0
+  build-system: python-distutils
 - name: xstatic-jasmine
   repo: upstream:xstatic-packages/xstatic-jasmine
   ref: a55f5db1dbe59b23c7d6284250bf4eac1d0143c3
   unpetrify-ref: 2.1.2.0
+  build-system: python-distutils
 - name: xstatic-jquery
   repo: upstream:xstatic-packages/xstatic-jquery
   ref: e91c5bf82535a62c1cfac61b5efb6b5c0157c1f5
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-jquery-bootstrap-wizard
   repo: upstream:xstatic-packages/xstatic-jquery-bootstrap-wizard
   ref: 07ae7e3a15b3af3d3d378d1f2412fe503ee42142
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-jquery-migrate
   repo: upstream:xstatic-packages/xstatic-jquery-migrate
   ref: 989b3b31106727542dd83810c3b952f90d8cdb8f
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-jquery-quicksearch
   repo: upstream:xstatic-packages/xstatic-jquery-quicksearch
   ref: f5221c8c30507340846d97d6db41a782e7c63316
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-jquery-tablesorter
   repo: upstream:xstatic-packages/xstatic-jquery-tablesorter
   ref: eb78328391f44a9a88033e1aede1a605902c5551
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-jquery-ui
   repo: upstream:xstatic-packages/xstatic-jquery-ui
   ref: b494369430dafd8ac4ddbe90efb9f8ad20a6e6d1
   unpetrify-ref: 1.11.0.1
+  build-system: python-distutils
 - name: xstatic-magic-search
   repo: upstream:xstatic-packages/xstatic-magic-search
   ref: 60d6954a36e54afa1f925324e7b527d235bdb484
   unpetrify-ref: 0.2.0.1
+  build-system: python-distutils
 - name: xstatic-jsencrypt
   repo: upstream:xstatic-packages/xstatic-jsencrypt
   ref: 5c0f088310ecd602e3aaf5e683385b0d27258409
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-qunit
   repo: upstream:xstatic-packages/xstatic-qunit
   ref: c3189eaa77c68c149a40b8c0afc8722cf394bd1f
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-rickshaw
   repo: upstream:xstatic-packages/xstatic-rickshaw
   ref: 6427ca5406852bc779d6918f487bb0fe3f063e77
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-spin
   repo: upstream:xstatic-packages/xstatic-spin
   ref: 74b4c0d0ff12db1f84787246857d5e925ff6883f
   unpetrify-ref: master
+  build-system: python-distutils
 - name: xstatic-termjs
   repo: upstream:xstatic-packages/xstatic-termjs
   ref: a4ac0b809ab0d84c636a760215839bb6d68d0113
   unpetrify-ref: master
+  build-system: python-distutils

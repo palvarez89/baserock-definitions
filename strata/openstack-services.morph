@@ -30,10 +30,12 @@ chunks:
   repo: upstream:openstack/oslo-rootwrap
   ref: f485b93f475b119e3b8fa6c9cf740207e2d2d7ac
   unpetrify-ref: 1.6.0
+  build-system: python-distutils
 - name: py-amqp
   repo: upstream:python-packages/py-amqp
   ref: 875b10d1715def640042c7ff2f42c00a6c07eed1
   unpetrify-ref: 1.4.6
+  build-system: python-distutils
 - name: librabbitmq
   morph: strata/openstack-services/librabbitmq.morph
   repo: upstream:python-packages/librabbitmq
@@ -45,10 +47,12 @@ chunks:
   repo: upstream:python-packages/anyjson
   ref: 016506078e94718e1fe750eb5083ab5ba07498c8
   unpetrify-ref: 0.3.3
+  build-system: python-distutils
 - name: kombu
   repo: upstream:python-packages/kombu
   ref: 0287b11ab0698d9c52ef1b1683ced23123d43ba4
   unpetrify-ref: v3.0.26
+  build-system: python-distutils
   build-depends:
   - anyjson
   - py-amqp
@@ -57,50 +61,61 @@ chunks:
   repo: upstream:python-packages/sqlalchemy
   ref: ff34c480dfd2b8b7c72339d196f5477980a5124c
   unpetrify-ref: rel_0_9_8
+  build-system: python-distutils
 - name: alembic
   repo: upstream:python-packages/alembic
   ref: 6ae4196acc0170ebef29f617b49376b371a8923c
   unpetrify-ref: rel_0_7_6
+  build-system: python-distutils
   build-depends:
   - sqlalchemy
 - name: lockfile
   repo: upstream:python-packages/lockfile
   ref: 777758cdf4520271370b3338b86b5c66f9b104f0
   unpetrify-ref: master
+  build-system: python-distutils
 - name: dogpile-core
   repo: upstream:python-packages/dogpile-core
   ref: 3e6f0f86b4161b48898e656039154092426e5cc8
   unpetrify-ref: rel_0_4_1
+  build-system: python-distutils
 - name: dogpile-cache
   repo: upstream:python-packages/dogpile-cache
   ref: 1c753914b335b4391bc5847a87b7c52ca81c2bc6
   unpetrify-ref: rel_0_5_4
+  build-system: python-distutils
   build-depends:
   - dogpile-core
 - name: pyjwt
   repo: upstream:python-packages/pyjwt
   ref: 739efeff4c6c1fc30ab5cf5eb0ac337e8ee107d7
   unpetrify-ref: 0.2.3
+  build-system: python-distutils
 - name: creole
   repo: upstream:python-packages/creole
   ref: 6390231688adb5d8678a71cd33204e9bca555d4a
   unpetrify-ref: v1.2.1
+  build-system: python-distutils
 - name: pygments
   repo: upstream:python-packages/pygments
   ref: f41e8c594e76855611b3b3dfca300894bd29f1c4
   unpetrify-ref: 2.0rc1
+  build-system: python-distutils
 - name: docutils
   repo: upstream:python-packages/docutils
   ref: 1976ba91eff979abc3e13e5d8cb68324833af6a0
   unpetrify-ref: docutils-0.12
+  build-system: python-distutils
 - name: snowballstemmer
   repo: upstream:python-packages/snowballstemmer.git
   ref: f0d81ce1606d685029302ea073b59d9437d12569
   unpetrify-ref: master
+  build-system: python-distutils
 - name: sphinx
   repo: upstream:python-packages/sphinx
   ref: e76c9771bad16e68cdb7deb18b4d13de0a718c68
   unpetrify-ref: 1.3b1
+  build-system: python-distutils
   build-depends:
   - pygments
   - docutils
@@ -109,18 +124,22 @@ chunks:
   repo: upstream:python-packages/pystache.git
   ref: cce3ebd658f28aeb7dd54561554dedf5259303dc
   unpetrify-ref: baserock/v0.5.4
+  build-system: python-distutils
 - name: pies
   repo: upstream:python-packages/pies.git
   ref: 593dcce07fdb3e8d0053a863a7aba7f2ce8a6c9c
   unpetrify-ref: 2.6.1
+  build-system: python-distutils
 - name: natsort
   repo: upstream:python-packages/natsort.git
   ref: ce94d418c3849e891f0508b41f5bccc4ae1d4e4d
   unpetrify-ref: 3.5.1
+  build-system: python-distutils
 - name: isort
   repo: upstream:python-packages/isort.git
   ref: 9d1b03b6e1fd2f87be1c635d6159a76a131f8155
   unpetrify-ref: 3.9.0
+  build-system: python-distutils
   build-depends:
   - pies
   - natsort
@@ -128,14 +147,17 @@ chunks:
   repo: upstream:python-packages/pep8.git
   ref: 164066c4d85f212f5f4a11699b848942c678b947
   unpetrify-ref: 1.5.7
+  build-system: python-distutils
 - name: pyflakes
   repo: upstream:python-packages/pyflakes.git
   ref: 71b7b6776856912d50a0b9a85a8ea2a1dc7eb75c
   unpetrify-ref: 0.8.1
+  build-system: python-distutils
 - name: smartypants
   repo: upstream:python-packages/smartypants.git
   ref: e89b6e7e119694edcd414a556c634d5ca85bff76
   unpetrify-ref: v1.8.6
+  build-system: python-distutils
   build-depends:
   - isort
   - pep8
@@ -144,6 +166,7 @@ chunks:
   repo: upstream:python-packages/pycco
   ref: 22e157e525760e843dba391ca85fbe9bd35fdc5b
   unpetrify-ref: master
+  build-system: python-distutils
   build-depends:
   - pygments
   - pystache
@@ -152,56 +175,68 @@ chunks:
   repo: upstream:python-packages/dateutil
   ref: 8c6026ba09716a4e164f5420120bfe2ebb2d9d82
   unpetrify-ref: trunk
+  build-system: python-distutils
 - name: posix-ipc-tarball
   repo: upstream:python-packages/posix-ipc-tarball
   ref: f3765db04b903b3671733e07cf1541a51966dd14
   unpetrify-ref: posix_ipc-0.9.8
+  build-system: python-distutils
 - name: paste
   repo: upstream:python-packages/paste
   ref: 4c177fce89fee925f0f4fbfde00ce2e1252562c0
   unpetrify-ref: master
+  build-system: python-distutils
 - name: repoze-lru
   repo: upstream:python-packages/repoze-lru
   ref: 29c8281dee7fe8dae8c66c7c40ce7c058ec2ab0f
   unpetrify-ref: 0.6
+  build-system: python-distutils
 - name: routes
   repo: upstream:python-packages/routes
   ref: 745a9207d9e48e309e292172543bc21075e65e09
   unpetrify-ref: v2.1
+  build-system: python-distutils
   build-depends:
   - repoze-lru
 - name: passlib
   repo: upstream:python-packages/passlib
   ref: f407312597727a08440e41bc8e31d3b3b334c66f
   unpetrify-ref: 1.6.2
+  build-system: python-distutils
 - name: tempita
   repo: upstream:python-packages/tempita
   ref: b2b67795a009e9f825cbd855d766b78a00273f10
   unpetrify-ref: 0.5
+  build-system: python-distutils
 - name: numpy
   repo: upstream:python-packages/numpy.git
   ref: 65293874fb101907e1648e6b4fafd30d0aa1172a
   unpetrify-ref: baserock/v1.9.0
+  build-system: python-distutils
   build-depends:
   - sphinx
 - name: websockify
   repo: upstream:python-packages/websockify
   ref: 2f025741f86419d4ad5702dabf5903db3dbfe77c
   unpetrify-ref: baserock/v0.6.1-1-g2f02574
+  build-system: python-distutils
   build-depends:
   - numpy
 - name: httplib2
   repo: upstream:python-packages/httplib2
   ref: f9f797223d075874b0031aea832152688ec23fef
   unpetrify-ref: v0.9.1
+  build-system: python-distutils
 - name: suds
   repo: upstream:python-packages/suds
   ref: e7a317f1a20a4d3c86ac85785bb32d24c3d1078f
   unpetrify-ref: baserock/release-0.4
+  build-system: python-distutils
 - name: jsonrpclib
   repo: upstream:python-packages/jsonrpclib
   ref: 53c8ffcfe4dd1718086cc551dce8ac459e8abc67
   unpetrify-ref: master
+  build-system: python-distutils
 - name: rtslib-fb
   repo: upstream:python-packages/rtslib-fb
   ref: 8ffb4739d596fb1aac5d62d173d1e6f80270af9d
@@ -211,36 +246,43 @@ chunks:
   repo: upstream:python-packages/pexpect
   ref: 671417beb41c21f772687c565196fdde444b053b
   unpetrify-ref: 3.3
+  build-system: python-distutils
 - name: ply
   repo: upstream:python-packages/ply.git
   ref: 6513f3537d80f483ec9c7e36d52e87f107a57f23
   unpetrify-ref: master
+  build-system: python-distutils
 - name: jsonpath-rw
   repo: upstream:python-packages/jsonpath-rw
   ref: f4cfe56b8e8370116c5275ddcea970e9a68fd75d
   unpetrify-ref: 1.2.3
+  build-system: python-distutils
   build-depends:
   - ply
 - name: logutils
   repo: upstream:python-packages/logutils.git
   ref: 095f14efbaaf838b7772bffd36a466abb9668efe
   unpetrify-ref: 0.3.3
+  build-system: python-distutils
 - name: pecan
   repo: upstream:python-packages/pecan
   ref: c7f241fd6bb8a0b10e02b8b43aaf1810c312cfbf
   unpetrify-ref: 0.8.0
+  build-system: python-distutils
   build-depends:
   - logutils
 - name: croniter
   repo: upstream:python-packages/croniter
   ref: 0c3aeac05791cb4ece9e30da29442e9cd5b22f36
   unpetrify-ref: 0.3.5
+  build-system: python-distutils
   build-depends:
   - dateutil
 - name: msgpack-python
   repo: upstream:python-packages/msgpack-python
   ref: 61bac2f586e82313a0e618093bfed2435cd18983
   unpetrify-ref: 0.4.2
+  build-system: python-distutils
 - name: qpid-python
   morph: strata/openstack-services/qpid-python.morph
   repo: upstream:python-packages/qpid-python
@@ -250,6 +292,7 @@ chunks:
   repo: upstream:python-packages/simplegeneric-tarball
   ref: 601fab9b154c557dfd848d531a8969f4697d1aa2
   unpetrify-ref: simplegeneric_0.8.1.orig
+  build-system: python-distutils
 - name: ipaddr-py
   morph: strata/openstack-services/ipaddr-py.morph
   ref: c813f4790d1092b1515ee18fe8270180ed3cc5cb
@@ -259,6 +302,7 @@ chunks:
   repo: upstream:python-packages/wsme
   ref: 99d7668789cc6252398222549599d1363cddb081
   unpetrify-ref: 0.6.1
+  build-system: python-distutils
   build-depends:
   - ipaddr-py
   - simplegeneric-tarball
@@ -266,6 +310,7 @@ chunks:
   repo: upstream:python-packages/pysnmp
   ref: 1b377afeaf9ee96ab1d48aeebb2b7a6d65a4ac9d
   unpetrify-ref: release_4_2_5_tag
+  build-system: python-distutils
 - name: thrift
   morph: strata/openstack-services/thrift.morph
   repo: upstream:thrift
@@ -275,46 +320,55 @@ chunks:
   repo: upstream:python-packages/retrying
   ref: cab083eb5791615fadbc0c98ad77a70d64b77d0d
   unpetrify-ref: v1.3.1
+  build-system: python-distutils
 - name: oslo-context
   repo: upstream:openstack/oslo-context
   ref: 1c4757a9fb41e47867bd9b8d390057ad7636b76f
   unpetrify-ref: 0.2.0
+  build-system: python-distutils
 - name: oslo-middleware
   repo: upstream:openstack/oslo-middleware
   ref: bff184a2b5b1a0d3d22508a7544075378aca9e13
   unpetrify-ref: 1.2.0
+  build-system: python-distutils
   build-depends:
   - oslo-context
 - name: oslo-messaging
   repo: upstream:openstack/oslo-messaging
   ref: 562c41bb78f578ff9c27633c04ac6dd914c55f5a
   unpetrify-ref: 1.8.2
+  build-system: python-distutils
   build-depends:
   - kombu
 - name: ordereddict
   repo: upstream:python-packages/ordereddict-tarball
   ref: 332cd0213829089dd827a32e7c5e64c41ce79cbc
   unpetrify-ref: ordereddict-1.1
+  build-system: python-distutils
 - name: trollius
   repo: upstream:python-packages/trollius
   ref: fe6f8d61b1257bc01cdf4f789aaf4a8ec3d6f8ec
   unpetrify-ref: trollius-1.0.4
+  build-system: python-distutils
   build-depends:
   - ordereddict
 - name: aioeventlet
   repo: upstream:python-packages/aioeventlet
   ref: 3cac0d7740592a380a7dadb2ddcdda000cae2bda
   unpetrify-ref: 0.4
+  build-system: python-distutils
   build-depends:
   - trollius
 - name: urllib3
   repo: upstream:python-packages/urllib3
   ref: 8434c77d845255c4002b505c6c2d79c3b35def0d
   unpetrify-ref: 1.10.4
+  build-system: python-distutils
 - name: oslo-concurrency
   repo: upstream:openstack/oslo-concurrency
   ref: a2473ed0a59e4553766ffcb1ee8f06cb98b14a48
   unpetrify-ref: 1.8.0
+  build-system: python-distutils
   build-depends:
   - posix-ipc-tarball
   - retrying
@@ -322,6 +376,7 @@ chunks:
   repo: upstream:openstack/oslo-vmware
   ref: 5de2c31e9d24f40fc7d33ddb1ce407ffdc6f366c
   unpetrify-ref: 0.11.1
+  build-system: python-distutils
   build-depends:
   - oslo-concurrency
   - suds
@@ -331,10 +386,12 @@ chunks:
   repo: upstream:openstack/taskflow
   ref: 28bece7c7c97199b8d941b16865c3670c323589a
   unpetrify-ref: 0.7.1
+  build-system: python-distutils
 - name: sqlalchemy-migrate
   repo: upstream:python-packages/sqlalchemy-migrate
   ref: e57ee4c3a4247c634980cbeba74d04a01253967d
   unpetrify-ref: 0.9.6
+  build-system: python-distutils
   build-depends:
   - sqlalchemy
   - tempita
@@ -342,6 +399,7 @@ chunks:
   repo: upstream:python-packages/oauthlib
   ref: fd239fca84644896b1971cf24bc6213d065adb86
   unpetrify-ref: 0.7.2
+  build-system: python-distutils
   build-depends:
   - docutils
   - creole
@@ -352,16 +410,19 @@ chunks:
   repo: upstream:python-packages/happybase
   ref: 90a4b7ef741f0ecfe5145693f64c6f7180b9ba3d
   unpetrify-ref: 0.8
+  build-system: python-distutils
   build-depends:
   - thrift
 - name: osprofiler
   repo: upstream:python-packages/osprofiler
   ref: bbe39b517263017c9db56ae1d904d08846eacff7
   unpetrify-ref: 0.3.0
+  build-system: python-distutils
 - name: pycadf
   repo: upstream:python-packages/pycadf
   ref: 9501f4f74c5d800ae43edbe52680e285cf98c710
   unpetrify-ref: 0.9.0
+  build-system: python-distutils
   build-depends:
   - oslo-context
   - oslo-messaging
@@ -370,6 +431,7 @@ chunks:
   repo: upstream:openstack/keystonemiddleware
   ref: 0e63b0e13d0a7919fddd7576c99bc15a45d31a9f
   unpetrify-ref: 1.5.1
+  build-system: python-distutils
   build-depends:
   - pycadf
   - oslo-context
@@ -377,6 +439,7 @@ chunks:
   repo: upstream:openstack/oslo-db
   ref: 3e6a30c396aa42ef0eccb5b3625af728d8d3f437
   unpetrify-ref: 1.7.1
+  build-system: python-distutils
   build-depends:
   - alembic
   - sqlalchemy
@@ -385,6 +448,7 @@ chunks:
   repo: upstream:openstack/glance_store.git
   ref: ea88e503b617a7ac9a0ae7e537d6517e9992a104
   unpetrify-ref: 0.4.0
+  build-system: python-distutils
   build-depends:
   - ordereddict
   - oslo-concurrency
@@ -392,16 +456,19 @@ chunks:
   repo: upstream:openstack/oslo-log
   ref: 54e3d0e705accfaa4c73a01fc2ea1480fcc0024e
   unpetrify-ref: 1.0.0
+  build-system: python-distutils
   build-depends:
   - oslo-context
 - name: oslo-policy
   repo: upstream:openstack/oslo-policy
   ref: 4c8f38cd1d088c46be314b47f6774e721813c6d9
   unpetrify-ref: 0.3.2
+  build-system: python-distutils
 - name: semantic-version
   repo: upstream:python-packages/semantic-version
   ref: 2174bdcae6e46f5f68f5b8ea984a695db9f41bcf
   unpetrify-ref: v2.4.1
+  build-system: python-distutils
 - name: glance
   morph: strata/openstack-services/glance.morph
   repo: upstream:openstack/glance
@@ -435,10 +502,12 @@ chunks:
   repo: upstream:python-packages/sqlparse
   ref: 991e7348075accae6d08025212251af21e92e664
   unpetrify-ref: 0.1.13
+  build-system: python-distutils
 - name: pysaml2
   repo: upstream:python-packages/pysaml2.git
   ref: 13ff5e8899300c9b359fa1bdfdb3d412be0d7356
   unpetrify-ref: 2.4.0
+  build-system: python-distutils
 - name: keystone
   morph: strata/openstack-services/keystone.morph
   repo: upstream:openstack/keystone
@@ -487,22 +556,27 @@ chunks:
   repo: upstream:python-packages/wsgiref.git
   ref: e8360785eef259394e13b2062407edc3c2cbc1e0
   unpetrify-ref: baserock/master
+  build-system: python-distutils
 - name: rfc3986
   repo: upstream:python-packages/python-rfc3986.git
   ref: 9817ec3e47bca8fba9a7cac56d785e9d644f7473
   unpetrify-ref: rfc3986-0.2.0
+  build-system: python-distutils
 - name: urwid
   repo: upstream:python-packages/urwid
   ref: 838839f7a300a774240d52f943aafd6ff44b2413
   unpetrify-ref: release-1.3.0
+  build-system: python-distutils
 - name: configshell-fb
   repo: upstream:python-packages/configshell-fb
   ref: 8c151ccdd75956da60b2304417c41a60a2c28231
   unpetrify-ref: v1.1.fb17
+  build-system: python-distutils
 - name: targetcli-fb
   repo: upstream:python-packages/targetcli
   ref: c62610f3c2da6b4d364028c18bcc7f0d3da54477
   unpetrify-ref: v2.1.fb39
+  build-system: python-distutils
   build-depends:
   - configshell-fb
   - rtslib-fb
@@ -510,6 +584,7 @@ chunks:
   repo: upstream:sysfsutils
   ref: 237bf36e664db92f95b75067bf0f246726993254
   unpetrify-ref: sysfsutils-2_1_0
+  build-system: autotools
 - name: open-iscsi
   morph: strata/openstack-services/open-iscsi.morph
   repo: upstream:open-iscsi
@@ -565,18 +640,22 @@ chunks:
   repo: upstream:python-packages/pymemcache
   ref: 0646937c2bfebdb557ec2c01f0e42a9af79ad49d
   unpetrify-ref: v1.2.9
+  build-system: python-distutils
 - name: sysv_ipc-tarball
   repo: upstream:python-packages/sysv-ipc-tarball.git
   ref: a77e3a63f004e6ee789fa05e4a5bbc333b1529f1
   unpetrify-ref: sysv_ipc-0.6.8
+  build-system: python-distutils
 - name: redis-py
   repo: upstream:python-packages/redis-py
   ref: 4d0b0afe9c9a431ed50c3e9fb95a0aa88b1f1038
   unpetrify-ref: 2.10.3
+  build-system: python-distutils
 - name: tooz
   repo: upstream:python-packages/tooz
   ref: 8086661f404e61c22f0dd1d07b57a864862a0869
   unpetrify-ref: 0.13.2
+  build-system: python-distutils
   build-depends:
   - pymemcache
   - msgpack-python
@@ -586,14 +665,17 @@ chunks:
   repo: upstream:python-packages/kafka-python
   ref: 8675c3e3e620df5ba9fd7e570c554b773429bd78
   unpetrify-ref: v0.9.3
+  build-system: python-distutils
 - name: werkzeug
   repo: upstream:python-packages/werkzeug
   ref: 96e49709d627a7766077cff4c98ebf3cad868ceb
   unpetrify-ref: v0.10.4
+  build-system: python-distutils
 - name: requests-aws
   repo: upstream:python-packages/python-requests-aws
   ref: 48fe401c78eb1b1048cd20e2d26015585a7986cb
   unpetrify-ref: master
+  build-system: python-distutils
 - name: ceilometer
   repo: upstream:openstack/ceilometer
   morph: strata/openstack-services/ceilometer.morph
@@ -627,10 +709,12 @@ chunks:
   repo: upstream:openstack/django_openstack_auth
   ref: 0e1f7b78277850634992a594132921efb83256e0
   unpetrify-ref: 1.2.0
+  build-system: python-distutils
 - name: pint
   repo: upstream:python-packages/pint
   ref: e7e7de5ca2e1c19963be8a918369fb19186f9a73
   unpetrify-ref: 0.6
+  build-system: python-distutils
 - name: horizon
   morph: strata/openstack-services/horizon.morph
   repo: upstream:openstack/horizon
@@ -650,10 +734,12 @@ chunks:
   repo: upstream:python-packages/pyserial
   ref: bcfc1ec2fdb9a8c9c867481d7673e85fe512e667
   unpetrify-ref: release2_7
+  build-system: python-distutils
 - name: tempest-lib
   repo: upstream:openstack/tempest-lib
   ref: c307ffc525d896e2071319c8067aec805804f92b
   unpetrify-ref: 0.5.0
+  build-system: python-distutils
 - name: tempest
   morph: strata/openstack-services/tempest.morph
   repo: upstream:openstack/tempest

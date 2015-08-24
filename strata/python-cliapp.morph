@@ -14,11 +14,13 @@ chunks:
   repo: upstream:python-coverage-test-runner
   ref: 8ea9421ac3384b2e88e0c36f2cfa52586c4798b7
   unpetrify-ref: baserock/morph
+  build-system: python-distutils
   build-depends:
   - python-coveragepy
 - name: cliapp
   repo: upstream:cliapp
   ref: cec20cedd062a3aef1b04f997e77b45090c07806
   unpetrify-ref: baserock/morph
+  build-system: python-distutils
   build-depends:
   - python-coverage-test-runner

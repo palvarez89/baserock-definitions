@@ -14,6 +14,7 @@ chunks:
   repo: upstream:libgit2
   ref: 4b0a36e881506a02b43a4ae3c19c93c919b36eeb
   unpetrify-ref: master
+  build-system: cmake
 - name: nginx
   morph: strata/webtools/nginx.morph
   repo: upstream:nginx
