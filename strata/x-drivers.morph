@@ -14,6 +14,11 @@ chunks:
   ref: b49c293e67cd88424ff40a2ca4e58b28528691d7
   unpetrify-ref: xf86-video-vesa-2.3.4
   build-system: autotools
+- name: xorg-driver-xf86-video-intel
+  repo: upstream:xorg-driver-xf86-video-intel
+  ref: 57725564179b8ddb48d5c9437fde91a6c02c0740
+  unpetrify-ref: 2.99.917-381-g5772556
+  build-system: autotools
 - name: xorg-driver-xf86-input-evdev
   repo: upstream:xorg-driver-xf86-input-evdev
   ref: 24368d8379cc47693dd1623168a6125faff57311
