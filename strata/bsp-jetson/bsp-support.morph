@@ -1,6 +1,0 @@
-name: bsp-support
-kind: chunk
-install-commands:
-- install -o 0 -g 0 -m 644 -D nv-ondemand-cpufreq-governor.service "$DESTDIR/usr/lib/systemd/system/nv-ondemand-cpufreq-governor.service"
-- install -d "$DESTDIR/usr/lib/systemd/system/sysinit.target.wants"
-- ln -s /usr/lib/systemd/system/nv-ondemand-cpufreq-governor.service "$DESTDIR/usr/lib/systemd/system/sysinit.target.wants/nv-ondemand-cpufreq-governor.service"
