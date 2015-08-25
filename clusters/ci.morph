@@ -42,7 +42,7 @@ systems:
   deploy:
     xfce-system-x86_64:
       type: extensions/rawdisk
-      location: /xfce-system-x86_64.img
+      location: xfce-system-x86_64.img
       DISK_SIZE: 4G
       KERNEL_ARGS: vga=788
 - morph: systems/weston-system-armv7lhf-jetson.morph
