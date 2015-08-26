@@ -45,12 +45,7 @@ chunks:
 
 # This chunk isn't required to use Morph, but is required to do automated
 # migrations within the definitions.git repo.
-#
-# Currently we include a forked version that includes some support for
-# preserving blank lines. This is quite useful when operating on .morph files.
-# The patches have been submitted upstream here:
-# https://bitbucket.org/ruamel/yaml/pull-request/3
 - name: ruamel.yaml
   repo: upstream:python-packages/ruamel.yaml
-  ref: 840b3ccdb306c6aa6d874474e621ae5596595ae4
-  unpetrify-ref: baserock/sam/blank-line-preservation-1
+  ref: f3de88b82bf5e3902c44f6c30aed065e56626ee6
+  unpetrify-ref: 0.10.5
