@@ -1,0 +1,13 @@
+name: python3
+kind: chunk
+build-system: autotools
+configure-commands:
+- |
+  ./configure --prefix="$PREFIX"  \
+              --sysconfdir=/etc   \
+              --enable-shared     \
+              --with-system-expat \
+              --with-system-ffi
+post-install-commands:
+- test -x "$DESTDIR"/"$PREFIX"/bin/python || ln -s python3.4 "$DESTDIR"/"$PREFIX"/bin/python
+- test -x "$DESTDIR"/"$PREFIX"/bin/python3 || ln -s python3.4 "$DESTDIR"/"$PREFIX"/bin/python3

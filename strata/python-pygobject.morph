@@ -3,7 +3,7 @@ kind: stratum
 description: |
   Python GObject bindings
 build-depends:
-- morph: strata/core.morph
+- morph: strata/python2-core.morph
 - morph: strata/glib-common.morph
 chunks:
 - name: pygobject

@@ -3,6 +3,7 @@ kind: stratum
 description: Basic userland runtime system
 build-depends:
 - morph: strata/coreutils-common.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: bash-completion
   repo: upstream:bash-completion

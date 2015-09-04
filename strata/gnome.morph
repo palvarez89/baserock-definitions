@@ -11,7 +11,7 @@ build-depends:
 - morph: strata/multimedia-gstreamer.morph
 - morph: strata/network-security.morph
 - morph: strata/python-pygobject.morph
-- morph: strata/python3-core.morph
+- morph: strata/python2-core.morph
 - morph: strata/wayland-generic.morph
 - morph: strata/x-generic.morph
 chunks:

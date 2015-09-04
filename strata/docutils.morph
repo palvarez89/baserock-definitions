@@ -2,7 +2,7 @@ name: docutils
 kind: stratum
 description: Stuff for generating documentation
 build-depends:
-- morph: strata/core.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: xml-catalog
   morph: strata/docutils/xml-catalog.morph

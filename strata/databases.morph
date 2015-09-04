@@ -4,7 +4,7 @@ description: some popular databases and some utils related to databases
 build-depends:
 - morph: strata/tools.morph
 - morph: strata/nfs.morph
-- morph: strata/python-core.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: postgresql
   repo: upstream:postgresql

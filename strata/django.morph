@@ -3,7 +3,7 @@ kind: stratum
 description: Stratum with Django and its plugins and dependencies.
 build-depends:
 - morph: strata/foundation.morph
-- morph: strata/python-core.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: django
   repo: upstream:python-packages/django

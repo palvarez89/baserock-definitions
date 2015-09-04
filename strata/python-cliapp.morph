@@ -3,7 +3,7 @@ kind: stratum
 description: |
   Cliapp command line application framework.
 build-depends:
-- morph: strata/python-core.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: python-coveragepy
   morph: strata/python-cliapp/python-coveragepy.morph

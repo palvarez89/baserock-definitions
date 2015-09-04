@@ -1,20 +1,28 @@
-name: python-core
+name: python2-core
 kind: stratum
-description: Core python packages
+description: Core python 2 packages
 build-depends:
 - morph: strata/core.morph
 chunks:
+- name: python2
+  morph: strata/python2-core/python2.morph
+  repo: upstream:cpython
+  ref: 57af3f22d11600ca98c0c9073d0b3b57d43f7c4b
+  unpetrify-ref: v2.7.10
 - name: python-setuptools
   repo: upstream:python-setuptools-bitbucket
   ref: 0aa6a4de5931d02876428388678802db2371fd37
   unpetrify-ref: baserock/master
   build-system: python-distutils
+  build-depends:
+  - python2
 - name: mako
   repo: upstream:python-packages/mako.git
   ref: 285bc818a50ccc0f9549630f7c4f4c250585c3e7
   unpetrify-ref: rel_1_0_0
   build-system: python-distutils
   build-depends:
+  - python2
   - python-setuptools
 - name: pbr
   repo: upstream:pbr
@@ -22,31 +30,49 @@ chunks:
   unpetrify-ref: 0.10.7
   build-system: python-distutils
   build-depends:
+  - python2
   - python-setuptools
 - name: python-requests
   repo: upstream:python-requests
   ref: b83131779c701720a9ae9efae78996277d416269
   unpetrify-ref: v2.5.1
   build-system: python-distutils
+  build-depends:
+  - python2
 - name: six
   repo: upstream:six
   ref: 8cfbff6b764af86d825086fa1637aa009e90d75a
   unpetrify-ref: 1.9.0
   build-system: python-distutils
+  build-depends:
+  - python2
 - name: pyyaml
-  morph: strata/python-core/pyyaml.morph
+  morph: strata/python2-core/pyyaml.morph
   repo: upstream:pyyaml
   ref: d9fbcceaed39d955f6871b07c61dc42f824285c1
   unpetrify-ref: baserock/morph
   build-depends:
+  - python2
   - python-setuptools
+- name: cython2
+  repo: upstream:cython
+  ref: 4dd8e762fa51d01775506fbbc102c45dbcea065d
+  unpetrify-ref: 0.22
+  build-system: python-distutils
+  build-depends:
+  - python2
 - name: python-lxml
   repo: upstream:python-lxml
   ref: 14505bc62f5f1fc9fb0ff007955f3e67ab4562bb
   unpetrify-ref: lxml-3.4.0
   build-system: python-distutils
+  build-depends:
+  - python2
+  - cython2
 - name: python-markdown
   repo: upstream:python-markdown
   ref: f0c5b71acbc02af60a33d67c59558bb513b25e74
   unpetrify-ref: 2.5.1-final
   build-system: python-distutils
+  build-depends:
+  - python2

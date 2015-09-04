@@ -7,10 +7,8 @@ strata:
   morph: strata/build-essential.morph
 - name: core
   morph: strata/core.morph
-- name: python-core
-  morph: strata/python-core.morph
-- name: python3-core
-  morph: strata/python3-core.morph
+- name: python2-core
+  morph: strata/python2-core.morph
 - name: python-pygobject
   morph: strata/python-pygobject.morph
 - name: python-common

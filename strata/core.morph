@@ -119,11 +119,11 @@ chunks:
   ref: 24adc227bc29cd17e39df097fbca389c7724cd14
   unpetrify-ref: sqlite-autoconf-3080801
   build-system: autotools
-- name: cpython
-  morph: strata/core/cpython.morph
+- name: python3
+  morph: strata/core/python3.morph
   repo: upstream:cpython
-  ref: 57af3f22d11600ca98c0c9073d0b3b57d43f7c4b
-  unpetrify-ref: v2.7.10
+  ref: 3f1e8a3de39ff8a807720d57f49a91d7449435ad
+  unpetrify-ref: v3.4.3
   build-depends:
   - openssl-new
   - bzip2
@@ -139,7 +139,7 @@ chunks:
   unpetrify-ref: baserock/debian/20140325
   build-depends:
   - automake
-  - cpython
+  - python3
 - name: curl
   morph: strata/core/curl.morph
   repo: upstream:curl
@@ -166,7 +166,7 @@ chunks:
   unpetrify-ref: v2.3.0
   build-depends:
   - autoconf
-  - cpython
+  - python3
   - curl
   - gettext-tarball
   - libexpat
@@ -340,7 +340,7 @@ chunks:
   - autoconf
   - automake
   - file
-  - cpython
+  - python3
   - libtool
   - xz
 - name: libxslt
@@ -388,7 +388,7 @@ chunks:
   unpetrify-ref: 0.22
   build-system: python-distutils
   build-depends:
-  - cpython
+  - python3
 - name: gperf
   morph: strata/core/gperf.morph
   repo: upstream:gperf

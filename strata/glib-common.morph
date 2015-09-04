@@ -2,7 +2,7 @@ name: glib-common
 kind: stratum
 description: GLib and dependencies
 build-depends:
-- morph: strata/core.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: gtk-doc-stub
   repo: upstream:gtk-doc-stub

@@ -1,6 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
-import urllib2
+import urllib.request
 import os
 import json
 
@@ -15,14 +15,14 @@ def run(*args):
         extensions = [None]
 
     for i, each in enumerate(content):
-        req = urllib2.Request(URL, each)
-        response = urllib2.urlopen(req)
-        the_page = response.read()
+        req = urllib.request.Request(URL, each.encode('utf-8'))
+        response = urllib.request.urlopen(req)
+        the_page = response.read().decode('utf-8')
         key = json.loads(the_page)['key']
         url = "http://paste.baserock.org/%s" % key
         if extensions[i]:
             url += extensions[i]
-        print url
+        print(url)
 
 if __name__ == '__main__':
     import sys

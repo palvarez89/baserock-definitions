@@ -3,7 +3,7 @@ kind: stratum
 description: |
   Python modules for web applications using Web Server Gateway Interface.
 build-depends:
-- morph: strata/python-core.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: bottle
   repo: upstream:bottle
