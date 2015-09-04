@@ -39,3 +39,17 @@ chunks:
   build-depends:
   - at-spi2-core
   - atk
+- name: libcroco
+  repo: upstream:libcroco
+  ref: 9207f349d1c97618ab38e6b095207bbd8184d844
+  unpetrify-ref: 0.6.8-30-g9207f34
+  build-system: autotools
+- name: librsvg
+  repo: upstream:librsvg
+  ref: 25d5f8b7076535fecb972d6454807ba56452991a
+  unpetrify-ref: 2.40.10
+  build-system: autotools
+  build-depends:
+  - gdk-pixbuf
+  - libcroco
+  - pango
