@@ -17,7 +17,7 @@ chunks:
   build-system: python-distutils
 - name: baserock-import
   repo: baserock:baserock/import
-  ref: 461979515ca30cd8e5acdec4cdb5ca3adeb6a9e7
+  ref: f74e7e428325be1cb018898a52d0aed4aec7a549
   unpetrify-ref: master
   build-system: python-distutils
   build-depends:
