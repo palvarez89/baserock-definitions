@@ -27,3 +27,8 @@ chunks:
   build-depends:
   - mtdev
   - libevdev
+- name: libxkbcommon
+  morph: strata/input-common/libxkbcommon.morph
+  repo: upstream:xorg-lib-libxkbcommon
+  ref: c43c3c866eb9d52cd8f61e75cbef1c30d07f3a28
+  unpetrify-ref: xkbcommon-0.5.0
