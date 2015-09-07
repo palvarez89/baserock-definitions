@@ -48,8 +48,8 @@ chunks:
 - name: systemd
   morph: strata/foundation/systemd.morph
   repo: upstream:systemd
-  ref: dde8bb32b12c855509777ce52ff59a835155ac78
-  unpetrify-ref: v220
+  ref: e1439a1472c5f691733b8ef10e702beac2496a63
+  unpetrify-ref: v225
   build-depends:
   - dbus-pre
   - kmod

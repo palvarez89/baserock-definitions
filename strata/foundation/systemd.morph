@@ -1,21 +1,12 @@
 name: systemd
 kind: chunk
 build-system: autotools
-pre-configure-commands:
-# systemd prematurely kills the user session. This is a known bug in systemd
-# https://bugs.freedesktop.org/show_bug.cgi?id=70593
-- |
-  cat >> units/user@.service.m4.in <<EOF
-  KillSignal=SIGCONT
-  ExecStop=/bin/kill -TERM \$MAINPID
-  EOF
 configure-commands:
 - sh autogen.sh
 # KILL added because it picks up /usr/bin/kill, which is not installed on
 # all systems
 - |
   KILL=/bin/kill ./configure --prefix="$PREFIX" --enable-xz --disable-manpages \
-      --disable-gudev \
       --disable-tests --sysconfdir=/etc --localstatedir=/var \
       --libdir="$PREFIX/lib" --libexecdir="$PREFIX/libexec" \
       --with-rootprefix= --with-rootlibdir=/lib
