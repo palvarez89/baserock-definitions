@@ -5,5 +5,3 @@ build-system: autotools
 configure-commands:
 - ./configure --prefix="$PREFIX" --sysconfdir=/etc --enable-shared --enable-targets=host
   --enable-optimized --disable-assertions
-build-commands:
-- make $MAKEFLAGS
