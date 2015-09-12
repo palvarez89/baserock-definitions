@@ -1,17 +1,7 @@
 name: drm
 kind: chunk
 build-system: autotools
-pre-configure-commands:
-  # Tegra requires a new coherent BO attribute, not currently upstream, so
-  # patch it here
-  - sed -i '/NOUVEAU_GEM_DOMAIN_MAPPABLE  (1 << 3)/a#define NOUVEAU_GEM_DOMAIN_COHERENT  (1
-    << 4)' include/drm/nouveau_drm.h
-  - |
-    sed -i '/info->domain |= NOUVEAU_GEM_DOMAIN_MAPPABLE;/a\
-        if (bo->flags & NOUVEAU_BO_COHERENT)\
-            info->domain |= NOUVEAU_GEM_DOMAIN_COHERENT;' nouveau/abi16.c
-  - sed -i '/NOUVEAU_BO_NOSNOOP 0x20000000/a#define NOUVEAU_BO_COHERENT 0x10000000'
-    nouveau/nouveau.h
 configure-commands:
-- NOCONFIGURE=1 ./autogen.sh
-- ./configure --prefix="$PREFIX" --enable-tegra-experimental-api --enable-freedreno-experimental-api
+- |
+  ./autogen.sh --prefix="$PREFIX" \
+               --enable-tegra-experimental-api
