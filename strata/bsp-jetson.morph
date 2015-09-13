@@ -27,8 +27,8 @@ chunks:
 - name: linux-jetson-tk1
   morph: strata/bsp-jetson/linux-jetson-tk1.morph
   repo: upstream:linux
-  ref: a6df05fd37874251833bd6f18404cd2efaa62603
-  unpetrify-ref: baserock/tegra/4.0-with-cpufreq-gpu
+  ref: 168309855a7d1e16db751e9c647119fe2d2dc878
+  unpetrify-ref: v4.4-rc8
 - name: linux-firmware@jetson
   morph: strata/bsp-jetson/linux-firmware@jetson.morph
   repo: upstream:linux-firmware

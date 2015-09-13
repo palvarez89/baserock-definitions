@@ -34,7 +34,6 @@ configure-commands:
 - scripts/config -e EXT4_FS_POSIX_ACL
 - scripts/config -e EXT4_FS_SECURITY
 - scripts/config -d EXT4_DEBUG
-- scripts/config -e FUSE_FS
 - scripts/config -e OVERLAY_FS
 - scripts/config -e XFS_FS
 - scripts/config -e LIBCRC32C
@@ -51,7 +50,6 @@ configure-commands:
 - scripts/config -e NFSD
 - scripts/config -e NFSD_V3
 - scripts/config -e DRM_TEGRA_STAGING
-- scripts/config -m DRM_NOUVEAU
 - scripts/config -e VLAN_8021Q
 - scripts/config -e BRIDGE_VLAN_FILTERING
 - scripts/config -e BLK_DEV_NBD
@@ -218,11 +216,8 @@ configure-commands:
 - scripts/config -e SCSI_ISCSI_ATTRS
 - scripts/config -e ISCSI_TCP
 - scripts/config -e SCSI_LOWLEVEL
-- scripts/config -m DRM_NOUVEAU
 - scripts/config -e NOUVEAU_PLATFORM_DRIVER
 - scripts/config -e DRM_TEGRA_STAGING
-- scripts/config --set-val NOUVEAU_DEBUG 5
-- scripts/config --set-val NOUVEAU_DEBUG_DEFAULT 3
 - yes '' | make ARCH=arm oldconfig
 build-commands:
 - make $MAKEFLAGS ARCH=arm LOADADDR=0x80200000 zImage dtbs
@@ -246,3 +241,11 @@ install-commands:
       find include/uapi -print0
       find scripts -print0
   ) | cpio -0pumd "$DESTDIR$PREFIX/src/linux"
+system-integration:
+  linux-jetson-tk1-misc:
+    # This is required for any modules to work correctly. However, it depends
+    # `depmod` from the 'kmod' chunk in the 'foundation' stratum, so it runs
+    # conditionally on `depmod` existing to avoid breaking in
+    # minimal-system-x86_64.
+    00-depmod:
+    - if which depmod; then (cd /lib/modules && for version in *; do depmod -a "$version"; done) fi
