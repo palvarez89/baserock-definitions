@@ -29,13 +29,6 @@ chunks:
   repo: upstream:linux
   ref: a6df05fd37874251833bd6f18404cd2efaa62603
   unpetrify-ref: baserock/tegra/4.0-with-cpufreq-gpu
-- name: nouveau-drm
-  morph: strata/bsp-jetson/nouveau-drm.morph
-  repo: upstream:nouveau
-  ref: 73de0a7758eb447d6157d2ed79c84d1a4e6ca09b
-  unpetrify-ref: baserock/tegra/4.0
-  build-depends:
-  - linux-jetson-tk1
 - name: linux-firmware@jetson
   morph: strata/bsp-jetson/linux-firmware@jetson.morph
   repo: upstream:linux-firmware
