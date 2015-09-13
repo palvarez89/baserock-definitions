@@ -36,8 +36,8 @@ chunks:
   unpetrify-ref: baserock/tegra/4.0
   build-depends:
   - linux-jetson-tk1
-- name: linux-firmware-jetson
-  morph: strata/bsp-jetson/linux-firmware-jetson.morph
+- name: linux-firmware@jetson
+  morph: strata/bsp-jetson/linux-firmware@jetson.morph
   repo: upstream:linux-firmware
-  ref: ff2afc9d9649cab2a1f79b8d4eeb0cc0100a2f85
-  unpetrify-ref: baserock/tegra/4.0
+  ref: 6ebf5d57d9f6d0cf05558baef1af2b90a3fe98ed
+  unpetrify-ref: master

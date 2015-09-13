@@ -1,0 +1,15 @@
+name: linux-firmware@jetson
+kind: chunk
+install-commands:
+- install -d "$DESTDIR/lib/firmware/nvidia/gk20a"
+- install -d "$DESTDIR/lib/firmware/nvidia/tegra124"
+- install -m644 nvidia/gk20a/fecs_data.bin "$DESTDIR/lib/firmware/nvidia/gk20a"
+- install -m644 nvidia/gk20a/fecs_inst.bin "$DESTDIR/lib/firmware/nvidia/gk20a"
+- install -m644 nvidia/gk20a/gpccs_data.bin "$DESTDIR/lib/firmware/nvidia/gk20a"
+- install -m644 nvidia/gk20a/gpccs_inst.bin "$DESTDIR/lib/firmware/nvidia/gk20a"
+- install -m644 nvidia/gk20a/sw_bundle_init.bin "$DESTDIR/lib/firmware/nvidia/gk20a"
+- install -m644 nvidia/gk20a/sw_ctx.bin "$DESTDIR/lib/firmware/nvidia/gk20a"
+- install -m644 nvidia/gk20a/sw_method_init.bin "$DESTDIR/lib/firmware/nvidia/gk20a"
+- install -m644 nvidia/gk20a/sw_nonctx.bin "$DESTDIR/lib/firmware/nvidia/gk20a"
+- install -m644 nvidia/tegra124/xusb.bin "$DESTDIR/lib/firmware/nvidia/tegra124"
+- install -m644 LICENCE.nvidia "$DESTDIR/lib/firmware"
