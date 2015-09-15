@@ -17,8 +17,6 @@
 
 
 import os
-import json
-import logging
 
 import writeexts
 
@@ -42,8 +40,6 @@ class SshRsyncCheckExtension(writeexts.WriteExtension):
 
         location = args[0]
         self.check_ssh_connectivity(location)
-
-        self.check_version_label(location, os.environ['VERSION_LABEL'])
         self.check_is_baserock_system(location)
 
         # The new system that being deployed as an upgrade must contain
@@ -66,19 +62,5 @@ class SshRsyncCheckExtension(writeexts.WriteExtension):
             raise writeexts.ExtensionError(
                 "%s does not have %s" % (location, command))
 
-    def check_version_label(self, location, version_label):
-        args = ['system-version-manager', 'list', '--json']
-
-        try:
-            output = writeexts.ssh_runcmd(location, args)
-        except writeexts.ExtensionError:
-            msg = ("Couldn't get system list from system-version-manager, "
-                   "skipping version label check")
-            logging.exception(msg)
-            return
-
-        if version_label in json.loads(output):
-            raise writeexts.ExtensionError(
-                    "There is already a system called `%s'" % version_label)
 
 SshRsyncCheckExtension().run()
