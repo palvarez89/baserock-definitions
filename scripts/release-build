@@ -28,10 +28,17 @@ class Build(object):
 
     def __init__(self, name, arch, app):
         self.system_name = name
-        self.controller = app.controllers[arch]
+
+        controller_netloc = app.controllers[arch].split(':')
+        controller_args = [
+            '--controller-initiator-address=%s' % controller_netloc[0],
+        ]
+        if len(controller_netloc) > 1:
+            controller_args.append(
+                '--controller-initiator-port=%s' % controller_netloc[1])
+
         self.command = [
-            'morph', 'distbuild-morphology',
-            '--controller-initiator-address=%s' % self.controller,
+            'morph', 'distbuild-morphology'] + controller_args + [
             'baserock:baserock/definitions', app.ref, self.system_name]
 
     def start(self):
@@ -76,8 +83,9 @@ class ReleaseApp(cliapp.Application):
         '''Process the command line'''
         self.controllers = {}
         controllers_list = self.settings['controllers']
+
         for item in controllers_list:
-            arch, controller = item.split(':')
+            arch, controller = item.split(':', 1)
             self.controllers[arch] = controller
 
         self.ref = cliapp.runcmd(['git', 'rev-parse', 'HEAD']).strip()
@@ -139,6 +147,9 @@ class ReleaseApp(cliapp.Application):
             system, _ = self.load_morphology(system_name)
             if system['arch'] in self.controllers:
                 builds.append(Build(system_name, system['arch'], self))
+            else:
+                print("Unable to build %s: no %s distbuild available" %
+                        (system_name, system['arch']))
         return builds
 
     def deploy_images(self, cluster, cluster_path):
