@@ -27,6 +27,14 @@ import subprocess
 import sys
 
 target_root = sys.argv[1]
+
+# Clear all INSTALL_FILES environment variable options,
+# so we don't end up installing INSTALL_FILES_foo multiple times.
+for var in list(os.environ):
+    if var.startswith("INSTALL_FILES"):
+        del os.environ[var]
+
+# Force installation of the essential-files manifest
 os.environ["INSTALL_FILES"] = "install-files/essential-files/manifest"
-command = os.path.join("extensions/install-files.configure")
+command = "extensions/install-files.configure"
 subprocess.check_call([command, target_root])

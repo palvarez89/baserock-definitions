@@ -16,7 +16,7 @@
 
 ''' A Morph configuration extension for adding arbitrary files to a system
 
-It will read the manifest files specified in the environment variable
+It will read the manifest files specified in environment variables starting
 INSTALL_FILES, then use the contens of those files to determine which files
 to install into the target system.
 
@@ -41,12 +41,14 @@ import writeexts
 class InstallFilesConfigureExtension(writeexts.Extension):
 
     def process_args(self, args):
-        if not 'INSTALL_FILES' in os.environ:
+        if not any(var.startswith('INSTALL_FILES') for var in os.environ):
             return
         target_root = args[0]
-        manifests = shlex.split(os.environ['INSTALL_FILES'])
-        for manifest in manifests:
-            self.install_manifest(manifest, target_root)
+        for manifest_var in sorted((var for var in os.environ
+                                    if var.startswith('INSTALL_FILES'))):
+            manifests = shlex.split(os.environ[manifest_var])
+            for manifest in manifests:
+                self.install_manifest(manifest, target_root)
 
     def install_manifest(self, manifest, target_root):
         manifest_dir = os.path.dirname(manifest)

@@ -40,6 +40,18 @@ help: |
 
         INSTALL_FILES: sshkeysfiles/manifest
 
+    All variables starting INSTALL_FILES are considered, and are processed in
+    alphabetical order, so if INSTALL_FILES, INSTALL_FILES_distbuild and
+    INSTALL_FILES_openstack are given, manifests in INSTALL_FILES are processed
+    before those in INSTALL_FILES_distbuild, followed by INSTALL_FILES_openstack.
+
+    Multiple manifest files may be given in the same INSTALL_FILES variable,
+    by providing a whitespace separated list.
+
+    Shell word splitting is supported, so if a manifest's path has spaces in,
+    the path may be shell escaped.
+
+
     More generally entries in the manifest are formatted as:
         [overwrite] <octal mode> <uid decimal> <gid decimal> <filename>
 
