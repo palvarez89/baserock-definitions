@@ -16,7 +16,6 @@ configure-commands:
   esac
   ./autogen.sh --prefix="$PREFIX" \
       --enable-gles2 \
-      --disable-glx \
-      --with-egl-platforms=drm,wayland \
+      --with-egl-platforms=drm,wayland,x11 \
       --with-gallium-drivers="$GALLIUMDRIVERS" \
       --with-dri-drivers="$DRIDRIVERS"
