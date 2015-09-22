@@ -21,8 +21,8 @@ chunks:
   build-system: autotools
 - name: gobject-introspection
   repo: upstream:gobject-introspection
-  ref: c0243e116c5e261c262dded9f4d7726a770c5a19
-  unpetrify-ref: GOBJECT_INTROSPECTION_1_44_0
+  ref: a984a0f57a8ab178762d5942e2d552121edae091
+  unpetrify-ref: 1.46.0
   build-system: autotools
   build-depends:
   - glib
