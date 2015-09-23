@@ -1,6 +1,0 @@
-name: python-setuptools
-kind: chunk
-build-commands:
-- python setup.py build
-install-commands:
-- python setup.py install --prefix=/usr --root "$DESTDIR"

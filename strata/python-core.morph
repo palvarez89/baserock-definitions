@@ -5,10 +5,10 @@ build-depends:
 - morph: strata/core.morph
 chunks:
 - name: python-setuptools
-  morph: strata/core/python-setuptools.morph
   repo: upstream:python-setuptools-bitbucket
   ref: 0aa6a4de5931d02876428388678802db2371fd37
   unpetrify-ref: baserock/master
+  build-system: python-distutils
 - name: mako
   repo: upstream:python-packages/mako.git
   ref: 285bc818a50ccc0f9549630f7c4f4c250585c3e7
