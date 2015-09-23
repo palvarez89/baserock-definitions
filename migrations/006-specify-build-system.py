@@ -59,6 +59,7 @@ import yaml
 import logging
 import os
 import sys
+import warnings
 
 import migrations
 
@@ -74,6 +75,8 @@ REPO_ALIASES = {
 }
 
 GIT_CACHE_SERVER_URL = 'http://%s:8080/' % TROVE_HOST
+
+FAIL_ON_REMOTE_CACHE_ERRORS = False
 
 
 TO_VERSION = 6
@@ -239,11 +242,18 @@ def get_toplevel_file_list_from_repo(url, ref):
             headers={'Accept': 'application/json'},
             timeout=9)
         logging.debug("Got response: %s" % response)
-        toplevel_tree = response.json()['tree']
+        try:
+            response.raise_for_status()
+            toplevel_tree = response.json()['tree']
+        except Exception as e:
+            raise RuntimeError(
+                "Unexpected response from server %s for repo %s: %s" %
+                (GIT_CACHE_SERVER_URL, url, e.message))
         toplevel_filenames = toplevel_tree.keys()
     except requests.exceptions.ConnectionError as e:
-        raise RuntimeError("Unable to connect to cache server %s: %s" %
-                           (GIT_CACHE_SERVER_URL, e.message))
+        raise RuntimeError("Unable to connect to cache server %s while trying "
+                           "to query file list of repo %s. Error was: %s" %
+                           (GIT_CACHE_SERVER_URL, url, e.message))
     return toplevel_filenames
 
 
@@ -293,8 +303,22 @@ def ensure_buildsystem_defined_where_needed(contents, filename):
 
             chunk_git_url = get_repo_url(chunk_ref['repo'])
             chunk_git_ref = chunk_ref['ref']
-            toplevel_file_list = get_toplevel_file_list_from_repo(
-                chunk_git_url, chunk_git_ref)
+
+            try:
+                toplevel_file_list = get_toplevel_file_list_from_repo(
+                    chunk_git_url, chunk_git_ref)
+            except Exception as e:
+                warnings.warn(str(e))
+                message = (
+                    "Unable to look up one or more repos on remote Git "
+                    "server %s. If you are using a Trove that is not %s, "
+                    "please edit the TROVE_HOST constant in this script "
+                    "and run it again." % (TROVE_HOST, TROVE_HOST))
+                if FAIL_ON_REMOTE_CACHE_ERRORS:
+                    raise RuntimeError(message)
+                else:
+                    warnings.warn(message)
+                    continue
 
             logging.debug(
                 '%s: got file list %s', chunk_git_url, toplevel_file_list)
@@ -304,6 +328,7 @@ def ensure_buildsystem_defined_where_needed(contents, filename):
             move_dict_entry_last(chunk_ref, 'build-depends')
 
             changed = True
+
     return changed
 
 
