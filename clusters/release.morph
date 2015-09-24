@@ -40,6 +40,12 @@ systems:
       initramfs-build-system-x86_64:
         type: extensions/initramfs
         location: boot/initramfs.gz
+- morph: systems/build-system-armv7lhf-rootfs.morph
+  deploy:
+    build-system-armv7lhf-rootfs:
+      type: extensions/tar
+      location: build-system-armv7lhf-rootfs.tar
+      HOSTNAME: build-system-armv7lhf-rootfs
 - morph: systems/build-system-armv7lhf-jetson.morph
   deploy:
     build-system-armv7lhf-jetson:
