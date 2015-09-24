@@ -1,0 +1,144 @@
+Introduction
+============
+
+The pyfdisk.py module provides a basic Python wrapper around command-line
+fdisk from util-linux, and some assorted related functions for querying
+information from real disks or disk images.
+
+
+YAML partition specification
+============================
+
+A YAML file may be loaded, using the function load_yaml(). This can contain
+all the information needed to create a Device object which can then be
+committed to disk.
+
+The format of this file is as follows:
+
+    start_offset: 2048
+    partition_table_format: gpt
+    partitions:
+    - description: boot
+      size: 1M
+      fdisk_type: 0x0B
+      filesystem: vfat
+      boot: yes
+      mountpoint: /boot
+    - description: rootfs
+      number: 3
+      size: 10G
+      filesystem: btrfs
+      fdisk_type: 0x83
+      mountpoint: /
+    - description: src
+      size: fill
+      filesystem: ext4
+      fdisk_type: 0x81
+      mountpoint: /src
+
+There are a couple of global attributes:
+
+* 'start_offset': specifies the start sector of the first partition on the
+                  device (default: 2048)
+
+* 'partition_table_format': specifies the partition table format to be used
+                            when creating the partition table. Possible format
+                            strings are 'gpt', 'dos', or 'mbr' ('dos' and
+                            'mbr' are interchangeable). (default: gpt)
+
+Following this, up to 4 (for MBR) or 128 (for GPT) partitions can be
+specified, in the list, 'partitions'. For partitions, 'size', 'fdisk_type' and
+'filesystem' are required.
+
+* 'size' is the size in bytes, or 'fill', which will expand the partition to
+  fill any unused space. Multiple partitions with 'size: fill' will share the
+  free space on the device. Human readable formatting can be used: K, M, G, T,
+  for integer multiples (calculated as powers of 2^n)
+
+* 'fdisk_type' is the fdisk partition type, specified as a hexadecimal value
+  (default: 0x81)
+
+* 'filesystem' specifies a filesystem to be created on the partition. It can
+  be a filesystem with associated any mkfs.* tool, or 'none' for an
+  unformatted partition.
+
+Optional partition attributes include:
+
+* 'number' is optional, and can be used to override the numbering of
+  partitions, if it is desired to have partition numbering that differs from
+  the physical order of the partitions on the disk.
+      - For all un-numbered partitions, the physical order of partitions on the
+        device is determined by the order in which they appear in the
+        specification.
+      - For any partitions without a specified number, partition numbering is
+        handled automatically. In the example above, /boot is 1, /src is 2,
+        and / is 3, even though the physical order differs.
+
+* 'boot' sets the partition's bootable flag (currently only for MBR partition
+  tables)
+
+* 'mountpoint' specifies a mountpoint of a partition. One partition must
+  have a '/' mountpoint to contain the rootfs, otherwise this is optional.
+  Files present in the rootfs under the mount point for a given partition will
+  be copied to the created partition.
+
+load_yaml() produces a Device object, populated with any partitions contained
+in the specification.
+
+
+Objects
+=======
+
+Partition - An object containing properties of a partition
+
+Device - An object holding information about a physical device, and the
+         overall properties of the partitioning scheme. It contains a
+         PartitionList holding the partitions on the device.
+
+PartitionList - An object which holds a list of partitions on the disk. New
+                partitions can be added to the list at any time. When the list
+                is queried, properties of partitions which depend on the
+                properties of the other partitions in the list, for example
+                the size of a fill partition, or numbering, are recalculated,
+                and an updated copy of a Partition object is returned.
+
+Extent - An object which helps encapsulate sector dimensions for partitions
+         and devices.
+
+
+Quick start
+===========
+
+    >>> dev = pyfdisk.Device('test.img', 'fill')
+    >>> print dev
+    <Device: location=test.img, size=16777216, partitions: 0>
+    >>> part = pyfdisk.Partition(size='1M', fdisk_type=0x81, filesystem='ext4', mountpoint='/test1')
+    >>> part2 = pyfdisk.Partition(size='fill', filesystem='btrfs', mountpoint='/test2')
+    >>> dev.add_partition(part)
+    >>> dev.add_partition(part2)
+    >>> print dev.partitionlist
+    Partition
+        size:       14663168
+        fdisk type: 0x81
+        filesystem: btrfs
+        start:      4096
+        end:        32734
+        number:     2
+        mountpoint: /test2
+    Partition
+        size:       1048576
+        fdisk type: 0x81
+        filesystem: ext4
+        start:      2048
+        end:        4095
+        number:     1
+        mountpoint: /test1
+    >>> dev.commit()
+    Creating GPT partition table on test.img
+
+    $ fdisk -l test.img
+    Disk test.img: 16 MiB, 16777216 bytes, 32768 sectors
+    ...
+    Device     Start   End Sectors Size Type
+    test.img1   2048  4095    2048   1M Linux filesystem
+    test.img2   4096 32734   28639  14M Linux filesystem

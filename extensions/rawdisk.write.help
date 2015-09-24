@@ -78,5 +78,50 @@ help: |
 
         (See https://www.kernel.org/doc/Documentation/kernel-parameters.txt)
 
+    * PARTITION_FILE=path: path to a YAML partition specification to use for
+      producing partitioned disks or devices. The default specification is
+      'partitioning/default' in definitions, which specifies a device with a
+      single partition. This may serve as an example of the format of this
+      file, or check the pyfdisk.py documentation in pyfdisk.README.
+
+        In addition to the features available in pyfdisk.py, using this
+        extension, a list of 'raw_files' items can be added at the partition
+        level, or the top level of the partition specification. This specifies
+        files to be written directly to the target device or image using `dd`
+
+            start_offset: 2048
+            partition_table_format: mbr
+            partitions:
+            - description: boot
+              filesystem: none
+              ...
+              raw_files:
+              - file: boot/uboot.img
+            raw_files:
+            - file: boot/uboot-env.img
+              offset_bytes: 512
+            - file: boot/preloader.bin
+              skip_bytes: 128
+              count_bytes: 16K
+
+        * Files are written consecutively in the order they are listed, and
+          sourced from the unpacked root filesystem image
+        * Files can be given a specific offset with 'offset_sectors' or
+          'offset_bytes'
+        * With 'raw_files' specified inside a partition, 'offset_sectors' or
+          'offset_bytes' is counted from the start of that partition,
+          otherwise from the start of the device.
+        * For files without an explicit offset, the next file is written
+          starting with the next free byte following the previous file
+        * Providing an offset is optional for all files
+        * Specifying 'skip_bytes' will set the 'skip=' option for dd, skipping
+          a number of bytes at the start of the input file
+        * Specifying 'count_bytes' sets the 'count=' option for dd
+        * For properties which take an input in bytes, a human-readable
+          multiplier can be used, e.g. K, M, G (integer multiplicands only)
+
+    * USE_PARTITIONING=boolean (default: no) Use this flag to enable
+      partitioning functions.
+
     (See `morph help deploy` for details of how to pass parameters to write
     extensions)
