@@ -1,0 +1,56 @@
+name: build-system-armv7lhf-rootfs
+kind: system
+description: The system that should be used for building all other Baserock systems
+  for ARMv7 little-endian hard-float, rootfs variant.
+arch: armv7lhf
+strata:
+- name: build-essential
+  morph: strata/build-essential.morph
+- name: core
+  morph: strata/core.morph
+- name: foundation
+  morph: strata/foundation.morph
+- name: python-core
+  morph: strata/python-core.morph
+- name: python3-core
+  morph: strata/python3-core.morph
+- name: tools
+  morph: strata/tools.morph
+- name: python-cliapp
+  morph: strata/python-cliapp.morph
+- name: python-pygobject
+  morph: strata/python-pygobject.morph
+- name: python-wsgi
+  morph: strata/python-wsgi.morph
+- name: morph-utils
+  morph: strata/morph-utils.morph
+- name: nfs
+  morph: strata/nfs.morph
+- name: python-common
+  morph: strata/python-common.morph
+- name: ansible
+  morph: strata/ansible.morph
+- name: cloudinit-support
+  morph: strata/cloudinit-support.morph
+- name: openstack-common
+  morph: strata/openstack-common.morph
+- name: openstack-clients
+  morph: strata/openstack-clients.morph
+- name: devtools
+  morph: strata/devtools.morph
+- name: libsoup-common
+  morph: strata/libsoup-common.morph
+- name: glib-common
+  morph: strata/glib-common.morph
+- name: ostree-core
+  morph: strata/ostree-core.morph
+configuration-extensions:
+- extensions/set-hostname
+- extensions/add-config-files
+- extensions/nfsboot
+- extensions/install-files
+- extensions/distbuild
+- extensions/fstab
+- extensions/mason
+- extensions/cloud-init
+- extensions/install-essential-files
