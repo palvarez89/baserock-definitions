@@ -2,5 +2,10 @@ name: libosinfo
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --disable-gtk-doc --disable-tests --disable-vala
-  --with-usb-ids-path=usb.ids --with-pci-ids-path=pci.ids
+- |
+  ./autogen.sh --prefix="$PREFIX" \
+               --disable-gtk-doc \
+               --disable-tests \
+               --disable-vala \
+               --with-usb-ids-path=usb.ids --with-pci-ids-path=pci.ids \
+               --disable-werror
