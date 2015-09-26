@@ -272,7 +272,7 @@ chunks:
   - iso-codes
   build-system: autotools
 - name: m4-common
-  repo: https://github.com/desrt/m4-common.git
+  repo: upstream:m4-common
   ref: c0f3c75e01ee82d6e042dd813248dd418c3da467
   unpetrify-ref: master
   build-system: autotools
