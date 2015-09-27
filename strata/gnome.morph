@@ -315,8 +315,8 @@ chunks:
 - name: gnome-shell
   morph: strata/gnome/gnome-shell.morph
   repo: upstream:gnome/gnome-shell
-  ref: fbb4a9a3a6acfd3d0266e0ba1dd9212cd2f3c21c
-  unpetrify-ref: master
+  ref: 7d01383b8ee4919534a5df11e4f22ab43c240d4e
+  unpetrify-ref: baserock/3.18.0
   build-depends:
   - caribou
   - clutter
