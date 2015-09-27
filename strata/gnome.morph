@@ -182,8 +182,8 @@ chunks:
 - name: gnome-settings-daemon
   morph: strata/gnome/gnome-settings-daemon.morph
   repo: upstream:gnome-settings-daemon
-  ref: 8225e3dcc9242d4d9b764c8a0ad6d7db728ac114
-  unpetrify-ref: baserock/gnome
+  ref: b1f7c72c0ef7474b0647de1f07f2f82cd2bd49d0
+  unpetrify-ref: baserock/3.18.0/disable_wacom
   build-depends:
   - colord
   - geoclue
