@@ -1,5 +1,6 @@
 name: bison
 kind: chunk
 build-system: autotools
-pre-configure-commands:
+configure-commands:
 - sh bootstrap --skip-po --no-git --gnulib-srcdir=gnulib
+- ./configure --prefix="$PREFIX"
