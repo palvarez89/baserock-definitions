@@ -7,7 +7,8 @@ configure-commands:
       --prefix="$PREFIX" --sysconfdir=/etc/ssh \
       --datadir="$PREFIX/share/sshd" \
       --libexecdir="$PREFIX/lib/openssh" \
-      --with-privsep-path=/var/lib/sshd
+      --with-privsep-path=/var/lib/sshd	 \
+      --with-pam
 build-commands:
 - make
 - |
