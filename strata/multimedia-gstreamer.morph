@@ -3,6 +3,7 @@ kind: stratum
 description: GStreamer multimedia components
 build-depends:
 - morph: strata/audio-bluetooth.morph
+- morph: strata/libsoup-common.morph
 - morph: strata/multimedia-common.morph
 - morph: strata/mesa-common.morph
 chunks:
