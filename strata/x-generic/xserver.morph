@@ -4,9 +4,9 @@ build-system: autotools
 configure-commands:
 - |
   ./autogen.sh --prefix="$PREFIX" \
-  --disable-glx \
   --disable-xvfb \
   --disable-xnest \
   --disable-xquartz \
   --disable-xwin \
+  --enable-glamor \
   --enable-xwayland
