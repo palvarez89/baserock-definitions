@@ -2,4 +2,4 @@ name: gnome-keyring
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --disable-doc
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-doc

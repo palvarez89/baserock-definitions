@@ -2,4 +2,4 @@ name: geoclue
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --disable-nmea-source
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-nmea-source

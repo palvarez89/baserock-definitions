@@ -2,4 +2,4 @@ name: ibus
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --disable-gtk2 --disable-gtk3 --disable-xim --disable-tests --enable-wayland
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-gtk2 --disable-gtk3 --disable-xim --disable-tests --enable-wayland

@@ -2,4 +2,4 @@ name: cairo
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --enable-glesv2
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --enable-glesv2

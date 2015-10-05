@@ -2,4 +2,4 @@ name: gvfs
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --disable-gphoto2 --disable-documentation
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-gphoto2 --disable-documentation

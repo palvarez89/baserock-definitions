@@ -14,7 +14,7 @@ configure-commands:
     GALLIUMDRIVERS=yes
     ;;
   esac
-  ./autogen.sh --prefix="$PREFIX" \
+  ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc \
       --enable-gles2 \
       --with-egl-platforms=drm,wayland,x11 \
       --with-gallium-drivers="$GALLIUMDRIVERS" \

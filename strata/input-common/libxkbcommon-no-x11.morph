@@ -9,4 +9,4 @@ description: |
 
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --disable-x11
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-x11

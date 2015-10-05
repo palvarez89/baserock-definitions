@@ -1,7 +1,7 @@
 name: icu
 kind: chunk
 configure-commands:
-- cd source; ./runConfigureICU Linux --prefix=/usr
+- cd source; ./runConfigureICU Linux --prefix=/usr --sysconfdir=/etc
 build-commands:
 - cd source; unset TARGET ; make
 install-commands:

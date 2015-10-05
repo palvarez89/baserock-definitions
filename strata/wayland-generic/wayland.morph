@@ -4,4 +4,4 @@ description: Wayland server
 build-system: autotools
 configure-commands:
 - autoreconf -ivf
-- ./configure --prefix="$PREFIX" --disable-documentation
+- ./configure --prefix="$PREFIX" --sysconfdir=/etc --disable-documentation

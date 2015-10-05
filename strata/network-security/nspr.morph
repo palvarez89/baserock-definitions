@@ -9,4 +9,4 @@ configure-commands:
       *)
           EXTRA_ARGS="";;
   esac
-  ./configure --prefix="$PREFIX" --with-mozilla --with-pthreads $EXTRA_ARGS
+  ./configure --prefix="$PREFIX" --sysconfdir=/etc --with-mozilla --with-pthreads $EXTRA_ARGS

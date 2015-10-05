@@ -3,5 +3,5 @@ kind: chunk
 build-system: autotools
 configure-commands:
 - |
-  ./autogen.sh --prefix="$PREFIX" \
+  ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc \
   --enable-demo-clients-install

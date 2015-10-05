@@ -2,4 +2,4 @@ name: polkit
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --disable-man-pages --disable-gtk-doc --enable-libsystemd-login=yes
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-man-pages --disable-gtk-doc --enable-libsystemd-login=yes

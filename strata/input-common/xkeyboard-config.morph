@@ -1,7 +1,7 @@
 name: xkeyboard-config
 kind: chunk
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --disable-runtime-deps
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-runtime-deps
 install-commands:
 - mkdir -p "$DESTDIR"/"$PREFIX"/share/X11/xkb/
 - make install DESTDIR="$DESTDIR"

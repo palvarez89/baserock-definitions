@@ -6,4 +6,4 @@ pre-configure-commands:
 configure-commands:
 # libdir has to be specified or it'll go into lib64. It has to be /lib because
 # systemd installs its pam library into /lib/security.
-- ./configure --prefix="$PREFIX" --libdir="/lib"
+- ./configure --prefix="$PREFIX" --sysconfdir=/etc --libdir="/lib"
