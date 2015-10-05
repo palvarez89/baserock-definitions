@@ -15,6 +15,7 @@ chunks:
   unpetrify-ref: 3.14.0
   build-system: autotools
 - name: glib
+  morph: strata/glib-common/glib.morph
   repo: upstream:glib
   ref: d73cd49799444f9045d44a414c7b35f129844504
   unpetrify-ref: 2.46.0
