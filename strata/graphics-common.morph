@@ -52,10 +52,23 @@ chunks:
   - freetype2
   - pixman
   - libpng
+- name: colm-tarball
+  repo: upstream:colm-tarball
+  ref: 404ae0f284a3b2d41fcdb53826550e4dfec5c65c
+  unpetrify-ref: colm-0.12.0
+  build-system: autotools
+- name: ragel-tarball
+  repo: upstream:ragel-tarball
+  ref: eafd7a3974e8605fd02794269db6114a3446e016
+  unpetrify-ref: ragel-6.9
+  build-system: autotools
+  build-depends:
+  - colm-tarball
 - name: harfbuzz
   repo: upstream:harfbuzz
-  ref: 09b5393874e56fcfd63a92d28e6c1c2ddeee0942
-  unpetrify-ref: baserock/0.9.12
+  ref: 432ffc47a46d41bea17d839d0d3980e654c6e638
+  unpetrify-ref: 1.0.4
   build-system: autotools
   build-depends:
   - freetype2
+  - ragel-tarball
