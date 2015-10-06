@@ -7,10 +7,10 @@ build-depends:
 - morph: strata/x-common.morph
 chunks:
 - name: pango
-  morph: strata/gtk-deps/pango.morph
   repo: upstream:pango
-  ref: e0a21abf52a0b7588b1aa3357818948816ed9103
-  unpetrify-ref: 1.36.8
+  ref: 29a712f1af7bbb15bdc9d7e09cbf58517edf8c15
+  unpetrify-ref: 1.38.0
+  build-system: autotools
 - name: shared-mime-info
   morph: strata/gtk-deps/shared-mime-info.morph
   repo: upstream:shared-mime-info

@@ -1,8 +1,0 @@
-name: pango
-kind: chunk
-build-system: autotools
-system-integration:
-  pango-misc:
-    01-setup-modules:
-    - mkdir -p /usr/etc/pango/
-    - /usr/bin/pango-querymodules > /usr/etc/pango/pango.modules
