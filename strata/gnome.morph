@@ -134,6 +134,15 @@ chunks:
   repo: upstream:libatasmart
   ref: de6258940960443038b4c1651dfda3620075e870
   unpetrify-ref: master
+- name: udisks
+  morph: strata/gnome/udisks.morph
+  repo: upstream:udisks
+  ref: 410cab8f3d749ad2660cda3ba38b6aece42bf10f
+  unpetrify-ref: master
+  build-depends:
+  - libgudev
+  - polkit
+  - libatasmart
 - name: colord
   morph: strata/gnome/colord.morph
   repo: upstream:colord
@@ -362,3 +371,4 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - gcr
+  - udisks
