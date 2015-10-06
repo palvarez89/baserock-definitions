@@ -1,0 +1,6 @@
+name: libatasmart
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh
+- ./configure CFLAGS='-g -O0 -Wp,-U_FORTIFY_SOURCE' --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib --libexecdir=/usr/lib

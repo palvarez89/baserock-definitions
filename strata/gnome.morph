@@ -129,6 +129,11 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - mozjs17
+- name: libatasmart
+  morph: strata/gnome/libatasmart.morph
+  repo: upstream:libatasmart
+  ref: de6258940960443038b4c1651dfda3620075e870
+  unpetrify-ref: master
 - name: colord
   morph: strata/gnome/colord.morph
   repo: upstream:colord
