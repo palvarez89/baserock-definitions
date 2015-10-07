@@ -2,4 +2,8 @@ name: NetworkManager
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --with-session-tracking=systemd --disable-ppp --enable-more-warnings=yes
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --with-session-tracking=systemd --disable-ppp --enable-more-warnings=yes
+system-integration:
+  ModemManager-misc:
+    00-enable-NetworkManager-unit:
+    - systemctl enable NetworkManager
