@@ -130,6 +130,7 @@ chunks:
   build-depends:
   - mozjs17
 - name: colord
+  morph: strata/gnome/colord.morph
   repo: upstream:colord
   ref: e68f251b753297fcd1fc2bb7356588945bd3e69b
   unpetrify-ref: baserock/gnome
