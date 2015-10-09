@@ -60,4 +60,5 @@ strata:
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files
+- extensions/install-files
 - extensions/install-essential-files

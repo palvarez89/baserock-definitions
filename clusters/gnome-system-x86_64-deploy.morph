@@ -13,6 +13,7 @@ systems:
       type: rawdisk
       location: /gnome-system-x86_64.img
       DISK_SIZE: 6G
+      INSTALL_FILES: install-files/gnome/manifest
       KERNEL_ARGS: vga=788
       INITRAMFS_PATH: boot/initramfs.gz
   subsystems:

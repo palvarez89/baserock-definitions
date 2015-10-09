@@ -1,0 +1,2 @@
+0100644 0 0 /etc/securetty
+overwrite 0100644 0 0 /etc/ssh/sshd_config
