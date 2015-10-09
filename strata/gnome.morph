@@ -265,8 +265,8 @@ chunks:
   build-system: autotools
 - name: mutter
   repo: upstream:mutter
-  ref: 35729e8659cc99f45d3564c33d44a475f20d0060
-  unpetrify-ref: 3.18.0
+  ref: b975676c5ddd9401d4acfc4d0b9317dd8956656b
+  unpetrify-ref: 3.18.0-25-gb975676
   build-depends:
   - clutter
   - cogl
@@ -329,8 +329,8 @@ chunks:
 - name: gnome-shell
   morph: strata/gnome/gnome-shell.morph
   repo: upstream:gnome/gnome-shell
-  ref: 7d01383b8ee4919534a5df11e4f22ab43c240d4e
-  unpetrify-ref: baserock/3.18.0
+  ref: 464d5d8a13e41c4495301071de0d04f9fde726f5
+  unpetrify-ref: 3.18.0-59-g464d5d8
   build-depends:
   - caribou
   - clutter
@@ -345,8 +345,8 @@ chunks:
 - name: gnome-session
   morph: strata/gnome/gnome-session.morph
   repo: upstream:gnome/gnome-session
-  ref: e5c28ee81c91d659e592de55e0fc42e8e936d128
-  unpetrify-ref: master
+  ref: 9af8474a027edecf7c73827964fd88bc960266d6
+  unpetrify-ref: 3.18.0-3-g9af8474
   build-depends:
   - gnome-desktop
   - json-glib
