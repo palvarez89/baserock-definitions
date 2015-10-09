@@ -372,3 +372,11 @@ chunks:
   build-depends:
   - gcr
   - udisks
+- name: accountsservice
+  morph: strata/gnome/accountsservice.morph
+  repo: upstream:accountsservice
+  ref: 36b424b4aad91aaf91eeb6b6285cf550b15fcfeb
+  unpetrify-ref: master
+  build-depends:
+  - polkit
+  build-system: autotools
