@@ -6,7 +6,7 @@ configure-commands:
 # KILL added because it picks up /usr/bin/kill, which is not installed on
 # all systems
 - |
-  KILL=/bin/kill ./configure --prefix="$PREFIX" --enable-xz --disable-manpages \
+  KILL=/bin/kill ./configure --prefix="$PREFIX" --enable-xz --disable-manpages --enable-compat-libs \
       --disable-tests --sysconfdir=/etc --localstatedir=/var \
       --libdir="$PREFIX/lib" --libexecdir="$PREFIX/libexec" \
       --with-rootprefix= --with-rootlibdir=/lib
