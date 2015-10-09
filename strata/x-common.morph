@@ -212,12 +212,13 @@ chunks:
   - xorg-proto-xextproto
 - name: xorg-lib-libXi
   repo: upstream:xorg-lib-libXi
-  ref: 9b26b81477cf3486e5aa0ef8d81af68a0f04df1b
-  unpetrify-ref: baserock/morph
+  ref: f180dff710dc54d00e0e26b84de053151f8f207e
+  unpetrify-ref: libXi-1.7.5
   build-system: autotools
   build-depends:
   - xorg-lib-libX11
   - xorg-lib-libXext
+  - xorg-lib-libXfixes
   - xorg-proto-inputproto
   - xorg-proto-x11proto
   - xorg-proto-xextproto
