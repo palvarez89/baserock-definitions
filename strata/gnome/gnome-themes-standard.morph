@@ -1,0 +1,5 @@
+name: gnome-themes-standard
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-gtk2-engine
