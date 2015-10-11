@@ -3,3 +3,8 @@ kind: chunk
 build-system: autotools
 configure-commands:
 - ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-man-pages --disable-gtk-doc --enable-libsystemd-login=yes
+system-integration:
+  polkit-misc:
+    00-add-polkitd-user:
+    - groupadd -fg 27 polkitd
+    - useradd -c "PolicyKit Daemon Owner" -d /etc/polkit-1 -u 27  -g polkitd -s /bin/false polkitd
