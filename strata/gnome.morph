@@ -170,6 +170,7 @@ chunks:
   unpetrify-ref: master
   build-system: autotools
 - name: ModemManager
+  morph: strata/gnome/ModemManager.morph
   repo: upstream:ModemManager
   ref: 0ca68657fbcd5bace3d303a0babe2da292784385
   unpetrify-ref: master

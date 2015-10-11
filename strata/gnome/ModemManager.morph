@@ -1,0 +1,9 @@
+name: ModemManager
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc
+system-integration:
+  ModemManager-misc:
+    00-enable-ModemManager-unit:
+    - systemctl enable ModemManager
