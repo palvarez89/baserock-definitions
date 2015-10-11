@@ -398,3 +398,7 @@ chunks:
   - accountsservice
   - libcanberra
   - dconf
+- name: hicolor-icon-theme
+  repo: upstream:hicolor-icon-theme
+  ref: 5954bd6c123aa31c8f35b83d70b73e1f6dcf34b3
+  unpetrify-ref: master
