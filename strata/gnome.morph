@@ -235,6 +235,13 @@ chunks:
   repo: upstream:telepathy-glib
   ref: d27684c488ceee4f2f54f549738adab0e2e8165d
   unpetrify-ref: master
+- name: telepathy-logger
+  morph: strata/gnome/telepathy-logger.morph
+  repo: upstream:telepathy-logger
+  ref: 711842911edb15977430c0b6c1803e947619efc3
+  unpetrify-ref: master
+  build-depends:
+  - telepathy-glib
 - name: startup-notification
   repo: upstream:startup-notification
   ref: 07237ff25d6171e1b548118442ddba4259a53ba5
