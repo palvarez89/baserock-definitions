@@ -210,6 +210,14 @@ chunks:
   - xorg-lib-libXau
   - xorg-proto-x11proto
   - xorg-proto-xextproto
+- name: xorg-lib-libXfixes
+  repo: upstream:xorg-lib-libXfixes
+  ref: 0cb446962381f750e05d97bfb974ca1e32481d5d
+  unpetrify-ref: libXfixes-5.0.1
+  build-system: autotools
+  build-depends:
+  - xorg-lib-libXext
+  - xorg-proto-fixesproto
 - name: xorg-lib-libXi
   repo: upstream:xorg-lib-libXi
   ref: f180dff710dc54d00e0e26b84de053151f8f207e
@@ -222,14 +230,6 @@ chunks:
   - xorg-proto-inputproto
   - xorg-proto-x11proto
   - xorg-proto-xextproto
-- name: xorg-lib-libXfixes
-  repo: upstream:xorg-lib-libXfixes
-  ref: 0cb446962381f750e05d97bfb974ca1e32481d5d
-  unpetrify-ref: libXfixes-5.0.1
-  build-system: autotools
-  build-depends:
-  - xorg-lib-libXext
-  - xorg-proto-fixesproto
 - name: xorg-lib-libXcomposite
   repo: upstream:xorg-lib-libXcomposite
   ref: eda48b1bedaa344ada8e13930c9ab3058b836190
