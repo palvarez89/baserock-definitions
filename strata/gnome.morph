@@ -178,7 +178,6 @@ chunks:
   - libmbim
   - libqmi
   - polkit
-  build-system: autotools
 - name: geoclue
   morph: strata/gnome/geoclue.morph
   repo: upstream:geoclue
@@ -387,7 +386,6 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - polkit
-  build-system: autotools
 - name: gdm
   morph: strata/gnome/gdm.morph
   repo: upstream:gdm
@@ -402,6 +400,7 @@ chunks:
   repo: upstream:hicolor-icon-theme
   ref: 5954bd6c123aa31c8f35b83d70b73e1f6dcf34b3
   unpetrify-ref: master
+  build-system: autotools
 - name: gnome-themes-standard
   morph: strata/gnome/gnome-themes-standard.morph
   repo: upstream:gnome-themes-standard
