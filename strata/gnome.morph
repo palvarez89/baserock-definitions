@@ -138,7 +138,6 @@ chunks:
   - gusb
   - lcms2
   - polkit
-  build-system: autotools
 - name: geocode-glib
   repo: upstream:gnome/geocode-glib
   ref: a3e183e40053b4bd0fd0b25a070f60597270397a

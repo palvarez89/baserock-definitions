@@ -31,13 +31,11 @@ chunks:
   repo: upstream:at-spi2-core
   ref: 96c2842088008670e72739ea7921d654487a57fb
   unpetrify-ref: AT_SPI2_CORE_2_14_1
-  build-system: autotools
 - name: at-spi2-atk
   morph: strata/gtk-deps/at-spi2-atk.morph
   repo: upstream:at-spi2-atk
   ref: 2c220ff6565c4f02428a0c80267616a677e81ac9
   unpetrify-ref: AT_SPI2_ATK_2_14_1
-  build-system: autotools
   build-depends:
   - at-spi2-core
   - atk

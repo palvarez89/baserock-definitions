@@ -19,7 +19,6 @@ chunks:
   repo: upstream:glib
   ref: d73cd49799444f9045d44a414c7b35f129844504
   unpetrify-ref: 2.46.0
-  build-system: autotools
 - name: gobject-introspection
   repo: upstream:gobject-introspection
   ref: a984a0f57a8ab178762d5942e2d552121edae091
