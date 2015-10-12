@@ -140,7 +140,6 @@ chunks:
   ref: 410cab8f3d749ad2660cda3ba38b6aece42bf10f
   unpetrify-ref: master
   build-depends:
-  - libgudev
   - polkit
   - libatasmart
 - name: colord
