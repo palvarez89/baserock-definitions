@@ -389,7 +389,7 @@ chunks:
   morph: strata/gnome/gdm.morph
   repo: upstream:gdm
   ref: 494ec8cee5727c37118994d3864c44f36aa454fc
-  unpetrify-ref: master
+  unpetrify-ref: 3.18.0
   build-depends:
   - polkit
   - accountsservice

@@ -2,4 +2,21 @@ name: gdm
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --with-plymouth=no
+- |
+  # GDM includes a few stock PAM configurations, we choose the LFS flavor
+  # because of it's simplicity over the others, also it does not require
+  # selinux modules, however we neet to tweak the config a little after install.
+  ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var \
+               --with-selinux=no --with-plymouth=no \
+               --enable-gdm-xsession --with-x --with-default-pam-config=lfs
+post-install-commands:
+# Instead of following LFS PAM config to the letter, we redirect the includes
+# to use the systemd installed all purpose 'system-auth' file
+- sed -i 's/system-account/system-auth/g'  "$DESTDIR"/etc/pam.d/gdm*
+- sed -i 's/system-password/system-auth/g' "$DESTDIR"/etc/pam.d/gdm*
+- sed -i 's/system-session/system-auth/g'  "$DESTDIR"/etc/pam.d/gdm*
+system-integration:
+  gdm-misc:
+    00-add-gdm-user:
+    - groupadd -g 21 gdm
+    - useradd -c "GDM Daemon Owner" -d /var/lib/gdm -u 21  -g gdm -s /bin/false gdm
