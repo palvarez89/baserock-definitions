@@ -2,4 +2,4 @@ name: gnome-keyring
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --enable-pam --with-pam-dir=/lib/security --disable-doc
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-selinux --enable-pam --with-pam-dir=/lib/security --disable-doc
