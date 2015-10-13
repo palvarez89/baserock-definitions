@@ -259,8 +259,8 @@ chunks:
   - libtasn1
 - name: gcr
   repo: upstream:gnome/gcr
-  ref: 1cce27499bcac6072e4ee516eaa1546eac56d687
-  unpetrify-ref: master
+  ref: 289ba4859fd170285f51e6bbfe91f2aac3b9170d
+  unpetrify-ref: 3.18.0
   build-depends:
   - p11-kit
   build-system: autotools
