@@ -253,8 +253,8 @@ chunks:
 - name: p11-kit
   morph: strata/gnome/p11-kit.morph
   repo: upstream:p11-kit
-  ref: 3a005e75a4e1b63db8e19ea0e73479588ab345a6
-  unpetrify-ref: master
+  ref: ec9e2450bafa1cda47525b38a28c8f981f43c1e1
+  unpetrify-ref: 0.23.1
   build-depends:
   - libtasn1
 - name: gcr
