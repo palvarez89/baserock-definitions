@@ -12,5 +12,5 @@ chunks:
 - name: lorry-controller
   morph: strata/lorry-controller/lorry-controller.morph
   repo: baserock:baserock/lorry-controller
-  ref: f3f59d1415bfdb18f17bd910b829a8d128c1562a
+  ref: 05ce93f191039df06a812a085476ba60af5a2cb6
   unpetrify-ref: master
