@@ -91,6 +91,13 @@ systems:
       GENIVI_WESTON_BACKEND: drm
       GENIVI_WESTON_CONFIG: baseline
       GENIVI_WESTON_AUTOSTART: True
+- morph: systems/weston-qt5-system-x86_64.morph
+  deploy:
+    weston-qt5-system-x86_64.morph:
+      type: extensions/rawdisk
+      location: weston-qt5-system-x86_64.morph.img
+      DISK_SIZE: 4G
+      KERNEL_ARGS: vga=788
 - morph: systems/openstack-system-x86_64.morph
   deploy:
     openstack-system-x86_64:
