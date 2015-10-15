@@ -412,3 +412,8 @@ chunks:
   repo: upstream:gnome/adwaita-icon-theme
   ref: 5e469ae6e664cb0808b6ce9fcfd7bd2ac6fc4216
   unpetrify-ref: gnome-3.18
+- name: gnome-backgrounds
+  repo: upstream:gnome/gnome-backgrounds
+  ref: e68462edd35ae3edb4311df90dc4d1a3cdcb175f
+  unpetrify-ref: 3.18.0-2-ge68462e
+  build-system: autotools
