@@ -407,3 +407,8 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - hicolor-icon-theme
+- name: adwaita-icon-theme
+  morph: strata/gnome/adwaita-icon-theme.morph
+  repo: upstream:gnome/adwaita-icon-theme
+  ref: 5e469ae6e664cb0808b6ce9fcfd7bd2ac6fc4216
+  unpetrify-ref: gnome-3.18
