@@ -31,8 +31,8 @@ strata:
   morph: strata/wayland-generic.morph
 - name: graphics-common
   morph: strata/graphics-common.morph
-- name: input-common
-  morph: strata/input-common.morph
+- name: input-genivi
+  morph: strata/input-genivi.morph
 - name: llvm-common
   morph: strata/llvm-common.morph
 - name: mesa-common

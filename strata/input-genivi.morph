@@ -1,0 +1,39 @@
+name: input-genivi
+kind: stratum
+description: |
+  Input components for GENIVI Demo Platform. GDP needs libinput 0.7,
+  because 0.8+ changed function signatures that weston uses.
+build-depends:
+- morph: strata/foundation.morph
+- morph: strata/xorg-util-macros-common.morph
+chunks:
+- name: mtdev
+  repo: upstream:mtdev-git
+  ref: 4381b78fea54de0e775bf54952b2f95e5a06c57d
+  unpetrify-ref: v1.1.5
+  build-system: autotools
+- name: xkeyboard-config
+  morph: strata/input-genivi/xkeyboard-config.morph
+  repo: upstream:xkeyboard-config
+  ref: 26f344c93f8c6141e9233eb68088ba4fd56bc9ef
+  unpetrify-ref: xkeyboard-config-2.14
+- name: libevdev
+  repo: upstream:libevdev
+  ref: 6f03fd49fb949e46ebccb5dfb54489584896c791
+  unpetrify-ref: libevdev-1.4.2
+  build-system: autotools
+- name: libinput@genivi
+  repo: upstream:libinput
+  ref: 06e2f522a4ab5ea0a1de68cce1b5f9fff568ed4f
+  unpetrify-ref: 0.7.0
+  build-system: autotools
+  build-depends:
+  - mtdev
+  - libevdev
+- name: libxkbcommon-no-x11
+  repo: upstream:xorg-lib-libxkbcommon
+  ref: c43c3c866eb9d52cd8f61e75cbef1c30d07f3a28
+  morph: strata/input-genivi/libxkbcommon-no-x11.morph
+  unpetrify-ref: xkbcommon-0.5.0
+  build-depends:
+  - xkeyboard-config
