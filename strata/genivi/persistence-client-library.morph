@@ -2,5 +2,11 @@ name: persistence-client-library
 kind: chunk
 build-system: autotools
 configure-commands:
+# Configure library name. We are supposed to change them in this version of
+# persistence-client-library.
+# The need of doing this has been fixed upstream in the following commit:
+# http://git.projects.genivi.org/?p=persistence/persistence-client-library.git;a=commitdiff;h=6b208bfc268890360fcbd5cede70da5d2f9fb459
+# Once we upgrade we can drop this `sed`
+- sed -i 's/libpers_common.so.1/libpers_common.so/' config/pclCustomLibConfigFile.cfg
 - autoreconf -ivf
 - ./configure --prefix="$PREFIX" --disable-werror
