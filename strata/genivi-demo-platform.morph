@@ -1,0 +1,49 @@
+name: genivi-demo-platform
+kind: stratum
+description: Components which make up the GENIVI demo platform.
+build-depends:
+- morph: strata/genivi-demo-platform-libs.morph
+- morph: strata/qt5-tools.morph
+- morph: strata/qt5-tools-qtmultimedia.morph
+- morph: strata/qt5-tools-qtwebkit.morph
+- morph: strata/genivi.morph
+- morph: strata/wayland-generic.morph
+- morph: strata/weston-genivi.morph
+chunks:
+- name: browser-poc
+  morph: strata/genivi-demo-platform/browser-poc.morph
+  repo: upstream:genivi/browser-poc
+  ref: d90501f8bd3edcd35eae72efbfb4583ba8f3cdfc
+  unpetrify-ref: baserock/genivi/genivi-demo-platform
+- name: automotive-message-broker
+  morph: strata/genivi-demo-platform/automotive-message-broker.morph
+  repo: upstream:automotive-message-broker
+  ref: 5cac4bd2958ea24ac6913be5baa0dfcda6466089
+  unpetrify-ref: "0.14"
+- name: audiomanager-poc
+  morph: strata/genivi-demo-platform/audiomanager-poc.morph
+  repo: upstream:audiomanager
+  ref: bb65a4d0a18667baa64e5ba40104dc2cda06b299
+  unpetrify-ref: baserock/genivi/genivi-demo-platform
+- name: navit
+  morph: strata/genivi-demo-platform/navit.morph
+  repo: upstream:navit-svn
+  ref: 358812af2c27c4abe324beb205e6d156b96fb1ea
+  unpetrify-ref: master
+- name: audiomanager@gdp
+  morph: strata/genivi-demo-platform/audiomanager@gdp.morph
+  repo: upstream:audiomanager
+  ref: ba709ee7d4f9f81af638a3d3c640b7152bbe32bc
+  unpetrify-ref: baserock/genivi/6.1-3-gba709ee-gdp
+- name: audiomanagerdemo
+  repo: upstream:genivi/audiomanagerdemo
+  ref: 30b7817bb5c2de17c725d6624d073092d3a821c0
+  unpetrify-ref: master
+  build-system: qmake
+  build-depends:
+  - audiomanager@gdp
+- name: genivi-demo-platform-hmi
+  morph: strata/genivi-demo-platform/genivi-demo-platform-hmi.morph
+  repo: upstream:genivi/genivi-demo-platform-hmi
+  ref: 253e30329f1d22c859e07150533702c2d3f986d5
+  unpetrify-ref: baserock/genivi/gdp-0.1

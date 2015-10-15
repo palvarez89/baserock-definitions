@@ -1,0 +1,5 @@
+name: navit
+kind: chunk
+build-system: cmake
+configure-commands:
+- cmake . -DSAMPLE_MAP=n

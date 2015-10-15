@@ -1,0 +1,14 @@
+name: audiomanager@gdp
+kind: chunk
+configure-commands:
+- |
+  cmake -DWITH_PULSE_ROUTING_PLUGIN=ON \
+        -DWITH_PULSE_CONTROL_PLUGIN=ON \
+        -DWITH_ENABLED_IPC=DBUS \
+        -DWITH_DATABASE_STORAGE=OFF \
+        -DWITH_DLT=OFF \
+        -DCMAKE_INSTALL_PREFIX="$PREFIX"
+build-commands:
+- make
+install-commands:
+- make DESTDIR="$DESTDIR" install

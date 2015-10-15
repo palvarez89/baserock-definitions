@@ -1,0 +1,8 @@
+name: boost
+kind: chunk
+configure-commands:
+- ./bootstrap.sh
+build-commands:
+- ./b2 $MAKEFLAGS
+install-commands:
+- ./b2 install --prefix="$DESTDIR$PREFIX"

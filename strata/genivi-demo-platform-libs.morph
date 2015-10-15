@@ -1,0 +1,23 @@
+name: genivi-demo-platform-libs
+kind: stratum
+description: Libraries needed for the GENIVI demo platform.
+build-depends:
+- morph: strata/foundation.morph
+- morph: strata/python-pygobject.morph
+- morph: strata/audio-bluetooth.morph
+chunks:
+- name: boost
+  morph: strata/genivi-demo-platform-libs/boost.morph
+  repo: upstream:boost-tarball
+  ref: ed232fdd34968697a68783b3195b1da4226915b5
+  unpetrify-ref: boost_1_57_0
+- name: dbus-c++
+  morph: strata/genivi-demo-platform-libs/dbus-c++.morph
+  repo: upstream:dbus-c++
+  ref: 8d351eec25430651acbac014e44ec011fac32d57
+  unpetrify-ref: baserock/genivi-demo-platform
+- name: dbus-python
+  repo: upstream:dbus-python
+  ref: d0d5b5be685dc4c16b21c54335becc87ca4d6f58
+  unpetrify-ref: dbus-python-1.2.0
+  build-system: autotools

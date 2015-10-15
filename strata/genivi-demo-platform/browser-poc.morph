@@ -1,0 +1,29 @@
+name: browser-poc
+kind: chunk
+description: The GENIVI browser proof-of-concept for the GENIVI Demo Platform.
+configure-commands:
+- qmake -d -r browser-poc.pro
+build-commands:
+- make all
+install-commands:
+- make INSTALL_ROOT="$DESTDIR" install
+- mkdir -p "$DESTDIR/usr/lib/systemd/user"
+- |
+  cat >"$DESTDIR/usr/lib/systemd/user/browser.service" <<EOF
+  [Unit]
+  Description=Genivi Browser PoC service
+  Requires=dbus.service
+  
+  [Service]
+  ExecStart=/usr/lib/browser-poc/browser/browser
+  EOF
+- |
+  cat >"$DESTDIR/usr/lib/systemd/user/demoui.service" <<EOF
+  [Unit]
+  Description=Genivi Browser PoC demoui
+  Requires=browser.service
+  
+  [Service]
+  Environment=LD_PRELOAD=/usr/lib/libEGL.so
+  ExecStart=/usr/lib/browser-poc/demoui/demoui
+  EOF

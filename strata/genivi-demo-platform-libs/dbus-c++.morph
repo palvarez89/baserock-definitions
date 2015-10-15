@@ -1,0 +1,9 @@
+name: dbus-c++
+kind: chunk
+description: libdbus-c++ and dbusxx-xml2cpp tool
+build-system: autotools
+configure-commands:
+- autoreconf -ivf
+- ./configure --prefix="$PREFIX" --disable-ecore
+post-install-commands:
+- install tools/dbusxx-xml2cpp "$DESTDIR/$PREFIX"/bin/dbusxx-xml2cpp

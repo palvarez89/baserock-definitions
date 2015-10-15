@@ -1,0 +1,10 @@
+name: audiomanager-poc
+kind: chunk
+pre-configure-commands:
+- sed 's:/opt/:/usr/lib/:g' $(git grep -l "/opt/")
+configure-commands:
+- cd AudioManagerPoC && qmake -makefile
+build-commands:
+- cd AudioManagerPoC && make
+install-commands:
+- cd AudioManagerPoC && make install INSTALL_ROOT="$DESTDIR"

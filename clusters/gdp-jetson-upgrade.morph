@@ -1,0 +1,16 @@
+name: gdp-jetson-upgrade
+kind: cluster
+systems:
+- morph: systems/genivi-demo-platform-armv7lhf-jetson.morph
+  deploy-defaults:
+    BOOT_DEVICE: "/dev/mmcblk0p1"
+    ROOT_DEVICE: "/dev/mmcblk0p2"
+    DTB_PATH: "boot/tegra124-jetson-tk1.dtb"
+    BOOTLOADER_CONFIG_FORMAT: "extlinux"
+    BOOTLOADER_INSTALL: "none"
+    KERNEL_ARGS: cma=256M console=tty0 console=ttyS0,115200n8 no_console_suspend=1 nouveau.pstate=1
+    FSTAB_SRC: LABEL=src /src auto defaults,rw,noatime,nofail 0 2
+  deploy:
+    self:
+        type: extensions/ssh-rsync
+        location: root@127.0.0.1

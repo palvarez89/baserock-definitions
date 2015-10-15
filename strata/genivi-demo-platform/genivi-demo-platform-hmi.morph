@@ -1,0 +1,137 @@
+name: genivi-demo-platform-hmi
+kind: chunk
+pre-configure-commands:
+- |
+  sed -i 's/sd_journal_print(LOG_DEBUG,/printf("DEBUG: "/' $(find . -name '*.cpp' -o -name '*.h')
+- |
+  sed -i 's/sd_journal_print(LOG_INFO,/printf("INFO: "/' $(find . -name '*.cpp' -o -name '*.h')
+- |
+  sed -i 's/sd_journal_print(LOG_ERR,/printf("ERR: "/' $(find . -name '*.cpp' -o -name '*.h')
+configure-commands:
+- autoreconf -vfi && ./configure --prefix="$PREFIX"
+- cd app/gdp-hmi-background && qmake
+- cd app/gdp-hmi-launcher2 && qmake
+- cd app/gdp-hmi-panel && qmake
+- cd app/qml-example && qmake
+build-commands:
+- make
+- cd app/gdp-hmi-background && make
+- cd app/gdp-hmi-launcher2 && make
+- cd app/gdp-hmi-panel && make
+- cd app/qml-example && make
+install-commands:
+- make DESTDIR="$DESTDIR" install
+- cd app/gdp-hmi-background && make INSTALL_ROOT="$DESTDIR" install
+- cd app/gdp-hmi-launcher2 && make INSTALL_ROOT="$DESTDIR" install
+- cd app/gdp-hmi-panel && make INSTALL_ROOT="$DESTDIR" install
+- cd app/qml-example && make INSTALL_ROOT="$DESTDIR" install
+- mkdir -p "$DESTDIR"/usr/share/gdp
+- cp -a app/gdp-hmi-background/assets/* "$DESTDIR"/usr/share/gdp/
+- cp -a app/gdp-hmi-launcher2/content/images/* "$DESTDIR"/usr/share/gdp/
+- cp -a app/gdp-hmi-panel/assets/* "$DESTDIR"/usr/share/gdp/
+- mkdir -p "$DESTDIR/usr/lib/systemd/user"
+- mkdir -p "$DESTDIR/usr/lib/systemd/user/default.target.wants"
+- |
+  cat >"$DESTDIR/usr/lib/systemd/user/gdp-hmi-launcher2.service" <<EOF
+  [Unit]
+  Description=GENIVI Demo Platform HMI - Launcher2
+  Requires=gdp-hmi-controller.service
+  
+  [Service]
+  Environment=LD_PRELOAD=/usr/lib/libEGL.so
+  ExecStart=/usr/bin/gdp-hmi-launcher2
+
+  [Install]
+  WantedBy=default.target
+  EOF
+- cd "$DESTDIR/usr/lib/systemd/user/default.target.wants" && ln -s ../gdp-hmi-launcher2.service .
+- |
+  cat >"$DESTDIR/usr/lib/systemd/user/gdp-hmi-background.service" <<EOF
+  [Unit]
+  Description=GENIVI Demo Platform HMI - Background
+  Requires=gdp-hmi-controller.service
+  After=gdp-hmi-controller.service
+  
+  [Service]
+  Environment=LD_PRELOAD=/usr/lib/libEGL.so
+  ExecStart=/usr/bin/gdp-hmi-background
+
+  [Install]
+  WantedBy=default.target
+  EOF
+- cd "$DESTDIR/usr/lib/systemd/user/default.target.wants" && ln -s ../gdp-hmi-background.service .
+- |
+  cat >"$DESTDIR/usr/lib/systemd/user/gdp-hmi-controller.service" <<EOF
+  [Unit]
+  Description=GENIVI Demo Platform HMI - Controller
+  Requires=dbus.service
+  After=dbus.service weston.service
+
+  [Service]
+  ExecStart=/usr/bin/gdp-hmi-controller
+  Restart=always
+  RestartSec=2
+  TimeoutStopSec=1
+
+  [Install]
+  WantedBy=default.target
+  EOF
+- cd "$DESTDIR/usr/lib/systemd/user/default.target.wants" && ln -s ../gdp-hmi-controller.service .
+- |
+  cat >"$DESTDIR/usr/lib/systemd/user/gdp-hmi-panel.service" <<EOF
+  [Unit]
+  Description=GENIVI Demo Platform HMI - Panel
+  Requires=gdp-hmi-controller.service
+  After=gdp-hmi-background.service
+  After=EGLWLMockNavigation.service
+  After=EGLWLInputEventExample.service
+  After=demoui.service
+  After=qml-example.service
+  
+  [Service]
+  Environment=LD_PRELOAD=/usr/lib/libEGL.so
+  ExecStart=/usr/bin/gdp-hmi-panel
+
+  [Install]
+  WantedBy=default.target
+  EOF
+- mkdir -p "$DESTDIR/usr/lib/systemd/user/EGLWLMockNavigation.service.wants"
+- cd "$DESTDIR/usr/lib/systemd/user/EGLWLMockNavigation.service.wants" && ln -s ../gdp-hmi-panel.service .
+- mkdir -p "$DESTDIR/usr/lib/systemd/user/EGLWLInputEventExample.service.wants"
+- cd "$DESTDIR/usr/lib/systemd/user/EGLWLInputEventExample.service.wants" && ln -s ../gdp-hmi-panel.service .
+- mkdir -p "$DESTDIR/usr/lib/systemd/user/demoui.service.wants"
+- cd "$DESTDIR/usr/lib/systemd/user/demoui.service.wants" && ln -s ../gdp-hmi-panel.service .
+- mkdir -p "$DESTDIR/usr/lib/systemd/user/qml-example.service.wants"
+- cd "$DESTDIR/usr/lib/systemd/user/qml-example.service.wants" && ln -s ../gdp-hmi-panel.service .
+- |
+  cat >"$DESTDIR/usr/lib/systemd/user/EGLWLMockNavigation.service" <<EOF
+  [Unit]
+  Description=EGL Wayland Mock Navigation
+  
+  [Service]
+  ExecStart=/usr/bin/EGLWLMockNavigation -surface 10
+  EOF
+- |
+  cat > "$DESTDIR/usr/lib/systemd/user/EGLWLInputEventExample.service" <<EOF
+  [Unit]
+  Description=EGL Wayland Input Event Example
+  
+  [Service]
+  ExecStart=/usr/bin/EGLWLInputEventExample --surface=5100
+  EOF
+- |
+  cat > "$DESTDIR/usr/lib/systemd/user/qml-example.service" <<EOF
+  [Unit]
+  Description=Genivi QML Example
+  
+  [Service]
+  ExecStart=/usr/bin/qml-example
+  EOF
+- |
+  cat > "$DESTDIR/usr/lib/systemd/user/PowerOff.service" <<EOF
+  [Unit]
+  Description=HMI poweroff
+  
+  [Service]
+  ExecStart=/bin/systemctl poweroff
+  EOF

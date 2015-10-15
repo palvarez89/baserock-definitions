@@ -1,0 +1,7 @@
+name: mm-common
+kind: chunk
+description: Common build files of the GNOME C++ bindings.
+build-system: autotools
+configure-commands:
+- ./autogen.sh
+- ./configure --prefix="$PREFIX"
