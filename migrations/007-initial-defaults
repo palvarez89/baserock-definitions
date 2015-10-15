@@ -123,7 +123,7 @@ build-systems:
   cmake:
     # The CMake build system.
     configure-commands:
-    - cmake -DCMAKE_INSTALL_PREFIX="$PREFIX"'
+    - cmake -DCMAKE_INSTALL_PREFIX="$PREFIX"
     build-commands:
     - make
     install-commands:
