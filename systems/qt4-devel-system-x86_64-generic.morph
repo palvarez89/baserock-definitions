@@ -38,6 +38,8 @@ strata:
   morph: strata/connman-common.morph
 - name: enlightenment
   morph: strata/enlightenment.morph
+- name: icu-common
+  morph: strata/icu-common.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

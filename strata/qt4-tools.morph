@@ -2,15 +2,11 @@ name: qt4-tools
 kind: stratum
 description: Qt4 Development Libraries and Tools
 build-depends:
+- morph: strata/icu-common.morph
 - morph: strata/tools.morph
 - morph: strata/x-generic.morph
 - morph: strata/multimedia-gstreamer-0.10.morph
 chunks:
-- name: icu
-  morph: strata/qt4-tools/icu.morph
-  repo: upstream:icu
-  ref: ba023548a3bff7277cbea4acade3042ce9d8949e
-  unpetrify-ref: baserock/morph
 - name: ruby-1.8
   morph: strata/qt4-tools/ruby-1.8.morph
   repo: upstream:ruby
@@ -29,5 +25,4 @@ chunks:
   ref: a182f020bc1703c20d86ba18f2f6b4ea8889de84
   unpetrify-ref: baserock/morph
   build-depends:
-  - icu
   - ruby-1.9
