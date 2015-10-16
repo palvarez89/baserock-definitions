@@ -57,6 +57,8 @@ strata:
   morph: strata/x-generic.morph
 - name: network-security
   morph: strata/network-security.morph
+- name: icu-common
+  morph: strata/icu-common.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

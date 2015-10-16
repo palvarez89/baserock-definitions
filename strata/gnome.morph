@@ -2,6 +2,7 @@ name: gnome
 kind: stratum
 description: GNOME stratum
 build-depends:
+- morph: strata/icu-common.morph
 - morph: strata/input-common.morph
 - morph: strata/tools.morph
 - morph: strata/gtk3.morph
@@ -312,11 +313,6 @@ chunks:
   - clutter
   - libgee
   - libxklavier
-- name: icu
-  morph: strata/gnome/icu.morph
-  repo: upstream:icu
-  ref: ba023548a3bff7277cbea4acade3042ce9d8949e
-  unpetrify-ref: baserock/morph
 - name: libsecret
   morph: strata/gnome/libsecret.morph
   repo: upstream:gnome/libsecret
@@ -329,7 +325,6 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - gcr
-  - icu
   - libgweather
   - libsecret
 - name: gnome-shell
