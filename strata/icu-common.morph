@@ -1,0 +1,10 @@
+name: icu-common
+kind: stratum
+build-depends:
+- morph: strata/coreutils-common.morph
+chunks:
+- name: icu
+  morph: strata/icu-common/icu.morph
+  repo: upstream:icu
+  ref: ba023548a3bff7277cbea4acade3042ce9d8949e
+  unpetrify-ref: baserock/morph

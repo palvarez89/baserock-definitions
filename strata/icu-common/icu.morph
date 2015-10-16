@@ -1,0 +1,20 @@
+name: icu
+kind: chunk
+configure-commands:
+- |
+  # As per commit 8874a7c7, We issue this sed command when
+  # building ICU libraries on arm architectures.
+  cpu=$(echo $TARGET | cut -d '-' -f 1)
+  case "$cpu" in
+  *arm*)
+    sed -e 's/LDFLAGSICUDT/#LDFLAGSICUDT/' -i source/config/mh-linux
+    ;;
+  *)
+    ;;
+  esac
+  cd source
+  ./runConfigureICU Linux --prefix=/usr --sysconfdir=/etc
+build-commands:
+- cd source; unset TARGET ; make
+install-commands:
+- cd source; unset TARGET ; make DESTDIR="$DESTDIR" install
