@@ -72,3 +72,8 @@ chunks:
   build-depends:
   - freetype2
   - ragel-tarball
+- name: libwebp
+  repo: upstream:libwebp
+  ref: fcd94e925a9377cccfcf9de6db278126a52b97a4
+  unpetrify-ref: v0.4.3-rc1
+  build-system: autotools
