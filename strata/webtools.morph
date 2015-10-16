@@ -2,14 +2,10 @@ name: webtools
 kind: stratum
 description: web things
 build-depends:
+- morph: strata/icu-common.morph
 - morph: strata/tools.morph
 - morph: strata/pcre-utils.morph
 chunks:
-- name: icu
-  morph: strata/webtools/icu.morph
-  repo: upstream:icu
-  ref: ba023548a3bff7277cbea4acade3042ce9d8949e
-  unpetrify-ref: baserock/morph
 - name: libgit2
   repo: upstream:libgit2
   ref: 4b0a36e881506a02b43a4ae3c19c93c919b36eeb

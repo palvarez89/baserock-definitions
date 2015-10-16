@@ -33,6 +33,8 @@ strata:
   morph: strata/python2-core.morph
 - name: nodejs
   morph: strata/nodejs.morph
+- name: icu-common
+  morph: strata/icu-common.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files
