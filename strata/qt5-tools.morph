@@ -2,21 +2,15 @@ name: qt5-tools
 kind: stratum
 description: Qt5 Development Libraries and Tools
 build-depends:
+- morph: strata/icu-common.morph
 - morph: strata/tools.morph
 - morph: strata/x-generic.morph
 chunks:
-- name: icu
-  morph: strata/qt5-tools/icu.morph
-  repo: upstream:icu
-  ref: ba023548a3bff7277cbea4acade3042ce9d8949e
-  unpetrify-ref: baserock/morph
 - name: qtbase
   morph: strata/qt5-tools/qtbase.morph
   repo: upstream:qt5/qtbase
   ref: 5367fa356233da4c0f28172a8f817791525f5457
   unpetrify-ref: v5.4.0
-  build-depends:
-  - icu
 - name: qtsvg
   morph: strata/qt5-tools/qtsvg.morph
   repo: upstream:qt5/qtsvg

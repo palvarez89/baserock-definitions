@@ -1,9 +1,0 @@
-name: icu
-kind: chunk
-configure-commands:
-- sed -e 's/LDFLAGSICUDT/#LDFLAGSICUDT/' -i source/config/mh-linux
-- cd source; ./runConfigureICU Linux --prefix=/usr
-build-commands:
-- cd source; unset TARGET ; make
-install-commands:
-- cd source; unset TARGET ; make DESTDIR="$DESTDIR" install
