@@ -4,6 +4,7 @@ build-depends:
 - morph: strata/glib-common.morph
 - morph: strata/mesa-common.morph
 - morph: strata/x-common.morph
+- morph: strata/icu-common.morph
 chunks:
 - name: pixman
   morph: strata/graphics-common/pixman.morph
