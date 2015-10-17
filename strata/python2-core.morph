@@ -78,8 +78,8 @@ chunks:
   - python2
 - name: libxml2-python2
   repo: upstream:libxml2
-  ref: ee8f1d4cda8dc1a6f2c515fe234f7bc89cdc9f80
-  unpetrify-ref: baserock/morph
+  ref: f4e5a6994ed230dfa3fb5b5c3fd94c4993ef1ba7
+  unpetrify-ref: v2.9.1
   build-system: autotools
   build-depends:
   - python2
