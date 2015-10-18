@@ -12,6 +12,8 @@ strata:
   morph: strata/foundation.morph
 - name: bsp-x86_64-generic
   morph: strata/bsp-x86_64-generic.morph
+- name: python2-core
+  morph: strata/python2-core.morph
 - name: nodejs
   morph: strata/nodejs.morph
 configuration-extensions:

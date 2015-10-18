@@ -3,6 +3,7 @@ kind: stratum
 description: Stratum for nodejs related stuff
 build-depends:
 - morph: strata/core.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: node
   repo: upstream:node
