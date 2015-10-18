@@ -306,8 +306,8 @@ chunks:
 - name: caribou
   morph: strata/gnome/caribou.morph
   repo: upstream:caribou
-  ref: 489fce995da8fc2817a8fd35b56532acd31a278a
-  unpetrify-ref: master
+  ref: e1a7a2488cdf8d0d32f0de67d68a85e9a6ab5fd2
+  unpetrify-ref: baserock/CARIBOU_0_4_19-1-ge1a7a24+python3
   build-depends:
   - clutter
   - libgee
