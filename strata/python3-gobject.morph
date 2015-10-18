@@ -1,0 +1,13 @@
+name: python3-gobject
+kind: stratum
+description: |
+  Python 3 GObject bindings
+build-depends:
+- morph: strata/core.morph
+- morph: strata/glib-common.morph
+chunks:
+- name: python3-gobject
+  morph: strata/python3-gobject/python3-gobject.morph
+  repo: upstream:pygobject
+  ref: 8e7f6f1458cf1c162c13422c72562b00433b762b
+  unpetrify-ref: pygobject-3-18
