@@ -159,8 +159,8 @@ chunks:
   unpetrify-ref: gettext-0.19.4
   build-depends:
   - libexpat
-- name: git
-  morph: strata/core/git.morph
+- name: git-minimal
+  morph: strata/core/git-minimal.morph
   repo: upstream:git
   ref: 9874fca7122563e28d699a911404fc49d2a24f1c
   unpetrify-ref: v2.3.0
@@ -195,7 +195,7 @@ chunks:
   - automake
   - flex
   - gettext-tarball
-  - git
+  - git-minimal
   - help2man
   - mini-utils
 - name: patch
@@ -207,7 +207,7 @@ chunks:
   - autoconf
   - automake
   - bison
-  - git
+  - git-minimal
   - mini-utils
 - name: xz
   repo: upstream:xz
@@ -230,7 +230,7 @@ chunks:
   - automake
   - file
   - help2man
-  - git
+  - git-minimal
   - patch
   - texinfo-tarball
   - xz
@@ -317,7 +317,7 @@ chunks:
   - autoconf
   - automake
   - gettext-tarball
-  - git
+  - git-minimal
   - libtool
   - pkg-config
   - linux-pam

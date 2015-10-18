@@ -4,4 +4,6 @@ build-system: autotools
 pre-configure-commands:
 - make configure
 build-commands:
-- make all
+- make all doc
+install-commands:
+- make install install-doc

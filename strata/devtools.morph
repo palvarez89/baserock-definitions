@@ -8,6 +8,7 @@ description: |
 build-depends:
 - morph: strata/core.morph
 - morph: strata/python2-core.morph
+- morph: strata/docutils.morph
 chunks:
 - name: nano
   morph: strata/devtools/nano.morph
@@ -44,3 +45,8 @@ chunks:
   repo: upstream:wget
   ref: 71d79f4f3043cf4ca3b2fb7f5328eae725c1293f
   unpetrify-ref: baserock/v1.16.3
+- name: git
+  morph: strata/devtools/git.morph
+  repo: upstream:git
+  ref: 9874fca7122563e28d699a911404fc49d2a24f1c
+  unpetrify-ref: v2.3.0

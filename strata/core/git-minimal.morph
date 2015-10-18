@@ -1,0 +1,7 @@
+name: git-minimal
+kind: chunk
+build-system: autotools
+pre-configure-commands:
+- make configure
+build-commands:
+- make all
