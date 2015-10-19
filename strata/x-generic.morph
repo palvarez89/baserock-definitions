@@ -39,8 +39,8 @@ chunks:
 - name: xserver
   morph: strata/x-generic/xserver.morph
   repo: upstream:xserver
-  ref: 3b0d1ba2266d2780bfc111bab74885b90458eca4
-  unpetrify-ref: xorg-server-1.17.1
+  ref: 2123f7682d522619f101b05fb75efa75dabbe371
+  unpetrify-ref: xorg-server-1.17.2
   build-depends:
   - libepoxy
   - xorg-font-util
