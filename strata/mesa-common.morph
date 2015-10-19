@@ -15,8 +15,8 @@ chunks:
   unpetrify-ref: mesa-11.0.0
 - name: libepoxy
   repo: upstream:libepoxy
-  ref: 7422de5b4be7b19d789136b3bb5f932de42db27c
-  unpetrify-ref: v1.2
+  ref: e2c33af5bfcfc9d168f9e776156dd47c33f428b3
+  unpetrify-ref: v1.3.1
   build-system: autotools
   build-depends:
   - mesa
