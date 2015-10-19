@@ -60,38 +60,3 @@ systems:
       KERNEL_ARGS: cma=256M console=tty0 console=ttyS0,115200n8 no_console_suspend=1
         nouveau.pstate=1
       HOSTNAME: build-system-armv7lhf-jetson
-- morph: systems/genivi-baseline-system-x86_64-generic.morph
-  deploy:
-    genivi-baseline-system-x86_64-generic:
-      type: extensions/rawdisk
-      location: genivi-baseline-system-x86_64-generic.img
-      DISK_SIZE: 4G
-      KERNEL_ARGS: vga=788
-      INITRAMFS_PATH: boot/initramfs.gz
-      HOSTNAME: genivi-baseline-system-x86-64-generic
-      GENIVI_WESTON_BACKEND: fbdev
-      GENIVI_WESTON_CONFIG: baseline
-      GENIVI_WESTON_AUTOSTART: False
-  subsystems:
-  - morph: systems/initramfs-x86_64.morph
-    deploy:
-      initramfs-genivi-baseline-system-x86_64-generic:
-        type: extensions/initramfs
-        location: boot/initramfs.gz
-- morph: systems/genivi-baseline-system-armv7lhf-jetson.morph
-  deploy:
-    genivi-baseline-system-armv7lhf-jetson:
-      type: extensions/rawdisk
-      location: genivi-baseline-system-armv7lhf-jetson.img
-      DISK_SIZE: 4G
-      BOOT_DEVICE: /dev/mmcblk0p1
-      ROOT_DEVICE: /dev/mmcblk0p2
-      DTB_PATH: boot/tegra124-jetson-tk1.dtb
-      BOOTLOADER_CONFIG_FORMAT: extlinux
-      BOOTLOADER_INSTALL: none
-      KERNEL_ARGS: cma=256M console=tty0 console=ttyS0,115200n8 no_console_suspend=1
-        nouveau.pstate=1
-      HOSTNAME: genivi-baseline-system-armv7lhf-jetson
-      GENIVI_WESTON_BACKEND: drm
-      GENIVI_WESTON_CONFIG: baseline
-      GENIVI_WESTON_AUTOSTART: False
