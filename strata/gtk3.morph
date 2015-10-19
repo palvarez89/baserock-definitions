@@ -6,15 +6,8 @@ build-depends:
 - morph: strata/wayland-generic.morph
 - morph: strata/x-common.morph
 chunks:
-- name: libepoxy
-  repo: upstream:libepoxy
-  ref: 7422de5b4be7b19d789136b3bb5f932de42db27c
-  unpetrify-ref: v1.2
-  build-system: autotools
 - name: gtk3
   morph: strata/gtk3/gtk3.morph
   repo: upstream:gtk+
   ref: 1ed442180d65da78d071019c0dc0d365932e4503
   unpetrify-ref: 3.18.2
-  build-depends:
-  - libepoxy
