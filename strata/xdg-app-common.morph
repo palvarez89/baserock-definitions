@@ -1,0 +1,11 @@
+name: xdg-app-common
+kind: stratum
+build-depends:
+- morph: strata/ostree-core.morph
+- morph: strata/x-common.morph
+chunks:
+- name: xdg-app
+  morph: strata/xdg-app-common/xdg-app.morph
+  repo: upstream:xdg-app
+  ref: aa535b7b01f4dd406e9bed0dfe4a0de2b8e56565
+  unpetrify-ref: baserock/0.4.4
