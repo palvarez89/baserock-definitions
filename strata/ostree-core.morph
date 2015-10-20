@@ -3,7 +3,20 @@ kind: stratum
 build-depends:
 - morph: strata/core.morph
 - morph: strata/libsoup-common.morph
+- morph: strata/foundation.morph
 chunks:
+- name: libassuan
+  morph: strata/ostree-core/libassuan.morph
+  repo: upstream:libassuan
+  ref: cdb1e6484d6f094f8e795bfec5b314ec524a90f8
+  unpetrify-ref: libassuan-2.3.0
+- name: gpgme
+  morph: strata/ostree-core/gpgme.morph
+  repo: upstream:gpgme
+  ref: 107bff70edb611309f627058dd4777a5da084b1a
+  unpetrify-ref: gpgme-1.6.0
+  build-depends:
+  - libassuan
 - name: libgsystem
   repo: upstream:libgsystem
   ref: 8231b8ad4a4ee35e4b11fae5f6e7cddabf1c51ae
@@ -11,8 +24,9 @@ chunks:
   build-system: autotools
 - name: ostree
   repo: upstream:ostree
-  ref: c9704e9802dfeda9b5a138535c59e98df3dd7196
-  unpetrify-ref: baserock/morph
+  ref: 45ec78735daf72da1998f9df2887ea9b5e2600c3
+  unpetrify-ref: baserock/v2015.9
   build-system: autotools
   build-depends:
+  - gpgme
   - libgsystem
