@@ -289,3 +289,9 @@ update_report "$START_TIME" \
 cp "$REPORT_PATH" "$SERVER_REPORT_PATH"
 mkdir "$SERVER_PATH/log"
 mv "$logfile" "$SERVER_PATH/$BUILD_LOG"
+
+# Cleanup
+
+mkdir -p /srv/distbuild/remove
+mv /srv/distbuild/!(remove) /srv/distbuild/remove
+rm -r /srv/distbuild/remove
