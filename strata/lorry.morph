@@ -64,8 +64,8 @@ chunks:
 - name: libserf
   morph: strata/lorry/libserf.morph
   repo: upstream:libserf-tarball
-  ref: 6f61a1acd01dc2ad1d2f5c1f7458702c77c69f9c
-  unpetrify-ref: baserock/morph
+  ref: f143c3cab79c59dd57124f19d16ac35253843136
+  unpetrify-ref: master
   build-depends:
   - libapr
   - libapr-util
