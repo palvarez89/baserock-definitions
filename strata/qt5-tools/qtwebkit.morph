@@ -1,6 +1,5 @@
 name: qtwebkit
 kind: chunk
-max-jobs: 1
 configure-commands:
 - QMAKEPATH=/qtwebkit.build/Tools/qmake/mkspecs qmake WebKit.pro
 build-commands:
