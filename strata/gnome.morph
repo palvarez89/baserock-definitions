@@ -320,6 +320,41 @@ chunks:
   repo: upstream:gnome/libsecret
   ref: 4d76cf7dd8e55d93bb58164a1fff38113ba97af5
   unpetrify-ref: master
+- name: librest
+  repo: upstream:gnome/librest
+  ref: 08f1fc35e3c77aecedacf08aa510e82c91ac7f2a
+  unpetrify-ref: 0.7.93
+  build-system: autotools
+- name: enchant
+  repo: upstream:enchant
+  ref: 6d8b6bb15f09a14c90fb900eb2ecf1172d7cf6cf
+  unpetrify-ref: master
+  build-system: autotools
+- name: hyphen
+  repo: upstream:hyphen
+  ref: 7f28cf7edb54cc1bc4eaa09672e0bc043b1da70b
+  unpetrify-ref: master
+  build-system: autotools
+- name: WebKitGtk
+  morph: strata/gnome/WebKitGtk.morph
+  repo: upstream:WebKitGtk-tarball
+  ref: e15dd966d523731101f70ccf768bba12435a0208
+  unpetrify-ref: webkitgtk-2.10.2
+  build-depends:
+  - enchant
+  - geoclue
+  - hyphen
+  - libnotify
+  - libsecret
+- name: gnome-online-accounts
+  morph: strata/gnome/gnome-online-accounts.morph
+  repo: upstream:gnome/gnome-online-accounts
+  ref: 167ada60a66a0ed851bb65335a46570cf071115a
+  unpetrify-ref: baserock/3.18.1
+  build-depends:
+  - librest
+  - telepathy-glib
+  - WebKitGtk
 - name: evolution-data-server
   morph: strata/gnome/evolution-data-server.morph
   repo: upstream:evolution-data-server
@@ -329,6 +364,7 @@ chunks:
   - gcr
   - libgweather
   - libsecret
+  - gnome-online-accounts
 - name: gnome-shell
   morph: strata/gnome/gnome-shell.morph
   repo: upstream:gnome/gnome-shell
@@ -345,6 +381,7 @@ chunks:
   - polkit
   - startup-notification
   - telepathy-glib
+  - network-manager-applet
 - name: gnome-session
   morph: strata/gnome/gnome-session.morph
   repo: upstream:gnome/gnome-session
@@ -423,27 +460,6 @@ chunks:
   - iso-codes
   - libsecret
   - libnotify
-- name: enchant
-  repo: upstream:enchant
-  ref: 6d8b6bb15f09a14c90fb900eb2ecf1172d7cf6cf
-  unpetrify-ref: master
-  build-system: autotools
-- name: hyphen
-  repo: upstream:hyphen
-  ref: 7f28cf7edb54cc1bc4eaa09672e0bc043b1da70b
-  unpetrify-ref: master
-  build-system: autotools
-- name: WebKitGtk
-  morph: strata/gnome/WebKitGtk.morph
-  repo: upstream:WebKitGtk-tarball
-  ref: e15dd966d523731101f70ccf768bba12435a0208
-  unpetrify-ref: webkitgtk-2.10.2
-  build-depends:
-  - enchant
-  - geoclue
-  - hyphen
-  - libnotify
-  - libsecret
 - name: nettle
   morph: strata/gnome/nettle.morph
   repo: upstream:nettle
@@ -466,3 +482,36 @@ chunks:
   build-system: autotools
   build-depends:
   - gnutls
+- name: cracklib
+  morph: strata/gnome/cracklib.morph
+  repo: upstream:cracklib
+  ref: 1dd5ca2114c0dd478b17e68e38d2c9f7094552cc
+  unpetrify-ref: cracklib-2.9.6
+- name: libpwquality
+  morph: strata/gnome/libpwquality.morph
+  repo: upstream:libpwquality
+  ref: 24937f6fdcc1673e064c9626407c89f58289957d
+  unpetrify-ref: libpwquality-1.3.0
+  build-depends:
+  - cracklib
+- name: krb5
+  morph: strata/gnome/krb5.morph
+  repo: upstream:krb5
+  ref: db2acb6b06e469c6c12476bec68acc7964626523
+  unpetrify-ref: master
+- name: gnome-initial-setup
+  morph: strata/gnome/gnome-initial-setup.morph
+  repo: upstream:gnome/gnome-initial-setup
+  ref: b45052856e406d6526ef4d32f4346e43c50cd58a
+  unpetrify-ref: 3.18.0
+  build-depends:
+  - accountsservice
+  - gdm
+  - gnome-desktop
+  - gnome-keyring
+  - gnome-online-accounts
+  - iso-codes
+  - krb5
+  - libgweather
+  - libpwquality
+  - network-manager-applet

@@ -1,0 +1,7 @@
+name: gnome-initial-setup
+kind: chunk
+build-system: autotools
+system-integration:
+  gnome-initial-set-misc:
+    01-add-gnome-initial-setup-user:
+    - useradd -c "GNOME Initial Setup Owner" -g gdm -s /bin/false gnome-initial-setup

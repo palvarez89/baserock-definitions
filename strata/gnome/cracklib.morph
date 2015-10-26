@@ -1,0 +1,18 @@
+name: cracklib
+kind: chunk
+build-system: autotools
+configure-commands:
+# cracklib has it's own autogen.sh script, but uses curl to download config.sub & config.guess, we just skip it
+- cd src && autopoint -f && cd m4 && echo EXTRA_DIST = *.m4 > Makefile.am && cd .. && autoreconf -f -i
+- cd src && ./configure --prefix="$PREFIX" --sysconfdir=/etc --with-default-dict=/lib/cracklib/pw_dict
+build-commands:
+- make -C src
+- make -C words
+install-commands:
+- make -C src install
+- install -m644 -D words/cracklib-words.gz $DESTDIR$PREFIX/share/dict/cracklib-words.gz
+- install -v -m755 -d $DESTDIR/lib/cracklib
+system-integration:
+  cracklib-misc:
+    00-cracklib-create-dict:
+    - create-cracklib-dict /usr/share/dict/cracklib-words.gz

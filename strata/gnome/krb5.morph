@@ -1,0 +1,10 @@
+name: krb5
+kind: chunk
+build-system: autotools
+configure-commands:
+- cd src && ./util/reconf --force
+- cd src && ./configure --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var/lib --enable-dns
+build-commands:
+- make -C src
+install-commands:
+- make -C src install

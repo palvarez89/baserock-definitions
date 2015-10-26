@@ -1,0 +1,6 @@
+name: libpwquality
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh
+- ./configure --prefix="$PREFIX" --sysconfdir=/etc --with-securedir=/lib/security --disable-nls
