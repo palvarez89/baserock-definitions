@@ -23,6 +23,8 @@ strata:
   morph: strata/graphics-common.morph
 - name: gtk-deps
   morph: strata/gtk-deps.morph
+- name: gtk2
+  morph: strata/gtk2.morph
 - name: gtk3
   morph: strata/gtk3.morph
 - name: input-common
@@ -41,6 +43,8 @@ strata:
   morph: strata/python-pygobject.morph
 - name: libsoup-common
   morph: strata/libsoup-common.morph
+- name: ruby
+  morph: strata/ruby.morph
 - name: tools
   morph: strata/tools.morph
 - name: libdrm-common
