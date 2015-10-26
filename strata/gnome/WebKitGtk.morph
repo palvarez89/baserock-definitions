@@ -1,0 +1,5 @@
+name: WebKitGtk
+kind: chunk
+build-system: cmake
+configure-commands:
+- cmake -DPORT=GTK -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_INSTALL_LIBDIR=lib
