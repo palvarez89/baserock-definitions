@@ -522,3 +522,12 @@ chunks:
   unpetrify-ref: 0.43.0
   build-depends:
   - gnutls
+- name: nautilus
+  morph: strata/gnome/nautilus.morph
+  repo: upstream:nautilus
+  ref: 21f23b8cd87eff91fc2ccff57091325d33280a4b
+  unpetrify-ref: 3.18.1
+  build-depends:
+  - vte
+  - gnome-desktop
+  - gsettings-desktop-schemas
