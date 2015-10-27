@@ -515,3 +515,10 @@ chunks:
   - libgweather
   - libpwquality
   - network-manager-applet
+- name: vte
+  morph: strata/gnome/vte.morph
+  repo: upstream:gnome/vte
+  ref: aa7120c2e359bb5d6d0b0ec6c1e0eecf0583be03
+  unpetrify-ref: 0.43.0
+  build-depends:
+  - gnutls
