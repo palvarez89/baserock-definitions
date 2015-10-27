@@ -444,3 +444,25 @@ chunks:
   - hyphen
   - libnotify
   - libsecret
+- name: nettle
+  morph: strata/gnome/nettle.morph
+  repo: upstream:nettle
+  ref: 549e2853d6f3fa9cefb099970209c7f5bf5673b7
+  unpetrify-ref: nettle_3.1.1_release_20150424
+- name: gnutls
+  morph: strata/gnome/gnutls.morph
+  repo: upstream:gnutls
+  ref: a9bcd4881a539e64bd948eff3fa3434e23973262
+  unpetrify-ref: gnutls_3_4_6
+  build-system: autotools
+  build-depends:
+  - nettle
+  - libtasn1
+  - p11-kit
+- name: glib-networking
+  repo: upstream:gnome/glib-networking
+  ref: 32ee55186d7df497e3d402a1940cddfabd9dbc21
+  unpetrify-ref: 2.46.0
+  build-system: autotools
+  build-depends:
+  - gnutls

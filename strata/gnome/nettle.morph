@@ -1,0 +1,6 @@
+name: nettle
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./.bootstrap
+- ./configure --prefix="$PREFIX" --libdir="$PREFIX"/lib --sysconfdir=/etc --disable-documentation --enable-mini-gmp

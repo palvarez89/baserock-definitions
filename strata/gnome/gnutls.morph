@@ -1,0 +1,6 @@
+name: gnutls
+kind: chunk
+build-system: autotools
+configure-commands:
+- make autoreconf
+- ./configure --prefix="$PREFIX" --sysconfdir=/etc --with-nettle-mini --disable-tools --disable-doc
