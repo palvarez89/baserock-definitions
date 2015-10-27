@@ -536,3 +536,15 @@ chunks:
   ref: 4944725bddcf5821d53d7d648fc53347ce12cc03
   unpetrify-ref: 0.22
   build-system: autotools
+- name: gnome-terminal
+  morph: strata/gnome/gnome-terminal.morph
+  repo: upstream:gnome/gnome-terminal
+  ref: d52e6beb2df7aedd0c98696ae3be4a36b4c8f0f0
+  unpetrify-ref: 3.18.1
+  build-depends:
+  - desktop-file-utils
+  - dconf
+  - gconf
+  - gsettings-desktop-schemas
+  - nautilus
+  - yelp-tools
