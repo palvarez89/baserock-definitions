@@ -470,7 +470,6 @@ chunks:
   repo: upstream:gnutls
   ref: a9bcd4881a539e64bd948eff3fa3434e23973262
   unpetrify-ref: gnutls_3_4_6
-  build-system: autotools
   build-depends:
   - nettle
   - libtasn1
