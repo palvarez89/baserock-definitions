@@ -45,3 +45,4 @@ configuration-extensions:
 - extensions/strip-gplv3
 - extensions/fstab
 - extensions/install-essential-files
+- extensions/genivi

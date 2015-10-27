@@ -1,0 +1,25 @@
+help: |
+    This extension configures GENIVI systems. It uses the following
+    configuration variables:
+
+    * `GENIVI_WESTON_CONFIG` (optional, defaults to `baseline`)
+      the weston configuration file to use. The GENIVI baseline system
+      uses a different one than the GENIVI Demo Platform.
+
+      Possibles values here are `baseline` and `gdp`. Other values will
+      fail. The extension will copy the relevant configuration file
+      from `/usr/share/doc/weston/` to `/etc/xdg/weston/weston.ini`
+      to make it the default configuration for Weston.
+
+    * `GENIVI_WESTON_BACKEND` (optional, defaults to 'drm-backend.so')
+      the backend to use with Weston. This backend will be used in
+      the `weston.service` systemd unit overriding the default backend
+      specified when building Weston.
+
+      The extension looks for the backend in the system, failing if
+      it's not present. It will also try to append `-backend.so` to
+      the variable so that (e.g) you can set this variable to `fbdev`
+      and to `fbdev-backend.so`.
+
+    * `GENIVI_WESTON_AUTOSTART`(optional. defaults to 'False')
+      boolean. If `True` it will enable the `weston.service`.

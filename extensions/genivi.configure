@@ -1,0 +1,124 @@
+#!/bin/sh
+
+# Copyright (C) 2015  Codethink Limited
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+ROOT="$1"
+
+enable(){
+    ln -sf "/usr/lib/systemd/system/$1.service" \
+            "$ROOT/etc/systemd/system/multi-user.target.wants/$1.service"
+}
+
+unnaceptable(){
+    eval echo Unexpected value \$$1 for $1 >&2
+    exit 1
+}
+
+check_bool(){
+    case "$(eval echo \"\$$1\")" in
+    True)
+        eval "$1=true"
+        ;;
+    False|'')
+        eval "$1=false"
+        ;;
+    *)
+        unnaceptable "$1"
+        ;;
+    esac
+}
+
+check_weston_config(){
+    weston_ini_folder="$ROOT/usr/share/doc/weston"
+    case "$GENIVI_WESTON_CONFIG" in
+    'baseline'|'')
+        weston_ini_file=ivi-shell-weston.ini
+        ;;
+    'gdp')
+        weston_ini_file=gdp-weston.ini
+        ;;
+    *)
+        unnaceptable "GENIVI_WESTON_CONFIG"
+        ;;
+    esac
+    weston_ini_file="$weston_ini_folder/$weston_ini_file"
+    if [ ! -f "$weston_ini_file" ]; then
+        echo ERROR: Failed to locate weston config file: $weston_ini_file
+        exit 1
+    fi
+}
+
+check_weston_backend (){
+    # If nothing defined, use drm-backend.so
+    if [ "x$GENIVI_WESTON_BACKEND" == "x" ]; then
+        echo GENIVI_WESTON_BACLEND not set, defaulting to drm-backend.so
+        GENIVI_WESTON_BACKEND=drm-backend.so
+    fi
+
+    backends_folder="$ROOT/usr/lib/weston"
+    backend_file="$backends_folder/$GENIVI_WESTON_BACKEND"
+    # Check that the backend exists
+    echo Checking for "$backend_file" ...
+    if [ ! -f "$backend_file" ]; then
+        echo "File $backend_file doesn't exist"
+        GENIVI_WESTON_BACKEND="$GENIVI_WESTON_BACKEND-backend.so"
+        backend_file="$backends_folder/$GENIVI_WESTON_BACKEND"
+        echo Checking for "$backend_file" ...
+        if [ ! -f "$backend_file" ]; then
+            echo "File $backend_file doesn't exist"
+            echo ERROR: Failed to find Weston backend in the system
+            exit 1
+        fi
+    fi
+    echo Backend $backend_file found
+}
+
+##########################################################################
+# Check variables
+##########################################################################
+
+check_bool GENIVI_WESTON_AUTOSTART
+check_weston_config
+check_weston_backend
+
+######################################
+# Create and enable weston.service   #
+######################################
+
+cat > "$ROOT/usr/lib/systemd/system/weston.service" <<EOF
+[Unit]
+Description=Weston reference Wayland compositor
+After=dbus.service
+
+[Service]
+ExecStart=/usr/bin/weston-launch -u root -- --log=/tmp/weston.log --backend="$GENIVI_WESTON_BACKEND"
+ExecStop=/usr/bin/killall -s KILL weston
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+if "$GENIVI_WESTON_AUTOSTART"; then
+    enable weston
+fi
+
+######################################
+# Set weston.ini file                #
+######################################
+
+install -d "$ROOT/etc/xdg/weston"
+install -m 0644 $weston_ini_file "$ROOT/etc/xdg/weston/weston.ini"

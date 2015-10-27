@@ -10,6 +10,9 @@ systems:
     BOOTLOADER_INSTALL: "none"
     KERNEL_ARGS: cma=256M console=tty0 console=ttyS0,115200n8 no_console_suspend=1 nouveau.pstate=1
     FSTAB_SRC: LABEL=src /src auto defaults,rw,noatime,nofail 0 2
+    GENIVI_WESTON_BACKEND: drm
+    GENIVI_WESTON_CONFIG: gdp
+    GENIVI_WESTON_AUTOSTART: True
   deploy:
     self:
         type: extensions/ssh-rsync
