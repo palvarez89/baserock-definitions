@@ -531,3 +531,8 @@ chunks:
   - vte
   - gnome-desktop
   - gsettings-desktop-schemas
+- name: desktop-file-utils
+  repo: upstream:desktop-file-utils
+  ref: 4944725bddcf5821d53d7d648fc53347ce12cc03
+  unpetrify-ref: 0.22
+  build-system: autotools
