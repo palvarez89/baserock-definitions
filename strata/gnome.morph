@@ -365,6 +365,15 @@ chunks:
   - libgweather
   - libsecret
   - gnome-online-accounts
+- name: network-manager-applet
+  repo: upstream:gnome/network-manager-applet
+  ref: bbcc673af29066cfc6f0e12f04c0dd3f9937fb3a
+  unpetrify-ref: 0.9.10-beta1-344-gbbcc673
+  build-system: autotools
+  build-depends:
+  - iso-codes
+  - libsecret
+  - libnotify
 - name: gnome-shell
   morph: strata/gnome/gnome-shell.morph
   repo: upstream:gnome/gnome-shell
@@ -451,15 +460,6 @@ chunks:
   ref: e68462edd35ae3edb4311df90dc4d1a3cdcb175f
   unpetrify-ref: 3.18.0-2-ge68462e
   build-system: autotools
-- name: network-manager-applet
-  repo: upstream:gnome/network-manager-applet
-  ref: bbcc673af29066cfc6f0e12f04c0dd3f9937fb3a
-  unpetrify-ref: 0.9.10-beta1-344-gbbcc673
-  build-system: autotools
-  build-depends:
-  - iso-codes
-  - libsecret
-  - libnotify
 - name: nettle
   morph: strata/gnome/nettle.morph
   repo: upstream:nettle
