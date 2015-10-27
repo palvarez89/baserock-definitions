@@ -13,12 +13,15 @@ configure-commands:
 post-install-commands:
 - install -d "$DESTDIR/usr/share/weston"
 - install -m 0644 data/*.png "$DESTDIR/usr/share/weston/"
-- sed -i 's,/weston.build/data/,/usr/share/weston/,g' ivi-shell/weston.ini
-- sed -i 's,/weston.build/clients/,/usr/bin/,g' ivi-shell/weston.ini
-- sed -i 's,/weston.build/,/usr/libexec/,g' ivi-shell/weston.ini
-- sed -i '/^\[ivi-launcher\]/,$d' ivi-shell/weston.ini
+- cp ivi-shell/weston.ini ivi-shell/ivi-shell-weston.ini
+- cp ivi-shell/weston.ini ivi-shell/gdp-weston.ini
+# Generate ivi-shell-weston config used for GENIVI Baseline
+- sed -i 's,/weston.build/data/,/usr/share/weston/,g' ivi-shell/ivi-shell-weston.ini
+- sed -i 's,/weston.build/clients/,/usr/bin/,g' ivi-shell/ivi-shell-weston.ini
+- sed -i 's,/weston.build/,/usr/libexec/,g' ivi-shell/ivi-shell-weston.ini
+- sed -i '/^\[ivi-launcher\]/,$d' ivi-shell/ivi-shell-weston.ini
 - |
-  cat <<EOF >> ivi-shell/weston.ini
+  cat <<EOF >> ivi-shell/ivi-shell-weston.ini
   [ivi-launcher]
   workspace-id=0
   icon-id=4001
@@ -49,5 +52,13 @@ post-install-commands:
   icon=/usr/share/weston/icon_ivi_smoke.png
   path=/usr/bin/weston-smoke
   EOF
+
 - install -d "$DESTDIR/usr/share/doc/weston"
-- install -m 0644 ivi-shell/weston.ini "$DESTDIR/usr/share/doc/weston/ivi-shell-weston.ini"
+- install -m 0644 ivi-shell/ivi-shell-weston.ini "$DESTDIR/usr/share/doc/weston/ivi-shell-weston.ini"
+
+# Generate gdp-weston config used for GENIVI Demo Platform
+- sed -i 's/hmi-controller.so/ivi-controller.so/' ivi-shell/gdp-weston.ini
+
+# Install both config files to decide later which one to use
+- install -m 0644 ivi-shell/ivi-shell-weston.ini "$DESTDIR/usr/share/doc/weston/ivi-shell-weston.ini"
+- install -m 0644 ivi-shell/gdp-weston.ini "$DESTDIR/usr/share/doc/weston/gdp-weston.ini"
