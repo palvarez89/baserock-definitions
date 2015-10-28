@@ -33,6 +33,7 @@ products:
   - (usr/)?lib(32|64)?/.*\.o
 - artifact: glibc-locale
   include:
+  - (usr/)?lib/locale/.*
   - (usr/)?share/locale/.*
   - (usr/)?share/i18n/.*
   - (usr/)?share/zoneinfo/.*
@@ -69,6 +70,7 @@ build-commands:
 
 install-commands:
 - cd o && make install_root="$DESTDIR" localtime=UTC install
+- cd o && make install_root="$DESTDIR" localtime=UTC localedata/install-locales
 - mkdir -p "$DESTDIR/etc"
 - mkdir -p "$DESTDIR/etc/ld.so.conf.d"
 - |
