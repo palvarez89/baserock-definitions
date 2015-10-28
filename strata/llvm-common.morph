@@ -1,7 +1,7 @@
 name: llvm-common
 kind: stratum
 build-depends:
-- morph: strata/python2-core.morph
+- morph: strata/core.morph
 chunks:
 - name: llvm
   morph: strata/llvm-common/llvm.morph
