@@ -9,6 +9,11 @@ configure-commands:
 - |
   ./configure --prefix="$PREFIX" --sysconfdir=/etc \
     --disable-libuuid --disable-uuidd --disable-libblkid
+build-commands:
+# Without this, the static archive libcom_err is generated without
+# position independant code; later when samba tries to create a shared
+# library linking to this archive, we get errors.
+- make CFLAGS="-g -O2 -DHAVE_CONFIG_H -fPIC"
 install-commands:
 # e2fsprogs also includes tools that are provided by util-linux, so we
 # need to selectively exclude them.  Removing them directly from DESTDIR
