@@ -43,6 +43,12 @@ chunks:
   build-depends:
   - cogl
   - json-glib
+- name: clutter-gtk
+  repo: upstream:gnome/clutter-gtk
+  ref: 56b09d02f71aa38f9496226641850e6ecf14ef70
+  unpetrify-ref: 1.6.6
+  build-depends:
+  - clutter
 - name: gsettings-desktop-schemas
   repo: upstream:gnome/gsettings-desktop-schemas
   ref: db40812cd79f64c98432efd1b632c5633a27f77e
