@@ -23,7 +23,7 @@ systems:
     build-system-armv7lhf-jetson:
       type: extensions/rawdisk
       location: build-system-armv7lhf-jetson.img
-      DISK_SIZE: 2G
+      DISK_SIZE: 3G
       BOOT_DEVICE: /dev/mmcblk0p1
       ROOT_DEVICE: /dev/mmcblk0p2
       DTB_PATH: boot/tegra124-jetson-tk1.dtb
