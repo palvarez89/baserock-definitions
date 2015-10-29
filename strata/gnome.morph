@@ -554,3 +554,8 @@ chunks:
   ref: 06a224c1fd71af769b56a825791422e42c3a9523
   unpetrify-ref: grilo-0.2.12
   build-system: autotools
+- name: libgtop
+  repo: upstream:gnome/libgtop
+  ref: ac2aef0f47fd998555abf18003f4c11ffecbf542
+  unpetrify-ref: 2.32.0
+  build-system: autotools
