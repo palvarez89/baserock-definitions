@@ -584,3 +584,28 @@ chunks:
   build-depends:
   - libcanberra
   - libnotify
+- name: gnome-control-center
+  morph: strata/gnome/gnome-control-center.morph
+  repo: upstream:gnome/gnome-control-center
+  ref: f00c05ba3b3c7aa328d7970b73a784739cef560a
+  unpetrify-ref: baserock/3.18
+  build-depends:
+  - accountsservice
+  - clutter
+  - clutter-gtk
+  - colord
+  - colord-gtk
+  - gnome-bluetooth
+  - gnome-desktop
+  - gnome-online-accounts
+  - gnome-settings-daemon
+  - grilo
+  - gsettings-desktop-schemas
+  - ibus
+  - iso-codes
+  - krb5
+  - libcanberra
+  - libgtop
+  - libpwquality
+  - libwacom
+  - network-manager-applet
