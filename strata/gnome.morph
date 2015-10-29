@@ -17,6 +17,7 @@ build-depends:
 - morph: strata/wayland-generic.morph
 - morph: strata/x-generic.morph
 - morph: strata/ruby.morph
+- morph: strata/samba.morph
 chunks:
 - name: dconf
   morph: strata/gnome/dconf.morph

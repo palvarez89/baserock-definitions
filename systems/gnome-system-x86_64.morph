@@ -67,6 +67,8 @@ strata:
   morph: strata/network-security.morph
 - name: icu-common
   morph: strata/icu-common.morph
+- name: samba
+  morph: strata/samba.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files
