@@ -156,6 +156,12 @@ chunks:
   - gusb
   - lcms2
   - polkit
+- name: colord-gtk
+  repo: upstream:colord-gtk
+  ref: eadca143872288e1300303a771efdaab196900e1
+  unpetrify-ref: COLORD_GTK_0_1_26
+  build-depends:
+  - colord
 - name: geocode-glib
   repo: upstream:gnome/geocode-glib
   ref: a3e183e40053b4bd0fd0b25a070f60597270397a
