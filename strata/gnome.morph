@@ -576,3 +576,11 @@ chunks:
   ref: c707d0f98c79260cb72b5d2bdded50b4e816e350
   unpetrify-ref: libwacom-0.15
   build-system: autotools
+- name: gnome-bluetooth
+  repo: upstream:gnome/gnome-bluetooth
+  ref: eb2558d45518f7c23c20fa7b13639f013810494e
+  unpetrify-ref: GNOMEBT_V_3_18_0
+  build-system: autotools
+  build-depends:
+  - libcanberra
+  - libnotify
