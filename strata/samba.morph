@@ -4,6 +4,7 @@ description: Simple samba server
 build-depends:
 - morph: strata/core.morph
 - morph: strata/foundation.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: samba
   morph: strata/samba/samba.morph
