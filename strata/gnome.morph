@@ -549,3 +549,8 @@ chunks:
   - gsettings-desktop-schemas
   - nautilus
   - yelp-tools
+- name: grilo
+  repo: upstream:gnome/grilo
+  ref: 06a224c1fd71af769b56a825791422e42c3a9523
+  unpetrify-ref: grilo-0.2.12
+  build-system: autotools
