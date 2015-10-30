@@ -1,0 +1,5 @@
+name: mutter
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --enable-compile-warnings=no

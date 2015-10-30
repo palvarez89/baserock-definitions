@@ -289,6 +289,7 @@ chunks:
   unpetrify-ref: xkbcommon-0.5.0
   build-system: autotools
 - name: mutter
+  morph: strata/gnome/mutter.morph
   repo: upstream:mutter
   ref: b975676c5ddd9401d4acfc4d0b9317dd8956656b
   unpetrify-ref: 3.18.0-25-gb975676
@@ -302,7 +303,6 @@ chunks:
   - startup-notification
   - upower
   - zenity
-  build-system: autotools
 - name: libxklavier
   repo: upstream:libxklavier
   ref: 65c132a65e90a42e898f07243ef544109ada53c9
