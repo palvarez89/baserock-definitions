@@ -47,6 +47,7 @@ chunks:
   repo: upstream:gnome/clutter-gtk
   ref: 56b09d02f71aa38f9496226641850e6ecf14ef70
   unpetrify-ref: 1.6.6
+  build-system: autotools
   build-depends:
   - clutter
 - name: gsettings-desktop-schemas
@@ -166,6 +167,7 @@ chunks:
   repo: upstream:colord-gtk
   ref: eadca143872288e1300303a771efdaab196900e1
   unpetrify-ref: COLORD_GTK_0_1_26
+  build-system: autotools
   build-depends:
   - colord
 - name: geocode-glib
