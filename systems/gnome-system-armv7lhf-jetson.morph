@@ -1,0 +1,78 @@
+name: gnome-system-armv7lhf-jetson
+kind: system
+description: A GNOME system system.
+arch: armv7lhf
+strata:
+- name: audio-bluetooth
+  morph: strata/audio-bluetooth.morph
+- name: bsp-jetson
+  morph: strata/bsp-jetson.morph
+- name: build-essential
+  morph: strata/build-essential.morph
+- name: NetworkManager-common
+  morph: strata/NetworkManager-common.morph
+- name: core
+  morph: strata/core.morph
+- name: foundation
+  morph: strata/foundation.morph
+- name: glib-common
+  morph: strata/glib-common.morph
+- name: gnome
+  morph: strata/gnome.morph
+- name: graphics-common
+  morph: strata/graphics-common.morph
+- name: gtk-deps
+  morph: strata/gtk-deps.morph
+- name: gtk2
+  morph: strata/gtk2.morph
+- name: gtk3
+  morph: strata/gtk3.morph
+- name: input-common
+  morph: strata/input-common.morph
+- name: llvm-common
+  morph: strata/llvm-common.morph
+- name: mesa-common
+  morph: strata/mesa-common.morph
+- name: multimedia-common
+  morph: strata/multimedia-common.morph
+- name: multimedia-gstreamer
+  morph: strata/multimedia-gstreamer.morph
+- name: python2-core
+  morph: strata/python2-core.morph
+- name: python-pygobject
+  morph: strata/python-pygobject.morph
+- name: libsoup-common
+  morph: strata/libsoup-common.morph
+- name: ruby
+  morph: strata/ruby.morph
+- name: tools
+  morph: strata/tools.morph
+- name: libdrm-common
+  morph: strata/libdrm-common.morph
+- name: wayland-generic
+  morph: strata/wayland-generic.morph
+- name: weston-common
+  morph: strata/weston-common.morph
+- name: x-common
+  morph: strata/x-common.morph
+- name: x-drivers
+  morph: strata/x-drivers.morph
+- name: x-generic
+  morph: strata/x-generic.morph
+- name: ostree-core
+  morph: strata/ostree-core.morph
+- name: xdg-app-common
+  morph: strata/xdg-app-common.morph
+- name: network-security
+  morph: strata/network-security.morph
+- name: icu-common
+  morph: strata/icu-common.morph
+- name: samba
+  morph: strata/samba.morph
+- name: cups
+  morph: strata/cups.morph
+configuration-extensions:
+- extensions/set-hostname
+- extensions/add-config-files
+- extensions/install-files
+- extensions/install-essential-files
