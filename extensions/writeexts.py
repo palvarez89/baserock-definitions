@@ -606,10 +606,10 @@ class WriteExtension(Extension):
             fstab.add_line('%s  / btrfs defaults,rw,noatime 0 1' % root_device)
 
         # Add fstab entries for partitions
+        part_mountpoints = set()
         if device:
             mount_parts = set(p for p in device.partitionlist
                           if hasattr(p, 'mountpoint') and p.mountpoint != '/')
-            part_mountpoints = set(p.mountpoint for p in mount_parts)
             for part in mount_parts:
                 if part.mountpoint not in existing_mounts:
                     # Get filesystem UUID
@@ -621,17 +621,18 @@ class WriteExtension(Extension):
                     fstab.add_line('UUID=%s  %s %s defaults,rw,noatime '
                                    '0 2' % (part_uuid, part.mountpoint,
                                             part.filesystem))
+                    part_mountpoints.add(part.mountpoint)
                 else:
                     self.status(msg='WARNING: an entry already exists in '
                                     'fstab for %s partition, skipping' %
                                     part.mountpoint)
 
         # Add entries for state dirs
+        all_mountpoints = set(existing_mounts.keys()) | part_mountpoints
         state_dirs_to_create = set()
         for state_dir in shared_state_dirs:
             mp = '/' + state_dir
-            if (mp not in existing_mounts and
-                    (device and mp not in part_mountpoints)):
+            if mp not in all_mountpoints:
                 state_dirs_to_create.add(state_dir)
                 state_subvol = os.path.join('/state', state_dir)
                 fstab.add_line(
