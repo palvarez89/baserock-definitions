@@ -50,3 +50,8 @@ chunks:
   repo: upstream:git
   ref: 9874fca7122563e28d699a911404fc49d2a24f1c
   unpetrify-ref: v2.3.0
+- name: iotop
+  repo: upstream:iotop
+  ref: 59e2537794d91c1375d391293f8fd89ca8b794a8
+  unpetrify-ref: iotop-0.6
+  build-system: python-distutils
