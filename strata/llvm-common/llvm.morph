@@ -1,7 +1,11 @@
 name: llvm
-kind: chunk
 description: Low Level Virtual Machine
-build-system: autotools
+kind: chunk
+build-system: cmake
 configure-commands:
-- ./configure --prefix="$PREFIX" --sysconfdir=/etc --enable-shared --enable-targets=host
-  --enable-optimized --disable-assertions
+- mkdir o
+- cd o && cmake -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_BUILD_TYPE=Release  ..
+build-commands:
+- cd o && make
+install-commands:
+- cd o && make DESTDIR="$DESTDIR" install
