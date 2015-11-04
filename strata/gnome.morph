@@ -537,6 +537,11 @@ chunks:
   unpetrify-ref: 0.43.0
   build-depends:
   - gnutls
+- name: tracker
+  repo: upstream:gnome/tracker
+  ref: ad31f26e3c45dbe3365ff4aaae39269d9210f4a9
+  unpetrify-ref: 1.6.0
+  build-system: autotools
 - name: nautilus
   morph: strata/gnome/nautilus.morph
   repo: upstream:nautilus
