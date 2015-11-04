@@ -1,0 +1,32 @@
+name: vala-common
+kind: stratum
+description: Vala compiler
+build-depends:
+- morph: strata/core.morph
+- morph: strata/glib-common.morph
+chunks:
+- name: vala-bootstrap
+  morph: strata/vala-common/vala-bootstrap.morph
+  repo: upstream:vala
+  ref: 4e4a02c03445336237b36723b23a91670ef7621b
+  unpetrify-ref: baserock/bootstrap
+- name: vala
+  repo: upstream:vala
+  ref: 5f6ebe007050be12bdc4aa7c902ae4059f28874a
+  unpetrify-ref: 0.28.0
+  build-system: autotools
+  build-depends:
+  - vala-bootstrap
+- name: m4-common
+  repo: upstream:m4-common
+  ref: 6e9a4d3b35c5ce8af050e66d8caff96070c57d34
+  unpetrify-ref: baserock/2015-12-15
+  build-system: autotools
+- name: libgee
+  repo: upstream:gnome/libgee
+  ref: 4301ab58efc217409c588a5527f68990b4e3d220
+  unpetrify-ref: master
+  build-system: autotools
+  build-depends:
+  - m4-common
+  - vala

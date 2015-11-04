@@ -49,6 +49,8 @@ strata:
   morph: strata/tools.morph
 - name: libdrm-common
   morph: strata/libdrm-common.morph
+- name: vala-common
+  morph: strata/vala-common.morph
 - name: wayland-generic
   morph: strata/wayland-generic.morph
 - name: weston-common

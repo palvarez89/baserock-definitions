@@ -3,7 +3,6 @@ kind: stratum
 description: Various tools
 build-depends:
 - morph: strata/core.morph
-- morph: strata/glib-common.morph
 chunks:
 - name: distcc
   morph: strata/tools/distcc.morph
@@ -30,18 +29,6 @@ chunks:
   ref: 6d8c0637e8dd0f65c667af33c612230552419db1
   unpetrify-ref: v4.8
   build-system: autotools
-- name: vala-bootstrap
-  morph: strata/tools/vala-bootstrap.morph
-  repo: upstream:vala
-  ref: 4e4a02c03445336237b36723b23a91670ef7621b
-  unpetrify-ref: baserock/bootstrap
-- name: vala
-  repo: upstream:vala
-  ref: 5f6ebe007050be12bdc4aa7c902ae4059f28874a
-  unpetrify-ref: 0.28.0
-  build-system: autotools
-  build-depends:
-  - vala-bootstrap
 - name: u-boot
   morph: strata/tools/u-boot.morph
   repo: upstream:u-boot

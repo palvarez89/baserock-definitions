@@ -4,7 +4,7 @@ description: GNOME stratum
 build-depends:
 - morph: strata/icu-common.morph
 - morph: strata/input-common.morph
-- morph: strata/tools.morph
+- morph: strata/vala-common.morph
 - morph: strata/gtk2.morph
 - morph: strata/gtk3.morph
 - morph: strata/audio-bluetooth.morph
@@ -372,18 +372,6 @@ chunks:
   build-depends:
   - iso-codes
   build-system: autotools
-- name: m4-common
-  repo: upstream:m4-common
-  ref: 6e9a4d3b35c5ce8af050e66d8caff96070c57d34
-  unpetrify-ref: baserock/2015-12-15
-  build-system: autotools
-- name: libgee
-  repo: upstream:gnome/libgee
-  ref: 4301ab58efc217409c588a5527f68990b4e3d220
-  unpetrify-ref: master
-  build-depends:
-  - m4-common
-  build-system: autotools
 - name: caribou
   morph: strata/gnome/caribou.morph
   repo: upstream:caribou
@@ -391,7 +379,6 @@ chunks:
   unpetrify-ref: baserock/CARIBOU_0_4_19-1-ge1a7a24+python3
   build-depends:
   - clutter
-  - libgee
   - libxklavier
 - name: libsecret
   morph: strata/gnome/libsecret.morph
