@@ -2,4 +2,4 @@ name: nautilus
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-xmp --disable-libexif --disable-tracker
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-xmp --disable-libexif

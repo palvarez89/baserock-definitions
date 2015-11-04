@@ -551,6 +551,7 @@ chunks:
   - vte
   - gnome-desktop
   - gsettings-desktop-schemas
+  - tracker
 - name: desktop-file-utils
   repo: upstream:desktop-file-utils
   ref: 4944725bddcf5821d53d7d648fc53347ce12cc03
