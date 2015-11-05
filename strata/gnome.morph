@@ -589,9 +589,27 @@ chunks:
   unpetrify-ref: GMIME_2_6_20-24-g496313f
 - name: grilo
   repo: upstream:gnome/grilo
-  ref: 06a224c1fd71af769b56a825791422e42c3a9523
-  unpetrify-ref: grilo-0.2.12
+  ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
+  unpetrify-ref: grilo-0.2.14-17-ge470c0c
   build-system: autotools
+  build-depends:
+  - totem-pl-parser
+- name: grilo-plugins
+  repo: upstream:gnome/grilo-plugins
+  ref: e23b0fa5f6656d53b977693bf55174bd2ccd172d
+  unpetrify-ref: grilo-plugins-0.2.16-17-ge23b0fa
+  build-system: autotools
+  build-depends:
+  - gnome-online-accounts
+  - grilo
+  - libgdata
+  - libmediaart
+  - liboauth
+  - librest
+  - m4-common
+  - totem-pl-parser
+  - tracker
+  - yelp-tools
 - name: libgtop
   repo: upstream:gnome/libgtop
   ref: ac2aef0f47fd998555abf18003f4c11ffecbf542
