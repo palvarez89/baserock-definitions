@@ -563,6 +563,7 @@ chunks:
   - vte
   - gnome-desktop
   - gsettings-desktop-schemas
+  - libexif
   - tracker
 - name: desktop-file-utils
   repo: upstream:desktop-file-utils
