@@ -1,0 +1,7 @@
+name: gnome-color-manager
+kind: chunk
+build-system: autotools
+configure-commands:
+# There is no justification to disable EXIV, we were just
+# too lazy to integrate EXIV
+- ./autogen.sh --prefix="$PREFIX" --disable-exiv

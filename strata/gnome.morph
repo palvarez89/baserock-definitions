@@ -626,6 +626,20 @@ chunks:
   build-depends:
   - gcab
   - libarchive
+- name: gnome-color-manager
+  morph: strata/gnome/gnome-color-manager.morph
+  repo: upstream:gnome/gnome-color-manager
+  ref: 8284cb186e0e7c248fc2a2449735fd24b778ec81
+  unpetrify-ref: GNOME_COLOR_MANAGER_3_18_0
+  build-depends:
+  - appstream-glib
+  - colord-gtk
+  - gnome-desktop
+  - lcms2
+  - libcanberra
+  - libexif
+  - vte
+  - yelp-tools
 - name: gnome-control-center
   morph: strata/gnome/gnome-control-center.morph
   repo: upstream:gnome/gnome-control-center
