@@ -259,6 +259,13 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - telepathy-glib
+- name: telepathy-mission-control
+  repo: upstream:telepathy-mission-control
+  ref: 84dc7d0fd952a9ef3d200ac5557cdf2daccca145
+  unpetrify-ref: telepathy-mission-control-5.16.3
+  build-system: autotools
+  build-depends:
+  - telepathy-glib
 - name: startup-notification
   repo: upstream:startup-notification
   ref: 07237ff25d6171e1b548118442ddba4259a53ba5
