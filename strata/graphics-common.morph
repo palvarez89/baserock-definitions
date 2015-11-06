@@ -13,9 +13,46 @@ chunks:
   unpetrify-ref: pixman-0.32.6
 - name: freetype2
   repo: upstream:freetype2
-  ref: 8cabd919ca63f0e6c12e8405e8542a45d910fa62
-  unpetrify-ref: VER-2-6-1
+  ref: ec8853cd18e1a0c275372769bdad37a79550ed66
+  unpetrify-ref: VER-2-5-3
   build-system: autotools
+- name: fontconfig
+  repo: upstream:fontconfig
+  ref: 9260b7ec39c34ce68d74e16d47917290a8c3f35a
+  unpetrify-ref: 2.11.1
+  build-system: autotools
+  build-depends:
+  - freetype2
+- name: freefont-otf
+  morph: strata/graphics-common/freefont-otf.morph
+  repo: upstream:freefont-otf
+  ref: 75fa95a912718bb94a135d4bf6b13bb38e186ce7
+  unpetrify-ref: baserock/morph
+- name: libpng
+  repo: upstream:libpng
+  ref: 88dd30b232362b65cca374dda39096888163dd6b
+  unpetrify-ref: libpng-1.6.16-signed
+  build-system: autotools
+- name: libjpeg
+  repo: upstream:libjpeg
+  ref: f57ac58ac664ede6bc6e8cd9d88e0edaa366e21a
+  unpetrify-ref: baserock/morph
+  build-system: autotools
+- name: libtiff
+  repo: upstream:libtiff
+  ref: 2f83c385ff3d5493602308b62ca6d7707725b4fd
+  unpetrify-ref: Release-v4-0-3
+  build-system: autotools
+- name: cairo
+  morph: strata/graphics-common/cairo.morph
+  repo: upstream:cairo
+  ref: f6fd372a8b31a0bebbdfe36090d6ffc7bab9a2f8
+  unpetrify-ref: 1.14.0
+  build-depends:
+  - fontconfig
+  - freetype2
+  - pixman
+  - libpng
 - name: colm-tarball
   repo: upstream:colm-tarball
   ref: 404ae0f284a3b2d41fcdb53826550e4dfec5c65c
@@ -36,50 +73,6 @@ chunks:
   build-depends:
   - freetype2
   - ragel-tarball
-- name: freetype2-harfbuzz
-  repo: upstream:freetype2
-  ref: 8cabd919ca63f0e6c12e8405e8542a45d910fa62
-  unpetrify-ref: VER-2-6-1
-  build-system: autotools
-  build-depends:
-  - harfbuzz
-- name: fontconfig
-  repo: upstream:fontconfig
-  ref: 9260b7ec39c34ce68d74e16d47917290a8c3f35a
-  unpetrify-ref: 2.11.1
-  build-system: autotools
-  build-depends:
-  - freetype2-harfbuzz
-- name: libpng
-  repo: upstream:libpng
-  ref: 88dd30b232362b65cca374dda39096888163dd6b
-  unpetrify-ref: libpng-1.6.16-signed
-  build-system: autotools
-- name: cairo
-  morph: strata/graphics-common/cairo.morph
-  repo: upstream:cairo
-  ref: f6fd372a8b31a0bebbdfe36090d6ffc7bab9a2f8
-  unpetrify-ref: 1.14.0
-  build-depends:
-  - fontconfig
-  - freetype2-harfbuzz
-  - pixman
-  - libpng
-- name: freefont-otf
-  morph: strata/graphics-common/freefont-otf.morph
-  repo: upstream:freefont-otf
-  ref: 75fa95a912718bb94a135d4bf6b13bb38e186ce7
-  unpetrify-ref: baserock/morph
-- name: libjpeg
-  repo: upstream:libjpeg
-  ref: f57ac58ac664ede6bc6e8cd9d88e0edaa366e21a
-  unpetrify-ref: baserock/morph
-  build-system: autotools
-- name: libtiff
-  repo: upstream:libtiff
-  ref: 2f83c385ff3d5493602308b62ca6d7707725b4fd
-  unpetrify-ref: Release-v4-0-3
-  build-system: autotools
 - name: libwebp
   repo: upstream:libwebp
   ref: fcd94e925a9377cccfcf9de6db278126a52b97a4
