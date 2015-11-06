@@ -615,6 +615,17 @@ chunks:
   ref: e57dd3d1ddb0da91df9188c2a98d59d1050ac6cb
   unpetrify-ref: v0.6-22-ge57dd3d
   build-system: autotools
+- name: appstream-glib
+  repo: upstream:appstream-glib
+  ref: d3885c325271fee0bed5c5815d41eb788712acb4
+  unpetrify-ref: appstream_glib_0_5_0
+  # Building 0.5.3 requires absurdly new libsoup
+  # ref: 2b57a0c407021f2b1efca38eb99a9bf61c1d16b2
+  # unpetrify-ref: appstream_glib_0_5_3
+  build-system: autotools
+  build-depends:
+  - gcab
+  - libarchive
 - name: gnome-control-center
   morph: strata/gnome/gnome-control-center.morph
   repo: upstream:gnome/gnome-control-center
