@@ -126,13 +126,13 @@ chunks:
   unpetrify-ref: v3.6.4
   build-system: python-distutils
 - name: greenlet
-  ref: 42b65a7b67dfabd180625155cd4fcd8e51917fe2
-  unpetrify-ref: 0.4.5
+  ref: ed943580bc514144958ebd257156ddfb7584a981
+  unpetrify-ref: 0.4.9
   repo: upstream:python-packages/greenlet
   build-system: python-distutils
 - name: eventlet
-  ref: bc0a59f8efdb6d436dd41bcf1b2194b8967bfe7f
-  unpetrify-ref: v0.17.3
+  ref: dc10af4702115ee92803e432c18ef3a4350e0993
+  unpetrify-ref: v0.17.4
   repo: upstream:python-packages/eventlet
   build-system: python-distutils
   build-depends:
