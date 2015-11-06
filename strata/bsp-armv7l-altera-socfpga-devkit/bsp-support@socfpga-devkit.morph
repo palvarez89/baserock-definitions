@@ -1,4 +1,4 @@
-name: bsp-support
+name: bsp-support@socfpga-devkit
 kind: chunk
 build-commands:
 # Modify auto-generated source files:
