@@ -610,6 +610,11 @@ chunks:
   repo: upstream:libarchive
   ref: 19f23e191f9d3e1dd2a518735046100419965804
   unpetrify-ref: v3.1.2
+- name: gcab
+  repo: upstream:gnome/gcab
+  ref: e57dd3d1ddb0da91df9188c2a98d59d1050ac6cb
+  unpetrify-ref: v0.6-22-ge57dd3d
+  build-system: autotools
 - name: gnome-control-center
   morph: strata/gnome/gnome-control-center.morph
   repo: upstream:gnome/gnome-control-center
