@@ -10,7 +10,7 @@ systems:
 - morph: systems/gnome-system-x86_64.morph
   deploy:
     gnome-system-x86_64:
-      type: rawdisk
+      type: extensions/rawdisk
       location: /gnome-system-x86_64.img
       DISK_SIZE: 6G
       INSTALL_FILES: install-files/gnome/manifest
