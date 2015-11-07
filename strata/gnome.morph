@@ -378,6 +378,11 @@ chunks:
   - librest
   - telepathy-glib
   - WebKitGtk
+- name: liboauth
+  repo: upstream:liboauth
+  ref: 9ff9d2902caf8a85c5019c11214d73e67053ba69
+  unpetrify-ref: liboauth-0.9.7
+  build-system: autotools
 - name: evolution-data-server
   morph: strata/gnome/evolution-data-server.morph
   repo: upstream:evolution-data-server
