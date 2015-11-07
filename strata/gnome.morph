@@ -587,6 +587,13 @@ chunks:
   repo: upstream:gnome/gmime
   ref: 496313fbe956b350c22fa705edbcfdde3d7c9e50
   unpetrify-ref: GMIME_2_6_20-24-g496313f
+- name: totem-pl-parser
+  repo: upstream:gnome/totem-pl-parser
+  ref: 1be3144e9a6bf183a61c9596165d52bbe405b5cc
+  unpetrify-ref: V_3_10_5-16-g1be3144
+  build-system: autotools
+  build-depends:
+  - gmime
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
