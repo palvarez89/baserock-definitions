@@ -1,0 +1,6 @@
+name: libgdata
+kind: chunk
+build-system: autotools
+configure-commands:
+# Disable these cause we're too lazy to build libuhttpmock
+- ./autogen.sh --prefix="$PREFIX" --disable-installed-tests --disable-always-build-tests

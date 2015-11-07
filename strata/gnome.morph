@@ -383,6 +383,16 @@ chunks:
   ref: 9ff9d2902caf8a85c5019c11214d73e67053ba69
   unpetrify-ref: liboauth-0.9.7
   build-system: autotools
+- name: libgdata
+  morph: strata/gnome/libgdata.morph
+  repo: upstream:libgdata
+  ref: ed52192fcd3cde2c0d7f0ab0d9e300fcdbc373a8
+  unpetrify-ref: LIBGDATA_0_17_3-16-ged52192
+  build-depends:
+  - gcr
+  - gnome-online-accounts
+  - liboauth
+  - m4-common
 - name: evolution-data-server
   morph: strata/gnome/evolution-data-server.morph
   repo: upstream:evolution-data-server
