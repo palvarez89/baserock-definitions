@@ -1,0 +1,6 @@
+name: gmime
+kind: chunk
+build-system: autotools
+pre-configure-commands:
+# Work around upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=757720
+- sed -i 's/$(INCLUDES)/$(AM_CPPFLAGS)/g' gmime/Makefile.am

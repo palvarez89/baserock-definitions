@@ -582,6 +582,11 @@ chunks:
   - gsettings-desktop-schemas
   - nautilus
   - yelp-tools
+- name: gmime
+  morph: strata/gnome/gmime.morph
+  repo: upstream:gnome/gmime
+  ref: 496313fbe956b350c22fa705edbcfdde3d7c9e50
+  unpetrify-ref: GMIME_2_6_20-24-g496313f
 - name: grilo
   repo: upstream:gnome/grilo
   ref: 06a224c1fd71af769b56a825791422e42c3a9523
