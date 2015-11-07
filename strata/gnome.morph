@@ -599,6 +599,11 @@ chunks:
   build-system: autotools
   build-depends:
   - gmime
+- name: libmediaart
+  morph: strata/gnome/libmediaart.morph
+  repo: upstream:gnome/libmediaart
+  ref: 52eb6498c97ce0005186946bc9162d87597abc2c
+  unpetrify-ref: 1.9.0-8-g52eb649
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
