@@ -1,0 +1,7 @@
+name: hicolor-icon-theme
+kind: chunk
+build-system: autotools
+system-integration:
+  hicolor-icon-theme-misc:
+    00-update-icon-cache:
+    - gtk-update-icon-cache -f -t /usr/share/icons/hicolor
