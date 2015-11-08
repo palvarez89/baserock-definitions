@@ -393,16 +393,23 @@ chunks:
   - gnome-online-accounts
   - liboauth
   - m4-common
+- name: krb5
+  morph: strata/gnome/krb5.morph
+  repo: upstream:krb5
+  ref: db2acb6b06e469c6c12476bec68acc7964626523
+  unpetrify-ref: master
 - name: evolution-data-server
   morph: strata/gnome/evolution-data-server.morph
   repo: upstream:evolution-data-server
-  ref: a65ecdfb144bd74d0fc8103765aac128148a8e26
-  unpetrify-ref: master
+  ref: 8d094ef96a89957d353beaa66f0cbaa04cfbfedd
+  unpetrify-ref: EVOLUTION_DATA_SERVER_3_18_1-11-g8d094ef
   build-depends:
   - gcr
+  - gnome-online-accounts
+  - krb5
+  - libgdata
   - libgweather
   - libsecret
-  - gnome-online-accounts
 - name: network-manager-applet
   repo: upstream:gnome/network-manager-applet
   ref: bbcc673af29066cfc6f0e12f04c0dd3f9937fb3a
@@ -531,11 +538,6 @@ chunks:
   unpetrify-ref: libpwquality-1.3.0
   build-depends:
   - cracklib
-- name: krb5
-  morph: strata/gnome/krb5.morph
-  repo: upstream:krb5
-  ref: db2acb6b06e469c6c12476bec68acc7964626523
-  unpetrify-ref: master
 - name: gnome-initial-setup
   morph: strata/gnome/gnome-initial-setup.morph
   repo: upstream:gnome/gnome-initial-setup
