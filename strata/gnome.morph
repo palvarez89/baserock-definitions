@@ -147,6 +147,11 @@ chunks:
   build-depends:
   - ibus
   - libpinyin
+- name: anthy
+  repo: upstream:anthy
+  ref: a7a06a7ccfe0af1e134357678b8fa6cf87dff3b0
+  unpetrify-ref: anthy-9100h
+  build-system: autotools
 - name: libcanberra
   repo: upstream:libcanberra
   ref: c0620e432650e81062c1967cc669829dbd29b310
