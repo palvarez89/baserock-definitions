@@ -139,6 +139,14 @@ chunks:
   build-system: autotools
   build-depends:
   - berkeleydb
+- name: ibus-libpinyin
+  morph: strata/gnome/ibus-libpinyin.morph
+  repo: upstream:ibus-libpinyin
+  ref: 4bb5fc19c0829053acd29619de59a85a73e03676
+  unpetrify-ref: 1.7.2-7-g4bb5fc1
+  build-depends:
+  - ibus
+  - libpinyin
 - name: libcanberra
   repo: upstream:libcanberra
   ref: c0620e432650e81062c1967cc669829dbd29b310
