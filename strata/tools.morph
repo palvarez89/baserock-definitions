@@ -17,8 +17,8 @@ chunks:
   unpetrify-ref: gdb-7.8-branch
 - name: linux-user-chroot
   repo: upstream:linux-user-chroot
-  ref: d25cc110f69e6e71a95b4ac532dcfc5423d4a16b
-  unpetrify-ref: baserock/morph
+  ref: 40e0b71d556414dfe150a74937f2c8a68d351d6d
+  unpetrify-ref: v2015.1
   build-system: autotools
 - name: lsof
   morph: strata/tools/lsof.morph
