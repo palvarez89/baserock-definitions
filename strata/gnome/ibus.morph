@@ -2,4 +2,8 @@ name: ibus
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-tests --enable-wayland
+- |
+  ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc \
+               --disable-tests --disable-gconf --enable-dconf \
+               --disable-memconf --disable-ui GSETTINGS_SCHEMA_CONVERT=/usr/bin/false \
+               --with-python=python3 --enable-wayland
