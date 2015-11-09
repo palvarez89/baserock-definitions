@@ -1,0 +1,18 @@
+name: berkeleydb
+kind: chunk
+build-system: autotools
+configure-commands:
+- |
+  cd build_unix;
+  ../dist/configure --prefix="$PREFIX" \
+                    --enable-compat185 \
+                    --enable-dbm \
+                    --enable-cxx
+build-commands:
+- |
+  cd build_unix;
+  make
+install-commands:
+- |
+  cd build_unix;
+  make DESTDIR="$DESTDIR" install

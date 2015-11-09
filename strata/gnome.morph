@@ -127,6 +127,11 @@ chunks:
   build-depends:
   - ibus
   - libhangul
+- name: berkeleydb
+  morph: strata/gnome/berkeleydb.morph
+  repo: upstream:berkeleydb
+  ref: 780b92ada9afcf1d58085a83a0b9e6bc982203d1
+  unpetrify-ref: db-6.1.23
 - name: libcanberra
   repo: upstream:libcanberra
   ref: c0620e432650e81062c1967cc669829dbd29b310
