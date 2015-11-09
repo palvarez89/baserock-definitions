@@ -119,6 +119,14 @@ chunks:
   repo: upstream:libhangul
   ref: 78e9d8926262db423b4cf9181e1c2cb06a120a9b
   unpetrify-ref: libhangul-0.1.0-19-g78e9d89
+- name: ibus-hangul
+  morph: strata/gnome/ibus-hangul.morph
+  repo: upstream:ibus-hangul
+  ref: 44f41ae5178372a7ff0540a4ce7a4944335525df
+  unpetrify-ref: 1.5.0-13-g44f41ae
+  build-depends:
+  - ibus
+  - libhangul
 - name: libcanberra
   repo: upstream:libcanberra
   ref: c0620e432650e81062c1967cc669829dbd29b310
