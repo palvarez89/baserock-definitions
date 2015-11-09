@@ -114,6 +114,11 @@ chunks:
   - gconf
   - iso-codes
   - libnotify
+- name: libhangul
+  morph: strata/gnome/libhangul.morph
+  repo: upstream:libhangul
+  ref: 78e9d8926262db423b4cf9181e1c2cb06a120a9b
+  unpetrify-ref: libhangul-0.1.0-19-g78e9d89
 - name: libcanberra
   repo: upstream:libcanberra
   ref: c0620e432650e81062c1967cc669829dbd29b310

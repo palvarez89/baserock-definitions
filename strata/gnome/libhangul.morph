@@ -1,0 +1,6 @@
+name: libhangul
+kind: chunk
+build-system: autotools
+pre-configure-commands:
+# Avoid an autotools error at translation build time, simply dont build po directory
+- sed -i 's/SUBDIRS = hangul data tools po/SUBDIRS = hangul data tools/g' Makefile.am
