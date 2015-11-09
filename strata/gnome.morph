@@ -132,6 +132,13 @@ chunks:
   repo: upstream:berkeleydb
   ref: 780b92ada9afcf1d58085a83a0b9e6bc982203d1
   unpetrify-ref: db-6.1.23
+- name: libpinyin
+  repo: upstream:libpinyin
+  ref: 2e0c23b3ab6c247dd6a683c716e784a371646af4
+  unpetrify-ref: baserock/1.2.91
+  build-system: autotools
+  build-depends:
+  - berkeleydb
 - name: libcanberra
   repo: upstream:libcanberra
   ref: c0620e432650e81062c1967cc669829dbd29b310
