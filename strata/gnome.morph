@@ -717,3 +717,10 @@ chunks:
   - libpwquality
   - libwacom
   - network-manager-applet
+- name: libgnomekbd
+  repo: upstream:gnome/libgnomekbd
+  ref: d8ff867e95e548476c68db12ade3a0a4697a24a1
+  unpetrify-ref: master
+  build-system: autotools
+  build-depends:
+  - libxklavier
