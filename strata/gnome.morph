@@ -152,6 +152,14 @@ chunks:
   ref: a7a06a7ccfe0af1e134357678b8fa6cf87dff3b0
   unpetrify-ref: anthy-9100h
   build-system: autotools
+- name: ibus-anthy
+  morph: strata/gnome/ibus-anthy.morph
+  repo: upstream:ibus-anthy
+  ref: 9ba0a2a1e595fbf6e39c50a15814bb6f9e337769
+  unpetrify-ref: 1.5.7-6-g9ba0a2a
+  build-depends:
+  - ibus
+  - anthy
 - name: libcanberra
   repo: upstream:libcanberra
   ref: c0620e432650e81062c1967cc669829dbd29b310

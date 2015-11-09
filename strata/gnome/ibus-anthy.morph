@@ -1,0 +1,5 @@
+name: ibus-anthy
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --with-python=python3 --enable-private-png=yes
