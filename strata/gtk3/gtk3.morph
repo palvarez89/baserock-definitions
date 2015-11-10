@@ -9,3 +9,7 @@ build-commands:
 - GDK_PIXBUF_MODULE_FILE="$(pwd)/loader.cache" make
 install-commands:
 - GDK_PIXBUF_MODULE_FILE="$(pwd)/loader.cache" make install DESTDIR="$DESTDIR"
+system-integration:
+  gtk3-misc:
+    00-update-im3-cache:
+    - gtk-query-immodules-3.0 --update-cache
