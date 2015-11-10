@@ -765,6 +765,7 @@ chunks:
   unpetrify-ref: baserock/3.18
   build-depends:
   - accountsservice
+  - cheese
   - clutter
   - clutter-gtk
   - colord
