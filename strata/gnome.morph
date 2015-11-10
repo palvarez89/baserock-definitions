@@ -738,6 +738,13 @@ chunks:
   - libexif
   - vte
   - yelp-tools
+- name: clutter-gst
+  repo: upstream:gnome/clutter-gst
+  ref: 395797827a148809a2be0d968c5bf71a6e9c9299
+  unpetrify-ref: 3.0.14
+  build-system: autotools
+  build-depends:
+  - clutter
 - name: gnome-control-center
   morph: strata/gnome/gnome-control-center.morph
   repo: upstream:gnome/gnome-control-center
