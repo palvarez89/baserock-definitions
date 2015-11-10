@@ -745,6 +745,19 @@ chunks:
   build-system: autotools
   build-depends:
   - clutter
+- name: cheese
+  morph: strata/gnome/cheese.morph
+  repo: upstream:gnome/cheese
+  ref: 61651e03e8346bd0084da7247269e52e2a42190e
+  unpetrify-ref: gnome-3-18
+  build-depends:
+  - appstream-glib
+  - clutter
+  - clutter-gst
+  - clutter-gtk
+  - gnome-desktop
+  - libcanberra
+  - yelp-tools
 - name: gnome-control-center
   morph: strata/gnome/gnome-control-center.morph
   repo: upstream:gnome/gnome-control-center
