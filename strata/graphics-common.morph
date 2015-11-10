@@ -28,6 +28,11 @@ chunks:
   repo: upstream:freefont-otf
   ref: 75fa95a912718bb94a135d4bf6b13bb38e186ce7
   unpetrify-ref: baserock/morph
+- name: ttf-alee
+  morph: strata/graphics-common/ttf-alee.morph
+  repo: upstream:ttf-alee
+  ref: 97ededc81c03d0a7333a15a9a1e6acc4d0e5ac50
+  unpetrify-ref: fonts-alee_13.1
 - name: libpng
   repo: upstream:libpng
   ref: 88dd30b232362b65cca374dda39096888163dd6b

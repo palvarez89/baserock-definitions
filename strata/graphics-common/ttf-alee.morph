@@ -1,0 +1,5 @@
+name: ttf-alee
+kind: chunk
+install-commands:
+- mkdir -p "$DESTDIR"/usr/share/fonts/truetype/alee
+- install -p *.ttf "$DESTDIR"/usr/share/fonts/truetype/alee
