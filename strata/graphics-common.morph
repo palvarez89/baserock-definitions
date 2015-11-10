@@ -17,10 +17,10 @@ chunks:
   unpetrify-ref: VER-2-5-3
   build-system: autotools
 - name: fontconfig
+  morph: strata/graphics-common/fontconfig.morph
   repo: upstream:fontconfig
   ref: 9260b7ec39c34ce68d74e16d47917290a8c3f35a
   unpetrify-ref: 2.11.1
-  build-system: autotools
   build-depends:
   - freetype2
 - name: freefont-otf

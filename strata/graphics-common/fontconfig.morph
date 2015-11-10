@@ -1,0 +1,7 @@
+name: fontconfig
+kind: chunk
+build-system: autotools
+system-integration:
+  fontconfig-misc:
+    00-update-fc-cache:
+    - fc-cache -f -v
