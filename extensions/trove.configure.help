@@ -15,6 +15,8 @@ help: |
     * `LORRY_CONTROLLER_MINIONS` (optional, defaults to 4)
     * `TROVE_BACKUP_KEYS` - a space-separated list of paths to SSH keys.
       (optional)
+    * `TROVE_SSL_PEMFILE` (optional)
+    * `TROVE_SSL_CA_FILE` (optional)
 
     The variables are described in more detail below.
 
@@ -104,6 +106,12 @@ help: |
     * `TROVE_BACKUP_KEYS` -- a space-separated list of paths to SSH keys.
       If this is set, the Trove will have a backup user that can be accessed
       with rsync using the SSH keys provided.
+
+    * `TROVE_SSL_PEMFILE` -- SSL certificate to use in lighttpd SSL
+      configuration.
+
+    * `TROVE_SSL_CA_FILE` -- CA chain certificate to use in lighttpd SSL
+      configuration.
 
     Example
     -------

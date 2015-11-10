@@ -107,12 +107,14 @@ ROOT="$1"
 TROVE_DATA="$ROOT/etc/trove"
 mkdir -p "$TROVE_DATA"
 
+# Install mandatory files
 install -m 0600 "$LORRY_SSH_KEY" "$TROVE_DATA/lorry.key"
 install -m 0644 "${LORRY_SSH_KEY}.pub" "$TROVE_DATA/lorry.key.pub"
 install -m 0644 "$TROVE_ADMIN_SSH_PUBKEY" "$TROVE_DATA/admin.key.pub"
 install -m 0644 "$WORKER_SSH_PUBKEY" "$TROVE_DATA/worker.key.pub"
 
 
+# Create base configuration file
 python <<'EOF' >"$TROVE_DATA/trove.conf"
 import os, sys, yaml
 
@@ -141,8 +143,30 @@ for key in optional_keys:
 yaml.dump(trove_configuration, sys.stdout, default_flow_style=False)
 EOF
 
+# Add backups configuration
 if [ -n "$TROVE_BACKUP_KEYS" ]; then
     mkdir -p "$TROVE_DATA/backup-keys"
     cp -- $TROVE_BACKUP_KEYS "$TROVE_DATA/backup-keys"
     echo "TROVE_BACKUP_KEYS: /etc/trove/backup-keys/*" >> "$TROVE_DATA/trove.conf"
+fi
+
+# Add SSL configuration
+if test "x$TROVE_SSL_PEMFILE" != "x"; then
+    if test -f "$TROVE_SSL_PEMFILE"; then
+        install -m 0600 "$TROVE_SSL_PEMFILE" "$TROVE_DATA/trove-ssl-pemfile.pem"
+        echo "TROVE_SSL_PEMFILE: /etc/trove/trove-ssl-pemfile.pem" >> "$TROVE_DATA/trove.conf"
+    else
+        echo "ERROR: $TROVE_SSL_PEMFILE (TROVE_SSL_PEMFILE) doesn't exist."
+        exit 1
+    fi
+fi
+
+if test "x$TROVE_SSL_CA_FILE" != "x"; then
+    if test -f "$TROVE_SSL_CA_FILE"; then
+        install -m 0644 "$TROVE_SSL_CA_FILE" "$TROVE_DATA/trove-ssl-ca-file.pem"
+        echo "TROVE_SSL_CA_FILE: /etc/trove/trove-ssl-ca-file.pem" >> "$TROVE_DATA/trove.conf"
+    else
+        echo "ERROR: $TROVE_SSL_CA_FILE (TROVE_SSL_CA_FILE) doesn't exist."
+        exit 1
+    fi
 fi
