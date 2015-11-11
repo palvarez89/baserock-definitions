@@ -5,7 +5,7 @@ description: |
   git.baserock.org. It doesn't work for the initial deployment. The
   deployer MUST have ssh access to root@git.baserock.org. To use:
 
-      morph deploy --upgrade trove.baserock.org-upgrade gbo.VERSION_LABEL=2014-05-29
+      morph upgrade trove.baserock.org-upgrade gbo.VERSION_LABEL=2014-05-29
 
   Replace the value of gbo.VERSION_LABEL above with the current date.
   You can add letters if you need to upgrade multiple times in a day.
@@ -13,11 +13,7 @@ systems:
 - morph: systems/trove-system-x86_64.morph
   deploy:
     gbo:
-      type: extensions/ssh-rsync
-      location: root@git.baserock.org
-      FSTAB_HOME: LABEL=homes /home auto defaults,noatime,rw 0 2
-      HOSTNAME: firehose1
-      LORRY_CONTROLLER_MINIONS: 4
-      TROVE_COMPANY: Baserock
-      TROVE_HOSTNAME: git.baserock.org
-      TROVE_ID: baserock
+      upgrade-type: extensions/ssh-rsync
+      upgrade-location: root@git.baserock.org
+      HOSTNAME: baserock
+      TROVE_GENERIC: True
