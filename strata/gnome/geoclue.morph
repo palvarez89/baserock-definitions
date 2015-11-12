@@ -2,4 +2,12 @@ name: geoclue
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-nmea-source
+- |
+  ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc \
+               --disable-nmea-source \
+               --with-dbus-service-user=geoclue
+system-integration:
+  geoclue-misc:
+    00-add-geoclue-user:
+    - groupadd geoclue
+    - useradd -c "GeoClue Owner" -r -g geoclue -s /bin/false geoclue
