@@ -11,6 +11,13 @@ install-commands:
 - |
   cd "$DESTDIR"/usr/share/ca-certificates
   find * -type f > "$DESTDIR"/etc/ca-certificates.conf
+#
+# The curl build requires some certificates to be present
+# at build time. Building curl without the certificates
+# installed results in a git which cannot use https.
+#
+# See: http://listmaster.pepperfish.net/pipermail/baserock-dev-baserock.org/2015-January/010419.html
+#
 - |
   export CERTSCONF="$DESTDIR/etc/ca-certificates.conf"
   export CERTSDIR="$DESTDIR/usr/share/ca-certificates"
