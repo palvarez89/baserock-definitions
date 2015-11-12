@@ -401,3 +401,12 @@ chunks:
   build-depends:
   - flex
   - texinfo-tarball
+- name: libseccomp
+  repo: upstream:libseccomp
+  ref: 7932b4fa24c1add0d7a315de8387d216334fbcf7
+  unpetrify-ref: v2.2.3
+  build-system: autotools
+  build-depends:
+  - autoconf
+  - automake
+  - libtool
