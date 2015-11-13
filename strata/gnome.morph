@@ -390,10 +390,10 @@ chunks:
   ref: 4d76cf7dd8e55d93bb58164a1fff38113ba97af5
   unpetrify-ref: master
 - name: librest
+  morph: strata/gnome/librest.morph
   repo: upstream:gnome/librest
   ref: 08f1fc35e3c77aecedacf08aa510e82c91ac7f2a
   unpetrify-ref: 0.7.93
-  build-system: autotools
 - name: enchant
   repo: upstream:enchant
   ref: 6d8b6bb15f09a14c90fb900eb2ecf1172d7cf6cf

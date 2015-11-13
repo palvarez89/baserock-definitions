@@ -1,0 +1,9 @@
+name: librest
+kind: chunk
+build-system: autotools
+configure-commands:
+#
+# Tell librest where the system CA certs are found, avoid depending on
+# an installed ca-certificates.
+#
+- ./autogen.sh --prefix="$PREFIX" --with-ca-certificates=/etc/ssl/certs/ca-certificates.crt
