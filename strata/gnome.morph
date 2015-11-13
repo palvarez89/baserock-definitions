@@ -566,10 +566,10 @@ chunks:
   - libtasn1
   - p11-kit
 - name: glib-networking
+  morph: strata/gnome/glib-networking.morph
   repo: upstream:gnome/glib-networking
   ref: 32ee55186d7df497e3d402a1940cddfabd9dbc21
   unpetrify-ref: 2.46.0
-  build-system: autotools
   build-depends:
   - gnutls
 - name: cracklib
