@@ -1,8 +1,14 @@
 name: curl
 kind: chunk
 configure-commands:
+#
+# Curl must be configured --with-ca-bundle in order to find the
+# correct certificate bundle at runtime, which is later generated
+# by update-ca-certificates. Other applications such as git, rely
+# on curl knowing the default location of the certs.
+#
 - ./buildconf
-- ./configure --disable-manual --prefix="$PREFIX"
+- ./configure --disable-manual --prefix="$PREFIX" --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
 build-commands:
 - make
 install-commands:

@@ -151,7 +151,6 @@ chunks:
   - file
   - libtool-tarball
   - openssl-new
-  - ca-certificates
 - name: gettext-tarball
   morph: strata/core/gettext-tarball.morph
   repo: upstream:gettext-tarball
