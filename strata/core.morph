@@ -135,8 +135,8 @@ chunks:
 - name: ca-certificates
   morph: strata/core/ca-certificates.morph
   repo: upstream:ca-certificates
-  ref: e9b06b26d9e57444e74a5cb6beca3f12726fc3c6
-  unpetrify-ref: baserock/debian/20140325
+  ref: 642c21872876ce2f9ec323b1df44f1cd6c47e91c
+  unpetrify-ref: baserock/debian/20150426
   build-depends:
   - automake
   - python3

@@ -4,26 +4,22 @@ build-system: manual
 build-commands:
 - make
 install-commands:
+#
+# ca-certificates makefile does not properly take responsibility
+# for creating the paths it installs to
+#
 - mkdir -p "$DESTDIR"/usr/share/ca-certificates
 - mkdir -p "$DESTDIR"/usr/sbin
 - make DESTDIR="$DESTDIR" install
 - mkdir "$DESTDIR"/etc
+#
+# We create the config with all certificates provided
+# by the debian package enabled. Some systems may want
+# to override the ca-certificates.conf file.
+#
 - |
   cd "$DESTDIR"/usr/share/ca-certificates
   find * -type f > "$DESTDIR"/etc/ca-certificates.conf
-#
-# The curl build requires some certificates to be present
-# at build time. Building curl without the certificates
-# installed results in a git which cannot use https.
-#
-# See: http://listmaster.pepperfish.net/pipermail/baserock-dev-baserock.org/2015-January/010419.html
-#
-- |
-  export CERTSCONF="$DESTDIR/etc/ca-certificates.conf"
-  export CERTSDIR="$DESTDIR/usr/share/ca-certificates"
-  export ETCCERTSDIR="$DESTDIR/etc/ssl/certs"
-  mkdir -p "$ETCCERTSDIR"
-  ./sbin/update-ca-certificates
 system-integration:
   ca-certificates-misc:
     00-update-ca-certs:
