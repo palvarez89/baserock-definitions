@@ -245,8 +245,8 @@ chunks:
 - name: geoclue
   morph: strata/gnome/geoclue.morph
   repo: upstream:geoclue
-  ref: 93241301b9c47a5e7a61978cf5154752c85bd183
-  unpetrify-ref: master
+  ref: ae8f7ab2f1e90f61931c652f2f65996c30c79e87
+  unpetrify-ref: 2.4.0
   build-depends:
   - json-glib
   - ModemManager
