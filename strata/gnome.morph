@@ -500,8 +500,8 @@ chunks:
 - name: gnome-keyring
   morph: strata/gnome/gnome-keyring.morph
   repo: upstream:gnome-keyring
-  ref: b1aee9c01f647f084e6c0ae2b4810c9ec7d0fd0d
-  unpetrify-ref: 3.18.0
+  ref: eb16c037431da14d4f1c396357f82f2b35e76e23
+  unpetrify-ref: 3.18.3-5-geb16c03
   build-depends:
   - gcr
 - name: gvfs
