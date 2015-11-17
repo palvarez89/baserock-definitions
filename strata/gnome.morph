@@ -587,14 +587,15 @@ chunks:
 - name: gnome-initial-setup
   morph: strata/gnome/gnome-initial-setup.morph
   repo: upstream:gnome/gnome-initial-setup
-  ref: b45052856e406d6526ef4d32f4346e43c50cd58a
-  unpetrify-ref: 3.18.0
+  ref: e0b7f968213d26807d00ca5841c03f4a5a4605b2
+  unpetrify-ref: 3.19.1-1-ge0b7f96
   build-depends:
   - accountsservice
   - gdm
   - gnome-desktop
   - gnome-keyring
   - gnome-online-accounts
+  - ibus
   - iso-codes
   - krb5
   - libgweather
