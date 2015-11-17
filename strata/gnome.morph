@@ -584,23 +584,6 @@ chunks:
   unpetrify-ref: libpwquality-1.3.0
   build-depends:
   - cracklib
-- name: gnome-initial-setup
-  morph: strata/gnome/gnome-initial-setup.morph
-  repo: upstream:gnome/gnome-initial-setup
-  ref: e0b7f968213d26807d00ca5841c03f4a5a4605b2
-  unpetrify-ref: 3.19.1-1-ge0b7f96
-  build-depends:
-  - accountsservice
-  - gdm
-  - gnome-desktop
-  - gnome-keyring
-  - gnome-online-accounts
-  - ibus
-  - iso-codes
-  - krb5
-  - libgweather
-  - libpwquality
-  - network-manager-applet
 - name: vte
   morph: strata/gnome/vte.morph
   repo: upstream:gnome/vte
@@ -784,6 +767,24 @@ chunks:
   - libgtop
   - libpwquality
   - libwacom
+  - network-manager-applet
+- name: gnome-initial-setup
+  morph: strata/gnome/gnome-initial-setup.morph
+  repo: upstream:gnome/gnome-initial-setup
+  ref: e0b7f968213d26807d00ca5841c03f4a5a4605b2
+  unpetrify-ref: 3.19.1-1-ge0b7f96
+  build-depends:
+  - accountsservice
+  - cheese
+  - gdm
+  - gnome-desktop
+  - gnome-keyring
+  - gnome-online-accounts
+  - ibus
+  - iso-codes
+  - krb5
+  - libgweather
+  - libpwquality
   - network-manager-applet
 - name: libgnomekbd
   repo: upstream:gnome/libgnomekbd
