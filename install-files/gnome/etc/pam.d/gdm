@@ -1,0 +1,15 @@
+# Baserock customized /etc/pam.d/gdm
+#
+
+auth     requisite      pam_nologin.so
+auth     required       pam_env.so
+
+auth     required       pam_succeed_if.so uid >= 1000 quiet
+auth     include        system-auth
+
+account  include        system-auth
+password include        system-auth
+
+session  optional       pam_keyinit.so force revoke
+session  include        system-auth
+session  required       pam_loginuid.so

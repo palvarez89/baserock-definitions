@@ -1,4 +1,9 @@
 0100644 0 0 /etc/securetty
 overwrite 0100644 0 0 /etc/ssh/sshd_config
+overwrite 0100644 0 0 /etc/pam.d/passwd
+overwrite 0100644 0 0 /etc/pam.d/system-auth
+overwrite 0100644 0 0 /etc/pam.d/gdm
+overwrite 0100644 0 0 /etc/pam.d/gdm-password
+overwrite 0100644 0 0 /etc/pam.d/gdm-autologin
 overwrite 0100644 0 0 /etc/pam.d/gdm-launch-environment
 0100644 0 0 /usr/share/polkit-1/rules.d/geoclue-2.0.rules

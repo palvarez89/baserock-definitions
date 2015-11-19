@@ -1,13 +1,11 @@
-# Begin /etc/pam.d/gdm-launch-environment
+# Baserock customized /etc/pam.d/gdm-launch-environment
+#
 
 auth     required       pam_env.so
 auth     optional       pam_permit.so
 
 account  include        system-auth
-
-password required       pam_deny.so
+password include        system-auth
 
 session  optional       pam_keyinit.so force revoke
 session  include        system-auth
-
-# End /etc/pam.d/gdm-launch-environment

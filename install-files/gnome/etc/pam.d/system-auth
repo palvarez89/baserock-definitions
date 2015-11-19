@@ -1,0 +1,19 @@
+# Baserock customized /etc/pam.d/system-auth
+#
+# This configuration is modified from the upstream
+# systemd provided file mostly because the upstream file
+# tries to pass the invalid 'try_authtok' option to the
+# pam_unix.so module.
+
+auth     sufficient pam_unix.so nullok try_first_pass
+auth     requisite  pam_deny.so
+
+account  required   pam_nologin.so
+account  sufficient pam_unix.so
+
+password sufficient pam_unix.so nullok sha512 shadow try_first_pass
+password required   pam_deny.so
+
+-session optional   pam_loginuid.so
+-session optional   pam_systemd.so
+session  sufficient pam_unix.so
