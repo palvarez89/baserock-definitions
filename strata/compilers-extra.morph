@@ -4,6 +4,7 @@ description: |
   Extra compilers in addition to the ones in build-essential
 build-depends:
 - morph: strata/llvm-common.morph
+- morph: strata/python2-core.morph
 chunks:
 - name: clang
   morph: strata/compilers-extra/clang.morph
