@@ -71,7 +71,7 @@ chunks:
 - name: trove-setup
   morph: strata/trove/trove-setup.morph
   repo: baserock:baserock/trove-setup
-  ref: 16de74536e0846ba1d2e5101618df9146c785a41
+  ref: 1ca53f11d302a7db3ef53e09ba7c259689a9cb83
   unpetrify-ref: master
 - name: lua-scrypt
   morph: strata/trove/lua-scrypt.morph
