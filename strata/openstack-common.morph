@@ -115,11 +115,6 @@ chunks:
   ref: 7bfd5dece0f22dbdea1c3e524dbc0eca1f70f1b7
   unpetrify-ref: 1.4.0
   build-system: python-distutils
-- name: jsonschema
-  repo: upstream:jsonschema
-  ref: 35b60f390098d3306c03eee27ceec8cf8a493579
-  unpetrify-ref: v2.3.0
-  build-system: python-distutils
 - name: simplejson
   repo: upstream:simplejson
   ref: 54d5ff15d508c51366986cc4f77f2f287f036582

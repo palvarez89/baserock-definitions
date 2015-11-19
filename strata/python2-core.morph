@@ -83,3 +83,11 @@ chunks:
   build-system: autotools
   build-depends:
   - python2
+- name: jsonschema
+  repo: upstream:jsonschema
+  ref: 35b60f390098d3306c03eee27ceec8cf8a493579
+  unpetrify-ref: v2.3.0
+  build-system: python-distutils
+  build-depends:
+  - python2
+  - python-setuptools
