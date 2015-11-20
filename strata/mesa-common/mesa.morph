@@ -18,4 +18,5 @@ configure-commands:
       --enable-gles2 \
       --with-egl-platforms=drm,wayland,x11 \
       --with-gallium-drivers="$GALLIUMDRIVERS" \
-      --with-dri-drivers="$DRIDRIVERS"
+      --with-dri-drivers="$DRIDRIVERS" \
+      --disable-llvm-shared-libs
