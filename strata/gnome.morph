@@ -630,10 +630,10 @@ chunks:
   - libexif
   - tracker
 - name: desktop-file-utils
+  morph: strata/gnome/desktop-file-utils.morph
   repo: upstream:desktop-file-utils
   ref: 4944725bddcf5821d53d7d648fc53347ce12cc03
   unpetrify-ref: 0.22
-  build-system: autotools
 - name: gnome-terminal
   morph: strata/gnome/gnome-terminal.morph
   repo: upstream:gnome/gnome-terminal

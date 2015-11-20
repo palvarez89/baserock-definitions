@@ -1,0 +1,7 @@
+name: desktop-file-utils
+kind: chunk
+build-system: autotools
+system-integration:
+  desktop-file-utils-misc:
+    01-update-desktop-database:
+    - update-desktop-database
