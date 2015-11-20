@@ -2,3 +2,7 @@ name: shared-mime-info
 kind: chunk
 max-jobs: 1
 build-system: autotools
+system-integration:
+  shared-mime-info-misc:
+    00-update-mime-database:
+    - update-mime-database /usr/share/mime
