@@ -127,7 +127,7 @@ class ReleaseApp(cliapp.Application):
     def load_morphology(self, name, kind=None):
         path = morphlib.util.sanitise_morphology_path(name)
         morph = self.loader.load_from_string(
-            self.finder.read_morphology(path))
+            self.finder.read_file(path))
         if kind:
             assert morph['kind'] == kind
         return morph, path
