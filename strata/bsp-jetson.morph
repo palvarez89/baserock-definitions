@@ -12,8 +12,8 @@ description: |
 build-depends:
 - morph: strata/core.morph
 chunks:
-- name: device-tree-compiler
-  morph: strata/bsp-jetson/device-tree-compiler.morph
+- name: device-tree-compiler@jetson
+  morph: strata/bsp-jetson/device-tree-compiler@jetson.morph
   repo: upstream:device-tree-compiler
   ref: 302fca9f4c283e1994cf0a5a9ce1cf43ca15e6d2
   unpetrify-ref: v1.4.1
@@ -23,7 +23,7 @@ chunks:
   ref: f33cdaa4c3da4a8fd35aa2f9a3172f31cc887b35
   unpetrify-ref: v2015.04
   build-depends:
-  - device-tree-compiler
+  - device-tree-compiler@jetson
 - name: linux-jetson-tk1
   morph: strata/bsp-jetson/linux-jetson-tk1.morph
   repo: upstream:linux

@@ -1,4 +1,4 @@
-name: device-tree-compiler
+name: device-tree-compiler@jetson
 kind: chunk
 build-commands:
 - make all
