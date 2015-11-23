@@ -343,11 +343,9 @@ chunks:
   unpetrify-ref: Path-Tiny-0.070
   build-system: cpan
 - name: Carton
-  #repo: upstream:cpan/Carton-tarball
-  #ref: e31f9059a9f3918f12c40d4d66f2db885d6f914a
-  repo: github:richardipsum/carton
+  repo: upstream:carton
   ref: 64faf28ed61a6d0278c87831c83258cf8ecc40a9
-  unpetrify-ref: master
+  unpetrify-ref: baserock/v1.0.21
   build-system: cpan
   build-depends:
   - Class-Tiny
