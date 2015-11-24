@@ -771,8 +771,8 @@ chunks:
 - name: gnome-initial-setup
   morph: strata/gnome/gnome-initial-setup.morph
   repo: upstream:gnome/gnome-initial-setup
-  ref: e0b7f968213d26807d00ca5841c03f4a5a4605b2
-  unpetrify-ref: 3.19.1-1-ge0b7f96
+  ref: a6ae059a7fab60cae534f78eb485960a7b406be5
+  unpetrify-ref: 3.19.1-4-ga6ae059
   build-depends:
   - accountsservice
   - cheese
