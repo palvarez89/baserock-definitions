@@ -6,4 +6,4 @@ configure-commands:
 system-integration:
   gnome-initial-set-misc:
     01-add-gnome-initial-setup-user:
-    - useradd -c "GNOME Initial Setup Owner" -g gdm -s /bin/false gnome-initial-setup
+    - useradd -rM -d /run/gnome-initial-setup/ -c "GNOME Initial Setup Owner" -s /bin/false gnome-initial-setup
