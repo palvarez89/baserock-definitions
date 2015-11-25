@@ -7,7 +7,15 @@ pre-configure-commands:
 configure-commands:
 - ./configure --prefix="$PREFIX" --localstatedir=/var --sysconfdir=/etc --with-database=simple
   --with-systemduserunitdir=/lib/systemd/system
+  --with-system-user=pulse --with-system-group=pulse --with-access-group=pulse-access
 install-commands:
 - make DESTDIR="$DESTDIR" install
 - mkdir -p "$DESTDIR/etc/systemd/system/multi-user.target.wants"
 - ln -s /lib/systemd/system/pulseaudio.service "$DESTDIR/etc/systemd/system/multi-user.target.wants/pulseaudio.service"
+system-integration:
+  pulseaudio-misc:
+    00-add-pulse-users:
+    - groupadd -rf pulse-access
+    - groupadd -rf pulse-rt
+    - groupadd -f -g 171 -r pulse
+    - useradd -r -g pulse -d /var/run/pulse -s /bin/false -c "PulseAudio System Daemon" pulse || exit 0
