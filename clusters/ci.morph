@@ -36,7 +36,7 @@ systems:
     gnome-system-x86_64:
       type: extensions/rawdisk
       location: gnome-system-x86_64.img
-      DISK_SIZE: 6G
+      DISK_SIZE: 7G
       KERNEL_ARGS: vga=788
 - morph: systems/xfce-system-x86_64.morph
   deploy:
