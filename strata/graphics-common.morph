@@ -33,6 +33,26 @@ chunks:
   repo: upstream:ttf-alee
   ref: 97ededc81c03d0a7333a15a9a1e6acc4d0e5ac50
   unpetrify-ref: fonts-alee_13.1
+- name: chinese-fonts-truetype-bkai00mp
+  morph: strata/graphics-common/chinese-fonts-truetype-bkai00mp.morph
+  repo: upstream:chinese-fonts-truetype/bkai00mp
+  ref: aa20d88b0ae7945f0956d7d662e8e5cf1e50b53a
+  unpetrify-ref: bkai00mp.ttf
+- name: chinese-fonts-truetype-gkai00mp
+  morph: strata/graphics-common/chinese-fonts-truetype-gkai00mp.morph
+  repo: upstream:chinese-fonts-truetype/gkai00mp
+  ref: 7569dd2d8f31617a87229a4446b294a0d48055dd
+  unpetrify-ref: gkai00mp.ttf
+- name: chinese-fonts-truetype-bsmi00lp
+  morph: strata/graphics-common/chinese-fonts-truetype-bsmi00lp.morph
+  repo: upstream:chinese-fonts-truetype/bsmi00lp
+  ref: 8f1febdd4f74d56670777c8a5fc25dc6d8cf972c
+  unpetrify-ref: bsmi00lp.ttf
+- name: chinese-fonts-truetype-gbsn00lp
+  morph: strata/graphics-common/chinese-fonts-truetype-gbsn00lp.morph
+  repo: upstream:chinese-fonts-truetype/gbsn00lp
+  ref: be390396044728b4b535a067e3a0dca7daa0b8b6
+  unpetrify-ref: gbsn00lp.ttf
 - name: libpng
   repo: upstream:libpng
   ref: 88dd30b232362b65cca374dda39096888163dd6b

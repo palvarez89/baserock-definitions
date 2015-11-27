@@ -1,0 +1,5 @@
+name: chinese-fonts-truetype-bsmi00lp
+kind: chunk
+install-commands:
+- mkdir -p "$DESTDIR"/usr/share/fonts/truetype/chinese
+- install -p *.ttf "$DESTDIR"/usr/share/fonts/truetype/chinese

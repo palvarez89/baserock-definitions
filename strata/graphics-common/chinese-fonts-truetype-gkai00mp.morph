@@ -1,0 +1,5 @@
+name: chinese-fonts-truetype-gkai00mp
+kind: chunk
+install-commands:
+- mkdir -p "$DESTDIR"/usr/share/fonts/truetype/chinese
+- install -p *.ttf "$DESTDIR"/usr/share/fonts/truetype/chinese
