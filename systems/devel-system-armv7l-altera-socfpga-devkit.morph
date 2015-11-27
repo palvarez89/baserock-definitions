@@ -51,8 +51,6 @@ strata:
   morph: strata/libsoup-common.morph
 - name: ostree-core
   morph: strata/ostree-core.morph
-- name: compilers-extra
-  morph: strata/compilers-extra.morph
 - name: perl-common
   morph: strata/perl-common.morph
 - name: CPAN-Mini-Inject

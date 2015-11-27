@@ -61,8 +61,6 @@ strata:
   morph: strata/unionfs-fuse-group.morph
 - name: coreutils-common
   morph: strata/coreutils-common.morph
-- name: compilers-extra
-  morph: strata/compilers-extra.morph
 - name: perl-common
   morph: strata/perl-common.morph
 - name: CPAN-Mini-Inject
