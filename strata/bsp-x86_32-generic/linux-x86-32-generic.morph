@@ -264,6 +264,7 @@ configure-commands:
 - scripts/config -e SCSI_VIRTIO
 - scripts/config -e HYPERVISOR_GUEST
 - scripts/config -e PARAVIRT
+- scripts/config -e CONFIG_SND_INTEL8X0
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
