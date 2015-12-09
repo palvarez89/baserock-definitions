@@ -798,3 +798,8 @@ chunks:
   repo: upstream:sound-theme-freedesktop
   ref: 9d2ac65a2f88263f0eec8b777ef3bdc023b93c25
   unpetrify-ref: 0.8
+- name: libwnck
+  morph: strata/gnome/libwnck.morph
+  repo: upstream:libwnck
+  ref: 46bade6f53351f2a63d030e27cbba2e0048d1cde
+  unpetrify-ref: 3.14.1

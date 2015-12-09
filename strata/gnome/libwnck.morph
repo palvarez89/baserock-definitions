@@ -1,0 +1,11 @@
+name: libwnck
+kind: chunk
+build-system: autotools
+configure-commands:
+- gdk-pixbuf-query-loaders > loader.cache
+- NOCONFIGURE=1 ./autogen.sh
+- ./configure --prefix="$PREFIX"
+build-commands:
+- GDK_PIXBUF_MODULE_FILE="$(pwd)/loader.cache" make
+install-commands:
+- GDK_PIXBUF_MODULE_FILE="$(pwd)/loader.cache" make install DESTDIR="$DESTDIR"
