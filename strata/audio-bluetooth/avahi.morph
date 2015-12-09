@@ -1,0 +1,18 @@
+name: avahi
+kind: chunk
+build-system: autotools
+pre-configure-commands:
+- sed -i 's/AM_CFLAGS=-I$(top_srcdir) -DG_DISABLE_DEPRECATED=1 -DGDK_DISABLE_DEPRECATED=1 -DGTK_DISABLE_DEPRECATED=1/AM_CFLAGS=-I$(top_srcdir)/g' avahi-ui/Makefile.am
+configure-commands:
+- |
+  ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var --disable-werror \
+               --with-distro=none --disable-qt3 --disable-qt4 --disable-gtk --disable-gtk3 \
+               --disable-pygtk --disable-python-dbus --disable-mono --disable-manpages
+system-integration:
+  avahi-misc:
+    00-add-avahi-user:
+    - groupadd -fg 86 netdev
+    - groupadd -fg 84 avahi
+    - useradd -c "Avahi Daemon Owner" -d /var/run/avahi-daemon -u 84 -g avahi -s /bin/false avahi
+    00-enable-avahi-service:
+    - systemctl enable avahi-daemon

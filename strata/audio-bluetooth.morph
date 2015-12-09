@@ -96,12 +96,20 @@ chunks:
   ref: 9fcc28e0e8f84968d1fb8b6d544a42efb13803ec
   unpetrify-ref: v0.14
   build-system: autotools
+- name: avahi
+  morph: strata/audio-bluetooth/avahi.morph
+  repo: upstream:avahi
+  ref: 031d6323b5abb785fbe3601b2f163316a1eb54bc
+  unpetrify-ref: v0.6.31
+  build-depends:
+  - libdaemon
 - name: pulseaudio
   morph: strata/audio-bluetooth/pulseaudio.morph
   repo: upstream:pulseaudio
   ref: 53ad8aa7caa33caac52e35f71253e29d5a15f6e7
   unpetrify-ref: v6.0
   build-depends:
+  - avahi
   - libsndfile
   - libatomic_ops
   - speex
