@@ -803,3 +803,24 @@ chunks:
   repo: upstream:libwnck
   ref: 46bade6f53351f2a63d030e27cbba2e0048d1cde
   unpetrify-ref: 3.14.1
+###############################################
+#         Applications Start Here             #
+###############################################
+- name: epiphany
+  morph: strata/gnome/epiphany.morph
+  repo: upstream:gnome/epiphany
+  ref: 5483823ae71fc5280e2fda9e85557362debb0c2e
+  unpetrify-ref: 3.18.1
+  build-depends:
+  - appstream-glib
+  - enchant
+  - gcr
+  - gnome-desktop
+  - iso-codes
+  - libcanberra
+  - libnotify
+  - libsecret
+  - libwnck
+  - m4-common
+  - startup-notification
+  - WebKitGtk
