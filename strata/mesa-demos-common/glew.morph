@@ -1,0 +1,6 @@
+name: glew
+kind: chunk
+build-system: manual
+install-commands:
+- make LIBDIR="/usr/lib"
+- make LIBDIR="/usr/lib" DESTDIR="$DESTDIR" install

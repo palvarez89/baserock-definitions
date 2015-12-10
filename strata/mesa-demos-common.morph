@@ -1,0 +1,37 @@
+name: mesa-demos-common
+kind: stratum
+build-depends:
+- morph: strata/mesa-common.morph
+chunks:
+- name: xorg-util-makedepend
+  repo: upstream:xorg-util-makedepend
+  ref: 30859adfd6a6523a92a637ca26bd61ce59680a1b
+  unpetrify-ref: makedepend-1.0.5
+  build-system: autotools
+- name: glu
+  repo: upstream:glu
+  ref: 069211570c32a8d5848e127975a2943e9d8fc6b9
+  unpetrify-ref: glu-9.0.0-2-g0692115
+  build-system: autotools
+- name: glut
+  repo: upstream:glut
+  ref: ee89e9aeb49604b036e06f1df6478d32006b30cd
+  unpetrify-ref: master
+  build-system: autotools
+  build-depends:
+  - glu
+  - xorg-util-makedepend
+- name: glew
+  morph: strata/mesa-demos-common/glew.morph
+  repo: upstream:glew-tarball
+  ref: 706e5d657396530bbd3d91a4e03b5f6b4cb6fa6f
+  unpetrify-ref: glew-1.13.0
+- name: mesa-demos
+  build-system: autotools
+  repo: upstream:mesa-demos
+  ref: 887e30bd1cc727150dc29556f228a94ef42dc33c
+  unpetrify-ref: mesa-demos-8.3.0
+  build-depends:
+  - glu
+  - glew
+  - glut
