@@ -324,3 +324,13 @@ chunks:
   - xorg-proto-kbproto
   - xorg-lib-libX11
   - xorg-lib-libSM
+- name: xorg-lib-libXmu
+  repo: upstream:xorg-lib-libXmu
+  ref: 2539e539eafdac88177c8ee30b043c5d52f017e4
+  unpetrify-ref: libXmu-1.1.2
+  build-system: autotools
+  build-depends:
+  - xorg-lib-libX11
+  - xorg-lib-libXext
+  - xorg-lib-libXt
+  - xorg-proto-xextproto
