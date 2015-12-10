@@ -6,6 +6,7 @@ build-depends:
 - morph: strata/libsoup-common.morph
 - morph: strata/multimedia-common.morph
 - morph: strata/mesa-common.morph
+- morph: strata/graphics-common.morph
 chunks:
 - name: orc
   repo: upstream:orc
