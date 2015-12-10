@@ -4,4 +4,4 @@ build-system: autotools
 configure-commands:
 - |
   ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc \
-               --enable-tegra-experimental-api
+               --enable-tegra-experimental-api --enable-udev
