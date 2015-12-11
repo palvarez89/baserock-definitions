@@ -11,27 +11,28 @@ chunks:
 - name: orc
   morph: strata/multimedia-gstreamer/orc.morph
   repo: upstream:orc
-  ref: 16e053b8f2359196fd50b111f1c10b93590f5cb9
-  unpetrify-ref: orc-0.4.22
+  ref: 1a3af3cb4daeb6802197a7854507d6ee8bc9a06b
+  unpetrify-ref: orc-0.4.24
   build-system: autotools
 - name: gstreamer
   repo: upstream:gstreamer
-  ref: c61dea148ca3f14586d8eddf0b7e6ca47c164c86
-  unpetrify-ref: baserock/1.4.4+bison_fix
+  ref: d048770224f541fb99adc6912e25450256963c25
+  unpetrify-ref: baserock/1.6
   build-system: autotools
   build-depends:
   - orc
 - name: gstreamer-plugins-base
   repo: upstream:gstreamer-plugins-base
-  ref: 3b38ad94a2d58c07c24e4647e08afa1fe4dd7d46
-  unpetrify-ref: baserock/1.4
+  ref: aceec42a6841955a95e3769db209fdce42b0e873
+  unpetrify-ref: baserock/1.6
   build-system: autotools
   build-depends:
   - gstreamer
+  - orc
 - name: gstreamer-plugins-good
   repo: upstream:gstreamer-plugins-good
-  ref: 9d48c2f7a7b63fd967de7eec72434bc876c02667
-  unpetrify-ref: baserock/1.4
+  ref: 2d643f4ebcc5e2c3e18a8219cac2308fe9c45165
+  unpetrify-ref: baserock/1.6
   build-system: autotools
   build-depends:
   - gstreamer
@@ -39,8 +40,8 @@ chunks:
   - orc
 - name: gstreamer-plugins-bad
   repo: upstream:gstreamer-plugins-bad
-  ref: bb2a4669ff57af90c8101c54744d3228aa060475
-  unpetrify-ref: baserock/1.4
+  ref: 330bb6794b8396e1295d61028c38a5d0c14929ed
+  unpetrify-ref: baserock/1.6
   build-system: autotools
   build-depends:
   - gstreamer
