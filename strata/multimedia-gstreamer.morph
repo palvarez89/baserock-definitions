@@ -9,6 +9,7 @@ build-depends:
 - morph: strata/graphics-common.morph
 chunks:
 - name: orc
+  morph: strata/multimedia-gstreamer/orc.morph
   repo: upstream:orc
   ref: 16e053b8f2359196fd50b111f1c10b93590f5cb9
   unpetrify-ref: orc-0.4.22
