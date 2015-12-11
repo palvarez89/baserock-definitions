@@ -47,3 +47,12 @@ chunks:
   - gstreamer
   - gstreamer-plugins-base
   - orc
+- name: gst-libav
+  morph: strata/multimedia-gstreamer/gst-libav.morph
+  repo: upstream:gst-libav
+  ref: 9c135826b0a22e7aa82f938c539ef0eb0ff5a17a
+  unpetrify-ref: baserock/1.6
+  build-depends:
+  - gstreamer
+  - gstreamer-plugins-base
+  - orc
