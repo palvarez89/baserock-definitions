@@ -334,3 +334,13 @@ chunks:
   - xorg-lib-libXext
   - xorg-lib-libXt
   - xorg-proto-xextproto
+- name: xorg-lib-libXv
+  repo: upstream:xorg-lib-libXv
+  ref: 736d7ac5a94c7aa6761d50ab58339a3d9a116c51
+  unpetrify-ref: libXv-1.0.10
+  build-system: autotools
+  build-depends:
+  - xorg-lib-libX11
+  - xorg-lib-libXext
+  - xorg-proto-xextproto
+  - xorg-proto-videoproto
