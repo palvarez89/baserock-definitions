@@ -1,0 +1,4 @@
+name: yasm
+kind: chunk
+max-jobs: 1
+build-system: autotools

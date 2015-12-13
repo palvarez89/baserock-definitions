@@ -35,3 +35,8 @@ chunks:
   repo: upstream:libmad-tarball
   ref: f2b21c41aef22e81b605afe96e1e6ef1bea0cfdc
   unpetrify-ref: baserock/0.15.1b-gstreamer-sdk-fork
+- name: yasm
+  morph: strata/multimedia-common/yasm.morph
+  repo: upstream:yasm
+  ref: fefefe262eb29081f0bcb4d48f2d476ce5730562
+  unpetrify-ref: baserock/morph
