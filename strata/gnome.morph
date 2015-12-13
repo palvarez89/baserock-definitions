@@ -863,3 +863,10 @@ chunks:
   build-system: autotools
   build-depends:
   - yelp-tools
+- name: gnome-getting-started-docs
+  repo: upstream:gnome/gnome-getting-started-docs
+  ref: e50ec428ee080513f059a5cab0a41174f99f0413
+  unpetrify-ref: 3.18.2
+  build-system: autotools
+  build-depends:
+  - yelp-tools
