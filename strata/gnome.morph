@@ -803,6 +803,11 @@ chunks:
   repo: upstream:libwnck
   ref: 46bade6f53351f2a63d030e27cbba2e0048d1cde
   unpetrify-ref: 3.14.1
+- name: libpeas
+  morph: strata/gnome/libpeas.morph
+  repo: upstream:gnome/libpeas
+  ref: e3cc20f1aa33321ed7ddc2e4b048e09a8a15371c
+  unpetrify-ref: libpeas-1.14.0
 ###############################################
 #         Applications Start Here             #
 ###############################################

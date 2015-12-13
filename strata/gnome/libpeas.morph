@@ -1,0 +1,5 @@
+name: libpeas
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --enable-python3
