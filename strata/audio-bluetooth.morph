@@ -91,6 +91,11 @@ chunks:
   repo: upstream:libsndfile
   ref: 6c05c615c95ffef7a8a5a707cde0bb52bdd74244
   unpetrify-ref: baserock/morph
+- name: libdaemon
+  repo: upstream:libdaemon
+  ref: 9fcc28e0e8f84968d1fb8b6d544a42efb13803ec
+  unpetrify-ref: v0.14
+  build-system: autotools
 - name: pulseaudio
   morph: strata/audio-bluetooth/pulseaudio.morph
   repo: upstream:pulseaudio
