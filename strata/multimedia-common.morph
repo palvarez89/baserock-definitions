@@ -40,3 +40,10 @@ chunks:
   repo: upstream:yasm
   ref: fefefe262eb29081f0bcb4d48f2d476ce5730562
   unpetrify-ref: baserock/morph
+- name: libvpx
+  repo: upstream:libvpx
+  ref: cbecf57f3e0d85a7b7f97f3ab7c507f6fe640a93
+  unpetrify-ref: v1.5.0
+  build-system: autotools
+  build-depends:
+  - yasm
