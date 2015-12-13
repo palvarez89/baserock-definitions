@@ -877,3 +877,15 @@ chunks:
   build-system: autotools
   build-depends:
   - yelp-tools
+- name: gedit
+  repo: upstream:gnome/gedit
+  ref: 4b318c265d71eca3572920bb159dcda9aa9f9184
+  unpetrify-ref: baserock/3.18.2
+  build-system: autotools
+  build-depends:
+  - enchant
+  - gsettings-desktop-schemas
+  - gtksourceview
+  - iso-codes
+  - libpeas
+  - yelp-tools
