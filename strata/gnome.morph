@@ -808,6 +808,13 @@ chunks:
   repo: upstream:gnome/libpeas
   ref: ede1902bee26dbe36c2c1559b1166035580cdf30
   unpetrify-ref: libpeas-1.16.0
+- name: gtksourceview
+  repo: upstream:gnome/gtksourceview
+  ref: eeb6fd40fbbc74515828070fef554ed98ad481e9
+  unpetrify-ref: 3.18.1
+  build-system: autotools
+  build-depends:
+  - m4-common
 ###############################################
 #         Applications Start Here             #
 ###############################################
