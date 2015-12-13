@@ -47,3 +47,9 @@ chunks:
   build-system: autotools
   build-depends:
   - yasm
+- name: libmpeg2
+  morph: strata/multimedia-common/libmpeg2.morph
+  repo: upstream:libmpeg2-tarball
+  ref: d1e80dc431815df3ac6eeed654eeccaf8d6beea7
+  unpetrify-ref: libmpeg2-0.5.1
+  build-system: autotools

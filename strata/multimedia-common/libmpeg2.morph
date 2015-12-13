@@ -1,0 +1,6 @@
+name: libmpeg2
+kind: chunk
+build-system: autotools
+configure-commands:
+# Explicitly just configure, avoid running the boostrap.sh script
+- ./configure --prefix="$PREFIX"
