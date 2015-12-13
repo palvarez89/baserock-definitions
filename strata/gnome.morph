@@ -856,3 +856,10 @@ chunks:
   - m4-common
   - WebKitGtk
   - yelp-xsl
+- name: gnome-user-docs
+  repo: upstream:gnome/gnome-user-docs
+  ref: 618fc9644317c55d674ca2e1b00b41d364427fb1
+  unpetrify-ref: master
+  build-system: autotools
+  build-depends:
+  - yelp-tools
