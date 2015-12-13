@@ -829,3 +829,21 @@ chunks:
   - m4-common
   - startup-notification
   - WebKitGtk
+- name: totem
+  repo: upstream:gnome/totem
+  ref: 1585a516387ff5184a4ba3842a4a843c53faf803
+  unpetrify-ref: V_3_18_1
+  build-system: autotools
+  build-depends:
+  - appstream-glib
+  - clutter
+  - clutter-gst
+  - clutter-gtk
+  - gnome-desktop
+  - grilo
+  - grilo-plugins
+  - gsettings-desktop-schemas
+  - iso-codes
+  - libpeas
+  - totem-pl-parser
+  - yelp-tools
