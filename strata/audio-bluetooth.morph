@@ -103,6 +103,13 @@ chunks:
   unpetrify-ref: v0.6.31
   build-depends:
   - libdaemon
+- name: sbc
+  repo: upstream:sbc
+  ref: f64b34a770bc7fbf180d2a733fe63d352f281ea2
+  unpetrify-ref: 1.3
+  build-system: autotools
+  build-depends:
+  - libsndfile
 - name: pulseaudio
   morph: strata/audio-bluetooth/pulseaudio.morph
   repo: upstream:pulseaudio
@@ -116,3 +123,4 @@ chunks:
   - json-c
   - alsa-lib
   - bluez
+  - sbc
