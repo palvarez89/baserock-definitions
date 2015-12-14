@@ -13,7 +13,6 @@ chunks:
   repo: upstream:orc
   ref: 1a3af3cb4daeb6802197a7854507d6ee8bc9a06b
   unpetrify-ref: orc-0.4.24
-  build-system: autotools
 - name: gstreamer
   repo: upstream:gstreamer
   ref: d048770224f541fb99adc6912e25450256963c25
