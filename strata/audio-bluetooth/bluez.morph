@@ -7,6 +7,7 @@ configure-commands:
 - ./configure --prefix="$PREFIX" --enable-tools --enable-test --enable-alsa --enable-library
   --with-telephony=ofono --sysconfdir=/etc --localstatedir=/var --libexecdir=/lib
 install-commands:
-- make install
+- make DESTDIR="$DESTDIR" install
 - mkdir -p "$DESTDIR/etc/systemd/system/bluetooth.target.wants"
 - ln -s /lib/systemd/system/bluetooth.service "$DESTDIR/etc/systemd/system/bluetooth.target.wants/bluetooth.service"
+- ln -s /lib/systemd/system/bluetooth.service "$DESTDIR/etc/systemd/system/dbus-org.bluez.service"
