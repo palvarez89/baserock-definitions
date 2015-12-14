@@ -6,12 +6,8 @@ pre-configure-commands:
 - NOCONFIGURE=1 ./bootstrap.sh
 configure-commands:
 - ./configure --prefix="$PREFIX" --localstatedir=/var --sysconfdir=/etc --with-database=simple
-  --with-systemduserunitdir=/lib/systemd/system
+  --with-systemduserunitdir=/usr/lib/systemd/user
   --with-system-user=pulse --with-system-group=pulse --with-access-group=pulse-access
-install-commands:
-- make DESTDIR="$DESTDIR" install
-- mkdir -p "$DESTDIR/etc/systemd/system/multi-user.target.wants"
-- ln -s /lib/systemd/system/pulseaudio.service "$DESTDIR/etc/systemd/system/multi-user.target.wants/pulseaudio.service"
 system-integration:
   pulseaudio-misc:
     00-add-pulse-users:
