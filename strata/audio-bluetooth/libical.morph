@@ -1,6 +1,5 @@
 name: libical
 kind: chunk
-build-system: autotools
+build-system: cmake
 configure-commands:
-- autoreconf -ivf
-- ./configure --prefix="$PREFIX"
+- cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_INSTALL_LIBDIR=lib

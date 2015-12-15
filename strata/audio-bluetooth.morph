@@ -24,9 +24,9 @@ chunks:
   - alsa-lib
 - name: libical
   morph: strata/audio-bluetooth/libical.morph
-  repo: upstream:libical
-  ref: 52568782ae136e1ec4ddf3eb6da7b0f3fbd3f1b3
-  unpetrify-ref: baserock/morph
+  repo: upstream:libical-git
+  ref: da69aae790f680b633100475cac14c776fbda722
+  unpetrify-ref: v1.0.1
 - name: bluez
   morph: strata/audio-bluetooth/bluez.morph
   repo: upstream:bluez
