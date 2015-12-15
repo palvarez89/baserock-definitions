@@ -898,3 +898,12 @@ chunks:
   - iso-codes
   - libpeas
   - yelp-tools
+- name: gnome-calendar
+  repo: upstream:gnome/gnome-calendar
+  ref: 5292e9d57442067701ce94eea54b4b12d13b7aa3
+  unpetrify-ref: 3.18.1
+  build-system: autotools
+  build-depends:
+  - appstream-glib
+  - gnome-online-accounts
+  - evolution-data-server
