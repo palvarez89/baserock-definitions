@@ -907,3 +907,12 @@ chunks:
   - appstream-glib
   - gnome-online-accounts
   - evolution-data-server
+- name: gnome-todo
+  repo: upstream:gnome/gnome-todo
+  ref: a39ccadf8a659fca8b4503bf4844383f5346f6cb
+  unpetrify-ref: GNOME_TODO_3_18_1
+  build-system: autotools
+  build-depends:
+  - appstream-glib
+  - evolution-data-server
+  - gnome-online-accounts
