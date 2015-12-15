@@ -806,8 +806,8 @@ chunks:
 - name: libpeas
   morph: strata/gnome/libpeas.morph
   repo: upstream:gnome/libpeas
-  ref: e3cc20f1aa33321ed7ddc2e4b048e09a8a15371c
-  unpetrify-ref: libpeas-1.14.0
+  ref: ede1902bee26dbe36c2c1559b1166035580cdf30
+  unpetrify-ref: libpeas-1.16.0
 ###############################################
 #         Applications Start Here             #
 ###############################################
