@@ -2,4 +2,4 @@ name: vte
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --enable-introspection=yes --without-pcre2
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --enable-introspection=yes --without-pcre2 --enable-glade-catalogue
