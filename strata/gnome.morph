@@ -584,6 +584,13 @@ chunks:
   unpetrify-ref: libpwquality-1.3.0
   build-depends:
   - cracklib
+- name: glade
+  morph: strata/gnome/glade.morph
+  repo: upstream:gnome/glade
+  ref: 4f81f15467ad45c3dddc7ee50ffaca9596d628ee
+  unpetrify-ref: master
+  build-depends:
+  - yelp-tools
 - name: vte
   morph: strata/gnome/vte.morph
   repo: upstream:gnome/vte
