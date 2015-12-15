@@ -365,8 +365,8 @@ chunks:
   build-system: autotools
 - name: m4-common
   repo: upstream:m4-common
-  ref: 4b704704f5e826b73b79ccfddaf215a510c104c4
-  unpetrify-ref: baserock/morph
+  ref: 6e9a4d3b35c5ce8af050e66d8caff96070c57d34
+  unpetrify-ref: baserock/2015-12-15
   build-system: autotools
 - name: libgee
   repo: upstream:gnome/libgee
