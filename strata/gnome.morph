@@ -461,6 +461,11 @@ chunks:
   repo: upstream:raptor
   ref: 286452cd786098ce31a002f16e5ec2e0fbdc9041
   unpetrify-ref: raptor2_2_0_15
+- name: isodate
+  repo: upstream:python-packages/isodate
+  ref: b99c0bd318991a8a8a9dc0c5273800b9801428f6
+  unpetrify-ref: 0.5.4
+  build-system: python-distutils
 - name: network-manager-applet
   repo: upstream:gnome/network-manager-applet
   ref: bbcc673af29066cfc6f0e12f04c0dd3f9937fb3a
