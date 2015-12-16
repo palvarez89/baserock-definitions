@@ -466,6 +466,13 @@ chunks:
   ref: b99c0bd318991a8a8a9dc0c5273800b9801428f6
   unpetrify-ref: 0.5.4
   build-system: python-distutils
+- name: rdflib
+  repo: upstream:python-packages/rdflib
+  ref: c2f9725f385a85fd280b4cf30239748b24f5cc06
+  unpetrify-ref: 4.2.1
+  build-system: python-distutils
+  build-depends:
+  - isodate
 - name: network-manager-applet
   repo: upstream:gnome/network-manager-applet
   ref: bbcc673af29066cfc6f0e12f04c0dd3f9937fb3a
