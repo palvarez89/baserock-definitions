@@ -700,6 +700,11 @@ chunks:
   repo: upstream:gnome/libmediaart
   ref: 52eb6498c97ce0005186946bc9162d87597abc2c
   unpetrify-ref: 1.9.0-8-g52eb649
+- name: gssdp
+  repo: upstream:gnome/gssdp
+  ref: a53a6ac85f1b70192bc75fbbd4601582d6095cfd
+  unpetrify-ref: gssdp-0.14.12
+  build-system: autotools
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
