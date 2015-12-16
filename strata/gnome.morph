@@ -726,6 +726,13 @@ chunks:
   build-system: autotools
   build-depends:
   - gupnp
+- name: gupnp-dlna
+  repo: upstream:gnome/gupnp-dlna
+  ref: 1aad765f223e3338d86bc975a2b4925fca43bf58
+  unpetrify-ref: gupnp-dlna-0.10.3
+  build-system: autotools
+  build-depends:
+  - gupnp
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
