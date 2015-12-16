@@ -747,6 +747,14 @@ chunks:
   build-system: autotools
   build-depends:
   - libnice
+- name: telepathy-farstream
+  repo: upstream:telepathy-farstream
+  ref: 0b1bba79cfe94e7676fe69e9e0d2e3983a3c14c5
+  unpetrify-ref: telepathy-farstream-0.6.2
+  build-system: autotools
+  build-depends:
+  - farstream
+  - telepathy-glib
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
