@@ -733,6 +733,13 @@ chunks:
   build-system: autotools
   build-depends:
   - gupnp
+- name: libnice
+  repo: upstream:libnice
+  ref: 533ff6c5a03680f300709be4dc999f45659f3a1b
+  unpetrify-ref: 0.1.13
+  build-system: autotools
+  build-depends:
+  - gupnp-igd
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
