@@ -412,6 +412,15 @@ chunks:
   ref: 7f28cf7edb54cc1bc4eaa09672e0bc043b1da70b
   unpetrify-ref: master
   build-system: autotools
+- name: WebKitGtk1
+  morph: strata/gnome/WebKitGtk1.morph
+  repo: upstream:WebKitGtk-tarball
+  ref: 41386e9cb918eed93b3f13648cbef387e371e451
+  unpetrify-ref: webkitgtk-2.4.9
+  build-depends:
+  - enchant
+  - geoclue
+  - libsecret
 - name: WebKitGtk
   morph: strata/gnome/WebKitGtk.morph
   repo: upstream:WebKitGtk-tarball

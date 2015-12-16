@@ -1,0 +1,5 @@
+name: WebKitGtk1
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./configure --prefix="$PREFIX" --sysconfdir=/etc --disable-webkit2 --enable-introspection
