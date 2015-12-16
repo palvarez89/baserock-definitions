@@ -705,6 +705,13 @@ chunks:
   ref: a53a6ac85f1b70192bc75fbbd4601582d6095cfd
   unpetrify-ref: gssdp-0.14.12
   build-system: autotools
+- name: gupnp
+  repo: upstream:gnome/gupnp
+  ref: c42b9cdda466ae9fef91f6beb370f8dfdebc295c
+  unpetrify-ref: gupnp-0.20.14
+  build-system: autotools
+  build-depends:
+  - gssdp
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
