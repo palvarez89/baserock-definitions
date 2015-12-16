@@ -719,6 +719,13 @@ chunks:
   build-system: autotools
   build-depends:
   - gupnp
+- name: gupnp-igd
+  repo: upstream:gnome/gupnp-igd
+  ref: f679a8ad782eee72e2ff7a0a7598b4523ef03bb3
+  unpetrify-ref: 0.2.4
+  build-system: autotools
+  build-depends:
+  - gupnp
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
