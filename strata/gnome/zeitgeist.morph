@@ -1,0 +1,5 @@
+name: zeitgeist
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --with-session-bus-services-dir="$PREFIX"/share/dbus-1/services

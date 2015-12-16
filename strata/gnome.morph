@@ -473,6 +473,16 @@ chunks:
   build-system: python-distutils
   build-depends:
   - isodate
+- name: zeitgeist
+  morph: strata/gnome/zeitgeist.morph
+  repo: upstream:zeitgeist
+  ref: abc7939806346a563ded2b16456dc7e2fff54fcc
+  unpetrify-ref: v0.9.16
+  build-depends:
+  - json-glib
+  - raptor
+  - rdflib
+  - telepathy-glib
 - name: network-manager-applet
   repo: upstream:gnome/network-manager-applet
   ref: bbcc673af29066cfc6f0e12f04c0dd3f9937fb3a
