@@ -734,6 +734,7 @@ chunks:
   build-depends:
   - gnome-online-accounts
   - grilo
+  - gupnp-av
   - libgdata
   - libmediaart
   - liboauth
