@@ -1112,3 +1112,15 @@ chunks:
   build-system: autotools
   build-depends:
   - yelp-tools
+- name: eog
+  repo: upstream:gnome/eog
+  ref: d05bdd7dfbe13910f903c8678e923ff6d92cbc86
+  unpetrify-ref: 3.18.1
+  build-system: autotools
+  build-depends:
+  - gnome-desktop
+  - gsettings-desktop-schemas
+  - lcms2
+  - libexif
+  - libpeas
+  - yelp-tools
