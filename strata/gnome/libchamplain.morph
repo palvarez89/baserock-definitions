@@ -1,0 +1,5 @@
+name: libchamplain
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --enable-vala=yes

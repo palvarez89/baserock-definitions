@@ -50,6 +50,14 @@ chunks:
   build-system: autotools
   build-depends:
   - clutter
+- name: libchamplain
+  morph: strata/gnome/libchamplain.morph
+  repo: upstream:gnome/libchamplain
+  ref: c873d9d8116b8e14c1bfa939439d763926a77446
+  unpetrify-ref: LIBCHAMPLAIN_0_12_12
+  build-depends:
+  - clutter
+  - clutter-gtk
 - name: gsettings-desktop-schemas
   repo: upstream:gnome/gsettings-desktop-schemas
   ref: db40812cd79f64c98432efd1b632c5633a27f77e
