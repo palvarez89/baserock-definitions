@@ -1124,3 +1124,10 @@ chunks:
   - libexif
   - libpeas
   - yelp-tools
+- name: baobab
+  repo: upstream:gnome/baobab
+  ref: 59fa8171d2dfa02be56930f451ae186680074bb6
+  unpetrify-ref: 3.18.1
+  build-system: autotools
+  build-depends:
+  - yelp-tools
