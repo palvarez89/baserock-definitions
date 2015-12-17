@@ -969,3 +969,35 @@ chunks:
   - appstream-glib
   - evolution-data-server
   - gnome-online-accounts
+- name: empathy
+  morph: strata/gnome/empathy.morph
+  repo: upstream:gnome/empathy
+  ref: 2bcb29eaebff288da3bd8df5808b6aa6834167fc
+  unpetrify-ref: EMPATHY_3_12_11
+  build-depends:
+  - cheese
+  - clutter
+  - clutter-gst2
+  - clutter-gtk
+  - enchant
+  - farstream
+  - folks
+  - gcr
+  - geoclue
+  - geocode-glib
+  - gnome-online-accounts
+  - gnutls
+  - gsettings-desktop-schemas
+  - iso-codes
+  - libcanberra
+  - libchamplain
+  - libgee
+  - libnotify
+  - libsecret
+  - m4-common
+  - telepathy-farstream
+  - telepathy-glib
+  - telepathy-logger
+  - telepathy-mission-control
+  - WebKitGtk1
+  - yelp-tools
