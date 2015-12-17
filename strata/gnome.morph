@@ -1131,3 +1131,10 @@ chunks:
   build-system: autotools
   build-depends:
   - yelp-tools
+- name: gnome-font-viewer
+  repo: upstream:gnome/gnome-font-viewer
+  ref: 9af2f35a63f34f87407e784b514cafe1cc772384
+  unpetrify-ref: master
+  build-system: autotools
+  build-depends:
+  - gnome-desktop
