@@ -265,6 +265,8 @@ configure-commands:
 - scripts/config -e HYPERVISOR_GUEST
 - scripts/config -e PARAVIRT
 - scripts/config -e CONFIG_SND_INTEL8X0
+- scripts/config -m CONFIG_DRM_CIRRUS_QEMU
+- scripts/config -m CONFIG_DRM_BOCHS
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
@@ -286,3 +288,7 @@ install-commands:
       find include/uapi -print0
       find scripts -print0
   ) | cpio -0pumd "$DESTDIR$PREFIX/src/linux"
+system-integration:
+  linux-x86-32-generic-misc:
+    00-depmod:
+    - (cd /lib/modules && for version in *; do depmod -a "$version"; done)
