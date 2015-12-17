@@ -847,8 +847,8 @@ chunks:
   - WebKitGtk
 - name: totem
   repo: upstream:gnome/totem
-  ref: 1585a516387ff5184a4ba3842a4a843c53faf803
-  unpetrify-ref: V_3_18_1
+  ref: 77cf0b9d3de4fd3a48492c77e25308d6c411b651
+  unpetrify-ref: baserock/V_3_18_1
   build-system: autotools
   build-depends:
   - appstream-glib
