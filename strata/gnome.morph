@@ -483,6 +483,17 @@ chunks:
   - raptor
   - rdflib
   - telepathy-glib
+- name: folks
+  morph: strata/gnome/folks.morph
+  repo: upstream:gnome/folks
+  ref: 27367f26cd66bb86b745c892db214aa9a136c818
+  unpetrify-ref: 0.11.2
+  build-depends:
+  - evolution-data-server
+  - libgee
+  - telepathy-logger
+  - tracker
+  - zeitgeist
 - name: network-manager-applet
   repo: upstream:gnome/network-manager-applet
   ref: bbcc673af29066cfc6f0e12f04c0dd3f9937fb3a
