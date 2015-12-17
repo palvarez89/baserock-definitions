@@ -1075,3 +1075,17 @@ chunks:
   - telepathy-mission-control
   - WebKitGtk1
   - yelp-tools
+- name: gnome-contacts
+  repo: upstream:gnome/gnome-contacts
+  ref: 3715ec79662989038d5055bb74aa0b728b40edb5
+  unpetrify-ref: baserock/3.18.0
+  build-system: autotools
+  build-depends:
+  - cheese
+  - folks
+  - gnome-desktop
+  - gnome-online-accounts
+  - libchamplain
+  - libgee
+  - libnotify
+  - telepathy-glib
