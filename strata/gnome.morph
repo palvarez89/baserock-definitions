@@ -1138,3 +1138,10 @@ chunks:
   build-system: autotools
   build-depends:
   - gnome-desktop
+- name: gnome-screenshot
+  repo: upstream:gnome/gnome-screenshot
+  ref: 3a97ad23ff14a0400f12dd3fdf501d1d9dad04d4
+  unpetrify-ref: 3.18.0
+  build-system: autotools
+  build-depends:
+  - libcanberra
