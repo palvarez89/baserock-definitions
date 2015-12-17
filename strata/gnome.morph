@@ -1089,3 +1089,19 @@ chunks:
   - libgee
   - libnotify
   - telepathy-glib
+- name: gnome-maps
+  repo: upstream:gnome/gnome-maps
+  ref: 6d6e8afd54735e565a0c81cb761f22bb82d142db
+  unpetrify-ref: v3.18.1
+  build-system: autotools
+  build-depends:
+  - folks
+  - clutter-gtk
+  - geoclue
+  - geocode-glib
+  - gjs
+  - gnome-desktop
+  - gnome-online-accounts
+  - libchamplain
+  - libgee
+  - libgfbgraph
