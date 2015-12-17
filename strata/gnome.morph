@@ -1105,3 +1105,10 @@ chunks:
   - libchamplain
   - libgee
   - libgfbgraph
+- name: gnome-dictionary
+  repo: upstream:gnome/gnome-dictionary
+  ref: e36fac6ee47a71c46afdd55f2110c36a22521bb6
+  unpetrify-ref: 3.18.0
+  build-system: autotools
+  build-depends:
+  - yelp-tools
