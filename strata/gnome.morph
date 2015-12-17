@@ -511,6 +511,15 @@ chunks:
   - telepathy-logger
   - tracker
   - zeitgeist
+- name: libgfbgraph
+  repo: upstream:gnome/libgfbgraph
+  ref: 50eabf601310052216e25fa112e688204738f222
+  unpetrify-ref: v_0_2_3
+  build-system: autotools
+  build-depends:
+  - gnome-online-accounts
+  - json-glib
+  - librest
 - name: network-manager-applet
   repo: upstream:gnome/network-manager-applet
   ref: bbcc673af29066cfc6f0e12f04c0dd3f9937fb3a
