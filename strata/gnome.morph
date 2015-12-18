@@ -803,6 +803,14 @@ chunks:
   build-depends:
   - evolution-data-server
   - farstream
+- name: telepathy-haze
+  repo: upstream:telepathy-haze
+  ref: d3d7b7f9342511c0c961e3f2d9fc1f5fb0804142
+  unpetrify-ref: telepathy-haze-0.8.0
+  build-system: autotools
+  build-depends:
+  - libpurple
+  - telepathy-glib
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
