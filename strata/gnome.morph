@@ -773,6 +773,14 @@ chunks:
   build-depends:
   - farstream
   - telepathy-glib
+- name: telepathy-gabble
+  morph: strata/gnome/telepathy-gabble.morph
+  repo: upstream:telepathy-gabble
+  ref: 91d890ef3f269e92ea3a2a265597293e056e842c
+  unpetrify-ref: baserock/telepathy-gabble-0.18.3
+  build-depends:
+  - libnice
+  - telepathy-glib
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f

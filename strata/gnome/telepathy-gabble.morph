@@ -1,0 +1,8 @@
+name: telepathy-gabble
+kind: chunk
+build-system: autotools
+configure-commands:
+#
+# Tell telepathy-gabble where to load the certificate bundle from.
+#
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --with-ca-certificates=/etc/ssl/certs/ca-certificates.crt
