@@ -1,0 +1,14 @@
+name: libvpx
+kind: chunk
+build-system: autotools
+configure-commands:
+# Workarond upstream bug: https://bugs.chromium.org/p/webm/issues/detail?id=1121
+- |
+  case "$MORPH_ARCH" in
+  armv7lhf)
+    CROSS=" " ./configure --prefix="$PREFIX" --target=armv7-linux-gcc
+    ;;
+  *)
+    ./configure --prefix="$PREFIX"
+    ;;
+  esac
