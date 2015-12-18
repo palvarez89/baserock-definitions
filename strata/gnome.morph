@@ -781,6 +781,13 @@ chunks:
   build-depends:
   - libnice
   - telepathy-glib
+- name: telepathy-salut
+  morph: strata/gnome/telepathy-salut.morph
+  repo: upstream:telepathy-salut
+  ref: e554f3c595307f665e5c2dd464f1baf0120ab43d
+  unpetrify-ref: baserock/telepathy-salut-0.8.1
+  build-depends:
+  - telepathy-glib
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
