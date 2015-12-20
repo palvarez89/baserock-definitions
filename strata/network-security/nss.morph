@@ -1,7 +1,32 @@
 name: nss
 kind: chunk
 max-jobs: 1
-build-system: autotools
-configure-commands:
-- NOCONFIGURE=1 ./autogen.sh
-- ./configure --prefix="$PREFIX" --sysconfdir=/etc --libdir="$PREFIX/lib"
+build-system: manual
+build-commands:
+- |
+  case "$MORPH_ARCH" in
+      x86_64|ppc64)
+          export USE_64=1;;
+      *)
+          ;;
+  esac
+  cd nss
+  make BUILD_OPT=1                    \
+  NSPR_INCLUDE_DIR=/usr/include/nspr  \
+  USE_SYSTEM_ZLIB=1                   \
+  ZLIB_LIBS=-lz                       \
+  NSS_USE_SYSTEM_SQLITE=1
+install-commands:
+- install -d                                         "$DESTDIR"/usr/lib/pkgconfig
+- install -v -m755 dist/Linux*/lib/*.so              "$DESTDIR"/usr/lib
+- install -v -m644 dist/Linux*/lib/*.chk             "$DESTDIR"/usr/lib
+- install -v -m644 dist/Linux*/lib/libcrmf.a         "$DESTDIR"/usr/lib
+- install -v -m755 -d                                "$DESTDIR"/usr/include/nss
+- cp -v -RL dist/public/nss/*                        "$DESTDIR"/usr/include/nss
+- cp -v -RL dist/private/nss/*                       "$DESTDIR"/usr/include/nss
+- chmod -v 644                                       "$DESTDIR"/usr/include/nss/*
+- install -d                                         "$DESTDIR"/usr/bin
+- install -v -m755 dist/Linux*/bin/certutil          "$DESTDIR"/usr/bin
+- install -v -m755 dist/Linux*/bin/nss-config        "$DESTDIR"/usr/bin
+- install -v -m755 dist/Linux*/bin/pk12util          "$DESTDIR"/usr/bin
+- install -v -m644 dist/Linux*/lib/pkgconfig/nss.pc  "$DESTDIR"/usr/lib/pkgconfig

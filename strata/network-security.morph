@@ -11,7 +11,7 @@ chunks:
 - name: nss
   morph: strata/network-security/nss.morph
   repo: upstream:nss
-  ref: ee1c99a3c8c29f50a91ab28f2f7b7773f6355487
-  unpetrify-ref: baserock/morph
+  ref: 8810dc4b4b559efec957bdab67decbc701cba7a1
+  unpetrify-ref: baserock/nss-3.21
   build-depends:
   - nspr
