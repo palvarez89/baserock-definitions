@@ -1183,3 +1183,25 @@ chunks:
   build-system: autotools
   build-depends:
   - libcanberra
+- name: evolution
+  morph: strata/gnome/evolution.morph
+  repo: upstream:gnome/evolution
+  ref: 579583275620be75afdedcde909a82fd96136188
+  unpetrify-ref: EVOLUTION_3_18_3
+  build-depends:
+  - enchant
+  - evolution-data-server
+  - gcr
+  - geoclue
+  - geocode-glib
+  - clutter-gtk
+  - gnome-desktop
+  - gnome-online-accounts
+  - gsettings-desktop-schemas
+  - libcanberra
+  - libchamplain
+  - libgdata
+  - libgweather
+  - libnotify
+  - WebKitGtk1
+  - yelp-tools

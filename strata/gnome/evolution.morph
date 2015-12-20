@@ -1,0 +1,11 @@
+name: evolution
+kind: chunk
+build-system: autotools
+configure-commands:
+- |
+  ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc \
+               --disable-autoar --disable-libcryptui  --disable-pst-import --disable-gtkspell \
+               --disable-text-highlight --enable-contact-maps \
+               --enable-nss --enable-smime \
+               --with-nspr-includes=/usr/include/nspr --with-nspr-libs=/usr/lib \
+               --with-nss-includes=/usr/include/nss --with-nss-libs=/usr/lib/nss
