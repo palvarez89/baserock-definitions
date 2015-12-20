@@ -6,8 +6,8 @@ chunks:
 - name: nspr
   morph: strata/network-security/nspr.morph
   repo: upstream:nspr-hg
-  ref: a6ee84946475c1fb7624973af28163f6da247c0d
-  unpetrify-ref: baserock/morph
+  ref: d5e4e1031a39521a4db108e6c823dc295c40aeed
+  unpetrify-ref: NSPR_4_11_RTM
 - name: nss
   morph: strata/network-security/nss.morph
   repo: upstream:nss
@@ -15,4 +15,3 @@ chunks:
   unpetrify-ref: baserock/morph
   build-depends:
   - nspr
-
