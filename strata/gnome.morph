@@ -464,8 +464,8 @@ chunks:
 - name: evolution-data-server
   morph: strata/gnome/evolution-data-server.morph
   repo: upstream:evolution-data-server
-  ref: 8d094ef96a89957d353beaa66f0cbaa04cfbfedd
-  unpetrify-ref: EVOLUTION_DATA_SERVER_3_18_1-11-g8d094ef
+  ref: 658d6e37796984bf05e275413726ad3b71083ccf
+  unpetrify-ref: EVOLUTION_DATA_SERVER_3_18_3
   build-depends:
   - gcr
   - gnome-online-accounts
