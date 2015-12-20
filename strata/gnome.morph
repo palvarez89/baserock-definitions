@@ -1037,8 +1037,8 @@ chunks:
 - name: empathy
   morph: strata/gnome/empathy.morph
   repo: upstream:gnome/empathy
-  ref: 2bcb29eaebff288da3bd8df5808b6aa6834167fc
-  unpetrify-ref: EMPATHY_3_12_11
+  ref: facd02a2cf3c0d2778b10626362b29e2a6df546a
+  unpetrify-ref: baserock/EMPATHY_3_12_11
   build-depends:
   - cheese
   - clutter
