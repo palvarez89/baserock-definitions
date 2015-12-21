@@ -37,9 +37,8 @@ class Build(object):
             controller_args.append(
                 '--controller-initiator-port=%s' % controller_netloc[1])
 
-        self.command = [
-            'morph', 'distbuild-morphology'] + controller_args + [
-            'baserock:baserock/definitions', app.ref, self.system_name]
+        self.command = ['morph', 'distbuild', '--local-changes=ignore']
+        self.command += controller_args + [self.system_name]
 
     def start(self):
         self.process = subprocess.Popen(self.command)
@@ -88,10 +87,8 @@ class ReleaseApp(cliapp.Application):
             arch, controller = item.split(':', 1)
             self.controllers[arch] = controller
 
-        self.ref = cliapp.runcmd(['git', 'rev-parse', 'HEAD']).strip()
-
         defs_repo = morphlib.definitions_repo.open(
-            '.', search_for_root=True, search_workspace=True)
+            '.', search_for_root=True)
         self.loader = morphlib.morphloader.MorphologyLoader()
         self.finder = morphlib.morphologyfinder.MorphologyFinder(defs_repo)
 
