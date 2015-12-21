@@ -549,8 +549,8 @@ chunks:
 - name: gnome-session
   morph: strata/gnome/gnome-session.morph
   repo: upstream:gnome/gnome-session
-  ref: 9af8474a027edecf7c73827964fd88bc960266d6
-  unpetrify-ref: 3.18.0-3-g9af8474
+  ref: 4ab09c39738adaaf16116b3bd82e47188b5483cd
+  unpetrify-ref: 3.18.1.2
   build-depends:
   - gnome-desktop
   - json-glib
