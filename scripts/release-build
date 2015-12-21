@@ -98,9 +98,6 @@ class ReleaseApp(cliapp.Application):
         cluster, cluster_path = self.load_morphology(cluster_name)
 
         builds = self.prepare_builds(cluster)
-        if not os.path.exists('builds'):
-            os.mkdir('builds')
-        os.chdir('builds')
         for build in builds:
             build.start()
 
