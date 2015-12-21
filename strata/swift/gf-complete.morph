@@ -5,8 +5,7 @@ pre-configure-commands:
 - ./autogen.sh
 configure-commands:
 - |
-  cpu="$(echo $TARGET | cut -d '-' -f 1)"
-  case "$cpu" in
+  case "$MORPH_ARCH" in
   x86_64)
     SSE=
     ;;

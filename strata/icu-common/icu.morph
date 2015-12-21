@@ -4,8 +4,7 @@ configure-commands:
 - |
   # As per commit 8874a7c7, We issue this sed command when
   # building ICU libraries on arm architectures.
-  cpu=$(echo $TARGET | cut -d '-' -f 1)
-  case "$cpu" in
+  case "$MORPH_ARCH" in
   *arm*)
     sed -e 's/LDFLAGSICUDT/#LDFLAGSICUDT/' -i source/config/mh-linux
     ;;

@@ -85,8 +85,7 @@ install-commands:
 # sysdeps/unix/sysv/linux/configure.
 - install -d $DESTDIR/lib
 - |
-  cpu=$(echo $TARGET | cut -d '-' -f 1)
-  case "$cpu" in
+  case "$MORPH_ARCH" in
   x86_64)
     install -d "$DESTDIR/lib64"
     ln -s "$PREFIX/lib/ld-linux-x86-64.so.2" \
