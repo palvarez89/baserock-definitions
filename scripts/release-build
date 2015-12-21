@@ -89,7 +89,7 @@ class ReleaseApp(cliapp.Application):
 
         defs_repo = morphlib.definitions_repo.open(
             '.', search_for_root=True)
-        self.loader = morphlib.morphloader.MorphologyLoader()
+        self.loader = defs_repo.get_morphology_loader()
         self.finder = morphlib.morphologyfinder.MorphologyFinder(defs_repo)
 
         self.check_args(args)
