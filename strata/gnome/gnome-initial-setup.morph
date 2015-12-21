@@ -4,6 +4,6 @@ build-system: autotools
 configure-commands:
 - ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc
 system-integration:
-  gnome-initial-set-misc:
+  gnome-initial-setup-misc:
     01-add-gnome-initial-setup-user:
     - useradd -rM -d /run/gnome-initial-setup/ -c "GNOME Initial Setup Owner" -s /bin/false gnome-initial-setup
