@@ -15,7 +15,6 @@ build-depends:
 - morph: strata/python3-gobject.morph
 - morph: strata/python2-core.morph
 - morph: strata/wayland-generic.morph
-- morph: strata/x-generic.morph
 - morph: strata/ruby.morph
 - morph: strata/samba.morph
 - morph: strata/cups.morph
