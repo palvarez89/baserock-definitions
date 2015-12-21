@@ -90,8 +90,8 @@ chunks:
   build-system: autotools
 - name: gnome-desktop
   repo: upstream:gnome/gnome-desktop
-  ref: 1dbe40fac0e9924552ce2692ec141e86ce3d5633
-  unpetrify-ref: master
+  ref: 09d331adeb23aea7ec058dfb39c5224ebe8ae8f6
+  unpetrify-ref: 3.18.2
   build-depends:
   - gsettings-desktop-schemas
   - iso-codes
