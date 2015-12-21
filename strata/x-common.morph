@@ -344,3 +344,11 @@ chunks:
   - xorg-lib-libXext
   - xorg-proto-xextproto
   - xorg-proto-videoproto
+- name: xorg-lib-libxkbfile
+  repo: upstream:xorg-lib-libxkbfile
+  ref: 7381c2f9013ef7784c78091fa671e652a62ca706
+  unpetrify-ref: baserock/morph
+  build-system: autotools
+  build-depends:
+  - xorg-lib-libX11
+  - xorg-proto-kbproto
