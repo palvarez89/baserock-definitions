@@ -1030,9 +1030,9 @@ chunks:
   - yelp-tools
 - name: yelp
   repo: upstream:gnome/yelp
+  morph: strata/gnome/yelp.morph 
   ref: 9932283ce9610f969e023a0dc326c81159c06a15
   unpetrify-ref: 3.18.1
-  build-system: autotools
   build-depends:
   - m4-common
   - WebKitGtk
