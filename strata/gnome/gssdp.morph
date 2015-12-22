@@ -1,0 +1,5 @@
+name: gssdp
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh --prefix="$PREFIX" --disable-Werror

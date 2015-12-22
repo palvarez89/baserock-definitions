@@ -719,10 +719,10 @@ chunks:
   ref: 52eb6498c97ce0005186946bc9162d87597abc2c
   unpetrify-ref: 1.9.0-8-g52eb649
 - name: gssdp
+  morph: strata/gnome/gssdp.morph
   repo: upstream:gnome/gssdp
   ref: a53a6ac85f1b70192bc75fbbd4601582d6095cfd
   unpetrify-ref: gssdp-0.14.12
-  build-system: autotools
 - name: gupnp
   repo: upstream:gnome/gupnp
   ref: c42b9cdda466ae9fef91f6beb370f8dfdebc295c
