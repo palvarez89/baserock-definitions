@@ -55,8 +55,8 @@ chunks:
   build-system: autotools
 - name: xorg-proto-randrproto
   repo: upstream:xorg-proto-randrproto
-  ref: ca7cc541c2e43e6c784df19b4583ac35829d2f72
-  unpetrify-ref: baserock/morph
+  ref: 79b63f0e57cd5baf06ff24252d3f1675dcb64467
+  unpetrify-ref: randrproto-1.5.0
   build-system: autotools
 - name: xorg-proto-recordproto
   repo: upstream:xorg-proto-recordproto
