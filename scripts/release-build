@@ -113,7 +113,6 @@ class ReleaseApp(cliapp.Application):
         if fail:
             raise cliapp.AppException('Building of systems failed')
 
-        os.chdir('..')
         if not os.path.exists('release'):
             os.mkdir('release')
         self.deploy_images(cluster, cluster_path)
