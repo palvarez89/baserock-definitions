@@ -22,8 +22,8 @@ chunks:
   build-system: autotools
 - name: libinput
   repo: upstream:libinput
-  ref: a52cc616b4c00d0975a3311a2a06057bdb419ba2
-  unpetrify-ref: 1.0.1
+  ref: a340736e9b9399f630ff4b436930c1dee26cb803
+  unpetrify-ref: 1.1.4
   build-system: autotools
   build-depends:
   - mtdev
