@@ -110,8 +110,8 @@ chunks:
   build-system: autotools
 - name: xorg-proto-x11proto
   repo: upstream:xorg-proto-x11proto
-  ref: 03cbbf6c3e811c026c86e3a60d2f9af56606e155
-  unpetrify-ref: xproto-7.0.26
+  ref: d5524e2b8d811aa03ed19c6e8fb2ee4162ca2b23
+  unpetrify-ref: xproto-7.0.28
   build-system: autotools
 - name: xorg-proto-dri2proto
   repo: upstream:xorg-proto-dri2proto
