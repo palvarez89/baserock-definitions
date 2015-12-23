@@ -290,5 +290,9 @@ install-commands:
   ) | cpio -0pumd "$DESTDIR$PREFIX/src/linux"
 system-integration:
   linux-x86-32-generic-misc:
+    # This is required for any modules to work correctly. However, it depends
+    # `depmod` from the 'kmod' chunk in the 'foundation' stratum, so it runs
+    # conditionally on `depmod` existing to avoid breaking in
+    # minimal-system-x86_32.
     00-depmod:
-    - (cd /lib/modules && for version in *; do depmod -a "$version"; done)
+    - if which depmod; then (cd /lib/modules && for version in *; do depmod -a "$version"; done) fi
