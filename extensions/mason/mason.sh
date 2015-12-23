@@ -52,7 +52,7 @@ if ! "scripts/release-build" --no-default-configs \
         "$BUILD_CLUSTER_MORPHOLOGY"; then
     echo ERROR: Failed to build release images
     echo Build logs for chunks:
-    find builds -type f -exec echo {} \; -exec cat {} \;
+    find build-* -type f -exec echo {} \; -exec cat {} \;
     exit 1
 fi
 
