@@ -760,8 +760,8 @@ chunks:
   - gupnp-igd
 - name: farstream
   repo: upstream:farstream
-  ref: a1f24b97ce0549c1ad5337d73c6339ba8e41b287
-  unpetrify-ref: 0.2.7
+  ref: 9247c10816835dc76269baa7c4c8996ae1a2fac3
+  unpetrify-ref: baserock/0.2.7
   build-system: autotools
   build-depends:
   - libnice
