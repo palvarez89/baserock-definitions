@@ -30,11 +30,6 @@ chunks:
   repo: upstream:screen
   ref: 7dd4a9e5f385c96a77e8ee5c977a1dde4c0ff467
   unpetrify-ref: baserock/morph
-- name: less
-  repo: upstream:less
-  ref: 09a405d8f652b56944c93ebf5c673cdfe5319b04
-  unpetrify-ref: baserock/morph
-  build-system: autotools
 - name: git-review
   repo: upstream:git-review
   ref: 79262a52301c146a6b60d09a828661a83a5f5ba7

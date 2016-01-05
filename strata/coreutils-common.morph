@@ -38,3 +38,8 @@ chunks:
   repo: upstream:findutils
   ref: ee6b25541336f9d74624ca814538ddc8c67f0732
   unpetrify-ref: baserock/v4.5.14
+- name: less
+  repo: upstream:less
+  ref: 09a405d8f652b56944c93ebf5c673cdfe5319b04
+  unpetrify-ref: baserock/morph
+  build-system: autotools
