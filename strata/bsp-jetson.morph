@@ -20,8 +20,8 @@ chunks:
 - name: u-boot@jetson
   morph: strata/bsp-jetson/u-boot@jetson.morph
   repo: upstream:u-boot
-  ref: f33cdaa4c3da4a8fd35aa2f9a3172f31cc887b35
-  unpetrify-ref: v2015.04
+  ref: 5ec0003b19cbdf06ccd6941237cbc0d1c3468e2d
+  unpetrify-ref: v2015.10
   build-depends:
   - device-tree-compiler@jetson
 - name: linux-jetson-tk1
