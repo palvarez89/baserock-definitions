@@ -11,7 +11,7 @@ configure-commands:
     ;;
   *)
     DRIDRIVERS=yes
-    GALLIUMDRIVERS=yes
+    GALLIUMDRIVERS=r300,r600,svga,swrast,virgl
     ;;
   esac
   ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc \
