@@ -11,8 +11,8 @@ chunks:
 - name: mesa
   morph: strata/mesa-common/mesa.morph
   repo: upstream:mesa
-  ref: 4f1e500150be2e82a2d7eb954f7198cc0c5cbec1
-  unpetrify-ref: mesa-11.0.0
+  ref: 5a616125acf0ac043d2d44b7a8e804739d55014e
+  unpetrify-ref: mesa-11.1.0
 - name: libepoxy
   repo: upstream:libepoxy
   ref: e2c33af5bfcfc9d168f9e776156dd47c33f428b3
