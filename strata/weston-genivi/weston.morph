@@ -51,6 +51,12 @@ post-install-commands:
   icon-id=4005
   icon=/usr/share/weston/icon_ivi_smoke.png
   path=/usr/bin/weston-smoke
+
+  [ivi-launcher]
+  workspace-id=2
+  icon-id=4006
+  icon=/usr/share/weston/terminal.png
+  path=/usr/bin/EGLWLMockNavigation
   EOF
 
 - install -d "$DESTDIR/usr/share/doc/weston"
