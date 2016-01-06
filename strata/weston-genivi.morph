@@ -2,7 +2,7 @@ name: weston-genivi
 kind: stratum
 build-depends:
 - morph: strata/graphics-common.morph
-- morph: strata/input-genivi.morph
+- morph: strata/input-common.morph
 - morph: strata/mesa-common.morph
 - morph: strata/libdrm-common.morph
 - morph: strata/wayland-generic.morph
