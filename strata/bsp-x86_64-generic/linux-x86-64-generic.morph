@@ -267,6 +267,7 @@ configure-commands:
 - scripts/config -e CONFIG_SND_INTEL8X0
 - scripts/config -m CONFIG_DRM_CIRRUS_QEMU
 - scripts/config -m CONFIG_DRM_BOCHS
+- scripts/config -m CONFIG_DRM_VIRTIO_GPU
 - yes '' | make oldconfig
 build-commands:
 - make $MAKEFLAGS
