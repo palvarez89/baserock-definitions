@@ -1,0 +1,64 @@
+name: weston-qt5-system-x86_64.morph
+kind: system
+description: A system that is able to build other systems based on the 64-bit x86
+  architecture.
+arch: x86_64
+strata:
+- name: build-essential
+  morph: strata/build-essential.morph
+- name: core
+  morph: strata/core.morph
+- name: coreutils-common
+  morph: strata/coreutils-common.morph
+- name: foundation
+  morph: strata/foundation.morph
+- name: audio-bluetooth
+  morph: strata/audio-bluetooth.morph
+- name: libdrm-common
+  morph: strata/libdrm-common.morph
+- name: multimedia-common
+  morph: strata/multimedia-common.morph
+- name: multimedia-gstreamer
+  morph: strata/multimedia-gstreamer.morph
+- name: bsp-x86_64-generic
+  morph: strata/bsp-x86_64-generic.morph
+- name: tools
+  morph: strata/tools.morph
+- name: glib-common
+  morph: strata/glib-common.morph
+- name: wayland-generic
+  morph: strata/wayland-generic.morph
+- name: graphics-common
+  morph: strata/graphics-common.morph
+- name: input-common
+  morph: strata/input-common.morph
+- name: llvm-common
+  morph: strata/llvm-common.morph
+- name: mesa-common
+  morph: strata/mesa-common.morph
+- name: weston-common
+  morph: strata/weston-common.morph
+- name: x-common
+  morph: strata/x-common.morph
+- name: x-generic
+  morph: strata/x-generic.morph
+- name: qt5-tools
+  morph: strata/qt5-tools.morph
+- name: qt5-tools-qtwebkit
+  morph: strata/qt5-tools-qtwebkit.morph
+- name: qt5-sdk
+  morph: strata/qt5-sdk.morph
+- name: qt5-tools-qtwayland
+  morph: strata/qt5-tools-qtwayland.morph
+- name: connectivity
+  morph: strata/connectivity.morph
+- name: connman-common
+  morph: strata/connman-common.morph
+- name: icu-common
+  morph: strata/icu-common.morph
+configuration-extensions:
+- extensions/set-hostname
+- extensions/add-config-files
+- extensions/nfsboot
+- extensions/install-files
+- extensions/install-essential-files
