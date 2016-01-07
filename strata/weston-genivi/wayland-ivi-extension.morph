@@ -1,7 +1,7 @@
 name: wayland-ivi-extension
 kind: chunk
 configure-commands:
-- cmake -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_C_FLAGS="-I/usr/include/weston"
+- cmake -DWITH_ILM_INPUT=ON -DCMAKE_INSTALL_PREFIX="$PREFIX" -DCMAKE_C_FLAGS="-I/usr/include/weston"
 build-commands:
 - make
 install-commands:
