@@ -1,0 +1,23 @@
+name: weston-qt5-system-x86_64
+kind: cluster
+description: |
+  Deploy a stock weston system.
+
+  The resulting image can be copied to a USB and booted from there,
+  as well as in a virtual machine.
+
+systems:
+- morph: systems/weston-qt5-system-x86_64.morph
+  deploy:
+    weston-qt5-system-x86_64:
+      type: extensions/rawdisk
+      location: /weston-qt5-system-x86_64.img
+      DISK_SIZE: 4G
+      KERNEL_ARGS: vga=788
+      INITRAMFS_PATH: boot/initramfs.gz
+  subsystems:
+  - morph: systems/initramfs-x86_64.morph
+    deploy:
+      initramfs:
+        type: initramfs
+        location: boot/initramfs.gz
