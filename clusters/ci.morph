@@ -6,6 +6,13 @@ description: |
   This cluster morph is for use by the Mason Continuous Delivery pipeline
   during development.
 systems:
+- morph: systems/minimal-system-x86_64-generic.morph
+  deploy:
+    minimal-system-x86_64-generic:
+      type: extensions/rawdisk
+      location: minimal-system-x86_64-generic.img
+      DISK_SIZE: 512M
+      INIT_SYSTEM: busybox
 - morph: systems/devel-system-x86_64-generic.morph
   deploy:
     devel-system-x86_64-generic:
