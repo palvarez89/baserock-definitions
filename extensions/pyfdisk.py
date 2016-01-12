@@ -464,9 +464,12 @@ class Device(object):
     def get_partition_by_mountpoint(self, mountpoint):
         """Return a Partition with a specified mountpoint"""
 
-        return next(r for r in self.partitionlist
-            if hasattr(r, 'mountpoint')
-            and r.mountpoint == '/')
+        try:
+            return next(r for r in self.partitionlist
+                if hasattr(r, 'mountpoint')
+                and r.mountpoint == mountpoint)
+        except StopIteration:
+            return False
 
     def commit(self):
         """Write the partition table to the disk or image"""
