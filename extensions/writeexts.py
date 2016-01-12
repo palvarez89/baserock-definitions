@@ -305,6 +305,10 @@ class WriteExtension(Extension):
                 self.create_btrfs_system_layout(
                     temp_root, mp, version_label='factory',
                     rootfs_uuid=self.get_uuid(raw_disk))
+                if self.bootloader_config_is_wanted():
+                    self.create_bootloader_config(
+                        temp_root, mp, version_label='factory',
+                        rootfs_uuid=self.get_uuid(raw_disk))
             except BaseException as e:
                 sys.stderr.write('Error creating Btrfs system layout')
                 raise
@@ -435,11 +439,17 @@ class WriteExtension(Extension):
         '''Separate base OS versions from state using subvolumes.
 
         '''
-        initramfs = self.find_initramfs(temp_root)
         version_root = os.path.join(mountpoint, 'systems', version_label)
-        state_root = os.path.join(mountpoint, 'state')
 
         os.makedirs(version_root)
+        os.symlink(
+                version_label, os.path.join(mountpoint, 'systems', 'default'))
+
+        # Only do the next step if the device is actually btrfs
+        if device and device.filesystem is not 'btrfs':
+            return
+
+        state_root = os.path.join(mountpoint, 'state')
         os.makedirs(state_root)
 
         system_dir = self.create_orig(version_root, temp_root)
@@ -451,35 +461,40 @@ class WriteExtension(Extension):
 
         self.create_run(version_root)
 
-        os.symlink(
-                version_label, os.path.join(mountpoint, 'systems', 'default'))
-
-        if self.bootloader_config_is_wanted():
-            self.install_kernel(version_root, temp_root)
-            if self.get_dtb_path() != '':
-                self.install_dtb(version_root, temp_root)
-            self.install_syslinux_menu(mountpoint, version_root)
-            if initramfs is not None:
-                # Using initramfs - can boot a rootfs with a filesystem UUID
-                self.install_initramfs(initramfs, version_root)
-                self.generate_bootloader_config(mountpoint,
-                                                rootfs_uuid=rootfs_uuid)
-            else:
-                if device:
-                    # A partitioned disk or image - boot with partition UUID
-                    root_part = device.get_partition_by_mountpoint('/')
-                    root_guid = device.get_partition_uuid(root_part)
-                    self.generate_bootloader_config(mountpoint,
-                                                    root_guid=root_guid)
-                    if self.get_bootloader_install() == 'extlinux':
-                        self.install_syslinux_blob(device, system_dir)
-                else:
-                    # Unpartitioned and no initramfs - cannot boot with a UUID
-                    self.generate_bootloader_config(mountpoint)
-            self.install_bootloader(mountpoint)
-
         if device:
             self.create_partition_mountpoints(device, system_dir)
+
+    def create_bootloader_config(self, temp_root, mountpoint, version_label,
+                                 rootfs_uuid, device=None):
+        '''Setup the bootloader.
+
+        '''
+        initramfs = self.find_initramfs(temp_root)
+        version_root = os.path.join(mountpoint, 'systems', version_label)
+        system_dir = os.path.join(version_root, 'orig')
+
+        self.install_kernel(version_root, temp_root)
+        if self.get_dtb_path() != '':
+            self.install_dtb(version_root, temp_root)
+        self.install_syslinux_menu(mountpoint, version_root)
+        if initramfs is not None:
+            # Using initramfs - can boot a rootfs with a filesystem UUID
+            self.install_initramfs(initramfs, version_root)
+            self.generate_bootloader_config(mountpoint,
+                                            rootfs_uuid=rootfs_uuid)
+        else:
+            if device:
+                # A partitioned disk or image - boot with partition UUID
+                root_part = device.get_partition_by_mountpoint('/')
+                root_guid = device.get_partition_uuid(root_part)
+                self.generate_bootloader_config(mountpoint,
+                                                root_guid=root_guid)
+                if self.get_bootloader_install() == 'extlinux':
+                    self.install_syslinux_blob(device, system_dir)
+            else:
+                # Unpartitioned and no initramfs - cannot boot with a UUID
+                self.generate_bootloader_config(mountpoint)
+        self.install_bootloader(mountpoint)
 
     def create_partition_mountpoints(self, device, system_dir):
         '''Create (or empty) partition mountpoints in the root filesystem
@@ -933,6 +948,9 @@ class WriteExtension(Extension):
                                                 dev.sector_size)
                     self.create_btrfs_system_layout(temp_root, part_mount_dir,
                                                     'factory', rfs_uuid, dev)
+                    if self.bootloader_config_is_wanted():
+                        self.create_bootloader_config(temp_root, part_mount_dir,
+                                                      'factory', rfs_uuid, dev)
                 else:
                     # Copy files to partition from unpacked rootfs
                     src_dir = os.path.join(temp_root,
