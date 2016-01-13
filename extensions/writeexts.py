@@ -303,6 +303,8 @@ class WriteExtension(Extension):
         with self.mount(raw_disk) as mp:
             try:
                 self.create_btrfs_system_layout(
+                    mp, version_label='factory')
+                self.create_btrfs_system_rootfs(
                     temp_root, mp, version_label='factory',
                     rootfs_uuid=self.get_uuid(raw_disk))
                 if self.bootloader_config_is_wanted():
@@ -434,9 +436,8 @@ class WriteExtension(Extension):
             subprocess.check_call(['umount', mount_point])
             os.rmdir(mount_point)
 
-    def create_btrfs_system_layout(self, temp_root, mountpoint, version_label,
-                                   rootfs_uuid, device=None):
-        '''Separate base OS versions from state using subvolumes.
+    def create_btrfs_system_layout(self, mountpoint, version_label):
+        '''Create the btrfs folder layout required for baserock
 
         '''
         version_root = os.path.join(mountpoint, 'systems', version_label)
@@ -445,10 +446,12 @@ class WriteExtension(Extension):
         os.symlink(
                 version_label, os.path.join(mountpoint, 'systems', 'default'))
 
-        # Only do the next step if the device is actually btrfs
-        if device and device.filesystem is not 'btrfs':
-            return
+    def create_btrfs_system_rootfs(self, temp_root, mountpoint, version_label,
+                                   rootfs_uuid, device=None):
+        '''Separate base OS versions from state using subvolumes.
 
+        '''
+        version_root = os.path.join(mountpoint, 'systems', version_label)
         state_root = os.path.join(mountpoint, 'state')
         os.makedirs(state_root)
 
@@ -946,8 +949,10 @@ class WriteExtension(Extension):
                     # Install root filesystem
                     rfs_uuid = self.get_uuid(location, part.extent.start *
                                                 dev.sector_size)
-                    self.create_btrfs_system_layout(temp_root, part_mount_dir,
-                                                    'factory', rfs_uuid, dev)
+                    self.create_btrfs_system_layout(part_mount_dir, 'factory')
+                    self.create_btrfs_system_rootfs(temp_root, part_mount_dir,
+                                                   'factory', rfs_uuid, dev)
+
                     if self.bootloader_config_is_wanted():
                         self.create_bootloader_config(temp_root, part_mount_dir,
                                                       'factory', rfs_uuid, dev)
