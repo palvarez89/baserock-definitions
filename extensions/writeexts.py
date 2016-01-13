@@ -302,8 +302,7 @@ class WriteExtension(Extension):
     def create_system(self, temp_root, raw_disk):
         with self.mount(raw_disk) as mp:
             try:
-                self.create_btrfs_system_layout(
-                    mp, version_label='factory')
+                self.create_versioned_layout(mp, version_label='factory')
                 self.create_btrfs_system_rootfs(
                     temp_root, mp, version_label='factory',
                     rootfs_uuid=self.get_uuid(raw_disk))
@@ -436,8 +435,25 @@ class WriteExtension(Extension):
             subprocess.check_call(['umount', mount_point])
             os.rmdir(mount_point)
 
-    def create_btrfs_system_layout(self, mountpoint, version_label):
-        '''Create the btrfs folder layout required for baserock
+    def create_versioned_layout(self, mountpoint, version_label):
+        '''Create a versioned directory structure within a partition.
+
+        The Baserock project has defined a 'reference upgrade mechanism'. This
+        mandates a specific directory layout. It consists of a toplevel
+        '/systems' directory, containing subdirectories named with a 'version
+        label'. These subdirectories contain the actual OS content.
+
+        For the root file system, a Btrfs partition must be used. For each
+        version, two subvolumes are created: 'orig' and 'run'. This is handled
+        in create_btrfs_system_rootfs().
+
+        Other partitions (e.g. /boot) can also follow the same layout. In the
+        case of /boot, content goes directly in the version directory. That
+        means there are no 'orig' and 'run' subvolumes, which avoids the
+        need to use Btrfs.
+
+        The `system-version-manager` tool from tbdiff.git is responsible for
+        deploying live upgrades, and it understands this layout.
 
         '''
         version_root = os.path.join(mountpoint, 'systems', version_label)
@@ -492,8 +508,6 @@ class WriteExtension(Extension):
                 root_guid = device.get_partition_uuid(root_part)
                 self.generate_bootloader_config(mountpoint,
                                                 root_guid=root_guid)
-                if self.get_bootloader_install() == 'extlinux':
-                    self.install_syslinux_blob(device, system_dir)
             else:
                 # Unpartitioned and no initramfs - cannot boot with a UUID
                 self.generate_bootloader_config(mountpoint)
@@ -938,6 +952,7 @@ class WriteExtension(Extension):
 
         dev = partitioning.do_partitioning(location, disk_size,
                                            temp_root, part_spec)
+        boot_partition_available = dev.get_partition_by_mountpoint('/boot')
 
         for part in dev.partitionlist:
             if not hasattr(part, 'mountpoint'):
@@ -957,13 +972,23 @@ class WriteExtension(Extension):
                     # Install root filesystem
                     rfs_uuid = self.get_uuid(location, part.extent.start *
                                                 dev.sector_size)
-                    self.create_btrfs_system_layout(part_mount_dir, 'factory')
+                    self.create_versioned_layout(part_mount_dir, 'factory')
                     self.create_btrfs_system_rootfs(temp_root, part_mount_dir,
                                                    'factory', rfs_uuid, dev)
 
-                    if self.bootloader_config_is_wanted():
-                        self.create_bootloader_config(temp_root, part_mount_dir,
-                                                      'factory', rfs_uuid, dev)
+                    # If there's no /boot partition, but we do need to generate
+                    # a bootloader configuration file, then it needs to go in
+                    # the root partition.
+                    if (boot_partition_available is False
+                            and self.bootloader_config_is_wanted()):
+                        self.create_bootloader_config(
+                            temp_root, part_mount_dir, 'factory', rfs_uuid,
+                            dev)
+
+                    if self.get_bootloader_install() == 'extlinux':
+                        # The extlinux/syslinux MBR blob always needs to be
+                        # installed in the root partition.
+                        self.install_syslinux_blob(dev, temp_root)
                 else:
                     # Copy files to partition from unpacked rootfs
                     src_dir = os.path.join(temp_root,
@@ -971,6 +996,16 @@ class WriteExtension(Extension):
                     self.status(msg='Copying files to %s partition' %
                                      part.mountpoint)
                     self.copy_dir_contents(src_dir, part_mount_dir)
+
+                if (part.mountpoint == '/boot' and
+                        self.bootloader_config_is_wanted()):
+                    # We need to mirror the layout of the root partition in the
+                    # /boot partition. Each kernel lives in its own
+                    # systems/$version_label/ directory within the /boot
+                    # partition.
+                    self.create_versioned_layout(part_mount_dir, 'factory')
+                    self.create_bootloader_config(temp_root, part_mount_dir,
+                        'factory', None, dev)
 
         # Write raw files to disk with dd
         partitioning.process_raw_files(dev, temp_root)
