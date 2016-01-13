@@ -754,7 +754,15 @@ class WriteExtension(Extension):
         '''
 
         self.status(msg='Creating extlinux.conf')
-        config = os.path.join(real_root, 'extlinux.conf')
+        # To be compatible with u-boot, create the extlinux.conf file in
+        # /extlinux/ rather than /
+        # Syslinux, however, requires this to be in /, so create a symlink
+        # as well
+        config_path = os.path.join(real_root, 'extlinux')
+        os.makedirs(config_path)
+        config = os.path.join(config_path, 'extlinux.conf')
+        os.symlink('extlinux/extlinux.conf', os.path.join(real_root,
+                                                          'extlinux.conf'))
 
         ''' Please also update the documentation in the following files
             if you change these default kernel args:
