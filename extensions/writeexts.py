@@ -495,7 +495,7 @@ class WriteExtension(Extension):
         self.install_kernel(version_root, temp_root)
         if self.get_dtb_path() != '':
             self.install_dtb(version_root, temp_root)
-        self.install_syslinux_menu(mountpoint, version_root)
+        self.install_syslinux_menu(mountpoint, temp_root)
         if initramfs is not None:
             # Using initramfs - can boot a rootfs with a filesystem UUID
             self.install_initramfs(initramfs, version_root)
@@ -862,7 +862,7 @@ class WriteExtension(Extension):
                    'architecture? The MBR blob will only be built for x86'
                    'systems. You may wish to configure BOOTLOADER_INSTALL')
 
-    def install_syslinux_menu(self, real_root, version_root):
+    def install_syslinux_menu(self, real_root, temp_root):
         '''Make syslinux/extlinux menu binary available.
 
         The syslinux boot menu is compiled to a file named menu.c32. Extlinux
@@ -873,8 +873,8 @@ class WriteExtension(Extension):
         not be able to show a menu.
 
         '''
-        menu_file = os.path.join(version_root, 'orig',
-            'usr', 'share', 'syslinux', 'menu.c32')
+        menu_file = os.path.join(temp_root, 'usr', 'share', 'syslinux',
+                                 'menu.c32')
         if os.path.isfile(menu_file):
             self.status(msg='Copying menu.c32')
             shutil.copy(menu_file, real_root)
