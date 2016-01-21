@@ -16,6 +16,26 @@ chunks:
   ref: ec8853cd18e1a0c275372769bdad37a79550ed66
   unpetrify-ref: VER-2-5-3
   build-system: autotools
+- name: colm-tarball
+  repo: upstream:colm-tarball
+  ref: 404ae0f284a3b2d41fcdb53826550e4dfec5c65c
+  unpetrify-ref: colm-0.12.0
+  build-system: autotools
+- name: ragel-tarball
+  repo: upstream:ragel-tarball
+  ref: eafd7a3974e8605fd02794269db6114a3446e016
+  unpetrify-ref: ragel-6.9
+  build-system: autotools
+  build-depends:
+  - colm-tarball
+- name: harfbuzz
+  repo: upstream:harfbuzz
+  ref: 432ffc47a46d41bea17d839d0d3980e654c6e638
+  unpetrify-ref: 1.0.4
+  build-system: autotools
+  build-depends:
+  - freetype2
+  - ragel-tarball
 - name: fontconfig
   morph: strata/graphics-common/fontconfig.morph
   repo: upstream:fontconfig
@@ -78,26 +98,6 @@ chunks:
   - freetype2
   - pixman
   - libpng
-- name: colm-tarball
-  repo: upstream:colm-tarball
-  ref: 404ae0f284a3b2d41fcdb53826550e4dfec5c65c
-  unpetrify-ref: colm-0.12.0
-  build-system: autotools
-- name: ragel-tarball
-  repo: upstream:ragel-tarball
-  ref: eafd7a3974e8605fd02794269db6114a3446e016
-  unpetrify-ref: ragel-6.9
-  build-system: autotools
-  build-depends:
-  - colm-tarball
-- name: harfbuzz
-  repo: upstream:harfbuzz
-  ref: 432ffc47a46d41bea17d839d0d3980e654c6e638
-  unpetrify-ref: 1.0.4
-  build-system: autotools
-  build-depends:
-  - freetype2
-  - ragel-tarball
 - name: libwebp
   repo: upstream:libwebp
   ref: fcd94e925a9377cccfcf9de6db278126a52b97a4
