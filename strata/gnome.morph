@@ -751,6 +751,19 @@ chunks:
   build-system: autotools
   build-depends:
   - gupnp
+- name: rygel
+  repo: upstream:rygel
+  ref: 4a42aee4afda9509db1e3d259c5a2907407a7261
+  unpetrify-ref: RYGEL_0_28_2
+  build-system: autotools
+  build-depends:
+  - gssdp
+  - gupnp
+  - gupnp-av
+  - gupnp-dlna
+  - libgee
+  - libmediaart
+  - tracker
 - name: libnice
   repo: upstream:libnice
   ref: 533ff6c5a03680f300709be4dc999f45659f3a1b
