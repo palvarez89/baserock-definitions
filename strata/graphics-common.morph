@@ -13,8 +13,8 @@ chunks:
   unpetrify-ref: pixman-0.32.6
 - name: freetype2
   repo: upstream:freetype2
-  ref: ec8853cd18e1a0c275372769bdad37a79550ed66
-  unpetrify-ref: VER-2-5-3
+  ref: 66cf29b1bc869b44863b0de2115bd017dfcce849
+  unpetrify-ref: VER-2-6-2
   build-system: autotools
 - name: colm-tarball
   repo: upstream:colm-tarball
@@ -36,13 +36,18 @@ chunks:
   build-depends:
   - freetype2
   - ragel-tarball
+- name: freetype2-harfbuzz
+  repo: upstream:freetype2
+  ref: 66cf29b1bc869b44863b0de2115bd017dfcce849
+  unpetrify-ref: VER-2-6-2
+  build-system: autotools
 - name: fontconfig
   morph: strata/graphics-common/fontconfig.morph
   repo: upstream:fontconfig
   ref: 9260b7ec39c34ce68d74e16d47917290a8c3f35a
   unpetrify-ref: 2.11.1
   build-depends:
-  - freetype2
+  - freetype2-harfbuzz
 - name: freefont-otf
   morph: strata/graphics-common/freefont-otf.morph
   repo: upstream:freefont-otf
@@ -95,7 +100,7 @@ chunks:
   unpetrify-ref: 1.14.0
   build-depends:
   - fontconfig
-  - freetype2
+  - freetype2-harfbuzz
   - pixman
   - libpng
 - name: libwebp
