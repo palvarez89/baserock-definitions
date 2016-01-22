@@ -19,6 +19,7 @@ build-depends:
 - morph: strata/ruby.morph
 - morph: strata/samba.morph
 - morph: strata/cups.morph
+- morph: strata/docutils.morph
 chunks:
 - name: dconf
   morph: strata/gnome/dconf.morph
