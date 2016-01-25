@@ -2,4 +2,4 @@ name: gnome-session
 kind: chunk
 build-system: autotools
 configure-commands:
-- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-man --enable-systemd
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --disable-docbook-docs --disable-man --enable-systemd
