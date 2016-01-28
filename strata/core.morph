@@ -246,7 +246,7 @@ chunks:
   morph: strata/core/attr.morph
   repo: upstream:attr
   ref: 4b005410f865895d4dcd56e2c135278a7a315877
-  unpetrify-ref: baserock/morph
+  unpetrify-ref: v2.4.47
   build-depends:
   - file
   - autoconf
