@@ -45,7 +45,7 @@ chunks:
   morph: strata/qt5-tools/qt3d.morph
   repo: upstream:qt5/qt3d
   ref: bdb98baf8253c69949a8c259369203da9ffb269c
-  unpetrify-ref: baserock/morph
+  unpetrify-ref: baserock/v5.0.0-beta1-81-gbdb98ba
   build-depends:
   - qtbase
   - qtscript
