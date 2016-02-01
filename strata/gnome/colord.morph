@@ -3,3 +3,7 @@ kind: chunk
 build-system: autotools
 configure-commands:
 - ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc
+system-integration:
+  colord-misc:
+    00-enable-colord-unit:
+    - systemctl enable colord
