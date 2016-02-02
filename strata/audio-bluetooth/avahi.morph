@@ -1,8 +1,6 @@
 name: avahi
 kind: chunk
 build-system: autotools
-pre-configure-commands:
-- sed -i 's/AM_CFLAGS=-I$(top_srcdir) -DG_DISABLE_DEPRECATED=1 -DGDK_DISABLE_DEPRECATED=1 -DGTK_DISABLE_DEPRECATED=1/AM_CFLAGS=-I$(top_srcdir)/g' avahi-ui/Makefile.am
 configure-commands:
 - |
   ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var --disable-werror \
