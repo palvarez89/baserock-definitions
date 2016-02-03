@@ -32,8 +32,8 @@ chunks:
 - name: dbus-pre
   morph: strata/foundation/dbus-pre.morph
   repo: upstream:dbus
-  ref: 6b265f7e2ce10e69a07d4a6bc4ec2746fb032135
-  unpetrify-ref: baserock/v1.10.0+custom_marshaling
+  ref: 09a48734991d09c7b1b73b9e1aa9e2c2a93ab565
+  unpetrify-ref: baserock/dbus-1.10.6-capi-patches
 - name: libgpg-error
   morph: strata/foundation/libgpg-error.morph
   repo: upstream:libgpg-error
@@ -88,8 +88,8 @@ chunks:
 - name: dbus
   morph: strata/foundation/dbus.morph
   repo: upstream:dbus
-  ref: 6b265f7e2ce10e69a07d4a6bc4ec2746fb032135
-  unpetrify-ref: baserock/v1.10.0+custom_marshaling
+  ref: 09a48734991d09c7b1b73b9e1aa9e2c2a93ab565
+  unpetrify-ref: baserock/dbus-1.10.6-capi-patches
   build-depends:
   - systemd
 - name: openssh
