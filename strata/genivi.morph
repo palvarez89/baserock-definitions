@@ -37,13 +37,13 @@ chunks:
 - name: genivi-common-api-runtime
   morph: strata/genivi/genivi-common-api-runtime.morph
   repo: upstream:genivi-common-api-runtime
-  ref: 56d1059459c24971bcbf45adef60f6dfd0b44667
-  unpetrify-ref: 3.1.2p1
+  ref: 77d9cdaf6acee03a1e360e0e1a3cd0b01a95b407
+  unpetrify-ref: 3.1.5
 - name: genivi-common-api-dbus-runtime
   morph: strata/genivi/genivi-common-api-dbus-runtime.morph
   repo: upstream:genivi-common-api-dbus-runtime
-  ref: 49d0b428ca19852d49965f35328a314f22d88807
-  unpetrify-ref: 3.1.2
+  ref: 3348a422ffc756b63de5890356383858a898e8b1
+  unpetrify-ref: 3.1.5
   build-depends:
   - genivi-common-api-runtime
 - name: audiomanager
