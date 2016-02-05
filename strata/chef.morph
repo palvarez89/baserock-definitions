@@ -66,7 +66,7 @@ chunks:
   unpetrify-ref: master
 - name: diff-lcs-1.2.5
   morph: strata/chef/diff-lcs-1.2.5.morph
-  repo: upstream:diff-lcs
+  repo: upstream:ruby-gems/diff-lcs
   ref: d53e92242b9dd6745e56a0ff4ba15d2f62052b91
   unpetrify-ref: v1.2.5
   build-depends:
