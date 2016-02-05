@@ -127,12 +127,12 @@ chunks:
   morph: strata/gnome/libhangul.morph
   repo: upstream:libhangul
   ref: 78e9d8926262db423b4cf9181e1c2cb06a120a9b
-  unpetrify-ref: libhangul-0.1.0-19-g78e9d89
+  unpetrify-ref: baserock/libhangul-0.1.0-19-g78e9d89
 - name: ibus-hangul
   morph: strata/gnome/ibus-hangul.morph
   repo: upstream:ibus-hangul
   ref: 44f41ae5178372a7ff0540a4ce7a4944335525df
-  unpetrify-ref: 1.5.0-13-g44f41ae
+  unpetrify-ref: baserock/1.5.0-13-g44f41ae
   build-depends:
   - ibus
   - libhangul
@@ -152,7 +152,7 @@ chunks:
   morph: strata/gnome/ibus-libpinyin.morph
   repo: upstream:ibus-libpinyin
   ref: 4bb5fc19c0829053acd29619de59a85a73e03676
-  unpetrify-ref: 1.7.2-7-g4bb5fc1
+  unpetrify-ref: baserock/1.7.2-7-g4bb5fc1
   build-depends:
   - ibus
   - libpinyin
@@ -165,7 +165,7 @@ chunks:
   morph: strata/gnome/ibus-anthy.morph
   repo: upstream:ibus-anthy
   ref: 9ba0a2a1e595fbf6e39c50a15814bb6f9e337769
-  unpetrify-ref: 1.5.7-6-g9ba0a2a
+  unpetrify-ref: baserock/1.5.7-6-g9ba0a2a
   build-depends:
   - ibus
   - anthy
@@ -354,7 +354,7 @@ chunks:
   morph: strata/gnome/mutter.morph
   repo: upstream:mutter
   ref: b975676c5ddd9401d4acfc4d0b9317dd8956656b
-  unpetrify-ref: 3.18.0-25-gb975676
+  unpetrify-ref: baserock/3.18.0-25-gb975676
   build-depends:
   - clutter
   - cogl
@@ -451,7 +451,7 @@ chunks:
   morph: strata/gnome/libgdata.morph
   repo: upstream:libgdata
   ref: ed52192fcd3cde2c0d7f0ab0d9e300fcdbc373a8
-  unpetrify-ref: LIBGDATA_0_17_3-16-ged52192
+  unpetrify-ref: baserock/LIBGDATA_0_17_3-16-ged52192
   build-depends:
   - gcr
   - gnome-online-accounts
@@ -524,7 +524,7 @@ chunks:
 - name: network-manager-applet
   repo: upstream:gnome/network-manager-applet
   ref: bbcc673af29066cfc6f0e12f04c0dd3f9937fb3a
-  unpetrify-ref: 0.9.10-beta1-344-gbbcc673
+  unpetrify-ref: baserock/0.9.10-beta1-344-gbbcc673
   build-system: autotools
   build-depends:
   - iso-codes
@@ -566,7 +566,7 @@ chunks:
   morph: strata/gnome/gnome-keyring.morph
   repo: upstream:gnome-keyring
   ref: eb16c037431da14d4f1c396357f82f2b35e76e23
-  unpetrify-ref: 3.18.3-5-geb16c03
+  unpetrify-ref: baserock/3.18.3-5-geb16c03
   build-depends:
   - gcr
 - name: gvfs
@@ -610,11 +610,11 @@ chunks:
   morph: strata/gnome/adwaita-icon-theme.morph
   repo: upstream:gnome/adwaita-icon-theme
   ref: 5e469ae6e664cb0808b6ce9fcfd7bd2ac6fc4216
-  unpetrify-ref: gnome-3.18
+  unpetrify-ref: gnome-3-18
 - name: gnome-backgrounds
   repo: upstream:gnome/gnome-backgrounds
   ref: e68462edd35ae3edb4311df90dc4d1a3cdcb175f
-  unpetrify-ref: 3.18.0-2-ge68462e
+  unpetrify-ref: baserock/3.18.0-2-ge68462e
   build-system: autotools
 - name: nettle
   morph: strata/gnome/nettle.morph
@@ -706,11 +706,11 @@ chunks:
   morph: strata/gnome/gmime.morph
   repo: upstream:gnome/gmime
   ref: 496313fbe956b350c22fa705edbcfdde3d7c9e50
-  unpetrify-ref: GMIME_2_6_20-24-g496313f
+  unpetrify-ref: baserock/GMIME_2_6_20-24-g496313f
 - name: totem-pl-parser
   repo: upstream:gnome/totem-pl-parser
   ref: 1be3144e9a6bf183a61c9596165d52bbe405b5cc
-  unpetrify-ref: V_3_10_5-16-g1be3144
+  unpetrify-ref: baserock/V_3_10_5-16-g1be3144
   build-system: autotools
   build-depends:
   - gmime
@@ -718,7 +718,7 @@ chunks:
   morph: strata/gnome/libmediaart.morph
   repo: upstream:gnome/libmediaart
   ref: 52eb6498c97ce0005186946bc9162d87597abc2c
-  unpetrify-ref: 1.9.0-8-g52eb649
+  unpetrify-ref: baserock/1.9.0-8-g52eb649
 - name: gssdp
   morph: strata/gnome/gssdp.morph
   repo: upstream:gnome/gssdp
@@ -828,14 +828,14 @@ chunks:
 - name: grilo
   repo: upstream:gnome/grilo
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
-  unpetrify-ref: grilo-0.2.14-17-ge470c0c
+  unpetrify-ref: baserock/grilo-0.2.14-17-ge470c0c
   build-system: autotools
   build-depends:
   - totem-pl-parser
 - name: grilo-plugins
   repo: upstream:gnome/grilo-plugins
   ref: e23b0fa5f6656d53b977693bf55174bd2ccd172d
-  unpetrify-ref: grilo-plugins-0.2.16-17-ge23b0fa
+  unpetrify-ref: baserock/grilo-plugins-0.2.16-17-ge23b0fa
   build-system: autotools
   build-depends:
   - gnome-online-accounts
@@ -875,7 +875,7 @@ chunks:
 - name: gcab
   repo: upstream:gnome/gcab
   ref: e57dd3d1ddb0da91df9188c2a98d59d1050ac6cb
-  unpetrify-ref: v0.6-22-ge57dd3d
+  unpetrify-ref: baserock/v0.6-22-ge57dd3d
   build-system: autotools
 - name: appstream-glib
   repo: upstream:appstream-glib
@@ -959,7 +959,7 @@ chunks:
   morph: strata/gnome/gnome-initial-setup.morph
   repo: upstream:gnome/gnome-initial-setup
   ref: a6ae059a7fab60cae534f78eb485960a7b406be5
-  unpetrify-ref: 3.19.1-4-ga6ae059
+  unpetrify-ref: new-user-mode-fixes
   build-depends:
   - accountsservice
   - cheese
@@ -989,7 +989,7 @@ chunks:
   morph: strata/gnome/libwnck.morph
   repo: upstream:libwnck
   ref: 46bade6f53351f2a63d030e27cbba2e0048d1cde
-  unpetrify-ref: 3.14.1
+  unpetrify-ref: 3.14.0
 - name: libpeas
   morph: strata/gnome/libpeas.morph
   repo: upstream:gnome/libpeas
