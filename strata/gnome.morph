@@ -494,7 +494,6 @@ chunks:
   unpetrify-ref: 0.11.2
   build-depends:
   - evolution-data-server
-  - libgee
   - telepathy-logger
   - tracker
   - zeitgeist
@@ -748,7 +747,6 @@ chunks:
   - gupnp
   - gupnp-av
   - gupnp-dlna
-  - libgee
   - libmediaart
   - tracker
 - name: libnice
@@ -1099,7 +1097,6 @@ chunks:
   - iso-codes
   - libcanberra
   - libchamplain
-  - libgee
   - libnotify
   - libsecret
   - telepathy-farstream
@@ -1119,7 +1116,6 @@ chunks:
   - gnome-desktop
   - gnome-online-accounts
   - libchamplain
-  - libgee
   - libnotify
   - telepathy-glib
 - name: gnome-maps
@@ -1136,7 +1132,6 @@ chunks:
   - gnome-desktop
   - gnome-online-accounts
   - libchamplain
-  - libgee
   - libgfbgraph
 - name: gnome-dictionary
   repo: upstream:gnome/gnome-dictionary
