@@ -443,7 +443,6 @@ chunks:
   - gcr
   - gnome-online-accounts
   - liboauth
-  - m4-common
 - name: krb5
   morph: strata/gnome/krb5.morph
   repo: upstream:krb5
@@ -832,7 +831,6 @@ chunks:
   - libmediaart
   - liboauth
   - librest
-  - m4-common
   - totem-pl-parser
   - tracker
   - yelp-tools
@@ -988,7 +986,6 @@ chunks:
   ref: eeb6fd40fbbc74515828070fef554ed98ad481e9
   unpetrify-ref: 3.18.1
   build-depends:
-  - m4-common
   - glade
 ###############################################
 #         Applications Start Here             #
@@ -1008,7 +1005,6 @@ chunks:
   - libnotify
   - libsecret
   - libwnck
-  - m4-common
   - startup-notification
   - WebKitGtk
 - name: totem
@@ -1035,7 +1031,6 @@ chunks:
   ref: 9932283ce9610f969e023a0dc326c81159c06a15
   unpetrify-ref: 3.18.1
   build-depends:
-  - m4-common
   - WebKitGtk
   - yelp-xsl
 - name: gnome-user-docs
@@ -1107,7 +1102,6 @@ chunks:
   - libgee
   - libnotify
   - libsecret
-  - m4-common
   - telepathy-farstream
   - telepathy-glib
   - telepathy-logger
