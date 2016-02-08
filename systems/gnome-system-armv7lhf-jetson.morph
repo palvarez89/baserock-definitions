@@ -39,8 +39,8 @@ strata:
   morph: strata/multimedia-gstreamer.morph
 - name: python2-core
   morph: strata/python2-core.morph
-- name: python-pygobject
-  morph: strata/python-pygobject.morph
+- name: python3-gobject
+  morph: strata/python3-gobject.morph
 - name: libsoup-common
   morph: strata/libsoup-common.morph
 - name: ruby
