@@ -11,3 +11,5 @@ configure-commands:
 post-install-commands:
 - test -x "$DESTDIR"/"$PREFIX"/bin/python || ln -s python3.4 "$DESTDIR"/"$PREFIX"/bin/python
 - test -x "$DESTDIR"/"$PREFIX"/bin/python3 || ln -s python3.4 "$DESTDIR"/"$PREFIX"/bin/python3
+- test -x "$DESTDIR"/"$PREFIX"/bin/python-config || ln -s python3.4-config "$DESTDIR"/"$PREFIX"/bin/python-config
+- test -x "$DESTDIR"/"$PREFIX"/bin/python3-config || ln -s python3.4-config "$DESTDIR"/"$PREFIX"/bin/python3-config
