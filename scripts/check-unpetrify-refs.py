@@ -31,12 +31,13 @@ a missing or non-existent unpetrify-ref and if it fails to check the remote
 '''
 
 strata_dir = "strata"
+trove_host = "git.baserock.org"
 aliases = {
-  'baserock:': 'git://git.baserock.org/baserock/',
+  'baserock:': 'git://%(trove)s/baserock/',
   'freedesktop:': 'git://anongit.freedesktop.org/',
   'github:': 'git://github.com/',
   'gnome:': 'git://git.gnome.org/',
-  'upstream:': 'git://git.baserock.org/delta/'
+  'upstream:': 'git://%(trove)s/delta/'
 }
 
 def ref_exists(remote, ref):
@@ -58,6 +59,14 @@ def load_yaml_file(yaml_file):
         return yaml.safe_load(f)
 
 def main(args):
+    global trove_host, aliases
+    opt = next(((i, j.split('=')[1]) for i, j in enumerate(args)
+              if j.startswith("--trove-host=")), None)
+    if opt:
+        trove_host = opt[1]
+        del args[opt[0]]
+    aliases = {k: v % {'trove': trove_host} for k, v in aliases.iteritems()}
+
     if args:
         strata = args
     else:
