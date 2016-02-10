@@ -84,6 +84,16 @@ build-systems:
     strip-commands:
       - *generic-strip-command
 
+  python3-distutils:
+    # The Python distutils build systems.
+    configure-commands: []
+    build-commands:
+    - python3 setup.py build
+    install-commands:
+    - python3 setup.py install --prefix "$PREFIX" --root "$DESTDIR"
+    strip-commands:
+    - *generic-strip-command
+
   cpan:
     # The Perl ExtUtil::MakeMaker build system. This is called the 'cpan' build
     # system for historical reasons.
