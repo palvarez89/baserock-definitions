@@ -97,6 +97,11 @@ chunks:
   build-system: autotools
   build-depends:
   - libsndfile
+- name: webrtc-audio-processing
+  repo: upstream:webrtc-audio-processing
+  ref: 9413986e79cf01958ee6dfb95a89de0d71a44221
+  unpetrify-ref: v0.1
+  build-system: autotools
 - name: pulseaudio
   morph: strata/audio-bluetooth/pulseaudio.morph
   repo: upstream:pulseaudio
@@ -111,3 +116,4 @@ chunks:
   - alsa-lib
   - bluez
   - sbc
+  - webrtc-audio-processing

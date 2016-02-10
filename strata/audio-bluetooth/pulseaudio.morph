@@ -8,6 +8,7 @@ configure-commands:
 - ./configure --prefix="$PREFIX" --localstatedir=/var --sysconfdir=/etc --with-database=simple
   --with-systemduserunitdir=/usr/lib/systemd/user
   --with-system-user=pulse --with-system-group=pulse --with-access-group=pulse-access
+  --enable-webrtc-aec
 system-integration:
   pulseaudio-misc:
     00-add-pulse-users:
