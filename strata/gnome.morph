@@ -218,24 +218,6 @@ chunks:
   build-depends:
   - json-glib
   build-system: autotools
-- name: libmbim
-  repo: upstream:libmbim
-  ref: 6cf74ebfae1dccf807bb34d88f2cd024d4b14da7
-  unpetrify-ref: master
-  build-system: autotools
-- name: libqmi
-  repo: upstream:libqmi
-  ref: 97aaa6855d071f64ec2e28df1b9f816da02a3e07
-  unpetrify-ref: master
-  build-system: autotools
-- name: ModemManager
-  morph: strata/gnome/ModemManager.morph
-  repo: upstream:ModemManager
-  ref: 0ca68657fbcd5bace3d303a0babe2da292784385
-  unpetrify-ref: master
-  build-depends:
-  - libmbim
-  - libqmi
 - name: geoclue
   morph: strata/gnome/geoclue.morph
   repo: upstream:geoclue
@@ -243,7 +225,6 @@ chunks:
   unpetrify-ref: 2.4.0
   build-depends:
   - json-glib
-  - ModemManager
 - name: libgweather
   repo: upstream:gnome/libgweather
   ref: 5b8aed611f24d03434eed35e438cea213b894b7c

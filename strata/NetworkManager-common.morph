@@ -30,3 +30,23 @@ chunks:
   - libgudev
   - libndp
   - readline6
+- name: libmbim
+  repo: upstream:libmbim
+  ref: 6cf74ebfae1dccf807bb34d88f2cd024d4b14da7
+  unpetrify-ref: master
+  build-system: autotools
+  build-depends:
+  - libgudev
+- name: libqmi
+  repo: upstream:libqmi
+  ref: 97aaa6855d071f64ec2e28df1b9f816da02a3e07
+  unpetrify-ref: master
+  build-system: autotools
+- name: ModemManager
+  morph: strata/NetworkManager-common/ModemManager.morph
+  repo: upstream:ModemManager
+  ref: 0ca68657fbcd5bace3d303a0babe2da292784385
+  unpetrify-ref: master
+  build-depends:
+  - libmbim
+  - libqmi
