@@ -68,18 +68,11 @@ chunks:
   build-depends:
   - bluez
   - speex
-- name: mobile-broadband-provider-info
-  repo: upstream:mobile-broadband-provider-info
-  ref: 4ed19e11c2975105b71b956440acdb25d46a347d
-  unpetrify-ref: baserock/morph
-  build-system: autotools
 - name: ofono
   morph: strata/audio-bluetooth/ofono.morph
   repo: upstream:ofono
   ref: d05b718cc0b0d367227fbfbf52e60fc5462cc549
   unpetrify-ref: '1.15'
-  build-depends:
-  - mobile-broadband-provider-info
 - name: json-c
   morph: strata/audio-bluetooth/json-c.morph
   repo: upstream:json-c
