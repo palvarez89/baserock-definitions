@@ -68,11 +68,6 @@ chunks:
   build-depends:
   - bluez
   - speex
-- name: ofono
-  morph: strata/audio-bluetooth/ofono.morph
-  repo: upstream:ofono
-  ref: d05b718cc0b0d367227fbfbf52e60fc5462cc549
-  unpetrify-ref: '1.15'
 - name: json-c
   morph: strata/audio-bluetooth/json-c.morph
   repo: upstream:json-c

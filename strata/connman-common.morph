@@ -9,3 +9,8 @@ chunks:
   repo: upstream:connman
   ref: 9951ba7a0353cfc884e96833c64e58c1bcae3f44
   unpetrify-ref: baserock/1.24
+- name: ofono
+  morph: strata/connman-common/ofono.morph
+  repo: upstream:ofono
+  ref: d05b718cc0b0d367227fbfbf52e60fc5462cc549
+  unpetrify-ref: '1.15'
