@@ -12,6 +12,7 @@ build-depends:
 - morph: strata/NetworkManager-common.morph
 - morph: strata/multimedia-gstreamer.morph
 - morph: strata/network-security.morph
+- morph: strata/privileges-management.morph
 - morph: strata/python3-gobject.morph
 - morph: strata/python2-core.morph
 - morph: strata/wayland-generic.morph
@@ -183,18 +184,6 @@ chunks:
   ref: 0c5eb813279c67607e17dfd99087358d34c6c8f5
   unpetrify-ref: master
   build-system: autotools
-- name: mozjs17
-  morph: strata/gnome/mozjs17.morph
-  repo: upstream:mozilla/mozjs17
-  ref: c8e33aaaba2787d3c94eba00257051400d106e76
-  unpetrify-ref: baserock/gnome
-- name: polkit
-  morph: strata/gnome/polkit.morph
-  repo: upstream:polkit
-  ref: 5a7e3b76aa45eea43e4bdc403ddd4c6e1a4c6542
-  unpetrify-ref: master
-  build-depends:
-  - mozjs17
 - name: libatasmart
   morph: strata/gnome/libatasmart.morph
   repo: upstream:libatasmart
@@ -206,7 +195,6 @@ chunks:
   ref: 410cab8f3d749ad2660cda3ba38b6aece42bf10f
   unpetrify-ref: master
   build-depends:
-  - polkit
   - libatasmart
 - name: colord
   morph: strata/gnome/colord.morph
@@ -216,7 +204,6 @@ chunks:
   build-depends:
   - gusb
   - lcms2
-  - polkit
 - name: colord-gtk
   repo: upstream:colord-gtk
   ref: eadca143872288e1300303a771efdaab196900e1
@@ -527,7 +514,6 @@ chunks:
   - gjs
   - libcanberra
   - mutter
-  - polkit
   - startup-notification
   - telepathy-glib
   - network-manager-applet
@@ -566,15 +552,12 @@ chunks:
   repo: upstream:accountsservice
   ref: 36b424b4aad91aaf91eeb6b6285cf550b15fcfeb
   unpetrify-ref: master
-  build-depends:
-  - polkit
 - name: gdm
   morph: strata/gnome/gdm.morph
   repo: upstream:gdm
   ref: 494ec8cee5727c37118994d3864c44f36aa454fc
   unpetrify-ref: 3.18.0
   build-depends:
-  - polkit
   - accountsservice
   - libcanberra
   - dconf

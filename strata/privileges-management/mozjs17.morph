@@ -5,7 +5,7 @@ configure-commands:
 - |
   cd js/src;
   ./configure --prefix="$PREFIX" \
-  	      --sysconfdir=/etc \
+              --sysconfdir=/etc \
               --with-system-nspr \
               --with-system-ffi \
               --enable-threadsafe

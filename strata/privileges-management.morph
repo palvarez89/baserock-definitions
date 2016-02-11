@@ -1,0 +1,21 @@
+name: privileges-management
+kind: stratum
+description: Toolkit for controlling system-wide privileges
+build-depends:
+- morph: strata/foundation.morph
+- morph: strata/glib-common.morph
+- morph: strata/network-security.morph
+- morph: strata/python2-core.morph
+chunks:
+- name: mozjs17
+  morph: strata/privileges-management/mozjs17.morph
+  repo: upstream:mozilla/mozjs17
+  ref: c8e33aaaba2787d3c94eba00257051400d106e76
+  unpetrify-ref: baserock/gnome
+- name: polkit
+  morph: strata/privileges-management/polkit.morph
+  repo: upstream:polkit
+  ref: 5a7e3b76aa45eea43e4bdc403ddd4c6e1a4c6542
+  unpetrify-ref: master
+  build-depends:
+  - mozjs17
