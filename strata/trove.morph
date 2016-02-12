@@ -66,8 +66,8 @@ chunks:
 - name: cgit
   morph: strata/trove/cgit.morph
   repo: upstream:cgit
-  ref: acbf4a15e260c711094455dbef7c024f2553fd32
-  unpetrify-ref: baserock/morph
+  ref: dc881acb0c857c783b611c03294d79a7553a4ec7
+  unpetrify-ref: baserock/v0.12
 - name: trove-setup
   morph: strata/trove/trove-setup.morph
   repo: baserock:baserock/trove-setup
