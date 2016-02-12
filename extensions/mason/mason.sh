@@ -11,14 +11,9 @@ set -x
 # Load our deployment config
 . /etc/mason.conf
 
-if [ ! -e ws ]; then
-    morph init ws
-fi
-cd ws
-
-definitions_repo="$DEFINITIONS_REF"/"$UPSTREAM_TROVE_ADDRESS"/baserock/baserock/definitions
+definitions_repo=mason-definitions-"$DEFINITIONS_REF"
 if [ ! -e "$definitions_repo" ]; then
-    morph checkout git://"$UPSTREAM_TROVE_ADDRESS"/baserock/baserock/definitions "$DEFINITIONS_REF"
+    git clone -b "$DEFINITIONS_REF" git://"$UPSTREAM_TROVE_ADDRESS"/baserock/baserock/definitions "$definitions_repo"
     cd "$definitions_repo"
     git config user.name "$TROVE_ID"-mason
     git config user.email "$TROVE_ID"-mason@$(hostname)
