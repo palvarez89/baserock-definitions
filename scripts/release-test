@@ -38,9 +38,8 @@ import morphlib
 class MorphologyHelper(object):
 
     def __init__(self):
-        self.sb = sb = morphlib.sysbranchdir.open_from_within('.')
-        defs_repo_path = sb.get_git_directory_name(sb.root_repository_url)
-        self.defs_repo = morphlib.gitdir.GitDirectory(defs_repo_path)
+        self.defs_repo = morphlib.definitions_repo.open(
+            '.', search_for_root=True)
         self.loader = morphlib.morphloader.MorphologyLoader()
         self.finder = morphlib.morphologyfinder.MorphologyFinder(self.defs_repo)
 

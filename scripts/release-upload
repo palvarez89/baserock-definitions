@@ -277,9 +277,8 @@ class BuildArtifactPublisher(object):
         return loader.load_from_string(morphology_text)
 
     def get_morphology_finder_for_root_repository(self):
-        sb = morphlib.sysbranchdir.open_from_within('.')
-        definitions = sb.get_git_directory_name(sb.root_repository_url)
-        definitions_repo = morphlib.gitdir.GitDirectory(definitions)
+        definitions_repo = morphlib.definitions_repo.open(
+            '.', search_for_root=True)
         return morphlib.morphologyfinder.MorphologyFinder(definitions_repo)
 
     def filter_away_build_artifacts_on_public_trove(self, basenames):
