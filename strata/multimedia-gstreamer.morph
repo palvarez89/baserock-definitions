@@ -15,23 +15,23 @@ chunks:
   unpetrify-ref: orc-0.4.24
 - name: gstreamer
   repo: upstream:gstreamer
-  ref: d048770224f541fb99adc6912e25450256963c25
-  unpetrify-ref: baserock/1.6
+  ref: 3119e6bb4b574a01921da2e652d2910d98a6eb27
+  unpetrify-ref: baserock/1.6.3
   build-system: autotools
   build-depends:
   - orc
 - name: gstreamer-plugins-base
   repo: upstream:gstreamer-plugins-base
-  ref: aceec42a6841955a95e3769db209fdce42b0e873
-  unpetrify-ref: baserock/1.6
+  ref: 644cd58c5a1142580ad133a5122986581cf4d8ef
+  unpetrify-ref: baserock/1.6.3
   build-system: autotools
   build-depends:
   - gstreamer
   - orc
 - name: gstreamer-plugins-good
   repo: upstream:gstreamer-plugins-good
-  ref: 2d643f4ebcc5e2c3e18a8219cac2308fe9c45165
-  unpetrify-ref: baserock/1.6
+  ref: e6fb1b485dd2726e6c65d938c5ea4d002cf1036e
+  unpetrify-ref: baserock/1.6.3
   build-system: autotools
   build-depends:
   - gstreamer
@@ -39,8 +39,8 @@ chunks:
   - orc
 - name: gstreamer-plugins-bad
   repo: upstream:gstreamer-plugins-bad
-  ref: 330bb6794b8396e1295d61028c38a5d0c14929ed
-  unpetrify-ref: baserock/1.6
+  ref: 9a2e845040c3aafff00159a6b0031e123cad4b2f
+  unpetrify-ref: baserock/1.6.3
   build-system: autotools
   build-depends:
   - gstreamer
@@ -49,8 +49,8 @@ chunks:
 - name: gst-libav
   morph: strata/multimedia-gstreamer/gst-libav.morph
   repo: upstream:gst-libav
-  ref: 9c135826b0a22e7aa82f938c539ef0eb0ff5a17a
-  unpetrify-ref: baserock/1.6
+  ref: ac8afa33d47e10246d9b7329f39dc53b4bd4711e
+  unpetrify-ref: baserock/1.6.3
   build-depends:
   - gstreamer
   - gstreamer-plugins-base
