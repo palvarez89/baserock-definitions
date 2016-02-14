@@ -55,3 +55,18 @@ chunks:
   - gstreamer
   - gstreamer-plugins-base
   - orc
+- name: libva
+  repo: upstream:libva
+  ref: 304bc13e244f9d5e185a0d8a87fcf3a3eb5a8bd8
+  unpetrify-ref: libva-1.6.2
+  build-system: autotools
+- name: gst-vaapi
+  repo: upstream:gstreamer-vaapi
+  ref: 11221fe868bb08e0acf046bfa81dc2781c2a2d0c
+  unpetrify-ref: 1.6.0
+  build-system: autotools
+  build-depends:
+  - gstreamer
+  - gstreamer-plugins-bad
+  - gstreamer-plugins-base
+  - libva
