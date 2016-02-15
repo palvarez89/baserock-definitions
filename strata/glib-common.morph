@@ -26,3 +26,12 @@ chunks:
   build-system: autotools
   build-depends:
   - glib
+- name: json-glib
+  repo: upstream:json-glib
+  ref: bfbc0b48e9256473491755766c079f73bee80724
+  unpetrify-ref: master
+  build-system: autotools
+  build-depends:
+  - glib
+  - gobject-introspection
+  - gtk-doc-stub

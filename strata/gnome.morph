@@ -31,11 +31,6 @@ chunks:
   repo: upstream:gnome/cogl
   ref: 85e0b084592e6beef2987b02e34a3909f35708e0
   unpetrify-ref: cogl-1.22
-- name: json-glib
-  repo: upstream:json-glib
-  ref: bfbc0b48e9256473491755766c079f73bee80724
-  unpetrify-ref: master
-  build-system: autotools
 - name: clutter
   morph: strata/gnome/clutter.morph
   repo: upstream:gnome/clutter
@@ -43,7 +38,6 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - cogl
-  - json-glib
 - name: clutter-gtk
   repo: upstream:gnome/clutter-gtk
   ref: 56b09d02f71aa38f9496226641850e6ecf14ef70
@@ -215,16 +209,12 @@ chunks:
   repo: upstream:gnome/geocode-glib
   ref: a3e183e40053b4bd0fd0b25a070f60597270397a
   unpetrify-ref: master
-  build-depends:
-  - json-glib
   build-system: autotools
 - name: geoclue
   morph: strata/gnome/geoclue.morph
   repo: upstream:geoclue
   ref: ae8f7ab2f1e90f61931c652f2f65996c30c79e87
   unpetrify-ref: 2.4.0
-  build-depends:
-  - json-glib
 - name: libgweather
   repo: upstream:gnome/libgweather
   ref: 5b8aed611f24d03434eed35e438cea213b894b7c
@@ -435,7 +425,6 @@ chunks:
   ref: abc7939806346a563ded2b16456dc7e2fff54fcc
   unpetrify-ref: v0.9.16
   build-depends:
-  - json-glib
   - raptor
   - rdflib
   - telepathy-glib
@@ -456,7 +445,6 @@ chunks:
   build-system: autotools
   build-depends:
   - gnome-online-accounts
-  - json-glib
   - librest
 - name: network-manager-applet
   repo: upstream:gnome/network-manager-applet
@@ -490,7 +478,6 @@ chunks:
   unpetrify-ref: 3.18.1.2
   build-depends:
   - gnome-desktop
-  - json-glib
 - name: d-feet
   morph: strata/gnome/d-feet.morph
   repo: upstream:gnome/d-feet
