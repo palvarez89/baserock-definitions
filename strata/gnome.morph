@@ -20,6 +20,7 @@ build-depends:
 - morph: strata/ruby.morph
 - morph: strata/samba.morph
 - morph: strata/secret-service.morph
+- morph: strata/spell-checking.morph
 - morph: strata/cups.morph
 - morph: strata/docutils.morph
 chunks:
@@ -310,31 +311,17 @@ chunks:
   repo: upstream:gnome/librest
   ref: 08f1fc35e3c77aecedacf08aa510e82c91ac7f2a
   unpetrify-ref: 0.7.93
-- name: enchant
-  repo: upstream:enchant
-  ref: 6d8b6bb15f09a14c90fb900eb2ecf1172d7cf6cf
-  unpetrify-ref: master
-  build-system: autotools
-- name: hyphen
-  repo: upstream:hyphen
-  ref: 7f28cf7edb54cc1bc4eaa09672e0bc043b1da70b
-  unpetrify-ref: master
-  build-system: autotools
 - name: WebKitGtk1
   morph: strata/gnome/WebKitGtk1.morph
   repo: upstream:WebKitGtk-tarball
   ref: 41386e9cb918eed93b3f13648cbef387e371e451
   unpetrify-ref: webkitgtk-2.4.9
-  build-depends:
-  - enchant
 - name: WebKitGtk
   morph: strata/gnome/WebKitGtk.morph
   repo: upstream:WebKitGtk-tarball
   ref: e15dd966d523731101f70ccf768bba12435a0208
   unpetrify-ref: webkitgtk-2.10.2
   build-depends:
-  - enchant
-  - hyphen
   - libnotify
 - name: gnome-online-accounts
   morph: strata/gnome/gnome-online-accounts.morph
@@ -873,7 +860,6 @@ chunks:
   unpetrify-ref: 3.18.1
   build-depends:
   - appstream-glib
-  - enchant
   - gnome-desktop
   - iso-codes
   - libcanberra
@@ -927,7 +913,6 @@ chunks:
   unpetrify-ref: baserock/3.18.2
   build-system: autotools
   build-depends:
-  - enchant
   - gsettings-desktop-schemas
   - gtksourceview
   - iso-codes
@@ -961,7 +946,6 @@ chunks:
   - clutter
   - clutter-gst2
   - clutter-gtk
-  - enchant
   - farstream
   - folks
   - gnome-online-accounts
@@ -1048,7 +1032,6 @@ chunks:
   ref: 579583275620be75afdedcde909a82fd96136188
   unpetrify-ref: EVOLUTION_3_18_3
   build-depends:
-  - enchant
   - evolution-data-server
   - clutter-gtk
   - gnome-desktop

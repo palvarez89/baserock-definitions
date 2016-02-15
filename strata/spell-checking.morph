@@ -1,0 +1,16 @@
+name: spell-checking
+kind: stratum
+description: Spell checking libraries
+build-depends:
+- morph: strata/glib-common.morph
+chunks:
+- name: enchant
+  repo: upstream:enchant
+  ref: 6d8b6bb15f09a14c90fb900eb2ecf1172d7cf6cf
+  unpetrify-ref: master
+  build-system: autotools
+- name: hyphen
+  repo: upstream:hyphen
+  ref: 7f28cf7edb54cc1bc4eaa09672e0bc043b1da70b
+  unpetrify-ref: master
+  build-system: autotools
