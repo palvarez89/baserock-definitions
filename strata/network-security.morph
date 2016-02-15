@@ -1,5 +1,6 @@
 name: network-security
 kind: stratum
+description: This stratum provides SSL/TLS libraries
 build-depends:
 - morph: strata/core.morph
 chunks:
@@ -15,3 +16,29 @@ chunks:
   unpetrify-ref: baserock/nss-3.21
   build-depends:
   - nspr
+- name: libtasn1
+  repo: upstream:libtasn1
+  ref: 7f3a9c2294cdebd9e63fe007150c181b980865ef
+  unpetrify-ref: baserock/gnome
+  build-system: autotools
+- name: p11-kit
+  morph: strata/network-security/p11-kit.morph
+  repo: upstream:p11-kit
+  ref: ec9e2450bafa1cda47525b38a28c8f981f43c1e1
+  unpetrify-ref: 0.23.1
+  build-depends:
+  - libtasn1
+- name: nettle
+  morph: strata/network-security/nettle.morph
+  repo: upstream:nettle
+  ref: 549e2853d6f3fa9cefb099970209c7f5bf5673b7
+  unpetrify-ref: nettle_3.1.1_release_20150424
+- name: gnutls
+  morph: strata/network-security/gnutls.morph
+  repo: upstream:gnutls
+  ref: 21fecbde80ae824f85a10a0c23a327c49e4e5fb6
+  unpetrify-ref: baserock/gnutls_3_4_6
+  build-depends:
+  - nettle
+  - libtasn1
+  - p11-kit

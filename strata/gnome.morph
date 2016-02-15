@@ -292,24 +292,10 @@ chunks:
   ref: 07237ff25d6171e1b548118442ddba4259a53ba5
   unpetrify-ref: master
   build-system: autotools
-- name: libtasn1
-  repo: upstream:libtasn1
-  ref: 7f3a9c2294cdebd9e63fe007150c181b980865ef
-  unpetrify-ref: baserock/gnome
-  build-system: autotools
-- name: p11-kit
-  morph: strata/gnome/p11-kit.morph
-  repo: upstream:p11-kit
-  ref: ec9e2450bafa1cda47525b38a28c8f981f43c1e1
-  unpetrify-ref: 0.23.1
-  build-depends:
-  - libtasn1
 - name: gcr
   repo: upstream:gnome/gcr
   ref: 289ba4859fd170285f51e6bbfe91f2aac3b9170d
   unpetrify-ref: 3.18.0
-  build-depends:
-  - p11-kit
   build-system: autotools
 - name: libxkbcommon-x11
   repo: upstream:xorg-lib-libxkbcommon
@@ -563,27 +549,11 @@ chunks:
   ref: e68462edd35ae3edb4311df90dc4d1a3cdcb175f
   unpetrify-ref: baserock/3.18.0-2-ge68462e
   build-system: autotools
-- name: nettle
-  morph: strata/gnome/nettle.morph
-  repo: upstream:nettle
-  ref: 549e2853d6f3fa9cefb099970209c7f5bf5673b7
-  unpetrify-ref: nettle_3.1.1_release_20150424
-- name: gnutls
-  morph: strata/gnome/gnutls.morph
-  repo: upstream:gnutls
-  ref: 21fecbde80ae824f85a10a0c23a327c49e4e5fb6
-  unpetrify-ref: baserock/gnutls_3_4_6
-  build-depends:
-  - nettle
-  - libtasn1
-  - p11-kit
 - name: glib-networking
   morph: strata/gnome/glib-networking.morph
   repo: upstream:gnome/glib-networking
   ref: 32ee55186d7df497e3d402a1940cddfabd9dbc21
   unpetrify-ref: 2.46.0
-  build-depends:
-  - gnutls
 - name: cracklib
   morph: strata/gnome/cracklib.morph
   repo: upstream:cracklib
@@ -609,7 +579,6 @@ chunks:
   ref: aa7120c2e359bb5d6d0b0ec6c1e0eecf0583be03
   unpetrify-ref: 0.43.0
   build-depends:
-  - gnutls
   - glade
 - name: tracker
   repo: upstream:gnome/tracker
@@ -1054,7 +1023,6 @@ chunks:
   - geoclue
   - geocode-glib
   - gnome-online-accounts
-  - gnutls
   - gsettings-desktop-schemas
   - iso-codes
   - libcanberra
