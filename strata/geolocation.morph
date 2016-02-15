@@ -1,0 +1,18 @@
+name: geolocation
+kind: stratum
+description: libraries/services that provides location information
+build-depends:
+- morph: strata/glib-common.morph
+- morph: strata/libsoup-common.morph
+- morph: strata/NetworkManager-common.morph
+chunks:
+- name: geocode-glib
+  repo: upstream:gnome/geocode-glib
+  ref: a3e183e40053b4bd0fd0b25a070f60597270397a
+  unpetrify-ref: master
+  build-system: autotools
+- name: geoclue
+  morph: strata/geolocation/geoclue.morph
+  repo: upstream:geoclue
+  ref: ae8f7ab2f1e90f61931c652f2f65996c30c79e87
+  unpetrify-ref: 2.4.0

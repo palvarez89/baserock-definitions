@@ -5,6 +5,7 @@ build-depends:
 - morph: strata/icu-common.morph
 - morph: strata/input-common.morph
 - morph: strata/vala-common.morph
+- morph: strata/geolocation.morph
 - morph: strata/gtk2.morph
 - morph: strata/gtk3.morph
 - morph: strata/audio-bluetooth.morph
@@ -205,22 +206,10 @@ chunks:
   build-system: autotools
   build-depends:
   - colord
-- name: geocode-glib
-  repo: upstream:gnome/geocode-glib
-  ref: a3e183e40053b4bd0fd0b25a070f60597270397a
-  unpetrify-ref: master
-  build-system: autotools
-- name: geoclue
-  morph: strata/gnome/geoclue.morph
-  repo: upstream:geoclue
-  ref: ae8f7ab2f1e90f61931c652f2f65996c30c79e87
-  unpetrify-ref: 2.4.0
 - name: libgweather
   repo: upstream:gnome/libgweather
   ref: 5b8aed611f24d03434eed35e438cea213b894b7c
   unpetrify-ref: master
-  build-depends:
-  - geocode-glib
   build-system: autotools
 - name: gnome-settings-daemon
   morph: strata/gnome/gnome-settings-daemon.morph
@@ -229,8 +218,6 @@ chunks:
   unpetrify-ref: baserock/3.18.0/disable_wacom
   build-depends:
   - colord
-  - geoclue
-  - geocode-glib
   - gnome-desktop
   - gsettings-desktop-schemas
   - ibus
@@ -349,7 +336,6 @@ chunks:
   unpetrify-ref: webkitgtk-2.4.9
   build-depends:
   - enchant
-  - geoclue
   - libsecret
 - name: WebKitGtk
   morph: strata/gnome/WebKitGtk.morph
@@ -358,7 +344,6 @@ chunks:
   unpetrify-ref: webkitgtk-2.10.2
   build-depends:
   - enchant
-  - geoclue
   - hyphen
   - libnotify
   - libsecret
@@ -1007,8 +992,6 @@ chunks:
   - farstream
   - folks
   - gcr
-  - geoclue
-  - geocode-glib
   - gnome-online-accounts
   - gsettings-desktop-schemas
   - iso-codes
@@ -1043,8 +1026,6 @@ chunks:
   build-depends:
   - folks
   - clutter-gtk
-  - geoclue
-  - geocode-glib
   - gjs
   - gnome-desktop
   - gnome-online-accounts
@@ -1099,8 +1080,6 @@ chunks:
   - enchant
   - evolution-data-server
   - gcr
-  - geoclue
-  - geocode-glib
   - clutter-gtk
   - gnome-desktop
   - gnome-online-accounts
