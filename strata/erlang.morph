@@ -13,6 +13,6 @@ chunks:
   morph: strata/erlang/rebar.morph
   repo: upstream:erlang-modules/rebar
   ref: d42ed4683576d995f60e3222f076e99f0b081f79
-  unpretrify-ref: master
+  unpetrify-ref: master
   build-depends:
   - erlang

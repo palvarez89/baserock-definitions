@@ -13,7 +13,7 @@ chunks:
   morph: strata/openstack-services/erlang-sd_notify.morph
   repo: upstream:erlang-modules/erlang-sd_notify
   ref: 99f4689c2c18570680329f822591f95f9341ca10
-  unpretrify-ref: 0.1
+  unpetrify-ref: 0.1
 - name: rabbitmq-codegen
   morph: strata/openstack-services/rabbitmq-codegen.morph
   ref: 4dc5ccde2a0b3d638e5754b00abf94196fe9ca32

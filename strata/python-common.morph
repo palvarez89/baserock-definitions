@@ -64,7 +64,7 @@ chunks:
 - name: kazoo
   repo: upstream:python-packages/kazoo.git
   ref: 93a718ea4c20df797766742c3d74de281613c651
-  unpretrify-ref: 2.0
+  unpetrify-ref: 2.0
   build-system: python-distutils
 - name: webob
   repo: upstream:python-packages/webob

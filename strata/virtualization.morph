@@ -88,4 +88,4 @@ chunks:
   morph: strata/virtualization/openvswitch.morph
   repo: upstream:openvswitch
   ref: a52b0492a4d0398a24ed2a3566ff55ac53fea31f
-  unpretrify-ref: master
+  unpetrify-ref: master
