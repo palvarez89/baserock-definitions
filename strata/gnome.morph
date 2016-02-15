@@ -19,6 +19,7 @@ build-depends:
 - morph: strata/wayland-generic.morph
 - morph: strata/ruby.morph
 - morph: strata/samba.morph
+- morph: strata/secret-service.morph
 - morph: strata/cups.morph
 - morph: strata/docutils.morph
 chunks:
@@ -269,11 +270,6 @@ chunks:
   ref: 07237ff25d6171e1b548118442ddba4259a53ba5
   unpetrify-ref: master
   build-system: autotools
-- name: gcr
-  repo: upstream:gnome/gcr
-  ref: 289ba4859fd170285f51e6bbfe91f2aac3b9170d
-  unpetrify-ref: 3.18.0
-  build-system: autotools
 - name: libxkbcommon-x11
   repo: upstream:xorg-lib-libxkbcommon
   ref: c43c3c866eb9d52cd8f61e75cbef1c30d07f3a28
@@ -309,11 +305,6 @@ chunks:
   build-depends:
   - clutter
   - libxklavier
-- name: libsecret
-  morph: strata/gnome/libsecret.morph
-  repo: upstream:gnome/libsecret
-  ref: 4d76cf7dd8e55d93bb58164a1fff38113ba97af5
-  unpetrify-ref: master
 - name: librest
   morph: strata/gnome/librest.morph
   repo: upstream:gnome/librest
@@ -336,7 +327,6 @@ chunks:
   unpetrify-ref: webkitgtk-2.4.9
   build-depends:
   - enchant
-  - libsecret
 - name: WebKitGtk
   morph: strata/gnome/WebKitGtk.morph
   repo: upstream:WebKitGtk-tarball
@@ -346,7 +336,6 @@ chunks:
   - enchant
   - hyphen
   - libnotify
-  - libsecret
 - name: gnome-online-accounts
   morph: strata/gnome/gnome-online-accounts.morph
   repo: upstream:gnome/gnome-online-accounts
@@ -367,7 +356,6 @@ chunks:
   ref: ed52192fcd3cde2c0d7f0ab0d9e300fcdbc373a8
   unpetrify-ref: baserock/LIBGDATA_0_17_3-16-ged52192
   build-depends:
-  - gcr
   - gnome-online-accounts
   - liboauth
 - name: krb5
@@ -381,12 +369,10 @@ chunks:
   ref: 658d6e37796984bf05e275413726ad3b71083ccf
   unpetrify-ref: EVOLUTION_DATA_SERVER_3_18_3
   build-depends:
-  - gcr
   - gnome-online-accounts
   - krb5
   - libgdata
   - libgweather
-  - libsecret
 - name: raptor
   morph: strata/gnome/raptor.morph
   repo: upstream:raptor
@@ -438,7 +424,6 @@ chunks:
   build-system: autotools
   build-depends:
   - iso-codes
-  - libsecret
   - libnotify
 - name: gnome-shell
   morph: strata/gnome/gnome-shell.morph
@@ -449,7 +434,6 @@ chunks:
   - caribou
   - clutter
   - evolution-data-server
-  - gcr
   - gjs
   - libcanberra
   - mutter
@@ -470,20 +454,12 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - yelp-tools
-- name: gnome-keyring
-  morph: strata/gnome/gnome-keyring.morph
-  repo: upstream:gnome-keyring
-  ref: eb16c037431da14d4f1c396357f82f2b35e76e23
-  unpetrify-ref: baserock/3.18.3-5-geb16c03
-  build-depends:
-  - gcr
 - name: gvfs
   morph: strata/gnome/gvfs.morph
   repo: upstream:gvfs
   ref: d037b5fd56cae878ed7bb5269a40e4bd046551d7
   unpetrify-ref: master
   build-depends:
-  - gcr
   - udisks
 - name: accountsservice
   morph: strata/gnome/accountsservice.morph
@@ -851,7 +827,6 @@ chunks:
   - cheese
   - gdm
   - gnome-desktop
-  - gnome-keyring
   - gnome-online-accounts
   - ibus
   - iso-codes
@@ -899,12 +874,10 @@ chunks:
   build-depends:
   - appstream-glib
   - enchant
-  - gcr
   - gnome-desktop
   - iso-codes
   - libcanberra
   - libnotify
-  - libsecret
   - libwnck
   - startup-notification
   - WebKitGtk
@@ -991,14 +964,12 @@ chunks:
   - enchant
   - farstream
   - folks
-  - gcr
   - gnome-online-accounts
   - gsettings-desktop-schemas
   - iso-codes
   - libcanberra
   - libchamplain
   - libnotify
-  - libsecret
   - telepathy-farstream
   - telepathy-glib
   - telepathy-logger
@@ -1079,7 +1050,6 @@ chunks:
   build-depends:
   - enchant
   - evolution-data-server
-  - gcr
   - clutter-gtk
   - gnome-desktop
   - gnome-online-accounts

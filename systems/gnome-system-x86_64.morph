@@ -75,6 +75,8 @@ strata:
   morph: strata/icu-common.morph
 - name: samba
   morph: strata/samba.morph
+- name: secret-service
+  morph: strata/secret-service.morph
 - name: cups
   morph: strata/cups.morph
 configuration-extensions:
