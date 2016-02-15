@@ -23,6 +23,7 @@ build-depends:
 - morph: strata/spell-checking.morph
 - morph: strata/cups.morph
 - morph: strata/docutils.morph
+- morph: strata/WebKitGtk1-common.morph
 chunks:
 - name: dconf
   morph: strata/gnome/dconf.morph
@@ -311,11 +312,6 @@ chunks:
   repo: upstream:gnome/librest
   ref: 08f1fc35e3c77aecedacf08aa510e82c91ac7f2a
   unpetrify-ref: 0.7.93
-- name: WebKitGtk1
-  morph: strata/gnome/WebKitGtk1.morph
-  repo: upstream:WebKitGtk-tarball
-  ref: 41386e9cb918eed93b3f13648cbef387e371e451
-  unpetrify-ref: webkitgtk-2.4.9
 - name: WebKitGtk
   morph: strata/gnome/WebKitGtk.morph
   repo: upstream:WebKitGtk-tarball
@@ -958,7 +954,6 @@ chunks:
   - telepathy-glib
   - telepathy-logger
   - telepathy-mission-control
-  - WebKitGtk1
   - yelp-tools
 - name: gnome-contacts
   repo: upstream:gnome/gnome-contacts
@@ -1042,5 +1037,4 @@ chunks:
   - libgdata
   - libgweather
   - libnotify
-  - WebKitGtk1
   - yelp-tools

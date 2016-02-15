@@ -81,6 +81,8 @@ strata:
   morph: strata/spell-checking.morph
 - name: cups
   morph: strata/cups.morph
+- name: WebKitGtk1-common
+  morph: strata/WebKitGtk1-common.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

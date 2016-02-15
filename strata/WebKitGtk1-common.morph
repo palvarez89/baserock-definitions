@@ -1,0 +1,19 @@
+name: WebKitGtk1-common
+kind: stratum
+description: WebKitGtk1 stratum (deprecated WebKitGtk API)
+build-depends:
+- morph: strata/geolocation.morph
+- morph: strata/gtk2.morph
+- morph: strata/gtk3.morph
+- morph: strata/libsoup-common.morph
+- morph: strata/multimedia-gstreamer.morph
+- morph: strata/mesa-common.morph
+- morph: strata/ruby.morph
+- morph: strata/secret-service.morph
+- morph: strata/spell-checking.morph
+chunks:
+- name: WebKitGtk1
+  morph: strata/WebKitGtk1-common/WebKitGtk1.morph
+  repo: upstream:WebKitGtk-tarball
+  ref: 41386e9cb918eed93b3f13648cbef387e371e451
+  unpetrify-ref: webkitgtk-2.4.9
