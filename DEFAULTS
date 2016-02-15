@@ -44,6 +44,9 @@ build-systems:
       elif [ ! -e ./configure ]; then autoreconf -ivf;
       fi
     - ./configure --prefix="$PREFIX"
+                  --sysconfdir=/etc
+                  --localstatedir=/var
+
     build-commands:
     - make
     install-commands:
