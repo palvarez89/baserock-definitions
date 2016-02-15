@@ -4,6 +4,11 @@ description: Mutimedia Libraries
 build-depends:
 - morph: strata/core.morph
 chunks:
+- name: opus
+  repo: upstream:opus
+  ref: 655cc54c564b84ef2827f0b2152ce3811046201e
+  unpetrify-ref: v1.1.2
+  build-system: autotools
 - name: ogg
   repo: upstream:ogg-git
   ref: 9b2ba419aecb4a1c97114545d57174593dc13111
