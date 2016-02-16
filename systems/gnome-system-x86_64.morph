@@ -35,6 +35,8 @@ strata:
   morph: strata/mesa-common.morph
 - name: multimedia-common
   morph: strata/multimedia-common.morph
+- name: multimedia-hardware-codecs-x86
+  morph: strata/multimedia-hardware-codecs-x86.morph
 - name: multimedia-gstreamer
   morph: strata/multimedia-gstreamer.morph
 - name: python2-core
