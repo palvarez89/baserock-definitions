@@ -1,8 +1,0 @@
-name: gnulib
-kind: chunk
-build-system: manual
-pre-configure-commands:
-- mkdir -p "$DESTDIR$PREFIX"/share/gnulib
-- cp -r * "$DESTDIR$PREFIX"/share/gnulib
-- mkdir -p "$DESTDIR$PREFIX"/bin
-- ln -s "$DESTDIR$PREFIX"/share/gnulib/gnulib-tool "$DESTDIR$PREFIX"/bin/gnulib-tool
