@@ -47,6 +47,8 @@ strata:
   morph: strata/multimedia-hardware-codecs-x86.morph
 - name: multimedia-gstreamer
   morph: strata/multimedia-gstreamer.morph
+- name: multimedia-gstreamer-openmax-generic
+  morph: strata/multimedia-gstreamer-openmax-generic.morph
 - name: privileges-management
   morph: strata/privileges-management.morph
 - name: python2-core
