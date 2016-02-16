@@ -1,0 +1,28 @@
+name: multimedia-hardware-codecs-x86
+kind: stratum
+description: Hardware accelerated codecs for x86
+build-depends:
+- morph: strata/multimedia-gstreamer.morph
+- morph: strata/libdrm-common.morph
+- morph: strata/wayland-generic.morph
+- morph: strata/x-common.morph
+chunks:
+- name: libva
+  repo: upstream:libva
+  ref: 304bc13e244f9d5e185a0d8a87fcf3a3eb5a8bd8
+  unpetrify-ref: libva-1.6.2
+  build-system: autotools
+- name: libva-intel-driver
+  repo: upstream:libva-intel-driver
+  ref: 683edeedfdfd769807c18ed3797223f82b7aa0cc
+  unpetrify-ref: 1.6.2
+  build-system: autotools
+  build-depends:
+  - libva
+- name: gstreamer-vaapi
+  repo: upstream:gstreamer-vaapi
+  ref: a5842bbcfae873306f52c60386ea06357a4cb9d0
+  unpetrify-ref: baserock/1.6.0
+  build-system: autotools
+  build-depends:
+  - libva
