@@ -6,7 +6,7 @@ build-depends:
 - morph: strata/python2-core.morph
 chunks:
 - name: node
+  morph: strata/nodejs/node.morph
   repo: upstream:node
   ref: cc56c62ed879ad4f93b1fdab3235c43e60f48b7e
   unpetrify-ref: v0.10.26
-  build-system: autotools

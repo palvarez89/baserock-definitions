@@ -1,0 +1,9 @@
+name: node
+kind: chunk
+build-system: manual
+configure-commands:
+- ./configure --prefix="$PREFIX"
+build-commands:
+- make
+install-commands:
+- make DESTDIR="$DESTDIR" install
