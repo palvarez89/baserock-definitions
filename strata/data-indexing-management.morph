@@ -1,0 +1,40 @@
+name: data-indexing-management
+kind: stratum
+description: Components to index data
+build-depends:
+- morph: strata/graphics-common.morph
+- morph: strata/icu-common.morph
+- morph: strata/multimedia-gstreamer.morph
+- morph: strata/vala-common.morph
+chunks:
+- name: libexif
+  repo: upstream:libexif-tarball
+  ref: 0c6a5fa0d9719a40748d8726b4543f02f70518c1
+  unpetrify-ref: libexif-0.6.21
+  build-system: autotools
+- name: libmediaart
+  morph: strata/data-indexing-management/libmediaart.morph
+  repo: upstream:gnome/libmediaart
+  ref: 52eb6498c97ce0005186946bc9162d87597abc2c
+  unpetrify-ref: baserock/1.9.0-8-g52eb649
+- name: gmime
+  morph: strata/data-indexing-management/gmime.morph
+  repo: upstream:gnome/gmime
+  ref: 496313fbe956b350c22fa705edbcfdde3d7c9e50
+  unpetrify-ref: baserock/GMIME_2_6_20-24-g496313f
+- name: totem-pl-parser
+  repo: upstream:gnome/totem-pl-parser
+  ref: 1be3144e9a6bf183a61c9596165d52bbe405b5cc
+  unpetrify-ref: baserock/V_3_10_5-16-g1be3144
+  build-system: autotools
+  build-depends:
+  - gmime
+- name: tracker
+  repo: upstream:gnome/tracker
+  ref: ad31f26e3c45dbe3365ff4aaae39269d9210f4a9
+  unpetrify-ref: 1.6.0
+  build-system: autotools
+  build-depends:
+  - libexif
+  - libmediaart
+  - totem-pl-parser

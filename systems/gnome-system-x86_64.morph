@@ -13,6 +13,8 @@ strata:
   morph: strata/NetworkManager-common.morph
 - name: core
   morph: strata/core.morph
+- name: data-indexing-management
+  morph: strata/data-indexing-management.morph
 - name: foundation
   morph: strata/foundation.morph
 - name: geolocation

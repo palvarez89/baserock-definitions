@@ -4,6 +4,7 @@ description: GNOME stratum
 build-depends:
 - morph: strata/icu-common.morph
 - morph: strata/input-common.morph
+- morph: strata/data-indexing-management.morph
 - morph: strata/vala-common.morph
 - morph: strata/geolocation.morph
 - morph: strata/gtk2.morph
@@ -390,7 +391,6 @@ chunks:
   build-depends:
   - evolution-data-server
   - telepathy-logger
-  - tracker
   - zeitgeist
 - name: libgfbgraph
   repo: upstream:gnome/libgfbgraph
@@ -511,16 +511,6 @@ chunks:
   unpetrify-ref: 0.43.0
   build-depends:
   - glade
-- name: tracker
-  repo: upstream:gnome/tracker
-  ref: ad31f26e3c45dbe3365ff4aaae39269d9210f4a9
-  unpetrify-ref: 1.6.0
-  build-system: autotools
-- name: libexif
-  repo: upstream:libexif-tarball
-  ref: 0c6a5fa0d9719a40748d8726b4543f02f70518c1
-  unpetrify-ref: libexif-0.6.21
-  build-system: autotools
 - name: nautilus
   morph: strata/gnome/nautilus.morph
   repo: upstream:nautilus
@@ -530,8 +520,6 @@ chunks:
   - vte
   - gnome-desktop
   - gsettings-desktop-schemas
-  - libexif
-  - tracker
 - name: desktop-file-utils
   morph: strata/gnome/desktop-file-utils.morph
   repo: upstream:desktop-file-utils
@@ -549,23 +537,6 @@ chunks:
   - gsettings-desktop-schemas
   - nautilus
   - yelp-tools
-- name: gmime
-  morph: strata/gnome/gmime.morph
-  repo: upstream:gnome/gmime
-  ref: 496313fbe956b350c22fa705edbcfdde3d7c9e50
-  unpetrify-ref: baserock/GMIME_2_6_20-24-g496313f
-- name: totem-pl-parser
-  repo: upstream:gnome/totem-pl-parser
-  ref: 1be3144e9a6bf183a61c9596165d52bbe405b5cc
-  unpetrify-ref: baserock/V_3_10_5-16-g1be3144
-  build-system: autotools
-  build-depends:
-  - gmime
-- name: libmediaart
-  morph: strata/gnome/libmediaart.morph
-  repo: upstream:gnome/libmediaart
-  ref: 52eb6498c97ce0005186946bc9162d87597abc2c
-  unpetrify-ref: baserock/1.9.0-8-g52eb649
 - name: gssdp
   morph: strata/gnome/gssdp.morph
   repo: upstream:gnome/gssdp
@@ -609,8 +580,6 @@ chunks:
   - gupnp
   - gupnp-av
   - gupnp-dlna
-  - libmediaart
-  - tracker
 - name: libnice
   repo: upstream:libnice
   ref: 533ff6c5a03680f300709be4dc999f45659f3a1b
@@ -676,8 +645,6 @@ chunks:
   ref: e470c0cd72231d2a86f419a584df3d635bc6b62f
   unpetrify-ref: baserock/grilo-0.2.14-17-ge470c0c
   build-system: autotools
-  build-depends:
-  - totem-pl-parser
 - name: grilo-plugins
   repo: upstream:gnome/grilo-plugins
   ref: e23b0fa5f6656d53b977693bf55174bd2ccd172d
@@ -688,11 +655,8 @@ chunks:
   - grilo
   - gupnp-av
   - libgdata
-  - libmediaart
   - liboauth
   - librest
-  - totem-pl-parser
-  - tracker
   - yelp-tools
 - name: libgtop
   repo: upstream:gnome/libgtop
@@ -744,7 +708,6 @@ chunks:
   - gnome-desktop
   - lcms2
   - libcanberra
-  - libexif
   - vte
   - yelp-tools
 - name: clutter-gst
@@ -879,7 +842,6 @@ chunks:
   - gsettings-desktop-schemas
   - iso-codes
   - libpeas
-  - totem-pl-parser
   - yelp-tools
 - name: yelp
   repo: upstream:gnome/yelp
@@ -997,7 +959,6 @@ chunks:
   - gnome-desktop
   - gsettings-desktop-schemas
   - lcms2
-  - libexif
   - libpeas
   - yelp-tools
 - name: baobab
