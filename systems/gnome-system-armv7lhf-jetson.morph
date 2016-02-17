@@ -45,8 +45,6 @@ strata:
   morph: strata/libsoup-common.morph
 - name: ruby
   morph: strata/ruby.morph
-- name: tools
-  morph: strata/tools.morph
 - name: libdrm-common
   morph: strata/libdrm-common.morph
 - name: wayland-generic
