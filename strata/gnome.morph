@@ -236,7 +236,6 @@ chunks:
   build-depends:
   - libmbim
   - libqmi
-  - polkit
 - name: geoclue
   morph: strata/gnome/geoclue.morph
   repo: upstream:geoclue
