@@ -23,7 +23,6 @@ build-depends:
 - morph: strata/secret-service.morph
 - morph: strata/spell-checking.morph
 - morph: strata/cups.morph
-- morph: strata/docutils.morph
 - morph: strata/WebKitGtk1-common.morph
 chunks:
 - name: dconf
@@ -537,56 +536,11 @@ chunks:
   - gsettings-desktop-schemas
   - nautilus
   - yelp-tools
-- name: gssdp
-  morph: strata/gnome/gssdp.morph
-  repo: upstream:gnome/gssdp
-  ref: a53a6ac85f1b70192bc75fbbd4601582d6095cfd
-  unpetrify-ref: gssdp-0.14.12
-- name: gupnp
-  repo: upstream:gnome/gupnp
-  ref: c42b9cdda466ae9fef91f6beb370f8dfdebc295c
-  unpetrify-ref: gupnp-0.20.14
-  build-system: autotools
-  build-depends:
-  - gssdp
-- name: gupnp-av
-  repo: upstream:gnome/gupnp-av
-  ref: d277511ae1f456ba804f4c9beb5d36043f5a1659
-  unpetrify-ref: gupnp-av-0.12.7
-  build-system: autotools
-  build-depends:
-  - gupnp
-- name: gupnp-igd
-  repo: upstream:gnome/gupnp-igd
-  ref: f679a8ad782eee72e2ff7a0a7598b4523ef03bb3
-  unpetrify-ref: 0.2.4
-  build-system: autotools
-  build-depends:
-  - gupnp
-- name: gupnp-dlna
-  repo: upstream:gnome/gupnp-dlna
-  ref: 1aad765f223e3338d86bc975a2b4925fca43bf58
-  unpetrify-ref: gupnp-dlna-0.10.3
-  build-system: autotools
-  build-depends:
-  - gupnp
-- name: rygel
-  repo: upstream:rygel
-  ref: 4a42aee4afda9509db1e3d259c5a2907407a7261
-  unpetrify-ref: RYGEL_0_28_2
-  build-system: autotools
-  build-depends:
-  - gssdp
-  - gupnp
-  - gupnp-av
-  - gupnp-dlna
 - name: libnice
   repo: upstream:libnice
   ref: 533ff6c5a03680f300709be4dc999f45659f3a1b
   unpetrify-ref: 0.1.13
   build-system: autotools
-  build-depends:
-  - gupnp-igd
 - name: farstream
   repo: upstream:farstream
   ref: 9247c10816835dc76269baa7c4c8996ae1a2fac3
@@ -653,7 +607,6 @@ chunks:
   build-depends:
   - gnome-online-accounts
   - grilo
-  - gupnp-av
   - libgdata
   - liboauth
   - librest
