@@ -27,8 +27,8 @@ chunks:
 - name: armv7lhf-cross-glibc
   morph: strata/armv7lhf-cross-toolchain/armv7lhf-cross-glibc.morph
   repo: upstream:glibc
-  ref: 4e42b5b8f89f0e288e68be7ad70f9525aebc2cff
-  unpetrify-ref: baserock/glibc-2.21
+  ref: b995d95a5943785be3ab862b2d3276f3b4a22481
+  unpetrify-ref: release/2.22/master
   build-depends:
   - armv7lhf-cross-binutils
   - armv7lhf-cross-gcc-nolibc

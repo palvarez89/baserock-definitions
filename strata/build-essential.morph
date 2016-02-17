@@ -80,8 +80,8 @@ chunks:
 - name: stage2-glibc
   morph: strata/build-essential/stage2-glibc.morph
   repo: upstream:glibc
-  ref: 4e42b5b8f89f0e288e68be7ad70f9525aebc2cff
-  unpetrify-ref: glibc-2.21
+  ref: b995d95a5943785be3ab862b2d3276f3b4a22481
+  unpetrify-ref: release/2.22/master
   build-depends:
   - stage1-binutils
   - stage1-gcc
@@ -246,8 +246,8 @@ chunks:
 - name: glibc
   morph: strata/build-essential/glibc.morph
   repo: upstream:glibc
-  ref: 4e42b5b8f89f0e288e68be7ad70f9525aebc2cff
-  unpetrify-ref: glibc-2.21
+  ref: b995d95a5943785be3ab862b2d3276f3b4a22481
+  unpetrify-ref: release/2.22/master
   build-depends:
   - stage2-binutils
   - stage2-busybox
