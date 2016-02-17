@@ -62,6 +62,15 @@ definitions:
         # artifact.
         patternProperties:
           ^.*$: { type: string }
+      submodules:
+        $ref: "#/definitions/submodule-reference"
+
+  submodule-reference:
+    type: object
+    properties:
+      url: { type: string }
+      submodules:
+        $ref: "#/definitions/submodule-reference"
 
   # This doesn't need any special treatment in the Baserock data model because
   # it's a link to another stratum definition, without any extra info.
