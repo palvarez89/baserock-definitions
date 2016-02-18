@@ -77,6 +77,8 @@ strata:
   morph: strata/secret-service.morph
 - name: spell-checking
   morph: strata/spell-checking.morph
+- name: storage-management
+  morph: strata/storage-management.morph
 - name: cups
   morph: strata/cups.morph
 - name: WebKitGtk1-common
