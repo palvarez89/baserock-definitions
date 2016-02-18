@@ -1,0 +1,26 @@
+name: storage-management
+kind: stratum
+description: libraries/services that provides access to storage
+build-depends:
+- morph: strata/glib-common.morph
+- morph: strata/privileges-management.morph
+chunks:
+- name: libatasmart
+  morph: strata/storage-management/libatasmart.morph
+  repo: upstream:libatasmart
+  ref: de6258940960443038b4c1651dfda3620075e870
+  unpetrify-ref: master
+- name: udisks
+  morph: strata/storage-management/udisks.morph
+  repo: upstream:udisks
+  ref: 410cab8f3d749ad2660cda3ba38b6aece42bf10f
+  unpetrify-ref: master
+  build-depends:
+  - libatasmart
+- name: gvfs
+  morph: strata/storage-management/gvfs.morph
+  repo: upstream:gvfs
+  ref: d037b5fd56cae878ed7bb5269a40e4bd046551d7
+  unpetrify-ref: master
+  build-depends:
+  - udisks

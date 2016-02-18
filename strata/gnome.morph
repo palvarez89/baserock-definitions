@@ -182,18 +182,6 @@ chunks:
   ref: 0c5eb813279c67607e17dfd99087358d34c6c8f5
   unpetrify-ref: master
   build-system: autotools
-- name: libatasmart
-  morph: strata/gnome/libatasmart.morph
-  repo: upstream:libatasmart
-  ref: de6258940960443038b4c1651dfda3620075e870
-  unpetrify-ref: master
-- name: udisks
-  morph: strata/gnome/udisks.morph
-  repo: upstream:udisks
-  ref: 410cab8f3d749ad2660cda3ba38b6aece42bf10f
-  unpetrify-ref: master
-  build-depends:
-  - libatasmart
 - name: colord
   morph: strata/gnome/colord.morph
   repo: upstream:colord
@@ -436,13 +424,6 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - yelp-tools
-- name: gvfs
-  morph: strata/gnome/gvfs.morph
-  repo: upstream:gvfs
-  ref: d037b5fd56cae878ed7bb5269a40e4bd046551d7
-  unpetrify-ref: master
-  build-depends:
-  - udisks
 - name: accountsservice
   morph: strata/gnome/accountsservice.morph
   repo: upstream:accountsservice
