@@ -39,7 +39,7 @@ strata:
   morph: strata/multimedia-hardware-codecs-x86.morph
 - name: multimedia-gstreamer
   morph: strata/multimedia-gstreamer.morph
-- name: strata/privileges-management
+- name: privileges-management
   morph: strata/privileges-management.morph
 - name: python2-core
   morph: strata/python2-core.morph
