@@ -244,7 +244,7 @@
 :maxJobs a owl:FunctionalProperty ;
   rdfs:domain :Chunk ;
   rdfs:range xsd:integer ;
-  rdfs:comment "Number of parallel jobs that can be run for this chunk. Only useful if set to 1, to mark components which have Makefiles that do not work with `make -j N`."
+  rdfs:comment "Number of parallel jobs that can be run for this chunk. Only useful if set to 1, to mark components which have Makefiles that do not work with `make -j N`.".
 
 :CommandSequence a owl:Class ;
   rdfs:subClassOf rdf:Seq ;
