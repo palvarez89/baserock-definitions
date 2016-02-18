@@ -1,0 +1,58 @@
+name: python3-core
+kind: stratum
+description: |
+  Some "core" Python packages, for Python 3.
+
+  The CPython interpreter for Python 3 is in core.morph.
+
+build-depends:
+- morph: strata/core.morph
+
+chunks:
+- name: mako
+  repo: upstream:python-packages/mako.git
+  ref: 285bc818a50ccc0f9549630f7c4f4c250585c3e7
+  unpetrify-ref: rel_1_0_0
+  build-system: python3-distutils
+
+- name: pbr
+  repo: upstream:pbr
+  ref: aef4f7ef4faec987d553d1ca40b55951235af0b1
+  unpetrify-ref: 0.10.7
+  build-system: python3-distutils
+
+- name: python-requests
+  repo: upstream:python-requests
+  ref: b83131779c701720a9ae9efae78996277d416269
+  unpetrify-ref: v2.5.1
+  build-system: python3-distutils
+
+- name: six
+  repo: upstream:six
+  ref: 8cfbff6b764af86d825086fa1637aa009e90d75a
+  unpetrify-ref: 1.9.0
+  build-system: python3-distutils
+
+- name: pyyaml
+  morph: strata/python3-core/pyyaml.morph
+  repo: upstream:pyyaml
+  ref: d9fbcceaed39d955f6871b07c61dc42f824285c1
+  unpetrify-ref: baserock/morph
+
+- name: python-lxml
+  repo: upstream:python-lxml
+  ref: 14505bc62f5f1fc9fb0ff007955f3e67ab4562bb
+  unpetrify-ref: lxml-3.4.0
+  build-system: python3-distutils
+
+- name: python-markdown
+  repo: upstream:python-markdown
+  ref: f0c5b71acbc02af60a33d67c59558bb513b25e74
+  unpetrify-ref: 2.5.1-final
+  build-system: python3-distutils
+
+- name: jsonschema
+  repo: upstream:jsonschema
+  ref: 35b60f390098d3306c03eee27ceec8cf8a493579
+  unpetrify-ref: v2.3.0
+  build-system: python3-distutils

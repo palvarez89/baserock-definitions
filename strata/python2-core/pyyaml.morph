@@ -1,6 +1,0 @@
-name: pyyaml
-kind: chunk
-build-commands:
-- python setup.py --without-libyaml build
-install-commands:
-- python setup.py --without-libyaml install --prefix="$PREFIX" --root "$DESTDIR"

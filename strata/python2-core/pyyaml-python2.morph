@@ -1,0 +1,6 @@
+name: pyyaml-python2
+kind: chunk
+build-commands:
+- python2 setup.py --without-libyaml build
+install-commands:
+- python2 setup.py --without-libyaml install --prefix="$PREFIX" --root "$DESTDIR"

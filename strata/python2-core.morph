@@ -1,59 +1,69 @@
 name: python2-core
 kind: stratum
-description: Core python 2 packages
+description: |
+  Some "core" Python 2 packages, including the CPython interpreter itself.
+
 build-depends:
 - morph: strata/core.morph
+
 chunks:
 - name: python2
   morph: strata/python2-core/python2.morph
   repo: upstream:cpython
   ref: 57af3f22d11600ca98c0c9073d0b3b57d43f7c4b
   unpetrify-ref: v2.7.10
-- name: python-setuptools
+
+- name: python2-setuptools
   repo: upstream:python-setuptools-bitbucket
   ref: 0aa6a4de5931d02876428388678802db2371fd37
   unpetrify-ref: baserock/master
   build-system: python-distutils
   build-depends:
   - python2
-- name: mako
+
+- name: mako-python2
   repo: upstream:python-packages/mako.git
   ref: 285bc818a50ccc0f9549630f7c4f4c250585c3e7
   unpetrify-ref: rel_1_0_0
   build-system: python-distutils
   build-depends:
   - python2
-  - python-setuptools
-- name: pbr
+  - python2-setuptools
+
+- name: pbr-python2
   repo: upstream:pbr
   ref: aef4f7ef4faec987d553d1ca40b55951235af0b1
   unpetrify-ref: 0.10.7
   build-system: python-distutils
   build-depends:
   - python2
-  - python-setuptools
-- name: python-requests
+  - python2-setuptools
+
+- name: python2-requests
   repo: upstream:python-requests
   ref: b83131779c701720a9ae9efae78996277d416269
   unpetrify-ref: v2.5.1
   build-system: python-distutils
   build-depends:
   - python2
-- name: six
+
+- name: six-python2
   repo: upstream:six
   ref: 8cfbff6b764af86d825086fa1637aa009e90d75a
   unpetrify-ref: 1.9.0
   build-system: python-distutils
   build-depends:
   - python2
-- name: pyyaml
-  morph: strata/python2-core/pyyaml.morph
+
+- name: pyyaml-python2
+  morph: strata/python2-core/pyyaml-python2.morph
   repo: upstream:pyyaml
   ref: d9fbcceaed39d955f6871b07c61dc42f824285c1
   unpetrify-ref: baserock/morph
   build-depends:
   - python2
-  - python-setuptools
+  - python2-setuptools
+
 - name: cython2
   repo: upstream:cython
   ref: 4dd8e762fa51d01775506fbbc102c45dbcea065d
@@ -61,7 +71,8 @@ chunks:
   build-system: python-distutils
   build-depends:
   - python2
-- name: python-lxml
+
+- name: python2-lxml
   repo: upstream:python-lxml
   ref: 14505bc62f5f1fc9fb0ff007955f3e67ab4562bb
   unpetrify-ref: lxml-3.4.0
@@ -69,13 +80,15 @@ chunks:
   build-depends:
   - python2
   - cython2
-- name: python-markdown
+
+- name: python2-markdown
   repo: upstream:python-markdown
   ref: f0c5b71acbc02af60a33d67c59558bb513b25e74
   unpetrify-ref: 2.5.1-final
   build-system: python-distutils
   build-depends:
   - python2
+
 - name: libxml2-python2
   repo: upstream:libxml2
   ref: f4e5a6994ed230dfa3fb5b5c3fd94c4993ef1ba7
@@ -83,11 +96,12 @@ chunks:
   build-system: autotools
   build-depends:
   - python2
-- name: jsonschema
+
+- name: jsonschema-python2
   repo: upstream:jsonschema
   ref: 35b60f390098d3306c03eee27ceec8cf8a493579
   unpetrify-ref: v2.3.0
   build-system: python-distutils
   build-depends:
   - python2
-  - python-setuptools
+  - python2-setuptools
