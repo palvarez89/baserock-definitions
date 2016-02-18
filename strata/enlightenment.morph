@@ -4,7 +4,7 @@ description: Enlightenment Desktop and Window Manager
 build-depends:
 - morph: strata/tools.morph
 - morph: strata/x-generic.morph
-- morph: strata/lua.morph
+- morph: strata/lua51.morph
 - morph: strata/audio-bluetooth.morph
 - morph: strata/multimedia-gstreamer.morph
 - morph: strata/connman-common.morph

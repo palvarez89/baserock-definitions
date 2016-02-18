@@ -30,8 +30,8 @@ strata:
   morph: strata/qt4-tools.morph
 - name: qt4-sdk
   morph: strata/qt4-sdk.morph
-- name: lua
-  morph: strata/lua.morph
+- name: lua51
+  morph: strata/lua51.morph
 - name: connectivity
   morph: strata/connectivity.morph
 - name: connman-common

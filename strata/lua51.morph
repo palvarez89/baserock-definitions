@@ -1,16 +1,16 @@
-name: lua
+name: lua51
 kind: stratum
 description: Interpreter for the lua scripting language.
 build-depends:
 - morph: strata/tools.morph
 chunks:
-- name: lua
-  morph: strata/lua/lua.morph
+- name: lua51
+  morph: strata/lua51/lua51.morph
   repo: upstream:lua
   ref: 948063437e0350d9ef1649ec3a76d0c24a5c8642
   unpetrify-ref: baserock/5.1-morph
 - name: luajit2
-  morph: strata/lua/luajit2.morph
+  morph: strata/lua51/luajit2.morph
   repo: upstream:luajit2
   ref: 880ca300e8fb7b432b9d25ed377db2102e4cb63d
   unpetrify-ref: v2.0.3

@@ -32,8 +32,8 @@ strata:
   morph: strata/qt5-tools-qtwebkit.morph
 - name: qt5-sdk
   morph: strata/qt5-sdk.morph
-- name: lua
-  morph: strata/lua.morph
+- name: lua51
+  morph: strata/lua51.morph
 - name: connectivity
   morph: strata/connectivity.morph
 - name: connman-common
