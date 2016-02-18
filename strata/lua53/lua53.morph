@@ -1,0 +1,9 @@
+name: lua53
+kind: chunk
+build-system: manual
+build-commands:
+- make linux
+install-commands:
+- make INSTALL_TOP="$DESTDIR/$PREFIX" install
+- mkdir -p "$DESTDIR/$PREFIX/lib/pkgconfig/"
+- cp lua.pc "$DESTDIR/$PREFIX/lib/pkgconfig/"

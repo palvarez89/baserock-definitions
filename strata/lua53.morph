@@ -1,0 +1,11 @@
+name: lua53
+kind: stratum
+description: Interpreter for the lua 5.3 scripting language.
+build-depends:
+- morph: strata/core.morph
+chunks:
+- name: lua53
+  morph: strata/lua53/lua53.morph
+  repo: upstream:lua-github
+  ref: a7d799273a401040945826dbe1bd9edb8dab0662
+  unpetrify-ref: baserock/5.3.2
