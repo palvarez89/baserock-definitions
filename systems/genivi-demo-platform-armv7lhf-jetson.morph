@@ -27,6 +27,8 @@ strata:
   morph: strata/multimedia-common.morph
 - name: multimedia-gstreamer
   morph: strata/multimedia-gstreamer.morph
+- name: navigation
+  morph: strata/navigation.morph
 - name: genivi
   morph: strata/genivi.morph
 - name: wayland-generic

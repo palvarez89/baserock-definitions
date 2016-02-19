@@ -1,0 +1,11 @@
+name: navigation
+kind: stratum
+description: Stratum that provides navigation libraries / services
+build-depends:
+- morph: strata/core.morph
+chunks:
+- name: navit
+  morph: strata/navigation/navit.morph
+  repo: upstream:navit-svn
+  ref: 358812af2c27c4abe324beb205e6d156b96fb1ea
+  unpetrify-ref: master

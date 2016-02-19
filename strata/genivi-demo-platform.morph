@@ -25,11 +25,6 @@ chunks:
   repo: upstream:audiomanager
   ref: bb65a4d0a18667baa64e5ba40104dc2cda06b299
   unpetrify-ref: baserock/genivi/genivi-demo-platform
-- name: navit
-  morph: strata/genivi-demo-platform/navit.morph
-  repo: upstream:navit-svn
-  ref: 358812af2c27c4abe324beb205e6d156b96fb1ea
-  unpetrify-ref: master
 - name: audiomanager@gdp
   morph: strata/genivi-demo-platform/audiomanager@gdp.morph
   repo: upstream:audiomanager
