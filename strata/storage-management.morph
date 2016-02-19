@@ -19,10 +19,22 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - libatasmart
+- name: libgphoto2
+  repo: upstream:libgphoto2
+  ref: 3745402108932b457d73b102cbf8b2da8d383a18
+  unpetrify-ref: libgphoto2-2_5_9-release
+  build-system: autotools
+- name: libmtp
+  repo: upstream:libmtp
+  ref: 83820ced69dca750b2edd6ac6d5640f246022a10
+  unpetrify-ref: libmtp-1-1-11
+  build-system: autotools
 - name: gvfs
   morph: strata/storage-management/gvfs.morph
   repo: upstream:gvfs
   ref: d037b5fd56cae878ed7bb5269a40e4bd046551d7
   unpetrify-ref: master
   build-depends:
+  - libgphoto2
+  - libmtp
   - udisks
