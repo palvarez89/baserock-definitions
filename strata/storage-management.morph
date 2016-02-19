@@ -4,6 +4,7 @@ description: libraries/services that provides access to storage
 build-depends:
 - morph: strata/glib-common.morph
 - morph: strata/privileges-management.morph
+- morph: strata/secret-service.morph
 chunks:
 - name: libatasmart
   morph: strata/storage-management/libatasmart.morph
