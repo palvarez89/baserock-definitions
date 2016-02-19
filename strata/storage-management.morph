@@ -2,6 +2,7 @@ name: storage-management
 kind: stratum
 description: libraries/services that provides access to storage
 build-depends:
+- morph: strata/device-management.morph
 - morph: strata/glib-common.morph
 - morph: strata/privileges-management.morph
 - morph: strata/secret-service.morph

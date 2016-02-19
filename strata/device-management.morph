@@ -1,0 +1,12 @@
+name: device-management
+kind: stratum
+description: libraries that provides access to devices
+build-depends:
+- morph: strata/foundation.morph
+- morph: strata/glib-common.morph
+chunks:
+- name: libgudev
+  repo: upstream:libgudev
+  ref: d722339aae9065a379acc0c421e8bbab866d5a38
+  unpetrify-ref: 230
+  build-system: autotools

@@ -3,6 +3,7 @@ kind: stratum
 build-depends:
 - morph: strata/audio-bluetooth.morph
 - morph: strata/connectivity.morph
+- morph: strata/device-management.morph
 - morph: strata/network-security.morph
 - morph: strata/privileges-management.morph
 chunks:
@@ -16,18 +17,12 @@ chunks:
   ref: 7628b745a813aac53586b640da056a975f1c443e
   unpetrify-ref: readline-6.3
   build-system: autotools
-- name: libgudev
-  repo: upstream:libgudev
-  ref: d722339aae9065a379acc0c421e8bbab866d5a38
-  unpetrify-ref: 230
-  build-system: autotools
 - name: NetworkManager
   morph: strata/NetworkManager-common/NetworkManager.morph
   repo: upstream:NetworkManager
   ref: c41be469ab107ea2b4813bf28a1618572b78aa6a
   unpetrify-ref: baserock/1.1.0-dev-1952-gc41be46
   build-depends:
-  - libgudev
   - libndp
   - readline6
 - name: libmbim
@@ -35,8 +30,6 @@ chunks:
   ref: 6cf74ebfae1dccf807bb34d88f2cd024d4b14da7
   unpetrify-ref: master
   build-system: autotools
-  build-depends:
-  - libgudev
 - name: libqmi
   repo: upstream:libqmi
   ref: 97aaa6855d071f64ec2e28df1b9f816da02a3e07
