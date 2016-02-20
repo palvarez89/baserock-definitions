@@ -1,0 +1,8 @@
+name: libmtp
+kind: chunk
+build-system: autotools
+configure-commands:
+# autogen.sh asks user about autoupdate config.sub and config.guess
+- touch config.rpath
+- autoreconf -if
+- ./configure --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var

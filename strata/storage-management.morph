@@ -25,10 +25,10 @@ chunks:
   unpetrify-ref: libgphoto2-2_5_9-release
   build-system: autotools
 - name: libmtp
+  morph: strata/storage-management/libmtp.morph
   repo: upstream:libmtp
   ref: 83820ced69dca750b2edd6ac6d5640f246022a10
   unpetrify-ref: libmtp-1-1-11
-  build-system: autotools
 - name: gvfs
   morph: strata/storage-management/gvfs.morph
   repo: upstream:gvfs
