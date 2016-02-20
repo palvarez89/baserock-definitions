@@ -102,6 +102,9 @@ def check_repo_if_needed(name, repo, ref, repos_dir, licenses_dir):
     if os.path.isdir(clone_path):
         sys.stderr.write("Updating repo '%s' ...\n" % repo_name)
         with open(os.devnull, 'w') as devnull:
+            subprocess.check_call([
+                "git", "remote", "update", "origin", "--prune"],
+                stderr=devnull, stdout=devnull, cwd=clone_path)
             subprocess.check_call(["git", "checkout", ref], stderr=devnull,
                 stdout=devnull, cwd=clone_path)
     else:
