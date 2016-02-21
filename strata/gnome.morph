@@ -503,7 +503,7 @@ chunks:
   morph: strata/gnome/desktop-file-utils.morph
   repo: upstream:desktop-file-utils
   ref: 4944725bddcf5821d53d7d648fc53347ce12cc03
-  unpetrify-ref: 0.22
+  unpetrify-ref: "0.22"
 - name: gnome-terminal
   morph: strata/gnome/gnome-terminal.morph
   repo: upstream:gnome/gnome-terminal
@@ -724,7 +724,7 @@ chunks:
   build-system: autotools
   repo: upstream:sound-theme-freedesktop
   ref: 9d2ac65a2f88263f0eec8b777ef3bdc023b93c25
-  unpetrify-ref: 0.8
+  unpetrify-ref: "0.8"
 - name: libwnck
   morph: strata/gnome/libwnck.morph
   repo: upstream:libwnck

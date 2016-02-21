@@ -13,7 +13,7 @@ chunks:
   morph: strata/openstack-services/erlang-sd_notify.morph
   repo: upstream:erlang-modules/erlang-sd_notify
   ref: 99f4689c2c18570680329f822591f95f9341ca10
-  unpetrify-ref: 0.1
+  unpetrify-ref: "0.1"
 - name: rabbitmq-codegen
   morph: strata/openstack-services/rabbitmq-codegen.morph
   ref: 4dc5ccde2a0b3d638e5754b00abf94196fe9ca32
@@ -189,7 +189,7 @@ chunks:
 - name: repoze-lru
   repo: upstream:python-packages/repoze-lru
   ref: 29c8281dee7fe8dae8c66c7c40ce7c058ec2ab0f
-  unpetrify-ref: 0.6
+  unpetrify-ref: "0.6"
   build-system: python-distutils
 - name: routes
   repo: upstream:python-packages/routes
@@ -206,7 +206,7 @@ chunks:
 - name: tempita
   repo: upstream:python-packages/tempita
   ref: b2b67795a009e9f825cbd855d766b78a00273f10
-  unpetrify-ref: 0.5
+  unpetrify-ref: "0.5"
   build-system: python-distutils
 - name: numpy
   repo: upstream:python-packages/numpy.git
@@ -245,7 +245,7 @@ chunks:
 - name: python-pexpect
   repo: upstream:python-packages/pexpect
   ref: 671417beb41c21f772687c565196fdde444b053b
-  unpetrify-ref: 3.3
+  unpetrify-ref: "3.3"
   build-system: python-distutils
 - name: ply
   repo: upstream:python-packages/ply.git
@@ -355,7 +355,7 @@ chunks:
 - name: aioeventlet
   repo: upstream:python-packages/aioeventlet
   ref: 3cac0d7740592a380a7dadb2ddcdda000cae2bda
-  unpetrify-ref: 0.4
+  unpetrify-ref: "0.4"
   build-system: python-distutils
   build-depends:
   - trollius
@@ -409,7 +409,7 @@ chunks:
 - name: happybase
   repo: upstream:python-packages/happybase
   ref: 90a4b7ef741f0ecfe5145693f64c6f7180b9ba3d
-  unpetrify-ref: 0.8
+  unpetrify-ref: "0.8"
   build-system: python-distutils
   build-depends:
   - thrift
@@ -713,7 +713,7 @@ chunks:
 - name: pint
   repo: upstream:python-packages/pint
   ref: e7e7de5ca2e1c19963be8a918369fb19186f9a73
-  unpetrify-ref: 0.6
+  unpetrify-ref: "0.6"
   build-system: python-distutils
 - name: horizon
   morph: strata/openstack-services/horizon.morph

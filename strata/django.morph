@@ -13,12 +13,12 @@ chunks:
 - name: django-appconf
   repo: upstream:python-packages/django-appconf
   ref: 0c9835f95b44db1b3eb1a9409f95a3ecd63b8ff5
-  unpetrify-ref: 0.6
+  unpetrify-ref: "0.6"
   build-system: python-distutils
 - name: django-compressor
   repo: upstream:python-packages/django-compressor
   ref: e747dce3d7e04fe595bbfed54f9554c2725eb757
-  unpetrify-ref: 1.4
+  unpetrify-ref: "1.4"
   build-system: python-distutils
   build-depends:
   - django-appconf

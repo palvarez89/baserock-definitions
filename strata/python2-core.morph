@@ -67,7 +67,7 @@ chunks:
 - name: cython2
   repo: upstream:cython
   ref: 4dd8e762fa51d01775506fbbc102c45dbcea065d
-  unpetrify-ref: 0.22
+  unpetrify-ref: "0.22"
   build-system: python-distutils
   build-depends:
   - python2

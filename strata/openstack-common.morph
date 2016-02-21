@@ -80,7 +80,7 @@ chunks:
 - name: pyopenssl
   repo: upstream:python-packages/pyopenssl
   ref: 0146d447e63a737b4f05a1164d5950eff68543e7
-  unpetrify-ref: 0.14
+  unpetrify-ref: "0.14"
   build-system: python-distutils
 - name: oslo-i18n
   repo: upstream:openstack/oslo-i18n

@@ -25,7 +25,7 @@ chunks:
 - name: markupsafe
   repo: upstream:markupsafe
   ref: feb1d70c16df62f60dcb521d127fdad8819fc036
-  unpetrify-ref: 0.23
+  unpetrify-ref: "0.23"
   build-system: python-distutils
 - name: jinja2
   repo: upstream:jinja2
@@ -64,12 +64,12 @@ chunks:
 - name: kazoo
   repo: upstream:python-packages/kazoo.git
   ref: 93a718ea4c20df797766742c3d74de281613c651
-  unpetrify-ref: 2.0
+  unpetrify-ref: "2.0"
   build-system: python-distutils
 - name: webob
   repo: upstream:python-packages/webob
   ref: ae0ac90f22f9e1ff351e445f92330efd89195f51
-  unpetrify-ref: 1.4
+  unpetrify-ref: "1.4"
   build-system: python-distutils
 - name: python-decorator
   repo: upstream:python-packages/python-decorator

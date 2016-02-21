@@ -7,7 +7,7 @@ chunks:
 - name: bash-completion
   repo: upstream:bash-completion
   ref: 3085c7e12179817a02a611016606391295c69942
-  unpetrify-ref: 2.1
+  unpetrify-ref: "2.1"
   build-system: autotools
 - name: groff
   morph: strata/foundation/groff.morph

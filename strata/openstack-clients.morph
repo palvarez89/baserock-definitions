@@ -75,7 +75,7 @@ chunks:
   morph: strata/openstack-clients/cliff-tablib.morph
   repo: upstream:python-packages/cliff-tablib
   ref: a83bf47d7dfbb690dd53e189c532f0859898db04
-  unpetrify-ref: 1.1
+  unpetrify-ref: "1.1"
 - name: python-neutronclient
   repo: upstream:openstack/python-neutronclient
   ref: aa1215a5ad063b299d32ef319eb63d5210249a9b

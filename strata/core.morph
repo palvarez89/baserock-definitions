@@ -384,7 +384,7 @@ chunks:
 - name: cython
   repo: upstream:cython
   ref: 4dd8e762fa51d01775506fbbc102c45dbcea065d
-  unpetrify-ref: 0.22
+  unpetrify-ref: "0.22"
   build-system: python3-distutils
   build-depends:
   - python3
