@@ -40,12 +40,16 @@ definitions:
   system-deployment:
     type: object
 
-    required: [ 'type', 'location' ]
+    oneOf: [ {required: [ 'type', 'location' ]},
+             {required: [ 'upgrade-type', 'upgrade-location' ]} ]
+
     additionalProperties: true
 
     properties:
       type: { type: string }
       location: { type: string }
+      upgrade-type: { type: string }
+      upgrade-location: { type: string }
 
 
 # Corresponds to Cluster in Baserock data model.
