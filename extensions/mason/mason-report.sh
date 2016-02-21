@@ -269,7 +269,7 @@ if [ "$RESULT" = skip ]; then
 fi
 
 DURATION=$(( $(date +%s) - $(date --date="$START_TIME" +%s) ))
-SHA1="$(cd "ws/$DEFINITIONS_REF/$UPSTREAM_TROVE_ADDRESS/baserock/baserock/definitions" && git rev-parse HEAD)"
+SHA1="$(cd "/ws/mason-definitions-$DEFINITIONS_REF" && git rev-parse HEAD)"
 BUILD_LOG="log/${SHA1}--${START_TIME}.log"
 
 update_report "$START_TIME" \
