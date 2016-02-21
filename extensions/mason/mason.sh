@@ -11,7 +11,9 @@ set -x
 # Load our deployment config
 . /etc/mason.conf
 
-definitions_repo=mason-definitions-"$DEFINITIONS_REF"
+mkdir -p /ws
+
+definitions_repo=/ws/mason-definitions-"$DEFINITIONS_REF"
 if [ ! -e "$definitions_repo" ]; then
     git clone -b "$DEFINITIONS_REF" git://"$UPSTREAM_TROVE_ADDRESS"/baserock/baserock/definitions "$definitions_repo"
     cd "$definitions_repo"
