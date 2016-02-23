@@ -1,0 +1,11 @@
+name: multimedia-gstreamer-openmax-generic
+kind: stratum
+description: GStreamer OpenMAX IL wrapper plugin
+build-depends:
+- morph: strata/multimedia-gstreamer.morph
+chunks:
+- name: gst-omx
+  morph: strata/multimedia-gstreamer-openmax-generic/gst-omx.morph
+  repo: upstream:gst-omx
+  ref: baserock/1.2.0
+  unpetrify-ref: baserock/1.2.0
