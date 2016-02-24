@@ -293,5 +293,5 @@ mv "$logfile" "$SERVER_PATH/$BUILD_LOG"
 # Cleanup
 
 mkdir -p /srv/distbuild/remove
-mv /srv/distbuild/!(remove) /srv/distbuild/remove
-rm -r /srv/distbuild/remove
+find /srv/distbuild/ -not \( -name "remove" -o -name "trees.cache.pickle" \) -mindepth 1 -maxdepth 1 -exec  mv '{}' /srv/distbuild/remove \;
+find /srv/distbuild/remove -delete
