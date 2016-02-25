@@ -1,0 +1,6 @@
+name: elixir
+kind: chunk
+build-commands:
+- make clean
+install-commands:
+- make install

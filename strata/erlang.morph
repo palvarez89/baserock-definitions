@@ -7,8 +7,8 @@ chunks:
 - name: erlang
   morph: strata/erlang/erlang.morph
   repo: upstream:erlang
-  ref: 9417f044ee3c291c2ea343c203aebdcc40597226
-  unpetrify-ref: OTP-17.3.4
+  ref: d646221c59fbf57d5beac913248b46f5dbebfbe7 
+  unpetrify-ref: OTP-18.2.4
 - name: rebar
   morph: strata/erlang/rebar.morph
   repo: upstream:erlang-modules/rebar

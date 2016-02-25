@@ -1,0 +1,11 @@
+name: elixir
+kind: stratum
+description: stratum for elixir
+build-depends:
+- morph: strata/erlang.morph
+chunks:
+- name: elixir
+  morph: strata/elixir/elixir.morph
+  repo: upstream:elixir
+  ref: 737ac62926db7a692e2fe67c27b696cfd0866674  
+  unpetrify-ref: v1.2.3
