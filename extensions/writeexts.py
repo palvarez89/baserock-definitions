@@ -278,7 +278,7 @@ class WriteExtension(Extension):
             self.create_partitioned_system(temp_root, location)
         else:
             self.format_btrfs(location)
-            self.create_system(temp_root, location)
+            self.create_unpartitioned_system(temp_root, location)
 
     @contextlib.contextmanager
     def created_disk_image(self, location):
@@ -299,7 +299,13 @@ class WriteExtension(Extension):
             sys.stderr.write('Error creating disk image')
             raise
 
-    def create_system(self, temp_root, raw_disk):
+    def create_unpartitioned_system(self, temp_root, raw_disk):
+        '''Deploy a bootable Baserock system within a single Btrfs filesystem.
+
+        Called if USE_PARTITIONING=no (the default) is set in the deployment
+        options.
+
+        '''
         with self.mount(raw_disk) as mp:
             try:
                 self.create_versioned_layout(mp, version_label='factory')
@@ -465,6 +471,13 @@ class WriteExtension(Extension):
     def create_btrfs_system_rootfs(self, temp_root, mountpoint, version_label,
                                    rootfs_uuid, device=None):
         '''Separate base OS versions from state using subvolumes.
+
+        The 'device' parameter should be a pyfdisk.Device instance,
+        as returned by partitioning.do_partitioning(), that describes the
+        partition layout of the target device. This is used to set up
+        mountpoints in the root partition for the other partitions.
+        If no 'device' instance is passed, no mountpoints are set up in the
+        rootfs.
 
         '''
         version_root = os.path.join(mountpoint, 'systems', version_label)
@@ -942,8 +955,11 @@ class WriteExtension(Extension):
             raise
 
     def create_partitioned_system(self, temp_root, location):
-        '''Create a Baserock system in a partitioned disk image or device'''
+        '''Deploy a bootable Baserock system with a custom partition layout.
 
+        Called if USE_PARTITIONING=yes is set in the deployment options.
+
+        '''
         part_spec = os.environ.get('PARTITION_FILE', 'partitioning/default')
 
         disk_size = self.get_disk_size()
