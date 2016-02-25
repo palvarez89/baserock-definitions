@@ -15,19 +15,19 @@
 
 import contextlib
 import errno
-import fcntl
 import logging
 import os
-import partitioning
-import pyfdisk
 import re
-import select
 import shutil
 import stat
 import subprocess
 import sys
 import time
 import tempfile
+
+import partitioning
+import pyfdisk
+import writeexts
 
 
 if sys.version_info >= (3, 3, 0):
@@ -316,7 +316,7 @@ class WriteExtension(Extension):
                     self.create_bootloader_config(
                         temp_root, mp, version_label='factory',
                         rootfs_uuid=self.get_uuid(raw_disk))
-            except BaseException as e:
+            except BaseException:
                 sys.stderr.write('Error creating Btrfs system layout')
                 raise
 
@@ -430,7 +430,7 @@ class WriteExtension(Extension):
             else:
                 subprocess.check_call(['mount', '-o', 'loop',
                                        location, mount_point])
-        except BaseException as e:
+        except BaseException:
             sys.stderr.write('Error mounting filesystem')
             os.rmdir(mount_point)
             raise
@@ -503,7 +503,6 @@ class WriteExtension(Extension):
         '''
         initramfs = self.find_initramfs(temp_root)
         version_root = os.path.join(mountpoint, 'systems', version_label)
-        system_dir = os.path.join(version_root, 'orig')
 
         self.install_kernel(version_root, temp_root)
         if self.get_dtb_path() != '':
