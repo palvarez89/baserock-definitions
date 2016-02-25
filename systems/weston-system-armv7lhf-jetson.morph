@@ -10,6 +10,8 @@ strata:
   morph: strata/core.morph
 - name: coreutils-common
   morph: strata/coreutils-common.morph
+- name: device-management
+  morph: strata/device-management.morph
 - name: foundation
   morph: strata/foundation.morph
 - name: bsp-jetson

@@ -19,6 +19,8 @@ strata:
   morph: strata/connectivity.morph
 - name: connman-common
   morph: strata/connman-common.morph
+- name: device-management
+  morph: strata/device-management.morph
 - name: audio-bluetooth
   morph: strata/audio-bluetooth.morph
 - name: libdrm-common

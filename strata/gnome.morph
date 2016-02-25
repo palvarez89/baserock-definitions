@@ -596,11 +596,6 @@ chunks:
   ref: ac2aef0f47fd998555abf18003f4c11ffecbf542
   unpetrify-ref: 2.32.0
   build-system: autotools
-- name: libwacom
-  repo: upstream:linuxwacom/libwacom
-  ref: c707d0f98c79260cb72b5d2bdded50b4e816e350
-  unpetrify-ref: libwacom-0.15
-  build-system: autotools
 - name: gnome-bluetooth
   repo: upstream:gnome/gnome-bluetooth
   ref: eb2558d45518f7c23c20fa7b13639f013810494e
@@ -694,7 +689,6 @@ chunks:
   - libcanberra
   - libgtop
   - libpwquality
-  - libwacom
   - network-manager-applet
 - name: gnome-initial-setup
   morph: strata/gnome/gnome-initial-setup.morph

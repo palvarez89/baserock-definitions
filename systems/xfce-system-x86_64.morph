@@ -9,6 +9,8 @@ strata:
   morph: strata/core.morph
 - name: coreutils-common
   morph: strata/coreutils-common.morph
+- name: device-management
+  morph: strata/device-management.morph
 - name: python2-core
   morph: strata/python2-core.morph
 - name: foundation
