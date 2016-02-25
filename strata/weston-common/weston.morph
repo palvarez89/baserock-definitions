@@ -2,6 +2,6 @@ name: weston
 kind: chunk
 build-system: autotools
 configure-commands:
-- |
-  ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc \
-  --enable-demo-clients-install
+- ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc
+               --enable-demo-clients-install
+               --enable-systemd-notify
