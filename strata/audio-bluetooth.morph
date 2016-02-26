@@ -13,13 +13,17 @@ chunks:
 - name: alsa-lib
   repo: upstream:alsa-lib
   ref: 9cfd1faa27511edbb8bebbab85030125f33590ae
-  unpetrify-ref: v1.0.28
+  # Note: ref anchored because alsa-lib is known for rebasing
+  # tags, and master
+  unpetrify-ref: baserock/v1.0.28
   build-system: autotools
 - name: alsa-utils
   morph: strata/audio-bluetooth/alsa-utils.morph
   repo: upstream:alsa-utils
   ref: bbf137f66b2c8ce36db73f59ee69d5c443436524
-  unpetrify-ref: v1.0.28
+  # Note: ref anchored because alsa-utils is known for rebasing
+  # tags, and master
+  unpetrify-ref: baserock/v1.0.28
   build-depends:
   - alsa-lib
 - name: libical
