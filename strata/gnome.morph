@@ -352,7 +352,7 @@ chunks:
   repo: upstream:python-packages/isodate
   ref: b99c0bd318991a8a8a9dc0c5273800b9801428f6
   unpetrify-ref: 0.5.4
-  build-system: python3-distutils
+  build-system: python-distutils
 - name: rdflib
   repo: upstream:python-packages/rdflib
   ref: c2f9725f385a85fd280b4cf30239748b24f5cc06
