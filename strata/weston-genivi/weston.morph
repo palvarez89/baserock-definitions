@@ -14,7 +14,7 @@ post-install-commands:
 - install -d "$DESTDIR/usr/share/weston"
 - install -m 0644 data/*.png "$DESTDIR/usr/share/weston/"
 - cp ivi-shell/weston.ini ivi-shell/ivi-shell-weston.ini
-- cp ivi-shell/weston.ini ivi-shell/gdp-weston.ini
+
 # Generate ivi-shell-weston config used for GENIVI Baseline
 - sed -i 's,/weston.build/data/,/usr/share/weston/,g' ivi-shell/ivi-shell-weston.ini
 - sed -i 's,/weston.build/clients/,/usr/bin/,g' ivi-shell/ivi-shell-weston.ini
@@ -59,12 +59,28 @@ post-install-commands:
   path=/usr/bin/EGLWLMockNavigation
   EOF
 
-- install -d "$DESTDIR/usr/share/doc/weston"
-- install -m 0644 ivi-shell/ivi-shell-weston.ini "$DESTDIR/usr/share/doc/weston/ivi-shell-weston.ini"
-
 # Generate gdp-weston config used for GENIVI Demo Platform
-- sed -i 's/hmi-controller.so/ivi-controller.so/' ivi-shell/gdp-weston.ini
+- |
+  cat <<EOF > ivi-shell/gdp-weston.ini
+  [core]
+  shell=ivi-shell.so
+
+  [ivi-shell]
+  ivi-module=ivi-controller.so
+  ivi-input-module=ivi-input-controller.so
+
+  cursor-theme=default
+  cursor-size=32
+
+  base-layer-id=1000
+  workspace-background-layer-id=2000
+  workspace-layer-id=3000
+  application-layer-id=4000
+
+  transition-duration=300
+  EOF
 
 # Install both config files to decide later which one to use
+- install -d "$DESTDIR/usr/share/doc/weston"
 - install -m 0644 ivi-shell/ivi-shell-weston.ini "$DESTDIR/usr/share/doc/weston/ivi-shell-weston.ini"
 - install -m 0644 ivi-shell/gdp-weston.ini "$DESTDIR/usr/share/doc/weston/gdp-weston.ini"
