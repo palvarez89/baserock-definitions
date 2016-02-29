@@ -8,22 +8,23 @@ These are some example definitions for use with Baserock tooling. You can fork
 this repo and develop your own systems directly within it, or use it as a
 reference point when developing your own set of definitions.
 
-These definitions follow the Baserock definitions format, which is described at
-<http://wiki.baserock.org/definitions/>, and also partly in the schemas/
-subdirectory.
+These definitions follow the Baserock definitions format, which is defined in
+spec.git repository (http://git.baserock.org/cgit/baserock/baserock/spec.git).
+
+The spec is readable online at <http://docs.baserock.org/spec>.
 
 The systems listed in the systems/ directory are example systems
 that build and run at some point. The only ones we can be sure
 that still build in current master of definitions are the ones that
 we keep building in our ci system; they are listed in
-http://git.baserock.org/cgi-bin/cgit.cgi/baserock/baserock/definitions.git/tree/clusters/ci.morph
+http://git.baserock.org/cgit/baserock/baserock/definitions.git/tree/clusters/ci.morph
 
 Keeping up to date
 ------------------
 
 The Baserock definitions format is evolving. A set of automated migrations is
-provided in the migrations/ directory, for use when the format has changed and
-you want to bring your definitions up to date.
+provided in the migrations/ directory of spec.git, for use when the format has
+changed and you want to bring your definitions up to date.
 
 Before running the migrations, you can use the 'migrations/indent' tool to
 format the definitions in the specific style that the migrations expect.
@@ -37,13 +38,15 @@ so you can clearly see what changes they made, and can then choose to either
 commit them, tweak them, or revert them with `git reset --hard` and write an
 angry email.
 
-The suggested workflow is:
+The suggested workflow is to run this from within your definitions.git clone:
+
+    git clone git://git.baserock.org/baserock/baserock/spec ../spec.git
 
     git status  # ensure a clean Git tree
-    migrations/indent
+    ../spec/migrations/indent
     git diff    # check for any spurious changes
     git commit -a -m "Fix formatting"
-    migrations/run-all
+    ../spec/migrations/run-all
     git diff    # check the results
     git commit -a -m "Migrate to version xx of Baserock definitions format"
 
