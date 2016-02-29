@@ -1,0 +1,7 @@
+name: elfutils
+kind: chunk
+build-system: autotools
+configure-commands:
+- autoreconf -fi
+- ./configure --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var
+              --enable-maintainer-mode

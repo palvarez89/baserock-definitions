@@ -4,8 +4,15 @@ build-depends:
 - morph: strata/ostree-core.morph
 - morph: strata/x-common.morph
 chunks:
+- name: elfutils
+  morph: strata/xdg-app-common/elfutils.morph
+  repo: upstream:elfutils
+  ref: 9b4bce40709611875754cf4931eb91d394042122
+  unpetrify-ref: elfutils-0.165
 - name: xdg-app
   morph: strata/xdg-app-common/xdg-app.morph
   repo: upstream:xdg-app
-  ref: aa535b7b01f4dd406e9bed0dfe4a0de2b8e56565
-  unpetrify-ref: baserock/0.4.4
+  ref: b20e72e91c3dbcf21e9dc5df21191ee2082e74e8
+  unpetrify-ref: baserock/0.4.13
+  build-depends:
+  - elfutils
