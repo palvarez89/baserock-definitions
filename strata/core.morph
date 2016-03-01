@@ -90,8 +90,8 @@ chunks:
 - name: openssl-new
   morph: strata/core/openssl-new.morph
   repo: upstream:openssl-new
-  ref: 506c1068801fdeef5cb00f2053854bf56150fb6d
-  unpetrify-ref: OpenSSL_1_0_1m
+  ref: 57ac73fb5d0a878f282cbcd9e7951c77fdc59e3c
+  unpetrify-ref: OpenSSL_1_0_1s
   build-depends:
   - perl
 - name: bzip2
