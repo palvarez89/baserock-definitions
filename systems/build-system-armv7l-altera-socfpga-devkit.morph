@@ -46,3 +46,4 @@ configuration-extensions:
 - extensions/fstab
 - extensions/mason
 - extensions/install-essential-files
+- extensions/hosts

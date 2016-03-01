@@ -54,3 +54,4 @@ configuration-extensions:
 - extensions/mason
 - extensions/cloud-init
 - extensions/install-essential-files
+- extensions/hosts

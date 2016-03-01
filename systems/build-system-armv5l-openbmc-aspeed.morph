@@ -42,3 +42,4 @@ configuration-extensions:
 - extensions/install-files
 - extensions/fstab
 - extensions/install-essential-files
+- extensions/hosts

@@ -56,3 +56,4 @@ configuration-extensions:
 - extensions/cloud-init
 - extensions/moonshot-kernel
 - extensions/install-essential-files
+- extensions/hosts
