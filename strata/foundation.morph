@@ -40,9 +40,10 @@ chunks:
   ref: d77c33ae608d67086ea057cca5ddee99a7202f8b
   unpetrify-ref: libgpg-error-1.19
 - name: libgcrypt
+  morph: strata/foundation/libgcrypt.morph
   repo: upstream:libgcrypt
-  ref: 412eed473b557ed2172d81d76fa1e1f53c973a67
-  build-system: autotools
+  ref: e74d6f537498fea347b6073ba90c55d2693c4696
+  unpetrify-ref: baserock/libgcrypt-1.5.5
   build-depends:
   - libgpg-error
 - name: systemd

@@ -1,0 +1,5 @@
+name: libgcrypt
+kind: chunk
+build-system: autotools
+pre-configure-commands:
+- autoreconf -fi
