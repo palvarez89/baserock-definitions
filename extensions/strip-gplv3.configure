@@ -32,6 +32,7 @@ import writeexts
 class StripGPLv3ConfigureExtension(writeexts.Extension):
     gplv3_chunks = [
         ['autoconf', ''],
+        ['autoconf-tarball', ''],
         ['automake', ''],
         ['bash', ''],
         ['binutils', ''],
@@ -42,10 +43,11 @@ class StripGPLv3ConfigureExtension(writeexts.Extension):
         ['gawk', ''],
         ['gcc', r'^.*lib.*\.so(\.\d+)*$'],
         ['gdbm', ''],
-        ['gettext', ''],
+        ['gettext-tarball', ''],
         ['gperf', ''],
         ['groff', ''],
         ['libtool', r'^.*lib.*\.so(\.\d+)*$'],
+        ['libtool-tarball', r'^.*lib.*\.so(\.\d+)*$'],
         ['m4', ''],
         ['make', ''],
         ['nano', ''],
