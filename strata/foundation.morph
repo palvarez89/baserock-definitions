@@ -110,3 +110,10 @@ chunks:
   repo: upstream:rsync
   ref: 7cb0de6326c915a72253fd103dae93308031ec3f
   unpetrify-ref: v3.1.1
+- name: python-systemd
+  build-system: python3-distutils
+  repo: upstream:python-packages/python-systemd
+  ref: 8ccd64789ab030b76a99b578b5b1e9812b7a8cd8
+  unpetrify-ref: v231
+  build-depends:
+  - systemd
