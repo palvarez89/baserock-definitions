@@ -332,15 +332,16 @@ chunks:
   - file
 - name: libxml2
   repo: upstream:libxml2
-  ref: f4e5a6994ed230dfa3fb5b5c3fd94c4993ef1ba7
-  unpetrify-ref: v2.9.1
+  ref: 6657afe83a38278f124ace71dc85f60420beb2d5
+  unpetrify-ref: v2.9.3
   build-system: autotools
   build-depends:
   - autoconf
   - automake
   - file
-  - python3
   - libtool
+  - pkg-config
+  - python3
   - xz
 - name: libxslt
   repo: upstream:libxslt
