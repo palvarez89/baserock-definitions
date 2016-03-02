@@ -1,0 +1,14 @@
+name: fail2ban-common
+kind: stratum
+description: |
+  This stratum only installs fail2ban. You will need to
+  configure it afterwards. It's recommended to include
+  iptables in the system too.
+build-depends:
+- morph: strata/core.morph
+chunks:
+- name: fail2ban
+  morph: strata/fail2ban-common/fail2ban.morph
+  repo: upstream:fail2ban
+  ref: 70ba5cb0054f0869930b8cd2dc1bb836653dd289
+  unpetrify-ref: "0.9.3"
