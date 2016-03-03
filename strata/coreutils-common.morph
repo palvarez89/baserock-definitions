@@ -43,3 +43,8 @@ chunks:
   ref: 09a405d8f652b56944c93ebf5c673cdfe5319b04
   unpetrify-ref: baserock/morph
   build-system: autotools
+- name: jq
+  repo: upstream:jq
+  ref: a5b5cbefb83935ce95ec62b9cadc8ec73026d33a
+  unpetrify-ref: jq-1.5
+  build-system: autotools
