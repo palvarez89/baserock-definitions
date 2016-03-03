@@ -51,6 +51,10 @@ strata:
   morph: strata/cloudinit-support.morph
 - name: devtools
   morph: strata/devtools.morph
+- name: fail2ban-common
+  morph: strata/fail2ban-common.morph
+- name: connectivity
+  morph: strata/connectivity.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/trove
