@@ -46,6 +46,8 @@ strata:
   morph: strata/ostree-core.morph
 - name: unionfs-fuse-group
   morph: strata/unionfs-fuse-group.morph
+- name: sandboxing
+  morph: strata/sandboxing.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

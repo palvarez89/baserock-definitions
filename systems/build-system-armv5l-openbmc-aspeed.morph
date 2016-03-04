@@ -35,6 +35,8 @@ strata:
   morph: strata/ostree-core.morph
 - name: mtd-utilities
   morph: strata/mtd-utilities.morph
+- name: sandboxing
+  morph: strata/sandboxing.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

@@ -45,6 +45,8 @@ strata:
   morph: strata/openstack-clients.morph
 - name: devtools
   morph: strata/devtools.morph
+- name: sandboxing
+  morph: strata/sandboxing.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

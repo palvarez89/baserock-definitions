@@ -14,11 +14,6 @@ chunks:
   repo: upstream:binutils-gdb
   ref: 129ee12d013f4a2f09fe40a33072e6e47e949890
   unpetrify-ref: gdb-7.8-branch
-- name: linux-user-chroot
-  repo: upstream:linux-user-chroot
-  ref: 40e0b71d556414dfe150a74937f2c8a68d351d6d
-  unpetrify-ref: v2015.1
-  build-system: autotools
 - name: lsof
   morph: strata/tools/lsof.morph
   repo: upstream:lsof

@@ -68,6 +68,8 @@ strata:
   morph: strata/erlang.morph
 - name: elixir
   morph: strata/elixir.morph
+- name: sandboxing
+  morph: strata/sandboxing.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

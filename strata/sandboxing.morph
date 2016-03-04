@@ -1,0 +1,18 @@
+name: sandboxing
+kind: stratum
+description: |
+  Libraries/tools for running programs/commands in a (partially) isolated
+  environment.
+build-depends:
+- morph: strata/python2-core.morph
+chunks:
+- name: sandboxlib
+  repo: upstream:sandboxlib
+  ref: ce30050daa10fa32801e8f798911b36aa82343a4
+  unpetrify-ref: master
+  build-system: python-distutils
+- name: linux-user-chroot
+  repo: upstream:linux-user-chroot
+  ref: 40e0b71d556414dfe150a74937f2c8a68d351d6d
+  unpetrify-ref: v2015.1
+  build-system: autotools

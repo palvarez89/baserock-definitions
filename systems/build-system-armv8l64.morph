@@ -45,6 +45,8 @@ strata:
   morph: strata/glib-common.morph
 - name: ostree-core
   morph: strata/ostree-core.morph
+- name: sandboxing
+  morph: strata/sandboxing.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files
