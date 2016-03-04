@@ -15,8 +15,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 import os
-import sys
 import glob
+import argparse
 import subprocess
 
 import scriptslib
@@ -32,7 +32,6 @@ a missing or non-existent unpetrify-ref and if it fails to check the remote
 '''
 
 strata_dir = "strata"
-trove_host = "git.baserock.org"
 
 def ref_exists(remote, ref):
     output = subprocess.check_output(
@@ -40,15 +39,17 @@ def ref_exists(remote, ref):
         stderr=subprocess.STDOUT).strip()
     return True if output else False
 
-def main(args):
-    global trove_host
-    opt = next(((i, j.split('=')[1]) for i, j in enumerate(args)
-              if j.startswith("--trove-host=")), None)
-    if opt:
-        trove_host = opt[1]
-        del args[opt[0]]
-    if args:
-        strata = args
+def main():
+    parser = argparse.ArgumentParser(
+        description="Sanity checks unpetrify-refs in Baserock strata")
+    parser.add_argument("--trove-host", default="git.baserock.org",
+                        help="Trove host to map repo aliases to")
+    parser.add_argument("strata", nargs="*", metavar="STRATA",
+                        help="The strata to check (checks all by default)")
+    args = parser.parse_args()
+
+    if args.strata:
+        strata = args.strata
     else:
         strata_path = os.path.join(scriptslib.definitions_root(), strata_dir)
         strata = glob.glob("%s/*.morph" % strata_path)
@@ -62,7 +63,7 @@ def main(args):
                 print ("%s: '%s' has no unpetrify-ref!" %
                        (path, chunk['name']))
                 continue
-            remote = scriptslib.parse_repo_alias(chunk['repo'], trove_host)
+            remote = scriptslib.parse_repo_alias(chunk['repo'], args.trove_host)
             try:
                 if not ref_exists(remote, unpetrify_ref):
                     print ("%s: unpetrify-ref for '%s' is not present on the "
@@ -72,4 +73,4 @@ def main(args):
                        (path, remote, chunk['name'], e.output.strip()))
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    main()
