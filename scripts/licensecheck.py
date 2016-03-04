@@ -23,7 +23,8 @@ import string
 import subprocess
 import sys
 import tempfile
-import yaml
+
+import scriptslib
 
 
 gpl3_chunks = ("autoconf",
@@ -49,16 +50,6 @@ gpl3_chunks = ("autoconf",
                "patch",
                "rsync",
                "texinfo-tarball")
-
-
-def definitions_root():
-    return subprocess.check_output(
-        ["git", "rev-parse", "--show-toplevel"]).strip()
-
-
-def load_yaml_file(yaml_file):
-    with open(yaml_file, 'r') as f:
-        return yaml.safe_load(f)
 
 
 def license_file_name(repo_name, sha, licenses_dir):
@@ -126,7 +117,7 @@ def check_repo_if_needed(name, repo, ref, repos_dir, licenses_dir):
 
 
 def check_stratum(stratum_file, repos_dir, licenses_dir):
-    stratum = load_yaml_file(stratum_file)
+    stratum = scriptslib.load_yaml_file(stratum_file)
     license_files = []
     for chunk in stratum['chunks']:
 
@@ -154,11 +145,11 @@ def main():
 
     args = parser.parse_args()
 
-    system = load_yaml_file(args.system)
+    system = scriptslib.load_yaml_file(args.system)
     license_files = []
     for stratum in system['strata']:
         stratum_file = stratum['morph']
-        stratum_path = os.path.join(definitions_root(), stratum_file)
+        stratum_path = os.path.join(scriptslib.definitions_root(), stratum_file)
         license_files.extend(check_stratum(stratum_path, args.repos_dir, args.licenses_dir))
 
     for chunk_repo, chunk_license in license_files:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (C) 2014  Codethink Limited
+# Copyright (C) 2014-2016 Codethink Limited
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,17 +41,6 @@ It also modifies the morphologies fields which points to some morpholgy
 which has been moved.
 '''
 
-
-# NOTE: The following reimplements part of morphlib's remote repo cache stuff
-def parse_repo_alias(repo):
-    domain, path = repo.split(':')
-    if domain == 'baserock':
-        repo = 'ssh://git@git.baserock.org/baserock/%s' % path
-    elif domain == 'upstream':
-        repo = 'ssh://git@git.baserock.org/delta/%s' % path
-    else:
-        raise Exception("I don't know how to parse the repo-alias \"%s\"" % repo)
-    return repo
 
 def make_request(path):
     server_url = 'http://git.baserock.org:8080/'
@@ -206,7 +195,7 @@ def download_chunks(morph, loader):
             else:
                 raise err
         ref = chunk['ref']
-        repo = parse_repo_alias(chunk['repo'])
+        repo = scriptslib.parse_repo_alias(chunk['repo'])
         try:
             print "\nDownloading %s from %s into %s" %(name, repo, chunk['morph'])
             chunk_str = cat_file(repo, ref, name)
