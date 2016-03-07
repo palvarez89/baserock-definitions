@@ -22,6 +22,12 @@ set -e
 
 ROOT="$1"
 
+# Write detailed logs to a special log file if set, otherwise everything
+# goes to stdout.
+if [ -z "$MORPH_LOG_FD" ]; then
+    MORPH_LOG_FD=1
+fi
+
 ##########################################################################
 
 set -e
@@ -56,7 +62,7 @@ for service_name in $cloud_init_services; do
         echo "Failed to configure cloud-init."
         exit 1
     else
-        echo Enabling systemd service "$service_name" >"$MORPH_LOG_FD"
+        echo Enabling systemd service "$service_name" >&"$MORPH_LOG_FD"
         ln -sf "/$services_folder/$service_name" \
             "$ROOT/etc/systemd/system/multi-user.target.wants/$service_name"
     fi
