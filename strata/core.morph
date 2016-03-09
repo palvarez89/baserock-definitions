@@ -220,10 +220,10 @@ chunks:
   - gettext-tarball
   - libtool-tarball
 - name: libtool
-  morph: strata/core/libtool.morph
   repo: upstream:libtool
   ref: 5e11a17c39a2a976a09c33a568431a9f7ad00d48
   unpetrify-ref: baserock/v2.4.6
+  build-system: autotools
   build-depends:
   - autoconf
   - automake

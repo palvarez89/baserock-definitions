@@ -1,5 +1,0 @@
-name: libtool
-kind: chunk
-build-system: autotools
-pre-configure-commands:
-- ./bootstrap
