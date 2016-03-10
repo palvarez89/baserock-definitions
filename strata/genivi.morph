@@ -48,8 +48,8 @@ chunks:
   - genivi-common-api-runtime
 - name: audiomanager
   repo: upstream:audiomanager
-  ref: 8725157e248c6706de59a02996f869b6ccdccb13
-  unpetrify-ref: '7.0'
+  ref: 49e010d6bd40929b00c4855ec3aab4cbafca906e
+  unpetrify-ref: '7.3'
   build-system: cmake
   build-depends:
   - DLT-daemon
