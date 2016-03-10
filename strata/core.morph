@@ -143,8 +143,8 @@ chunks:
 - name: curl
   morph: strata/core/curl.morph
   repo: upstream:curl
-  ref: 202aa9f7758636730299b86715d924f54468a908
-  unpetrify-ref: curl-7_38_0
+  ref: 8f995e2e0022292374fc99a2277069b08ad98b5c
+  unpetrify-ref: curl-7_47_1
   build-depends:
   - autoconf
   - automake
