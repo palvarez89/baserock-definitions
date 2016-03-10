@@ -13,8 +13,8 @@ chunks:
 - name: DLT-daemon
   morph: strata/genivi/DLT-daemon.morph
   repo: upstream:DLT-daemon
-  ref: 8b48e73f79b4463393916e4c6696917e3dedd026
-  unpetrify-ref: v2.10.0
+  ref: e9a486a08fff6d3cc7133a350cec3ee10f463207
+  unpetrify-ref: v2.15.0
 - name: node-startup-controller
   morph: strata/genivi/node-startup-controller.morph
   repo: upstream:node-startup-controller
