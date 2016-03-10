@@ -57,8 +57,8 @@ chunks:
   - libgcrypt
 - name: libusb
   repo: upstream:libusb
-  ref: e11525c66c7dd2db466c8f5785ff0b37d6a99ec9
-  unpetrify-ref: v1.0.19
+  ref: 01d6a03f417eb5dbac6ce039febdabdc4954c763
+  unpetrify-ref: baserock/v1.0.20+parallel-build-fix
   build-system: autotools
   build-depends:
   - systemd
