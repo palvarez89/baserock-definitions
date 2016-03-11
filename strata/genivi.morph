@@ -71,10 +71,10 @@ chunks:
   - itzam-tarball
   - DLT-daemon
 - name: persistence-client-library
-  morph: strata/genivi/persistence-client-library.morph
   repo: upstream:genivi/persistence-client-library
-  ref: 39c68df2a9ee0b089212855f64a61fbd671b1a80
-  unpetrify-ref: baserock/v1.0.0
+  ref: 4b503da99c6b04ad21a197dafe6e7243187c7c7e
+  unpetrify-ref: v1.1.0
+  build-system: autotools
   build-depends:
   - persistence-common-object
   - DLT-daemon
