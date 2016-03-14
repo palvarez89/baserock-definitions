@@ -7,7 +7,7 @@ configure-commands:
 - cd src && ./configure --prefix="$PREFIX" --sysconfdir=/etc --with-default-dict=/lib/cracklib/pw_dict
 build-commands:
 - make -C src
-- make -C words
+- make -C words cracklib-words.gz
 install-commands:
 - make -C src install
 - install -m644 -D words/cracklib-words.gz $DESTDIR$PREFIX/share/dict/cracklib-words.gz
