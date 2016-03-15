@@ -14,8 +14,6 @@ post-install-commands:
 - ln -s "$PREFIX"/lib/systemd/systemd "$DESTDIR"/sbin/init
 - for f in telinit runlevel shutdown poweroff reboot halt; do ln -s "$PREFIX"/bin/systemctl
   "$DESTDIR/sbin/$f"; done
-- sed -r -e '/Options=/s/,?strictatime//' "$DESTDIR$PREFIX/lib/systemd/system/tmp.mount"
-  >"$DESTDIR/etc/systemd/system/tmp.mount"
 - touch "$DESTDIR/etc/machine-id"
 - |
   cat > "$DESTDIR/etc/systemd/network/10-dhcp.network" << "EOF"
