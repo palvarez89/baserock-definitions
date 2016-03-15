@@ -24,6 +24,9 @@ install-commands:
 - chmod go= "$DESTDIR"/var/lib/sshd
 - install -m 744 sshd-keygen "$DESTDIR/$PREFIX/sbin/sshd-keygen"
 - install -m 755 contrib/ssh-copy-id "$DESTDIR/$PREFIX/bin/ssh-copy-id"
-- mkdir -p "$DESTDIR/lib/systemd/system/multi-user.target.wants"
-- install -m 644 opensshd.service "$DESTDIR/lib/systemd/system/opensshd.service"
-- ln -s ../opensshd.service "$DESTDIR/lib/systemd/system/multi-user.target.wants/opensshd.service"
+- mkdir -p "$DESTDIR$PREFIX/lib/systemd/system/"
+- install -m 644 opensshd.service "$DESTDIR$PREFIX/lib/systemd/system/opensshd.service"
+system-integration:
+  openssh-misc:
+    00-enable-opensshd-unit:
+    - systemctl enable opensshd
