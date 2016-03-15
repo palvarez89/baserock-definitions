@@ -2,20 +2,19 @@ name: systemd
 kind: chunk
 build-system: autotools
 configure-commands:
-- sh autogen.sh
+- ./autogen.sh
 # KILL added because it picks up /usr/bin/kill, which is not installed on
 # all systems
-- |
-  KILL=/bin/kill ./configure --prefix="$PREFIX" --enable-xz --disable-manpages \
-      --disable-tests --sysconfdir=/etc --localstatedir=/var \
-      --libdir="$PREFIX/lib" --libexecdir="$PREFIX/libexec" \
-      --with-rootprefix= --with-rootlibdir=/lib
+- KILL=/bin/kill ./configure --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var
+                             --disable-manpages
+                             --disable-tests
+                             --libexecdir="$PREFIX/libexec"
 post-install-commands:
 - mkdir -p "$DESTDIR"/sbin
-- ln -s /lib/systemd/systemd "$DESTDIR"/sbin/init
-- for f in telinit runlevel shutdown poweroff reboot halt; do ln -s /bin/systemctl
+- ln -s "$PREFIX"/lib/systemd/systemd "$DESTDIR"/sbin/init
+- for f in telinit runlevel shutdown poweroff reboot halt; do ln -s "$PREFIX"/bin/systemctl
   "$DESTDIR/sbin/$f"; done
-- sed -r -e '/Options=/s/,?strictatime//' "$DESTDIR/lib/systemd/system/tmp.mount"
+- sed -r -e '/Options=/s/,?strictatime//' "$DESTDIR$PREFIX/lib/systemd/system/tmp.mount"
   >"$DESTDIR/etc/systemd/system/tmp.mount"
 - touch "$DESTDIR/etc/machine-id"
 - |

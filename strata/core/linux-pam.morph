@@ -4,6 +4,6 @@ build-system: autotools
 pre-configure-commands:
 - autoreconf -ivf
 configure-commands:
-# libdir has to be specified or it'll go into lib64. It has to be /lib because
-# systemd installs its pam library into /lib/security.
-- ./configure --prefix="$PREFIX" --sysconfdir=/etc --libdir="/lib"
+# libdir has to be specified or it'll go into lib64. It has to be /usr/lib because
+# systemd installs its pam library into /usr/lib/security.
+- ./configure --prefix="$PREFIX" --sysconfdir=/etc --libdir="$PREFIX/lib"
