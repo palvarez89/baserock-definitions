@@ -10,8 +10,7 @@ configure-commands:
       --disable-tests --sysconfdir=/etc --localstatedir=/var \
       --libdir="$PREFIX/lib" --libexecdir="$PREFIX/libexec" \
       --with-rootprefix= --with-rootlibdir=/lib
-install-commands:
-- make DESTDIR="$DESTDIR" install
+post-install-commands:
 - mkdir -p "$DESTDIR"/sbin
 - ln -s /lib/systemd/systemd "$DESTDIR"/sbin/init
 - for f in telinit runlevel shutdown poweroff reboot halt; do ln -s /bin/systemctl
@@ -20,7 +19,6 @@ install-commands:
 - sed -r -e '/Options=/s/,?strictatime//' "$DESTDIR/lib/systemd/system/tmp.mount"
   >"$DESTDIR/etc/systemd/system/tmp.mount"
 - touch "$DESTDIR/etc/machine-id"
-post-install-commands:
 - |
   cat > "$DESTDIR/etc/systemd/network/10-dhcp.network" << "EOF"
   [Match]
