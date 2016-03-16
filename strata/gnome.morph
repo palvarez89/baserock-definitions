@@ -426,8 +426,8 @@ chunks:
 - name: accountsservice
   morph: strata/gnome/accountsservice.morph
   repo: upstream:accountsservice
-  ref: 36b424b4aad91aaf91eeb6b6285cf550b15fcfeb
-  unpetrify-ref: master
+  ref: 1b91edfe9db81e75d0f08e98c6909cdf34c9e91e
+  unpetrify-ref: baserock/0.6.40-8-gcad21b1+libsystemd_fix
 - name: gdm
   morph: strata/gnome/gdm.morph
   repo: upstream:gdm
