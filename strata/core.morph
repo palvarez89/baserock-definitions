@@ -161,8 +161,8 @@ chunks:
 - name: git-minimal
   morph: strata/core/git-minimal.morph
   repo: upstream:git
-  ref: 9874fca7122563e28d699a911404fc49d2a24f1c
-  unpetrify-ref: v2.3.0
+  ref: ed9067f705aa51819c7dfff7e4190dd267beaf5d
+  unpetrify-ref: v2.8.0-rc2
   build-depends:
   - autoconf
   - python3
