@@ -44,7 +44,7 @@ chunks:
 - name: gall
   morph: strata/trove/gall.morph
   repo: upstream:gitano/gall
-  ref: f58c7526fbb0421d7f5446644f01f4cf57035ee2
+  ref: 11de77bd79c08a152932a3435d1921abc1020252
   unpetrify-ref: baserock/morph
   build-depends:
   - lua
