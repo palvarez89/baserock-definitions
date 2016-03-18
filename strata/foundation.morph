@@ -77,8 +77,8 @@ chunks:
 - name: fuse
   morph: strata/foundation/fuse.morph
   repo: upstream:fuse
-  ref: 6adcb719a933a31013c73fda8e0ccb0e13b45e58
-  unpetrify-ref: fuse_2_9_4
+  ref: e9b2eec7c5856032652bb8ff734174764e444c74
+  unpetrify-ref: baserock/fuse_2_9_4-fix-armv8
 - name: btrfs-progs
   morph: strata/foundation/btrfs-progs.morph
   repo: upstream:btrfs-progs
