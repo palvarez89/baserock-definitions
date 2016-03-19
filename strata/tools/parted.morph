@@ -3,6 +3,7 @@ kind: chunk
 build-system: autotools
 pre-configure-commands:
 - sed -i -e '/^buildreq="/,/^"/{/rsync/d}' bootstrap.conf
+- sed -i -e '/^buildreq="/,/^"/{/perl/d}' bootstrap.conf
 - ./bootstrap --skip-po --no-git --gnulib-srcdir=gnulib
 configure-commands:
 # Disable device-mapper as it is not installed on Baserock
