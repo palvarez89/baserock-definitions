@@ -5,7 +5,7 @@ configure-commands:
 - |
   cpu=$(echo $TARGET | cut -d '-' -f 1)
   case "$cpu" in
-  armv7lhf)
+  arm*)
     DRIDRIVERS=no
     GALLIUMDRIVERS=nouveau,freedreno,svga,swrast,vc4
     ;;
