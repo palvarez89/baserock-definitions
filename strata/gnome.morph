@@ -912,8 +912,8 @@ chunks:
 - name: evolution
   morph: strata/gnome/evolution.morph
   repo: upstream:gnome/evolution
-  ref: 579583275620be75afdedcde909a82fd96136188
-  unpetrify-ref: EVOLUTION_3_18_3
+  ref: 6a02c7980589cf24de90c29556bc84ee2f57b832
+  unpetrify-ref: EVOLUTION_3_18_5_2
   build-depends:
   - evolution-data-server
   - clutter-gtk
