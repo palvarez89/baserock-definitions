@@ -15,7 +15,7 @@ chunks:
 - name: wayland-ivi-extension
   morph: strata/weston-genivi/wayland-ivi-extension.morph
   repo: upstream:genivi/wayland-ivi-extension
-  ref:  beac5d2e25324ca9cc82d0e3b364512258af3567
-  unpetrify-ref: 1.9.0
+  ref: 435d12930318a0d3d1779b3603e50f52eb312944
+  unpetrify-ref: baserock/1.9.0-parallel-make-fix
   build-depends:
   - weston
