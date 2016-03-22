@@ -8,5 +8,5 @@ chunks:
 - name: qt-creator
   morph: strata/qt5-sdk/qt-creator.morph
   repo: upstream:qt-creator
-  ref: d81cd236df1cc6bc6977c438f0edbff35eef6682
-  unpetrify-ref: baserock/3.3.0
+  ref: 8895770ba36f96f150fe8dca71f889ff24d07fd6
+  unpetrify-ref: baserock/v3.6.1
