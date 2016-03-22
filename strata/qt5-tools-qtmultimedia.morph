@@ -6,7 +6,7 @@ build-depends:
 - morph: strata/multimedia-gstreamer.morph
 chunks:
 - name: qtmultimedia
-  morph: strata/qt5-tools/qtmultimedia.morph
   repo: upstream:qt5/qtmultimedia
-  ref: a42a5ae6191ecbe317a00d8261bc53e842967052
-  unpetrify-ref: baserock/qt5.4-wip-gstreamer-1.0
+  ref: 9985224a89b830dc182b428f491b6187d6f0e1ba
+  unpetrify-ref: v5.6.0
+  build-system: qmake

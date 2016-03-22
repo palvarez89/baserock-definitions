@@ -7,28 +7,28 @@ build-depends:
 - morph: strata/ruby.morph
 chunks:
 - name: qtwebkit
-  morph: strata/qt5-tools/qtwebkit.morph
   repo: upstream:qt5/qtwebkit
-  ref: 586bdc38324dfaeec65389bf7646c82cb35db017
-  unpetrify-ref: 5.4.2
+  ref: 7205faf1a546a690f68176989100109e9a3335b7
+  unpetrify-ref: '5.6'
+  build-system: qmake
 - name: qtwebkit-examples
-  morph: strata/qt5-tools/qtwebkit-examples.morph
   repo: upstream:qt5/qtwebkit-examples
-  ref: 70bd4d5253f134bf48a30544030bb832f1eba8b3
-  unpetrify-ref: v5.4.0
+  ref: 1b9a0fc9d1ded4f4f11b04eb0bb7d1de82d6eb34
+  unpetrify-ref: '5.6'
+  build-system: qmake
   build-depends:
   - qtwebkit
 - name: qttools
-  morph: strata/qt5-tools/qttools.morph
   repo: upstream:qt5/qttools
-  ref: 5060a0ec7dcb26826b19eefbd6063efcbde6101f
-  unpetrify-ref: v5.4.0
+  ref: 9904992dc4eb9a5958fcfbac238374ff38498143
+  unpetrify-ref: v5.6.0
+  build-system: qmake
   build-depends:
   - qtwebkit
 - name: qttranslations
-  morph: strata/qt5-tools/qttranslations.morph
   repo: upstream:qt5/qttranslations
-  ref: 3aad4ab4718d4bf952275a07e406e93eb6a22eed
-  unpetrify-ref: v5.4.0
+  ref: 41d212290c3822b8eef151785d89ac5f5b246bde
+  unpetrify-ref: v5.6.0
+  build-system: qmake
   build-depends:
   - qttools

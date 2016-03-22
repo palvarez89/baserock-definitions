@@ -6,6 +6,6 @@ build-depends:
 chunks:
 - name: qtwayland
   repo: upstream:qt5/qtwayland
-  ref: d5e7965a87d81e2d7157c785403b0aba681de62a
-  unpetrify-ref: 5.4.2
+  ref: 29b8bd8b1117589341110502fe516bf22c920747
+  unpetrify-ref: v5.6.0
   build-system: qmake

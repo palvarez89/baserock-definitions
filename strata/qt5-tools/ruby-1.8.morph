@@ -1,9 +1,0 @@
-name: ruby-1.8
-kind: chunk
-configure-commands:
-- autoconf
-- ./configure --prefix=/usr --program-suffix=-1.8
-build-commands:
-- make
-install-commands:
-- make DESTDIR="$DESTDIR" install
