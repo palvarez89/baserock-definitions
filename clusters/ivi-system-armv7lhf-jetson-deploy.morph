@@ -1,0 +1,18 @@
+name: ivi-system-armv7lhf-jetson-deploy
+kind: cluster
+description: Deploy a IVI system.
+systems:
+- morph: systems/ivi-system-armv7lhf-jetson.morph
+  deploy:
+    ivi-system-armv7lhf-jetson:
+      type: extensions/rawdisk
+      location: /ivi-system-armv7lhf-jetson.img
+      HOSTNAME: ivi-system-armv7lhf-jetson
+      DISK_SIZE: 6G
+      BOOT_DEVICE: /dev/mmcblk0p1
+      ROOT_DEVICE: /dev/mmcblk0p2
+      DTB_PATH: boot/tegra124-jetson-tk1.dtb
+      BOOTLOADER_CONFIG_FORMAT: extlinux
+      BOOTLOADER_INSTALL: none
+      KERNEL_ARGS: cma=256M console=tty0 console=ttyS0,115200n8 no_console_suspend=1
+        nouveau.pstate=1

@@ -1,0 +1,86 @@
+name: ivi-system-armv7lhf-jetson
+kind: system
+description: A generic IVI system with components from GENIVI and AGL
+arch: armv7lhf
+strata:
+- name: audio-bluetooth
+  morph: strata/audio-bluetooth.morph
+- name: bsp-x86_64-generic
+  morph: strata/bsp-x86_64-generic.morph
+- name: build-essential
+  morph: strata/build-essential.morph
+- name: core
+  morph: strata/core.morph
+- name: data-indexing-management
+  morph: strata/data-indexing-management.morph
+- name: device-management
+  morph: strata/device-management.morph
+- name: dlna-services
+  morph: strata/dlna-services.morph
+- name: foundation
+  morph: strata/foundation.morph
+- name: geolocation
+  morph: strata/geolocation.morph
+- name: glib-common
+  morph: strata/glib-common.morph
+- name: graphics-common
+  morph: strata/graphics-common.morph
+- name: icu-common
+  morph: strata/icu-common.morph
+- name: input-common
+  morph: strata/input-common.morph
+- name: libdrm-common
+  morph: strata/libdrm-common.morph
+- name: libsoup-common
+  morph: strata/libsoup-common.morph
+- name: llvm-common
+  morph: strata/llvm-common.morph
+- name: mesa-common
+  morph: strata/mesa-common.morph
+- name: multimedia-common
+  morph: strata/multimedia-common.morph
+- name: multimedia-gstreamer
+  morph: strata/multimedia-gstreamer.morph
+- name: multimedia-gstreamer-openmax-generic
+  morph: strata/multimedia-gstreamer-openmax-generic.morph
+- name: navigation
+  morph: strata/navigation.morph
+- name: network-security
+  morph: strata/network-security.morph
+- name: NetworkManager-common
+  morph: strata/NetworkManager-common.morph
+- name: privileges-management
+  morph: strata/privileges-management.morph
+- name: python2-core
+  morph: strata/python2-core.morph
+- name: python3-gobject
+  morph: strata/python3-gobject.morph
+- name: qt5-tools
+  morph: strata/qt5-tools.morph
+- name: qt5-tools-qtmultimedia
+  morph: strata/qt5-tools-qtmultimedia.morph
+- name: qt5-tools-qtwebkit
+  morph: strata/qt5-tools-qtwebkit.morph
+- name: qt5-tools-qtwayland
+  morph: strata/qt5-tools-qtwayland.morph
+- name: ruby
+  morph: strata/ruby.morph
+- name: samba
+  morph: strata/samba.morph
+- name: secret-service
+  morph: strata/secret-service.morph
+- name: spell-checking
+  morph: strata/spell-checking.morph
+- name: storage-management
+  morph: strata/storage-management.morph
+- name: vala-common
+  morph: strata/vala-common.morph
+- name: wayland-generic
+  morph: strata/wayland-generic.morph
+- name: weston-common
+  morph: strata/weston-common.morph
+- name: x-common
+  morph: strata/x-common.morph
+configuration-extensions:
+- extensions/set-hostname
+- extensions/install-essential-files
