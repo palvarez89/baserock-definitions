@@ -1,0 +1,24 @@
+name: ivi-system-x86_64-deploy
+kind: cluster
+description: |
+  Deploy a stock IVI system.
+
+  The resulting image can be copied to a USB and booted from there,
+  as well as in a virtual machine.
+
+systems:
+- morph: systems/ivi-system-x86_64.morph
+  deploy:
+    ivi-system-x86_64:
+      type: extensions/rawdisk
+      location: /ivi-system-x86_64.img
+      HOSTNAME: ivi-system-x86-64
+      DISK_SIZE: 6G
+      KERNEL_ARGS: vga=788
+      INITRAMFS_PATH: boot/initramfs.gz
+  subsystems:
+  - morph: systems/initramfs-x86_64.morph
+    deploy:
+      initramfs:
+        type: initramfs
+        location: boot/initramfs.gz
