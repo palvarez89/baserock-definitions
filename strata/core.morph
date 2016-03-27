@@ -197,6 +197,11 @@ chunks:
   - git-minimal
   - help2man
   - mini-utils
+  submodules:
+    submodules/autoconf:
+      url: upstream:autoconf
+    gnulib:
+      url: upstream:gnulib
 - name: patch
   morph: strata/core/patch.morph
   repo: upstream:patch
@@ -208,6 +213,9 @@ chunks:
   - bison
   - git-minimal
   - mini-utils
+  submodules:
+    gnulib:
+      url: upstream:gnulib
 - name: xz
   repo: upstream:xz
   ref: a0cd05ee71d330b79ead6eb9222e1b24e1559d3a
@@ -233,6 +241,9 @@ chunks:
   - patch
   - texinfo-tarball
   - xz
+  submodules:
+    gnulib:
+      url: upstream:gnulib
 - name: pkg-config
   morph: strata/core/pkg-config.morph
   repo: upstream:pkg-config
@@ -385,7 +396,7 @@ chunks:
 - name: cython
   repo: upstream:cython
   ref: 4dd8e762fa51d01775506fbbc102c45dbcea065d
-  unpetrify-ref: "0.22"
+  unpetrify-ref: '0.22'
   build-system: python3-distutils
   build-depends:
   - python3

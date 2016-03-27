@@ -22,6 +22,9 @@ chunks:
   ref: 6e9a4d3b35c5ce8af050e66d8caff96070c57d34
   unpetrify-ref: baserock/2015-12-15
   build-system: autotools
+  submodules:
+    autoconf-archive:
+      url: upstream:autoconf-archive
 - name: libgee
   repo: upstream:gnome/libgee
   ref: 4301ab58efc217409c588a5527f68990b4e3d220

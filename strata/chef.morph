@@ -17,6 +17,9 @@ chunks:
   unpetrify-ref: 1.0.1
   build-depends:
   - yajl
+  submodules:
+    ext/libyajl2/vendor/yajl:
+      url: https://github.com/lloyd/yajl.git
 - name: chef-12.0.0.alpha.0
   morph: strata/chef/chef-master.morph
   repo: upstream:ruby-gems/chef
@@ -49,6 +52,9 @@ chunks:
   unpetrify-ref: master
   build-depends:
   - libyajl2-1.0.1
+  submodules:
+    ext/libyajl2/vendored:
+      url: https://github.com/lloyd/yajl
 - name: hashie-2.1.2
   morph: strata/chef/hashie-2.1.2.morph
   repo: upstream:ruby-gems/hashie

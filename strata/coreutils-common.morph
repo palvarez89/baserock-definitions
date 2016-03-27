@@ -12,6 +12,9 @@ chunks:
   repo: upstream:coreutils
   ref: 9df9643842e4b4d8ece710fe6105f32fa38a0d22
   unpetrify-ref: baserock/8.23
+  submodules:
+    gnulib:
+      url: upstream:gnulib
 - name: sed
   morph: strata/coreutils-common/sed.morph
   repo: upstream:sed
@@ -19,6 +22,9 @@ chunks:
   unpetrify-ref: baserock/morph
   build-depends:
   - coreutils
+  submodules:
+    gnulib:
+      url: upstream:gnulib
 - name: diff
   morph: strata/coreutils-common/diff.morph
   repo: upstream:diffutils
@@ -26,6 +32,9 @@ chunks:
   unpetrify-ref: baserock/v3.3
   build-depends:
   - coreutils
+  submodules:
+    gnulib:
+      url: upstream:gnulib
 - name: tar
   morph: strata/coreutils-common/tar.morph
   repo: upstream:tar
@@ -33,11 +42,19 @@ chunks:
   unpetrify-ref: baserock/release_1_28
   build-depends:
   - coreutils
+  submodules:
+    paxutils:
+      url: upstream:paxutils
+    gnulib:
+      url: upstream:gnulib
 - name: findutils
   morph: strata/coreutils-common/findutils.morph
   repo: upstream:findutils
   ref: ee6b25541336f9d74624ca814538ddc8c67f0732
   unpetrify-ref: baserock/v4.5.14
+  submodules:
+    gnulib:
+      url: upstream:gnulib
 - name: less
   repo: upstream:less
   ref: 09a405d8f652b56944c93ebf5c673cdfe5319b04

@@ -33,6 +33,9 @@ chunks:
   build-depends:
   - qtbase
   - qtscript
+  submodules:
+    tests/manual/v4/test262:
+      url: upstream:qt5/qtdeclarative-testsuites.git
 - name: qt3d
   repo: upstream:qt5/qt3d
   ref: 7a208d76ed96bb506899becfe680df06f95451c7
@@ -78,6 +81,9 @@ chunks:
   build-system: qmake
   build-depends:
   - qtbase
+  submodules:
+    testsuites:
+      url: upstream:qt5/qtxmlpatterns-testsuites.git
 - name: qtdoc
   repo: upstream:qt5/qtdoc
   ref: 2ed0ac4bbb4d3bfe884f946eac89f71c44f3d27d

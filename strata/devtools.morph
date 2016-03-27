@@ -40,6 +40,9 @@ chunks:
   repo: upstream:wget
   ref: 71d79f4f3043cf4ca3b2fb7f5328eae725c1293f
   unpetrify-ref: baserock/v1.16.3
+  submodules:
+    gnulib:
+      url: upstream:gnulib
 - name: git
   morph: strata/devtools/git.morph
   repo: upstream:git

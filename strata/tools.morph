@@ -59,6 +59,9 @@ chunks:
   repo: upstream:parted
   ref: 387e96e6eac59d84e9a688422b4b321ae9beaa20
   unpetrify-ref: baserock/v3.2
+  submodules:
+    gnulib:
+      url: upstream:gnulib
 - name: zip
   morph: strata/tools/zip.morph
   repo: upstream:zip

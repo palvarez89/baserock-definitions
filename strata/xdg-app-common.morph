@@ -16,3 +16,6 @@ chunks:
   unpetrify-ref: baserock/0.4.13
   build-depends:
   - elfutils
+  submodules:
+    libglnx:
+      url: upstream:libglnx

@@ -160,6 +160,9 @@ chunks:
   build-system: autotools
   build-depends:
   - xcb-libxcb
+  submodules:
+    m4:
+      url: upstream:xcb/util-common-m4
 - name: util-wm
   repo: upstream:util-wm
   ref: fb7afc3f291c8cc072d327cd8d97ab1db3283c21
@@ -167,6 +170,9 @@ chunks:
   build-system: autotools
   build-depends:
   - xcb-libxcb
+  submodules:
+    m4:
+      url: upstream:xcb/util-common-m4
 - name: util-keysyms
   repo: upstream:util-keysyms
   ref: edb763a8837d3932690b9d6d77cb7e20a9ab8013
@@ -174,6 +180,9 @@ chunks:
   build-system: autotools
   build-depends:
   - xcb-libxcb
+  submodules:
+    m4:
+      url: upstream:xcb/util-common-m4
 - name: util-image
   repo: upstream:util-image
   ref: f20f25a1c017c58d5d7dfffc6e9adc8d31879152
@@ -182,6 +191,9 @@ chunks:
   build-depends:
   - xcb-libxcb
   - xcb-util
+  submodules:
+    m4:
+      url: upstream:xcb/util-common-m4
 - name: xorg-lib-libxtrans
   repo: upstream:xorg-lib-libxtrans
   ref: 7cbad9fe2e61cd9d5caeaf361826a6f4bd320f03

@@ -216,6 +216,9 @@ chunks:
   - libnotify
   - lcms2
   - upower
+  submodules:
+    plugins/media-keys/gvc:
+      url: upstream:gnome/libgnome-volume-control
 - name: zenity
   repo: upstream:zenity
   ref: d7135db2bdfdca812c0165f90e4611af9c7c6a50
@@ -315,6 +318,9 @@ chunks:
   - librest
   - telepathy-glib
   - WebKitGtk
+  submodules:
+    telepathy-account-widgets:
+      url: upstream:gnome/telepathy-account-widgets
 - name: liboauth
   repo: upstream:liboauth
   ref: 9ff9d2902caf8a85c5019c11214d73e67053ba69
@@ -409,6 +415,11 @@ chunks:
   - startup-notification
   - telepathy-glib
   - network-manager-applet
+  submodules:
+    src/gvc:
+      url: upstream:gnome/libgnome-volume-control
+    data/theme/gnome-shell-sass:
+      url: upstream:gnome/gnome-shell-sass
 - name: gnome-session
   morph: strata/gnome/gnome-session.morph
   repo: upstream:gnome/gnome-session
@@ -499,11 +510,14 @@ chunks:
   - vte
   - gnome-desktop
   - gsettings-desktop-schemas
+  submodules:
+    libgd:
+      url: upstream:gnome/libgd
 - name: desktop-file-utils
   morph: strata/gnome/desktop-file-utils.morph
   repo: upstream:desktop-file-utils
   ref: 4944725bddcf5821d53d7d648fc53347ce12cc03
-  unpetrify-ref: "0.22"
+  unpetrify-ref: '0.22'
 - name: gnome-terminal
   morph: strata/gnome/gnome-terminal.morph
   repo: upstream:gnome/gnome-terminal
@@ -528,6 +542,9 @@ chunks:
   build-system: autotools
   build-depends:
   - libnice
+  submodules:
+    common:
+      url: upstream:gstreamer-common
 - name: telepathy-farstream
   repo: upstream:telepathy-farstream
   ref: 0b1bba79cfe94e7676fe69e9e0d2e3983a3c14c5
@@ -544,6 +561,9 @@ chunks:
   build-depends:
   - libnice
   - telepathy-glib
+  submodules:
+    lib/ext/wocky:
+      url: upstream:wocky
 - name: telepathy-salut
   morph: strata/gnome/telepathy-salut.morph
   repo: upstream:telepathy-salut
@@ -551,6 +571,9 @@ chunks:
   unpetrify-ref: baserock/telepathy-salut-0.8.1
   build-depends:
   - telepathy-glib
+  submodules:
+    lib/ext/wocky:
+      url: upstream:wocky
 - name: telepathy-idle
   repo: upstream:telepathy-idle
   ref: 55e9841a4af51d7f014395475526b700abec4d0b
@@ -690,6 +713,11 @@ chunks:
   - libgtop
   - libpwquality
   - network-manager-applet
+  submodules:
+    libgd:
+      url: upstream:gnome/libgd
+    panels/sound/gvc:
+      url: upstream:gnome/libgnome-volume-control
 - name: gnome-initial-setup
   morph: strata/gnome/gnome-initial-setup.morph
   repo: upstream:gnome/gnome-initial-setup
@@ -718,7 +746,7 @@ chunks:
   build-system: autotools
   repo: upstream:sound-theme-freedesktop
   ref: 9d2ac65a2f88263f0eec8b777ef3bdc023b93c25
-  unpetrify-ref: "0.8"
+  unpetrify-ref: '0.8'
 - name: libwnck
   morph: strata/gnome/libwnck.morph
   repo: upstream:libwnck
@@ -770,9 +798,12 @@ chunks:
   - iso-codes
   - libpeas
   - yelp-tools
+  submodules:
+    libgd:
+      url: upstream:gnome/libgd
 - name: yelp
   repo: upstream:gnome/yelp
-  morph: strata/gnome/yelp.morph 
+  morph: strata/gnome/yelp.morph
   ref: 9932283ce9610f969e023a0dc326c81159c06a15
   unpetrify-ref: 3.18.1
   build-depends:
@@ -803,6 +834,9 @@ chunks:
   - iso-codes
   - libpeas
   - yelp-tools
+  submodules:
+    libgd:
+      url: upstream:gnome/libgd
 - name: gnome-calendar
   repo: upstream:gnome/gnome-calendar
   ref: 5292e9d57442067701ce94eea54b4b12d13b7aa3
@@ -844,6 +878,9 @@ chunks:
   - telepathy-logger
   - telepathy-mission-control
   - yelp-tools
+  submodules:
+    telepathy-account-widgets:
+      url: upstream:gnome/telepathy-account-widgets
 - name: gnome-contacts
   repo: upstream:gnome/gnome-contacts
   ref: 3715ec79662989038d5055bb74aa0b728b40edb5
@@ -857,6 +894,9 @@ chunks:
   - libchamplain
   - libnotify
   - telepathy-glib
+  submodules:
+    libgd:
+      url: upstream:gnome/libgd
 - name: gnome-maps
   repo: upstream:gnome/gnome-maps
   ref: 6d6e8afd54735e565a0c81cb761f22bb82d142db

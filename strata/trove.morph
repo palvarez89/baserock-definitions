@@ -19,6 +19,9 @@ chunks:
   unpetrify-ref: baserock/morph
   build-depends:
   - lua
+  submodules:
+    extras/luacov:
+      url: upstream:gitano/luacov
 - name: luxio
   morph: strata/trove/luxio.morph
   repo: upstream:luxio
@@ -34,6 +37,9 @@ chunks:
   build-depends:
   - lua
   - luxio
+  submodules:
+    extras/luacov:
+      url: upstream:gitano/luacov
 - name: clod
   morph: strata/trove/clod.morph
   repo: upstream:gitano/clod
@@ -41,6 +47,9 @@ chunks:
   unpetrify-ref: baserock/morph
   build-depends:
   - lua
+  submodules:
+    extras/luacov:
+      url: upstream:gitano/luacov
 - name: gall
   morph: strata/trove/gall.morph
   repo: upstream:gitano/gall
@@ -49,6 +58,13 @@ chunks:
   build-depends:
   - lua
   - luxio
+  submodules:
+    libgit2:
+      url: upstream:gitano/libgit2
+    luagit2:
+      url: upstream:gitano/luagit2
+    extras/luacov:
+      url: upstream:gitano/luacov
 - name: lrexlib-pcre
   morph: strata/trove/lrexlib-pcre.morph
   repo: upstream:lrexlib
@@ -68,6 +84,9 @@ chunks:
   repo: upstream:cgit
   ref: dc881acb0c857c783b611c03294d79a7553a4ec7
   unpetrify-ref: baserock/v0.12
+  submodules:
+    git:
+      url: upstream:git
 - name: trove-setup
   morph: strata/trove/trove-setup.morph
   repo: baserock:baserock/trove-setup

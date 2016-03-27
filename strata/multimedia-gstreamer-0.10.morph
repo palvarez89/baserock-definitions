@@ -19,6 +19,9 @@ chunks:
   build-system: autotools
   build-depends:
   - orc
+  submodules:
+    common:
+      url: upstream:gstreamer-common
 - name: gstreamer-plugins-base@0.10
   repo: upstream:gstreamer-plugins-base
   ref: 960c596309dbb983a1d733259adccc45c47006a2
@@ -26,6 +29,9 @@ chunks:
   build-system: autotools
   build-depends:
   - gstreamer@0.10
+  submodules:
+    common:
+      url: upstream:gstreamer-common
 - name: gstreamer-plugins-good@0.10
   repo: upstream:gstreamer-plugins-good
   ref: 725e80e0c6b7f8e66d9b3fcaffd283ecbd8498d3
@@ -35,3 +41,6 @@ chunks:
   - gstreamer@0.10
   - gstreamer-plugins-base@0.10
   - orc
+  submodules:
+    common:
+      url: upstream:gstreamer-common

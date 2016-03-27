@@ -20,6 +20,9 @@ chunks:
   build-system: autotools
   build-depends:
   - orc
+  submodules:
+    common:
+      url: upstream:gstreamer-common
 - name: gstreamer-plugins-base
   repo: upstream:gstreamer-plugins-base
   ref: 644cd58c5a1142580ad133a5122986581cf4d8ef
@@ -28,6 +31,9 @@ chunks:
   build-depends:
   - gstreamer
   - orc
+  submodules:
+    common:
+      url: upstream:gstreamer-common
 - name: gstreamer-plugins-good
   repo: upstream:gstreamer-plugins-good
   ref: e6fb1b485dd2726e6c65d938c5ea4d002cf1036e
@@ -37,6 +43,9 @@ chunks:
   - gstreamer
   - gstreamer-plugins-base
   - orc
+  submodules:
+    common:
+      url: upstream:gstreamer-common
 - name: gstreamer-plugins-bad
   repo: upstream:gstreamer-plugins-bad
   ref: 9a2e845040c3aafff00159a6b0031e123cad4b2f
@@ -46,6 +55,9 @@ chunks:
   - gstreamer
   - gstreamer-plugins-base
   - orc
+  submodules:
+    common:
+      url: upstream:gstreamer-common
 - name: gst-libav
   morph: strata/multimedia-gstreamer/gst-libav.morph
   repo: upstream:gst-libav
@@ -55,3 +67,8 @@ chunks:
   - gstreamer
   - gstreamer-plugins-base
   - orc
+  submodules:
+    gst-libs/ext/libav:
+      url: upstream:ffmpeg
+    common:
+      url: upstream:gstreamer-common

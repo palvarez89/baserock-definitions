@@ -42,3 +42,6 @@ chunks:
   - nettle
   - libtasn1
   - p11-kit
+  submodules:
+    devel/openssl:
+      url: upstream:openssl-new

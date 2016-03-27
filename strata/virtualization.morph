@@ -30,6 +30,29 @@ chunks:
   repo: upstream:qemu
   ref: c5691f7ecb32cbe7a95b491314ce070e211fd97d
   unpetrify-ref: baserock/v2.2.0
+  submodules:
+    roms/openbios:
+      url: upstream:qemu-openbios
+    dtc:
+      url: upstream:device-tree-compiler
+    roms/openhackware:
+      url: upstream:qemu-openhackware
+    roms/seabios:
+      url: upstream:qemu-seabios
+    roms/vgabios:
+      url: upstream:qemu-vgabios
+    roms/u-boot:
+      url: upstream:u-boot
+    roms/SLOF:
+      url: upstream:qemu-SLOF
+    roms/qemu-palcode:
+      url: upstream:qemu-palcode
+    roms/ipxe:
+      url: upstream:qemu-ipxe
+    roms/sgabios:
+      url: upstream:qemu-sgabios
+    pixman:
+      url: upstream:pixman
 - name: libpciaccess
   repo: upstream:libpciaccess
   ref: b9c068896914b4132a24839c9ef7f9fcd6282d88
@@ -51,6 +74,9 @@ chunks:
   - qemu
   - yajl
   - dmidecode
+  submodules:
+    gnulib:
+      url: upstream:gnulib
 - name: pycurl
   repo: upstream:pycurl
   ref: 5ca370827d88817eeca3c56cbb37e4ddccc16c6e

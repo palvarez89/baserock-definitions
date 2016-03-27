@@ -10,6 +10,15 @@ chunks:
   repo: upstream:ansible
   ref: 0a7124541247cc613352054f4bc0c3e116e0b657
   unpetrify-ref: baserock/v1.8.4
+  submodules:
+    lib/ansible/modules/core:
+      url: upstream:ansible-modules-core.git
+    v2/ansible/modules/core:
+      url: upstream:ansible-modules-core.git
+    v2/ansible/modules/extras:
+      url: upstream:ansible-modules-extras.git
+    lib/ansible/modules/extras:
+      url: upstream:ansible-modules-extras.git
 - name: openstack-ansible-modules
   morph: strata/ansible/openstack-ansible-modules.morph
   repo: upstream:openstack/openstack-ansible-modules

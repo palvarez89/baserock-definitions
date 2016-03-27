@@ -30,3 +30,8 @@ chunks:
   build-depends:
   - gpgme
   - libgsystem
+  submodules:
+    libglnx:
+      url: upstream:libglnx
+    bsdiff:
+      url: upstream:bsdiff

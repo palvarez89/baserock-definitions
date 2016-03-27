@@ -10,3 +10,6 @@ chunks:
   repo: upstream:qt-creator
   ref: 8895770ba36f96f150fe8dca71f889ff24d07fd6
   unpetrify-ref: baserock/v3.6.1
+  submodules:
+    qbs:
+      url: upstream:qbs

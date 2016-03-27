@@ -61,3 +61,18 @@ chunks:
   - libeditline
   - keyutils
   - boost
+  submodules:
+    src/erasure-code/jerasure/gf-complete:
+      url: https://github.com/ceph/gf-complete.git
+    src/civetweb:
+      url: https://github.com/ceph/civetweb
+    ceph-erasure-code-corpus:
+      url: https://github.com/ceph/ceph-erasure-code-corpus.git
+    src/rocksdb:
+      url: https://github.com/ceph/rocksdb
+    src/erasure-code/jerasure/jerasure:
+      url: https://github.com/ceph/jerasure.git
+    src/libs3:
+      url: https://github.com/ceph/libs3.git
+    ceph-object-corpus:
+      url: https://github.com/ceph/ceph-object-corpus.git
