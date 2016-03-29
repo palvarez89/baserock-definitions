@@ -187,8 +187,8 @@ chunks:
 - name: bison
   morph: strata/core/bison.morph
   repo: upstream:bison
-  ref: 2ab6d1daaccf32fc4314e4b2fe44da977f11a308
-  unpetrify-ref: baserock/v3.0.2
+  ref: c4e686a1abd817b4d4da5bdd5b3a5540566fd4a0
+  unpetrify-ref: v3.0.4
   build-depends:
   - autoconf
   - automake
@@ -200,8 +200,8 @@ chunks:
 - name: patch
   morph: strata/core/patch.morph
   repo: upstream:patch
-  ref: 3bbb26c928a147cfcf0756f1cc0a1307e5cc663f
-  unpetrify-ref: baserock/v2.7.1
+  ref: 3b698ab6a13fd3e5890689cd85cf41312c682f8c
+  unpetrify-ref: v2.7.5
   build-depends:
   - autoconf
   - automake
@@ -221,8 +221,8 @@ chunks:
   - libtool-tarball
 - name: libtool
   repo: upstream:libtool
-  ref: 5e11a17c39a2a976a09c33a568431a9f7ad00d48
-  unpetrify-ref: baserock/v2.4.6
+  ref: f09d00cbcf924c378573163e244fffeb8d28005f
+  unpetrify-ref: v2.4.6
   build-system: autotools
   build-depends:
   - autoconf
