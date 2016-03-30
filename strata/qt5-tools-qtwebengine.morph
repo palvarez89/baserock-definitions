@@ -1,0 +1,16 @@
+name: qt5-tools-qtwebengine
+kind: stratum
+description: Qt5 WebEngine Development Libraries and Tools
+build-depends:
+- morph: strata/multimedia-gstreamer.morph
+- morph: strata/qt5-tools.morph
+- morph: strata/ruby.morph
+chunks:
+- name: qtwebengine
+  repo: upstream:qt5/qtwebengine
+  ref: 5c4ae298b0a3d75c4c5ea8aef0595914ab25607f
+  unpetrify-ref: v5.6.0
+  build-system: qmake
+  submodules:
+    src/3rdparty:
+      url: upstream:qt5/qtwebengine-chromium.git
