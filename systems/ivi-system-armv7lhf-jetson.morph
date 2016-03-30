@@ -59,8 +59,8 @@ strata:
   morph: strata/qt5-tools.morph
 - name: qt5-tools-qtmultimedia
   morph: strata/qt5-tools-qtmultimedia.morph
-- name: qt5-tools-qtwebkit
-  morph: strata/qt5-tools-qtwebkit.morph
+- name: qt5-tools-qtwebengine
+  morph: strata/qt5-tools-qtwebengine.morph
 - name: qt5-tools-qtwayland
   morph: strata/qt5-tools-qtwayland.morph
 - name: ruby
