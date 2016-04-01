@@ -120,3 +120,8 @@ chunks:
   unpetrify-ref: v231
   build-depends:
   - systemd
+- name: libarchive
+  morph: strata/foundation/libarchive.morph
+  repo: upstream:libarchive
+  ref: 19f23e191f9d3e1dd2a518735046100419965804
+  unpetrify-ref: v3.1.2

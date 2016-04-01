@@ -87,11 +87,6 @@ chunks:
   build-depends:
   - DLT-daemon
   - persistence-client-library
-- name: libarchive
-  morph: strata/genivi/libarchive.morph
-  repo: upstream:libarchive
-  ref: 19f23e191f9d3e1dd2a518735046100419965804
-  unpetrify-ref: v3.1.2
 - name: persistence-administrator
   morph: strata/genivi/persistence-administrator.morph
   repo: upstream:genivi/persistence-administrator
@@ -100,7 +95,6 @@ chunks:
   build-depends:
   - persistence-common-object
   - DLT-daemon
-  - libarchive
   - node-state-manager
 - name: node-health-monitor
   repo: upstream:genivi/node-health-monitor
