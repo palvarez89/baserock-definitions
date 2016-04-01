@@ -12,8 +12,8 @@ chunks:
 - name: xdg-app
   morph: strata/xdg-app-common/xdg-app.morph
   repo: upstream:xdg-app
-  ref: 7e90d39533745d5fd2a1b030f55099f803ae3a5c
-  unpetrify-ref: baserock/0.4.13
+  ref: 619e1f1025851179dee3e616000e5de2ccde9412
+  unpetrify-ref: 0.5.1
   build-depends:
   - elfutils
   submodules:
