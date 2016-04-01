@@ -18,11 +18,6 @@ chunks:
   submodules:
     documentation/designdocument/cls:
       url: http://github.com/Pelagicore/Pelagicore-LaTeX-Class.git
-- name: automotive-message-broker
-  morph: strata/genivi-demo-platform/automotive-message-broker.morph
-  repo: upstream:automotive-message-broker
-  ref: 5cac4bd2958ea24ac6913be5baa0dfcda6466089
-  unpetrify-ref: '0.14'
 - name: audiomanager-poc
   morph: strata/genivi-demo-platform/audiomanager-poc.morph
   repo: upstream:audiomanager

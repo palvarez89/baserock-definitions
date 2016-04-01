@@ -1,6 +1,6 @@
 name: automotive-message-broker
 kind: chunk
-description: The GENIVI Automotive Message Broker
+description: Automotive Message Broker framework
 build-system: cmake
 post-install-commands:
 - mkdir -p "$DESTDIR/usr/lib/systemd/system"
@@ -9,12 +9,12 @@ post-install-commands:
   [Unit]
   Description=Automotive Message Broker
   After=syslog.target
-  
+
   [Service]
   Type=dbus
   BusName=org.automotive.message.broker
   ExecStart=/usr/bin/ambd
-  
+
   [Install]
   WantedBy=multi-user.target
   EOF

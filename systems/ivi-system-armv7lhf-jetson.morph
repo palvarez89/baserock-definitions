@@ -29,6 +29,8 @@ strata:
   morph: strata/icu-common.morph
 - name: input-common
   morph: strata/input-common.morph
+- name: ivi-common
+  morph: strata/ivi-common.morph
 - name: libdrm-common
   morph: strata/libdrm-common.morph
 - name: libsoup-common
