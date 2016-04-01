@@ -23,10 +23,10 @@ chunks:
   unpetrify-ref: master
   build-system: autotools
 - name: ostree
+  morph: strata/ostree-core/ostree.morph
   repo: upstream:ostree
-  ref: 45ec78735daf72da1998f9df2887ea9b5e2600c3
-  unpetrify-ref: baserock/v2015.9
-  build-system: autotools
+  ref: 80698543c2cae285220b0406b24ea71b647ab0aa
+  unpetrify-ref: v2016.4
   build-depends:
   - gpgme
   - libgsystem
