@@ -312,8 +312,8 @@ chunks:
 - name: gnome-online-accounts
   morph: strata/gnome/gnome-online-accounts.morph
   repo: upstream:gnome/gnome-online-accounts
-  ref: 167ada60a66a0ed851bb65335a46570cf071115a
-  unpetrify-ref: baserock/3.18.1
+  ref: d08463aefde22f36898f4e79798d365359e57614
+  unpetrify-ref: 3.18.1
   build-depends:
   - librest
   - telepathy-glib
@@ -537,8 +537,8 @@ chunks:
   build-system: autotools
 - name: farstream
   repo: upstream:farstream
-  ref: 9247c10816835dc76269baa7c4c8996ae1a2fac3
-  unpetrify-ref: baserock/0.2.7
+  ref: 01fafe82fbc01f31e76623fbbbe6dd99eb28d6bb
+  unpetrify-ref: 0.2.7
   build-system: autotools
   build-depends:
   - libnice
@@ -556,8 +556,8 @@ chunks:
 - name: telepathy-gabble
   morph: strata/gnome/telepathy-gabble.morph
   repo: upstream:telepathy-gabble
-  ref: 91d890ef3f269e92ea3a2a265597293e056e842c
-  unpetrify-ref: baserock/telepathy-gabble-0.18.3
+  ref: f10f557fd67ec11738670828a553496960c0d411
+  unpetrify-ref: telepathy-gabble-0.18.3
   build-depends:
   - libnice
   - telepathy-glib
@@ -567,8 +567,8 @@ chunks:
 - name: telepathy-salut
   morph: strata/gnome/telepathy-salut.morph
   repo: upstream:telepathy-salut
-  ref: e554f3c595307f665e5c2dd464f1baf0120ab43d
-  unpetrify-ref: baserock/telepathy-salut-0.8.1
+  ref: cd32e00a3a461756cbf1f6899a0c2aa5bd5d79ee
+  unpetrify-ref: telepathy-salut-0.8.1
   build-depends:
   - telepathy-glib
   submodules:
@@ -685,8 +685,8 @@ chunks:
 - name: gnome-control-center
   morph: strata/gnome/gnome-control-center.morph
   repo: upstream:gnome/gnome-control-center
-  ref: f00c05ba3b3c7aa328d7970b73a784739cef560a
-  unpetrify-ref: baserock/3.18
+  ref: 49da7d8089298ba9e15d8e025db606278802d5ac
+  unpetrify-ref: GNOME_CONTROL_CENTER_3_18_0
   build-depends:
   - accountsservice
   - cheese
@@ -777,8 +777,8 @@ chunks:
   - WebKitGtk
 - name: totem
   repo: upstream:gnome/totem
-  ref: 77cf0b9d3de4fd3a48492c77e25308d6c411b651
-  unpetrify-ref: baserock/V_3_18_1
+  ref: dc21ef2e61f7e8a085a0f98eeec808b6424af988
+  unpetrify-ref: V_3_18_1
   build-system: autotools
   build-depends:
   - appstream-glib
@@ -819,8 +819,8 @@ chunks:
   - yelp-tools
 - name: gedit
   repo: upstream:gnome/gedit
-  ref: 4b318c265d71eca3572920bb159dcda9aa9f9184
-  unpetrify-ref: baserock/3.18.2
+  ref: 8156d35a6eb27f3251e1ea454a48cb2a2ae4f87c
+  unpetrify-ref: 3.18.2
   build-system: autotools
   build-depends:
   - gsettings-desktop-schemas
@@ -852,8 +852,8 @@ chunks:
 - name: empathy
   morph: strata/gnome/empathy.morph
   repo: upstream:gnome/empathy
-  ref: facd02a2cf3c0d2778b10626362b29e2a6df546a
-  unpetrify-ref: baserock/EMPATHY_3_12_11
+  ref: 1245792e78ab67683349d376f4b7b5a2a02a0b9f
+  unpetrify-ref: EMPATHY_3_12_11
   build-depends:
   - cheese
   - clutter
@@ -877,8 +877,8 @@ chunks:
       url: upstream:gnome/telepathy-account-widgets
 - name: gnome-contacts
   repo: upstream:gnome/gnome-contacts
-  ref: 3715ec79662989038d5055bb74aa0b728b40edb5
-  unpetrify-ref: baserock/3.18.0
+  ref: fa736997cc7ec8df89458502c0a181090def64e9
+  unpetrify-ref: 3.18.0
   build-system: autotools
   build-depends:
   - cheese
