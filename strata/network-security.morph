@@ -36,8 +36,8 @@ chunks:
 - name: gnutls
   morph: strata/network-security/gnutls.morph
   repo: upstream:gnutls
-  ref: 21fecbde80ae824f85a10a0c23a327c49e4e5fb6
-  unpetrify-ref: baserock/gnutls_3_4_6
+  ref: a9bcd4881a539e64bd948eff3fa3434e23973262
+  unpetrify-ref: gnutls_3_4_6
   build-depends:
   - nettle
   - libtasn1
