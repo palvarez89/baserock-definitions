@@ -64,8 +64,8 @@ chunks:
   - systemd
 - name: usbutils
   repo: upstream:usbutils
-  ref: c37f146eb2c6642c600f1b025a6d56996b0697ff
-  unpetrify-ref: baserock/v008
+  ref: 3bafa6940f512357d7aa54d3a76de01662a19e48
+  unpetrify-ref: v008
   build-system: autotools
   build-depends:
   - libusb
