@@ -1,0 +1,12 @@
+name: bsp-x86_64-ivi
+kind: stratum
+description: Set of components required for booting a 64-bit
+  x86 based system, with some options specific to IVI systems.
+build-depends:
+- morph: strata/bsp-x86_both-tools.morph
+chunks:
+- name: linux-x86-64-generic
+  morph: strata/bsp-x86_64-ivi/linux-x86-64-ivi.morph
+  repo: upstream:linux-stable
+  ref: afd2ff9b7e1b367172f18ba7f693dfb62bdcb2dc
+  unpetrify-ref: v4.4

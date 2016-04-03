@@ -1,0 +1,48 @@
+name: linux-x86-64-ivi
+kind: chunk
+products:
+- artifact: linux-x86-64-ivi-devel
+  include:
+  - (usr/)?src/linux/.*
+- artifact: linux-x86-64-ivi-bins
+  include:
+  - boot/.*
+- artifact: linux-x86-64-ivi-libs
+  include:
+  - lib/.*
+configure-commands:
+- make defconfig
+- scripts/config -m CONFIG_DRM_CIRRUS_QEMU
+- scripts/config -m CONFIG_DRM_BOCHS
+- scripts/config -m CONFIG_DRM_VIRTIO_GPU
+- scripts/config -m CONFIG_BT_INTEL
+- scripts/config -m CONFIG_MOSTCORE
+- yes '' | make oldconfig
+build-commands:
+- make $MAKEFLAGS
+install-commands:
+- mkdir -p "$DESTDIR"/boot
+- make INSTALL_PATH="$DESTDIR"/boot install
+- make INSTALL_MOD_PATH="$DESTDIR" modules_install
+- install -d "$DESTDIR$PREFIX/src/linux"
+- |
+  (
+      printf 'Makefile\0'
+      printf 'Module.symvers\0'
+      find arch/x86 -maxdepth 1 -name 'Makefile*' -print0
+      find arch/x86 \( -name 'module.lds' -o -name 'Kbuild.platforms' -o -name 'Platform' \) -print0
+      find arch/x86 \( -type d -a \( -name include -o -name scripts \) \) -o \
+                               \! -type d -a \( -path '*include/*' -o -path '*scripts/*' \) -print0
+      find include -name 'asm*' -prune -o -print0
+      find include/asm-generic -print0
+      find include/uapi -print0
+      find scripts -print0
+  ) | cpio -0pumd "$DESTDIR$PREFIX/src/linux"
+system-integration:
+  linux-x86-64-generic-misc:
+    # This is required for any modules to work correctly. However, it depends
+    # `depmod` from the 'kmod' chunk in the 'foundation' stratum, so it runs
+    # conditionally on `depmod` existing to avoid breaking in
+    # minimal-system-x86_64.
+    00-depmod:
+    - if which depmod; then (cd /lib/modules && for version in *; do depmod -a "$version"; done) fi
