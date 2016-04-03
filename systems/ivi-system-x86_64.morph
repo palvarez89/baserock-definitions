@@ -5,8 +5,10 @@ arch: x86_64
 strata:
 - name: audio-bluetooth
   morph: strata/audio-bluetooth.morph
-- name: bsp-x86_64-generic
-  morph: strata/bsp-x86_64-generic.morph
+- name: bsp-x86_both-tools
+  morph: bsp-x86_both-tools.morph
+- name: bsp-x86_64-ivi
+  morph: strata/bsp-x86_64-ivi.morph
 - name: build-essential
   morph: strata/build-essential.morph
 - name: core
