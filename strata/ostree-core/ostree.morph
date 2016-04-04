@@ -1,4 +1,4 @@
-me: ostree
+name: ostree
 kind: chunk
 build-system: autotools
 configure-commands:
