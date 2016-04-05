@@ -10,8 +10,8 @@ chunks:
 - name: linux-x86-64-generic
   morph: strata/bsp-x86_64-generic/linux-x86-64-generic.morph
   repo: upstream:linux-stable
-  ref: afd2ff9b7e1b367172f18ba7f693dfb62bdcb2dc
-  unpetrify-ref: v4.4
+  ref: b562e44f507e863c6792946e4e1b1449fbbac85d
+  unpetrify-ref: v4.5
 - name: nasm
   morph: strata/bsp-x86_64-generic/nasm.morph
   repo: upstream:nasm
