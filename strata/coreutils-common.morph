@@ -48,10 +48,10 @@ chunks:
     gnulib:
       url: upstream:gnulib
 - name: findutils
-  morph: strata/coreutils-common/findutils.morph
   repo: upstream:findutils
   ref: 992a6b62ab8061531dc0ad40325b8e4c222fce66
   unpetrify-ref: v4.6.0
+  build-system: autotools
   submodules:
     gnulib:
       url: upstream:gnulib
