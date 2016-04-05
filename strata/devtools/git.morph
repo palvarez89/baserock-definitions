@@ -7,3 +7,5 @@ build-commands:
 - make all doc
 install-commands:
 - make install install-doc
+post-install-commands:
+- install -D -m 644 -t "$DESTDIR"/etc/bash_completion.d/. contrib/completion/git-completion.bash
