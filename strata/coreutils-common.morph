@@ -38,8 +38,8 @@ chunks:
 - name: tar
   morph: strata/coreutils-common/tar.morph
   repo: upstream:tar
-  ref: b500277de7eeac4893fe6517c38dc417b4a4d976
-  unpetrify-ref: release_1_28
+  ref: 9a58d148c26c220cb1b163c71e7a51a2e41f6b37
+  unpetrify-ref: baserock/release_1_28
   build-depends:
   - coreutils
   submodules:
