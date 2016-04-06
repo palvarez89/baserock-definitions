@@ -39,8 +39,6 @@ strata:
   morph: strata/graphics-common.morph
 - name: input-common
   morph: strata/input-common.morph
-- name: ivi-common
-  morph: strata/ivi-common.morph
 - name: llvm-common
   morph: strata/llvm-common.morph
 - name: mesa-common
