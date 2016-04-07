@@ -1,5 +1,6 @@
 name: boost
 kind: chunk
+build-system: manual
 configure-commands:
 - ./bootstrap.sh
 build-commands:

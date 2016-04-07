@@ -1,6 +1,7 @@
 name: ceph-service
 kind: stratum
 build-depends:
+- morph: strata/cpp-common-libs.morph
 - morph: strata/foundation.morph
 - morph: strata/network-security.morph
 chunks:
@@ -44,11 +45,6 @@ chunks:
   ref: 7503ff5f8610734521f40e276b59b3b6291830e7
   unpetrify-ref: baserock/morph
   build-system: autotools
-- name: boost
-  morph: strata/ceph-service/boost.morph
-  repo: upstream:boost-tarball
-  ref: ed232fdd34968697a68783b3195b1da4226915b5
-  unpetrify-ref: boost_1_57_0
 - name: ceph
   morph: strata/ceph-service/ceph.morph
   repo: upstream:ceph
@@ -60,7 +56,6 @@ chunks:
   - leveldb
   - libeditline
   - keyutils
-  - boost
   submodules:
     src/erasure-code/jerasure/gf-complete:
       url: https://github.com/ceph/gf-complete.git

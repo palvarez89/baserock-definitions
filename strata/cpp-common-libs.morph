@@ -1,0 +1,11 @@
+name: cpp-common-libs
+kind: stratum
+description: C++ common libraries
+build-depends:
+- morph: strata/python2-core.morph
+chunks:
+- name: boost
+  morph: strata/cpp-common-libs/boost.morph
+  repo: upstream:boost-tarball
+  ref: ed232fdd34968697a68783b3195b1da4226915b5
+  unpetrify-ref: boost_1_57_0

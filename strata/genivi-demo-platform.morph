@@ -2,6 +2,7 @@ name: genivi-demo-platform
 kind: stratum
 description: Components which make up the GENIVI demo platform.
 build-depends:
+- morph: strata/cpp-common-libs.morph
 - morph: strata/genivi-demo-platform-libs.morph
 - morph: strata/qt5-tools.morph
 - morph: strata/qt5-tools-qtmultimedia.morph

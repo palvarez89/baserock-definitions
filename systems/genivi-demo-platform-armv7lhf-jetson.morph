@@ -7,6 +7,8 @@ strata:
   morph: strata/build-essential.morph
 - name: core
   morph: strata/core.morph
+- name: cpp-common-libs
+  morph: strata/cpp-common-libs.morph
 - name: python2-core
   morph: strata/python2-core.morph
 - name: glib-common
