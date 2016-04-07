@@ -1,0 +1,12 @@
+name: ivi-common
+kind: stratum
+description: Components shared with different IVI systems
+build-depends:
+- morph: strata/cpp-common-libs.morph
+- morph: strata/glib-common.morph
+chunks:
+- name: automotive-message-broker
+  morph: strata/ivi-common/automotive-message-broker.morph
+  repo: upstream:automotive-message-broker
+  ref: 5cac4bd2958ea24ac6913be5baa0dfcda6466089
+  unpetrify-ref: '0.14'
