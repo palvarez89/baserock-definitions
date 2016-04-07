@@ -7,5 +7,8 @@ chunks:
 - name: gst-omx
   morph: strata/multimedia-gstreamer-openmax-generic/gst-omx.morph
   repo: upstream:gst-omx
-  ref: baserock/1.2.0
-  unpetrify-ref: baserock/1.2.0
+  ref: b4c7c726ef443cf8a89df26026706e391846bb4a
+  unpetrify-ref: 1.2.0
+  submodules:
+    common:
+      url: upstream:gstreamer-common
