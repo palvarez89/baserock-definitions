@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (C) 2013  Codethink Limited
+# Copyright (C) 2013-2016  Codethink Limited
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,13 +21,15 @@ to find the files created by that chunk, then remove them.
 
 '''
 
-import json
 import os
 import re
 import subprocess
 import sys
 
 import writeexts
+
+import imp
+scriptslib = imp.load_source('scriptslib', 'scripts/scriptslib.py')
 
 class StripGPLv3ConfigureExtension(writeexts.Extension):
     gplv3_chunks = [
@@ -59,29 +61,16 @@ class StripGPLv3ConfigureExtension(writeexts.Extension):
     def process_args(self, args):
         target_root = args[0]
         meta_dir = os.path.join(target_root, 'baserock')
+        metadata = scriptslib.meta_load_from_dir(meta_dir)
 
         for chunk in self.gplv3_chunks:
-            regex = os.path.join(meta_dir, "%s-[^-]\+\.meta" % chunk[0])
-            artifacts = subprocess.check_output(['busybox', 'find', meta_dir,
-                                                 '-regex', regex])
+            for meta in metadata.get_name(chunk[0]):
+                self.remove_chunk(
+                    target_root, reversed(meta['contents']), chunk[1])
 
-            for artifact in artifacts.split():
-                self.remove_chunk(target_root, artifact, chunk[1])
-
-        os.symlink(os.path.join(os.sep, 'bin', 'busybox'),
-                   os.path.join(target_root, 'usr', 'bin', 'awk'))
-
-    def remove_chunk(self, target_root, chunk, pattern):
-        chunk_meta_path = os.path.join(target_root, 'baserock', chunk)
-
-        with open(chunk_meta_path, 'r') as f:
-            chunk_meta_data = json.load(f)
-
-        if not 'contents' in chunk_meta_data:
-            raise writeexts.ExtensionError(
-                'Chunk %s does not have a "contents" list' % chunk)
+    def remove_chunk(self, target_root, chunk_contents, pattern):
         updated_contents = []
-        for content_entry in reversed(chunk_meta_data['contents']):
+        for content_entry in chunk_contents:
             pat = re.compile(pattern)
             if len(pattern) == 0 or not pat.match(content_entry):
                 self.remove_content_entry(target_root, content_entry)
