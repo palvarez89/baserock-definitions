@@ -2,10 +2,11 @@ name: qt5-tools-qtwayland
 kind: stratum
 description: Qt5 Wayland module
 build-depends:
+- morph: strata/input-common.morph
 - morph: strata/qt5-tools.morph
 chunks:
 - name: qtwayland
   repo: upstream:qt5/qtwayland
-  ref: 29b8bd8b1117589341110502fe516bf22c920747
-  unpetrify-ref: v5.6.0
+  ref: ebba84e70fe3610affc3974f51c8ed6d539377aa
+  unpetrify-ref: baserock/v5.6.0-15-gebba84e+ivi-shell
   build-system: qmake
