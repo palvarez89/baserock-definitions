@@ -17,8 +17,8 @@ chunks:
 - name: kmod
   morph: strata/foundation/kmod.morph
   repo: upstream:kmod
-  ref: ae58de0fcb4a6528dd365e23d383bbe2eaf2d566
-  unpetrify-ref: v18
+  ref: 42f32b8ae45ad8e3a1da29c9b20af9b5e2e9e676
+  unpetrify-ref: v22
 - name: time-zone-database
   morph: strata/foundation/time-zone-database.morph
   repo: upstream:tz
@@ -27,8 +27,8 @@ chunks:
 - name: pciutils
   morph: strata/foundation/pciutils.morph
   repo: upstream:pciutils
-  ref: bae04bd0473c68a2f21b7712a627abb08fd84b29
-  unpetrify-ref: baserock/morph
+  ref: 37c9315c504f266c23d51e62e59d32422dbbe9e7
+  unpetrify-ref: v3.4.1
 - name: dbus-pre
   morph: strata/foundation/dbus-pre.morph
   repo: upstream:dbus
