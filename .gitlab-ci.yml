@@ -1,0 +1,71 @@
+before_script:
+  - git clone https://github.com/devcurmudgeon/ybd
+  - apt-get update -qq && apt-get install -y -qq python-dev python-pip
+  - pip install fs pyyaml sandboxlib requests jsonschema
+
+devel-build-64:
+  stage: build
+  script:
+  - ybd/ybd.py systems/devel-system-x86_64-generic.morph x86_64
+
+genivi-baseline-build-64:
+  stage: build
+  script:
+  - ybd/ybd.py systems/genivi-baseline-system-x86_64-generic x86_64
+  - ybd/ybd.py systems/initramfs-x86_64.morph x86_64
+
+gnome-build-64:
+  stage: build
+  script:
+  - ybd/ybd.py systems/gnome-system-x86_64.morph x86_64
+  - ybd/ybd.py systems/initramfs-x86_64.morph x86_64
+gnome-deploy-64:
+  stage: deploy
+  script:
+  - ybd/ybd.py clusters/gnome-system-x86_64-deploy.morph x86_64
+  artifacts:
+    paths:
+    - /gnome-system-x86_64.img
+
+minimal-build-64:
+  stage: build
+  script:
+  - ybd/ybd.py systems/minimal-system-x86_64-generic.morph x86_64
+minimal-deploy-64:
+  stage: deploy
+  script:
+  - ybd/ybd.py clusters/minimal-system-deploy.morph x86_64
+  artifacts:
+    paths:
+    - minimal-system-x86_64-generic.img
+
+openstack-build-64:
+  stage: build
+  script:
+  - ybd/ybd.py systems/openstack-system-x86_64.morph x86_64
+
+weston-build-64:
+  stage: build
+  script:
+  - ybd/ybd.py systems/weston-system-x86_64-generic.morph x86_64
+  - ybd/ybd.py systems/initramfs-x86_64.morph x86_64
+weston-deploy-64:
+  stage: deploy
+  script:
+  - ybd/ybd.py clusters/weston-system-x86_64-generic-deploy.morph x86_64
+  artifacts:
+    paths:
+    - /weston-system-x86_64-generic.img
+
+weston-qt-build-64:
+  stage: build
+  script:
+  - ybd/ybd.py weston-qt5-system-x86_64.morph x86_64
+  - ybd/ybd.py systems/initramfs-x86_64.morph x86_64
+weston-qt-deploy-64:
+  stage: deploy
+  script:
+  - ybd/ybd.py clusters/weston-qt5-system-x86_64-deploy.morph x86_64
+  artifacts:
+    paths:
+    - /weston-qt5-system-x86_64.img
