@@ -11,12 +11,12 @@ chunks:
 - name: orc
   morph: strata/multimedia-gstreamer/orc.morph
   repo: upstream:orc
-  ref: 1a3af3cb4daeb6802197a7854507d6ee8bc9a06b
-  unpetrify-ref: orc-0.4.24
+  ref: 831886d1f70d3cc21a913b2e335da38af4cae524
+  unpetrify-ref: orc-0.4.25
 - name: gstreamer
   repo: upstream:gstreamer
-  ref: 98aec4a963556cbe569e8a66aff758e5d7fac612
-  unpetrify-ref: 1.6.3
+  ref: 1abf889dddc75b4e4db2f4505a4287cb20878d27
+  unpetrify-ref: 1.8.0
   build-system: autotools
   build-depends:
   - orc
@@ -25,8 +25,8 @@ chunks:
       url: upstream:gstreamer-common
 - name: gstreamer-plugins-base
   repo: upstream:gstreamer-plugins-base
-  ref: 9c28866c9c65dcc79ffdff9c2880f5c68f09280c
-  unpetrify-ref: 1.6.3
+  ref: d67525d594d592e01f13be3c498fef891d11cbf3
+  unpetrify-ref: 1.8.0
   build-system: autotools
   build-depends:
   - gstreamer
@@ -36,8 +36,8 @@ chunks:
       url: upstream:gstreamer-common
 - name: gstreamer-plugins-good
   repo: upstream:gstreamer-plugins-good
-  ref: 0708c89706601a858a815b5d1fa6c03b4158e215
-  unpetrify-ref: 1.6.3
+  ref: 7b809209f7abc07fca51addb60bd499fa8693eed
+  unpetrify-ref: 1.8.0
   build-system: autotools
   build-depends:
   - gstreamer
@@ -48,8 +48,8 @@ chunks:
       url: upstream:gstreamer-common
 - name: gstreamer-plugins-bad
   repo: upstream:gstreamer-plugins-bad
-  ref: 7dee47fe39223d8a98615f03f34d9221f9e8a6c1
-  unpetrify-ref: 1.6.3
+  ref: 740d3507eaf4381ba80de18b607bbd732bccca65
+  unpetrify-ref: 1.8.0
   build-system: autotools
   build-depends:
   - gstreamer
@@ -61,8 +61,8 @@ chunks:
 - name: gst-libav
   morph: strata/multimedia-gstreamer/gst-libav.morph
   repo: upstream:gst-libav
-  ref: 0457d1d45b04cd8ef368d5e682d133daf4660fc6
-  unpetrify-ref: 1.6.3
+  ref: 2d362cc9206785bab4d20c7e375b9c8872d60f95
+  unpetrify-ref: 1.8.0
   build-depends:
   - gstreamer
   - gstreamer-plugins-base
