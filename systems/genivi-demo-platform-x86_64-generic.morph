@@ -61,8 +61,8 @@ strata:
   morph: strata/qt5-tools-qtmultimedia.morph
 - name: qt5-tools-qtwebkit
   morph: strata/qt5-tools-qtwebkit.morph
-- name: qt5-tools-qtwayland-genivi
-  morph: strata/qt5-tools-qtwayland-genivi.morph
+- name: qt5-tools-qtwayland
+  morph: strata/qt5-tools-qtwayland.morph
 - name: python-pygobject
   morph: strata/python-pygobject.morph
 - name: genivi-demo-platform-libs
