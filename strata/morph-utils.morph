@@ -37,7 +37,7 @@ chunks:
   build-system: python-distutils
 - name: morph
   repo: baserock:baserock/morph
-  ref: a7f12476d4e7b2025a60be58027b67b9e551f31b
+  ref: 74e8d1b9aeb47d957d526250784d2c0087e59bf9
   unpetrify-ref: master
   build-system: python-distutils
   build-depends:
