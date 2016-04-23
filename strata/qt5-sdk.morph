@@ -3,7 +3,7 @@ kind: stratum
 description: Qt5 Desktop Environment, IDE and Example Apps
 build-depends:
 - morph: strata/qt5-tools.morph
-- morph: strata/qt5-tools-qtwebengine.morph
+- morph: strata/qt5-tools-qtwebkit.morph
 chunks:
 - name: qt-creator
   morph: strata/qt5-sdk/qt-creator.morph
