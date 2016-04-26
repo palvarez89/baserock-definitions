@@ -39,7 +39,7 @@ install-commands:
       find scripts -print0
   ) | cpio -0pumd "$DESTDIR$PREFIX/src/linux"
 system-integration:
-  linux-x86-64-generic-misc:
+  linux-x86-64-ivi-misc:
     # This is required for any modules to work correctly. However, it depends
     # `depmod` from the 'kmod' chunk in the 'foundation' stratum, so it runs
     # conditionally on `depmod` existing to avoid breaking in
