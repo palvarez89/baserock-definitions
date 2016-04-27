@@ -1,0 +1,22 @@
+name: genivi-demo-platform-x86_32-deploy
+kind: cluster
+description: |
+  Deploy GENIVI Demo platform system
+systems:
+- morph: systems/genivi-demo-platform-x86_32-generic.morph
+  deploy:
+    genivi-demo-platform-x86_32-generic:
+      type: extensions/rawdisk
+      location: genivi-demo-platform-x86_32-generic.img
+      DISK_SIZE: 4G
+      KERNEL_ARGS: vga=788
+      INITRAMFS_PATH: boot/initramfs.gz
+      HOSTNAME: genivi-demo-platform-x86-32-generic
+      GENIVI_WESTON_CONFIG: gdp
+      GENIVI_WESTON_AUTOSTART: False
+  subsystems:
+  - morph: systems/initramfs-x86_32.morph
+    deploy:
+      initramfs-genivi-demo-platform-x86_32-generic:
+        type: extensions/initramfs
+        location: boot/initramfs.gz
