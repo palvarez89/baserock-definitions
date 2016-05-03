@@ -38,5 +38,5 @@ chunks:
 - name: genivi-demo-platform-hmi
   morph: strata/genivi-demo-platform/genivi-demo-platform-hmi.morph
   repo: upstream:genivi/genivi-demo-platform-hmi
-  ref: f56acfadb5400087c1bb935406fcb005e315f27f
-  unpetrify-ref: baserock/weston-1.9-wip
+  ref: fd2c954165b0c0f7f4d9e94e8c9c3c8541a53e79
+  unpetrify-ref: master
