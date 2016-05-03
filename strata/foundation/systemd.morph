@@ -9,6 +9,7 @@ configure-commands:
                              --disable-manpages
                              --disable-tests
                              --libexecdir="$PREFIX/libexec"
+                             --enable-split-usr
 post-install-commands:
 - mkdir -p "$DESTDIR"/sbin
 - ln -s "$PREFIX"/lib/systemd/systemd "$DESTDIR"/sbin/init
