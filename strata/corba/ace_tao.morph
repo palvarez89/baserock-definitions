@@ -1,0 +1,32 @@
+name: ACE_TAO
+kind: chunk
+build-system: manual
+configure-commands:
+- |
+  export ACE_ROOT="$PWD/ACE"
+  export TAO_ROOT="$PWD/TAO"
+  export MPC_ROOT='/usr/src/MPC'
+  cd "$TAO_ROOT"
+  perl "$ACE_ROOT"/bin/mwc.pl TAO_ACE.mwc -type gnuace
+
+build-commands:
+- |
+  export ACE_ROOT="$PWD/ACE"
+  export TAO_ROOT="$PWD/TAO"
+  export MPC_ROOT='/usr/src/MPC'
+  echo '#include "ace/config-linux.h"' > "$ACE_ROOT"/ace/config.h
+  echo "include "$ACE_ROOT"/include/makeinclude/platform_linux.GNU" > "$ACE_ROOT"/include/makeinclude/platform_macros.GNU
+  export LD_LIBRARY_PATH="$ACE_ROOT"/lib:$LD_LIBRARY_PATH
+  cd "$TAO_ROOT"
+  make
+install-commands:
+- |
+  export ACE_ROOT="$PWD/ACE"
+  export TAO_ROOT="$PWD/TAO"
+  export MPC_ROOT='/usr/src/MPC'
+  cd "$TAO_ROOT"
+  make DESTDIR="$DESTDIR" INSTALL_PREFIX="$PREFIX" install
+system-integration:
+  ACE_TAO-misc:
+    00-remove-build-dependencies:
+    - rm -rf /usr/src/MPC

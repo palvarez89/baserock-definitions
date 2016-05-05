@@ -1,0 +1,6 @@
+name: MPC
+kind: chunk
+build-system: manual
+install-commands:
+- mkdir -p "$DESTDIR/usr/src/MPC"
+- cp -r * "$DESTDIR/usr/src/MPC"
