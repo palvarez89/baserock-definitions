@@ -61,6 +61,8 @@ strata:
   morph: strata/python2-core.morph
 - name: python3-gobject
   morph: strata/python3-gobject.morph
+- name: qt5-ivi
+  morph: strata/qt5-ivi.morph
 - name: qt5-tools
   morph: strata/qt5-tools.morph
 - name: qt5-tools-qtmultimedia
