@@ -1,0 +1,17 @@
+name: qt5-ivi
+kind: stratum
+description: Qt5 IVI stratum
+build-depends:
+- morph: strata/ruby.morph
+- morph: strata/qt5-tools.morph
+chunks:
+- name: qtapplicationmanager
+  repo: upstream:qt5/qtapplicationmanager
+  ref: fb9670e9e381aa391e5fe3eccd76db0f7b866abb
+  unpetrify-ref: 5.7
+  build-system: qmake
+- name: qtivi
+  repo: upstream:qt5/qtivi
+  ref: 36616e36cb1f0b30aa9ca7977af7a5b682689f7a
+  unpetrify-ref: 5.7
+  build-system: qmake
