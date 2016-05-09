@@ -1,0 +1,11 @@
+name: initramfs-x86_32
+kind: system
+description: Initramfs for x86_32
+arch: x86_32
+strata:
+- name: build-essential
+  morph: strata/build-essential.morph
+  artifacts:
+  - build-essential-minimal
+- name: initramfs-utils
+  morph: strata/initramfs-utils.morph
