@@ -1,0 +1,8 @@
+name: qtapplicationmanager
+kind: chunk
+build-system: qmake
+configure-commands:
+- qmake -config install-prefix=$PREFIX
+post-install-commands:
+- mkdir -p $DESTDIR/opt/am
+- cp -r template-opt/am/* $DESTDIR/opt/am/
