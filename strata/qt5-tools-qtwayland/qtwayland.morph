@@ -1,0 +1,5 @@
+name: qtwayland
+kind: chunk
+build-system: qmake
+configure-commands:
+- qmake -makefile CONFIG+=wayland-compositor

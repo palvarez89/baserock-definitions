@@ -6,7 +6,7 @@ build-depends:
 - morph: strata/qt5-tools.morph
 chunks:
 - name: qtwayland
+  morph: strata/qt5-tools-qtwayland/qtwayland.morph
   repo: upstream:qt5/qtwayland
   ref: ebba84e70fe3610affc3974f51c8ed6d539377aa
   unpetrify-ref: baserock/v5.6.0-15-gebba84e+ivi-shell
-  build-system: qmake
