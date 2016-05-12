@@ -19,6 +19,8 @@ strata:
   morph: strata/device-management.morph
 - name: dlna-services
   morph: strata/dlna-services.morph
+- name: erlang
+  morph: strata/erlang.morph
 - name: foundation
   morph: strata/foundation.morph
 - name: geolocation
