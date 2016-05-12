@@ -14,8 +14,8 @@ chunks:
   build-system: python-distutils
 - name: cffi
   repo: upstream:python-packages/cffi
-  ref: fc53b53095d61a1ec5814c09c3bf2c7e18627fb5
-  unpetrify-ref: master
+  ref:  40b9759b5bbf9f6a4efa1168acc9a60890527f6f
+  unpetrify-ref: release-1.6
   build-system: python-distutils
   build-depends:
   - pycparser
@@ -47,8 +47,8 @@ chunks:
   build-system: python-distutils
 - name: cryptography
   repo: upstream:python-packages/cryptography
-  ref: 9ac7d55150c8410a08ee3b00b89bfeac3dbd8e8f
-  unpetrify-ref: 0.7.2
+  ref: afcd8f5ad8eb21f13be308c5183ef34ad28f9987
+  unpetrify-ref: 1.3.2
   build-system: python-distutils
   build-depends:
   - pyasn1
