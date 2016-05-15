@@ -12,6 +12,8 @@ products:
   - lib/.*
 configure-commands:
 - make defconfig
+- scripts/config -e BTRFS_FS
+- scripts/config -e BTRFS_FS_POSIX_ACL
 - scripts/config -m CONFIG_DRM_CIRRUS_QEMU
 - scripts/config -m CONFIG_DRM_BOCHS
 - scripts/config -m CONFIG_DRM_VIRTIO_GPU
