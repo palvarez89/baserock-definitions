@@ -12,8 +12,14 @@ products:
   - lib/.*
 configure-commands:
 - make defconfig
+- scripts/config -e ATA
+- scripts/config -e ATA_PIIX
+- scripts/config -e BLK_DEV_SD
 - scripts/config -e BTRFS_FS
 - scripts/config -e BTRFS_FS_POSIX_ACL
+- scripts/config -e SATA_AHCI
+- scripts/config -e SCSI
+- scripts/config -e SCSI_MOD
 - scripts/config -m CONFIG_DRM_CIRRUS_QEMU
 - scripts/config -m CONFIG_DRM_BOCHS
 - scripts/config -m CONFIG_DRM_VIRTIO_GPU
