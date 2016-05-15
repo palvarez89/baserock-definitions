@@ -7,5 +7,6 @@ configure-commands:
 # Installing to /bin so that they overwrite busybox login.
 - |
   ./configure --prefix="$PREFIX" \
+              --enable-libmount-force-mountinfo \
               --disable-use-tty-group \
               --bindir=/bin
