@@ -7,11 +7,12 @@ configure-commands:
 # if left to the default, @sbindir@ is expanded to the literal string
 # '${exec_prefix}/sbin' in the generated .service files.
 #
-# udev rules *must* go in /lib, they'll be ignored if they go in /usr/lib.
+# udev rules *must* go in wherever Systemd is configured to look at. We don't expect
+# Systemd to change anymore.
 - |
   ./configure --prefix="$PREFIX" \
     --sbindir="$PREFIX"/sbin \
-    --with-udev-prefix=/ \
+    --with-udev-prefix="$PREFIX" \
     --with-systemdsystemunitdir="$PREFIX"/lib/systemd/system \
     --enable-applib --enable-cmdlib --enable-pkgconfig --enable-lvmetad \
     --enable-dmeventd --enable-udev_sync
