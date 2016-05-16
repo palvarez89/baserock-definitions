@@ -321,8 +321,8 @@ chunks:
 - name: util-linux
   morph: strata/core/util-linux.morph
   repo: upstream:util-linux
-  ref: cd150a429d15a7c96918aa2432532ced0bd27465
-  unpetrify-ref: v2.27
+  ref: 44338f7fe6a529cef1f206dccd95e7282625c483
+  unpetrify-ref: v2.28
   build-depends:
   - autoconf
   - automake
