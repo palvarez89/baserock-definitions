@@ -106,7 +106,7 @@ chunks:
 - name: tbdiff
   morph: strata/foundation/tbdiff.morph
   repo: baserock:baserock/tbdiff
-  ref: 235e95c3479f96b04d33edecc684f985bda50e53
+  ref: 06f3271314b72e0065cc638fcfa7695d56ddb2e2
   unpetrify-ref: master
 - name: rsync
   morph: strata/foundation/rsync.morph
