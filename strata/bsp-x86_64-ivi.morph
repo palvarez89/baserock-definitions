@@ -8,5 +8,5 @@ chunks:
 - name: linux-x86-64-generic
   morph: strata/bsp-x86_64-ivi/linux-x86-64-ivi.morph
   repo: upstream:linux-stable
-  ref: afd2ff9b7e1b367172f18ba7f693dfb62bdcb2dc
-  unpetrify-ref: v4.4
+  ref: 2dcd0af568b0cf583645c8a317dd12e344b1c72a
+  unpetrify-ref: v4.6
