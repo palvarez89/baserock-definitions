@@ -1,0 +1,16 @@
+name: rvi_core
+kind: chunk
+build-system: manual
+build-commands:
+- |
+  make deps
+  make compile
+  make escript
+install-commands:
+- |
+  make DESTDIR="$DESTDIR" install
+  install -d "$DESTDIR"/usr/lib/systemd/system
+  install -m 0644 yocto_template/rvi.service "$DESTDIR"/usr/lib/systemd/system
+post-install-commands:
+- echo "genivi.org/node/$(cat /proc/sys/kernel/random/uuid)" > "$DESTDIR"/etc/opt/rvi/device_id
+- install -m 0644 priv/config/rvi_common.config "$DESTDIR"/etc/opt/rvi/rvi.config
