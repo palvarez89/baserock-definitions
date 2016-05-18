@@ -93,6 +93,8 @@ strata:
   morph: strata/weston-common.morph
 - name: x-common
   morph: strata/x-common.morph
+- name: rvi
+  morph: strata/rvi.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/install-essential-files
