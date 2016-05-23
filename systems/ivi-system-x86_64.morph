@@ -6,7 +6,7 @@ strata:
 - name: audio-bluetooth
   morph: strata/audio-bluetooth.morph
 - name: bsp-x86_both-tools
-  morph: bsp-x86_both-tools.morph
+  morph: strata/bsp-x86_both-tools.morph
 - name: bsp-x86_64-ivi
   morph: strata/bsp-x86_64-ivi.morph
 - name: build-essential
