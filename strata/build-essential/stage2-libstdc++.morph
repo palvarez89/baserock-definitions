@@ -27,7 +27,7 @@ configure-commands:
             --disable-multilib                                \
     `# [1]` --disable-libstdcxx-threads                       \
     `# [2]` --disable-libstdcxx-pch                           \
-    `# [3]` --with-gxx-include-dir=/tools/"$TARGET_STAGE1"/include/c++/4.9.2
+    `# [3]` --with-gxx-include-dir=/tools/"$TARGET_STAGE1"/include/c++/5.3.0
 
 build-commands:
 - cd o && make

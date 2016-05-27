@@ -59,8 +59,8 @@ chunks:
 - name: stage1-gcc
   morph: strata/build-essential/stage1-gcc.morph
   repo: upstream:gcc-tarball
-  ref: b3c9b176c1f10ebeff5700eb3760e9511f23fa06
-  unpetrify-ref: baserock/build-essential
+  ref: 7ccad68acf3805b35721e861fb9bc5a9e40effc8
+  unpetrify-ref: baserock/gcc-5.3.0
   build-depends:
   - stage1-binutils
   build-mode: bootstrap
@@ -92,8 +92,8 @@ chunks:
 - name: stage2-libstdc++
   morph: strata/build-essential/stage2-libstdc++.morph
   repo: upstream:gcc-tarball
-  ref: b3c9b176c1f10ebeff5700eb3760e9511f23fa06
-  unpetrify-ref: baserock/build-essential
+  ref: 7ccad68acf3805b35721e861fb9bc5a9e40effc8
+  unpetrify-ref: baserock/gcc-5.3.0
   build-depends:
   - stage1-binutils
   - stage1-gcc
@@ -118,8 +118,8 @@ chunks:
 - name: stage2-gcc-fixed-headers
   morph: strata/build-essential/stage2-gcc-fixed-headers.morph
   repo: upstream:gcc-tarball
-  ref: b3c9b176c1f10ebeff5700eb3760e9511f23fa06
-  unpetrify-ref: baserock/build-essential
+  ref: 7ccad68acf3805b35721e861fb9bc5a9e40effc8
+  unpetrify-ref: baserock/gcc-5.3.0
   build-depends:
   - stage1-binutils
   - stage1-gcc
@@ -131,8 +131,8 @@ chunks:
 - name: stage2-gcc
   morph: strata/build-essential/stage2-gcc.morph
   repo: upstream:gcc-tarball
-  ref: b3c9b176c1f10ebeff5700eb3760e9511f23fa06
-  unpetrify-ref: baserock/build-essential
+  ref: 7ccad68acf3805b35721e861fb9bc5a9e40effc8
+  unpetrify-ref: baserock/gcc-5.3.0
   build-depends:
   - stage1-binutils
   - stage1-gcc
@@ -356,8 +356,8 @@ chunks:
 - name: gcc
   morph: strata/build-essential/gcc.morph
   repo: upstream:gcc-tarball
-  ref: b3c9b176c1f10ebeff5700eb3760e9511f23fa06
-  unpetrify-ref: baserock/build-essential
+  ref: 7ccad68acf3805b35721e861fb9bc5a9e40effc8
+  unpetrify-ref: baserock/gcc-5.3.0
   build-depends:
   - stage2-binutils
   - stage2-busybox

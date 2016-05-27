@@ -21,6 +21,7 @@ configure-commands:
     $ARCH_FLAGS \
     --build=$(../scripts/config.guess) --host=$TARGET_STAGE1 \
     --prefix="$PREFIX" \
+    --enable-obsolete-rpc \
     `# [1]` --libdir="$PREFIX/lib" \
     `# [2]` --with-headers="$(pwd)/../../$PREFIX/include" \
     `# [3]` --disable-profile  --enable-kernel=2.6.25 \
