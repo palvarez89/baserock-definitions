@@ -21,7 +21,7 @@ chunks:
     ext/libyajl2/vendor/yajl:
       url: https://github.com/lloyd/yajl.git
 - name: chef-12.0.0.alpha.0
-  morph: strata/chef/chef-master.morph
+  morph: strata/chef/chef-12.0.0.alpha.0.morph
   repo: upstream:ruby-gems/chef
   ref: 9841bc9c6271c6d9add3aff0c2e11239cfb129ca
   unpetrify-ref: 12.0.3
