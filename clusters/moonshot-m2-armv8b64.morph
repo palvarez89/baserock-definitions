@@ -1,4 +1,4 @@
-name: moonshot-m2-deployment
+name: moonshot-m2-armv8b64
 kind: cluster
 description: |
   Install a build armv8b64 system into the M.2 SSD storage of an HP

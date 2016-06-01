@@ -5,7 +5,7 @@ description: Set of components required for booting a 64-bit
 build-depends:
 - morph: strata/bsp-x86_both-tools.morph
 chunks:
-- name: linux-x86-64-generic
+- name: linux-x86-64-ivi
   morph: strata/bsp-x86_64-ivi/linux-x86-64-ivi.morph
   repo: upstream:linux-stable
   ref: 2dcd0af568b0cf583645c8a317dd12e344b1c72a

@@ -1,4 +1,4 @@
-name: sdk
+name: sdk-example-cluster
 kind: cluster
 description: |
   An example of creating a cross-compile SDK for an embedded Baserock system.

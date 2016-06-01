@@ -1,4 +1,4 @@
-name: weston-qt5-system-x86_64
+name: weston-qt5-system-x86_64-deploy
 kind: cluster
 description: |
   Deploy a stock weston system.

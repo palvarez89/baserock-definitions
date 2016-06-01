@@ -1,4 +1,4 @@
-name: moonshot-m400-armv8l64-netboot
+name: moonshot-pxe-armv8l64
 kind: cluster
 description: |
   Deploy an armv8l64 devel system into a HP Moonshot node

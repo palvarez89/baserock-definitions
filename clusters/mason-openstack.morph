@@ -1,4 +1,4 @@
-name: openstack-mason
+name: mason-openstack
 kind: cluster
 description: |
   This is a template cluster morphology that can be adapted to set up a
