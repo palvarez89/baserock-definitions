@@ -1,0 +1,6 @@
+name: pcre
+kind: chunk
+build-system: autotools
+configure-commands:
+- ./autogen.sh
+- ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-unicode-properties --enable-utf

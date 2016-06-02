@@ -5,6 +5,6 @@ build-depends:
 chunks:
 - name: pcre
   repo: upstream:pcre
+  morph: strata/pcre-utils/pcre.morph
   ref: 2720152c58e13e7cc7403642ec33127101b9971b
   unpetrify-ref: baserock/morph
-  build-system: autotools
