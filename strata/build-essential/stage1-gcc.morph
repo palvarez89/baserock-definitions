@@ -28,7 +28,6 @@ configure-commands:
 - |
   case "$MORPH_ARCH" in
       armv7lhf) ARCH_FLAGS="--with-arch=armv7-a \
-                            --with-cpu=cortex-a9 \
                             --with-tune=cortex-a9 \
                             --with-fpu=vfpv3-d16 \
                             --with-float=hard" ;;
