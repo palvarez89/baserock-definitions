@@ -13,6 +13,8 @@ strata:
   morph: strata/python2-core.morph
 - name: glib-common
   morph: strata/glib-common.morph
+- name: pcre-utils
+  morph: strata/pcre-utils.morph
 - name: foundation
   morph: strata/foundation.morph
 - name: bsp-x86_32-generic

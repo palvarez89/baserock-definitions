@@ -23,6 +23,8 @@ strata:
   morph: strata/sound-server-pulseaudio.morph
 - name: glib-common
   morph: strata/glib-common.morph
+- name: pcre-utils
+  morph: strata/pcre-utils.morph
 - name: libdrm-common
   morph: strata/libdrm-common.morph
 - name: multimedia-common

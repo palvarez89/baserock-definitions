@@ -30,6 +30,8 @@ strata:
   morph: strata/tools.morph
 - name: glib-common
   morph: strata/glib-common.morph
+- name: pcre-utils
+  morph: strata/pcre-utils.morph
 - name: wayland-generic
   morph: strata/wayland-generic.morph
 - name: graphics-common

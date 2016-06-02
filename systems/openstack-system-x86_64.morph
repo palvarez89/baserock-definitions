@@ -61,6 +61,8 @@ strata:
   morph: strata/libsoup-common.morph
 - name: glib-common
   morph: strata/glib-common.morph
+- name: pcre-utils
+  morph: strata/pcre-utils.morph
 - name: test-tools
   morph: strata/test-tools.morph
 - name: swift

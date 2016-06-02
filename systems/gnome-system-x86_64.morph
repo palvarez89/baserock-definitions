@@ -25,6 +25,8 @@ strata:
   morph: strata/geolocation.morph
 - name: glib-common
   morph: strata/glib-common.morph
+- name: pcre-utils
+  morph: strata/pcre-utils.morph
 - name: gnome
   morph: strata/gnome.morph
 - name: graphics-common

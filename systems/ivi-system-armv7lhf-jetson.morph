@@ -25,6 +25,8 @@ strata:
   morph: strata/geolocation.morph
 - name: glib-common
   morph: strata/glib-common.morph
+- name: pcre-utils
+  morph: strata/pcre-utils.morph
 - name: graphics-common
   morph: strata/graphics-common.morph
 - name: icu-common

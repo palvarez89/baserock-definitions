@@ -24,6 +24,8 @@ strata:
   morph: strata/tools.morph
 - name: glib-common
   morph: strata/glib-common.morph
+- name: pcre-utils
+  morph: strata/pcre-utils.morph
 - name: x-common
   morph: strata/x-common.morph
 - name: x-generic

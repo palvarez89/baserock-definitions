@@ -47,6 +47,8 @@ strata:
   morph: strata/tools.morph
 - name: glib-common
   morph: strata/glib-common.morph
+- name: pcre-utils
+  morph: strata/pcre-utils.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

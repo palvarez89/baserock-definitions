@@ -3,6 +3,7 @@ kind: stratum
 description: GLib and dependencies
 build-depends:
 - morph: strata/python2-core.morph
+- morph: strata/pcre-utils.morph
 chunks:
 - name: gtk-doc-stub
   repo: upstream:gtk-doc-stub

@@ -51,6 +51,8 @@ strata:
   morph: strata/libsoup-common.morph
 - name: glib-common
   morph: strata/glib-common.morph
+- name: pcre-utils
+  morph: strata/pcre-utils.morph
 - name: ostree-core
   morph: strata/ostree-core.morph
 - name: coreutils-common
