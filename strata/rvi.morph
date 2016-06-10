@@ -6,6 +6,6 @@ build-depends:
 chunks:
 - name: rvi_core
   morph: strata/rvi/rvi_core.morph
-  repo: upstream:rvi_core
+  repo: upstream:rvi/rvi_core
   ref: 9a3db2baecdddbfba8e8bfeb71038e4de6a44225
   unpetrify-ref: v0.5.0
