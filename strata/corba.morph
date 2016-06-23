@@ -9,7 +9,7 @@ chunks:
    ref: c2cddd1335036f1ca3610274a155d2222a8b5f7c
    unpetrify-ref: ACE+TAO-6_3_4
  - name: ACE_TAO
-   morph: strata/corba/ace_tao.morph
+   morph: strata/corba/ACE_TAO.morph
    repo: upstream:ATCD
    ref: b9ab94b74529a926864c154675559fd6a1d8998b
    unpetrify-ref: ACE+TAO-6_3_4
