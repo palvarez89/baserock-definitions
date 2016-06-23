@@ -21,6 +21,7 @@ set -e
 
 if [ -n "$HOSTNAME" ]
 then
+    mkdir -p "$1/etc"
     echo "$HOSTNAME" > "$1/etc/hostname"
 fi
 
