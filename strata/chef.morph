@@ -46,7 +46,7 @@ chunks:
   ref: d982b7049336106c04f7721045dc5613b16d3545
   unpetrify-ref: 1.9.3
 - name: ffi-yajl-1.0.2
-  morph: strata/chef/ffi-yajl-master.morph
+  morph: strata/chef/ffi-yajl-1.0.2.morph
   repo: upstream:ruby-gems/ffi-yajl
   ref: 3a4bc4259fd67af0ff4a8c1d3d71cfbaed9c112f
   unpetrify-ref: master
@@ -61,7 +61,7 @@ chunks:
   ref: 95b97fbff2cac643d56ec718cb708665500682e5
   unpetrify-ref: v2.1.2
 - name: highline-1.6.21
-  morph: strata/chef/highline-master.morph
+  morph: strata/chef/highline-1.6.21.morph
   repo: upstream:ruby-gems/highline
   ref: 51de22e436e6d45696759d673d7b9ceba16cae39
   unpetrify-ref: master
@@ -115,7 +115,7 @@ chunks:
   ref: c5e2dee2beb5fdd17442ff92e520f2ef01d17ee5
   unpetrify-ref: v2.1.0
 - name: mixlib-log-1.6.0
-  morph: strata/chef/mixlib-log-master.morph
+  morph: strata/chef/mixlib-log-1.6.0.morph
   repo: upstream:ruby-gems/mixlib-log
   ref: 50ec55964ce19d3a8a14050be9a23c4b8990e2f0
   unpetrify-ref: master
@@ -145,7 +145,7 @@ chunks:
   ref: b659f2884b2c9abdbe3bbf3c844937a0799ed5ac
   unpetrify-ref: v1.2.0
 - name: ohai-7.4.0.dev
-  morph: strata/chef/ohai-master.morph
+  morph: strata/chef/ohai-7.4.0.dev.morph
   repo: upstream:ruby-gems/ohai
   ref: 0bf2ed32744445a253082910ee4e07b2b38023a7
   unpetrify-ref: master
@@ -155,7 +155,7 @@ chunks:
   ref: 12eb82d283cab148183c37c07e3f75a309969dec
   unpetrify-ref: master
 - name: pry-0.10.1
-  morph: strata/chef/pry-master.morph
+  morph: strata/chef/pry-0.10.1.morph
   repo: upstream:ruby-gems/pry
   ref: 6d5eb0831b50ec729d2dc3356255b49535535e37
   unpetrify-ref: master
@@ -170,7 +170,7 @@ chunks:
   ref: c3f84e7e794004f9ae6958c13ef3dd3038c2c0eb
   unpetrify-ref: v3.6.0
 - name: systemu-2.6.4
-  morph: strata/chef/systemu-master.morph
+  morph: strata/chef/systemu-2.6.4.morph
   repo: upstream:ruby-gems/systemu
   ref: 35340f1e91941af47988b1b9d77705493b96d3db
   unpetrify-ref: master
