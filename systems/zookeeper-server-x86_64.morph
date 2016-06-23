@@ -1,4 +1,4 @@
-name: zookeeper-server-X86_64
+name: zookeeper-server-x86_64
 kind: system
 description: |
   A system that is able to build other systems based on the 64-bit x86

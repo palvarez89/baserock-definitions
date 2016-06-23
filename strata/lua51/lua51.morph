@@ -1,4 +1,4 @@
-name: lua
+name: lua51
 kind: chunk
 configure-commands:
 - sed -e 's/defined(LUA_USE_READLINE)/0/g' src/luaconf.h.orig >src/luaconf.h

@@ -1,4 +1,4 @@
-name: xfce-system
+name: xfce-system-x86_64
 kind: system
 description: A system with the XFCE desktop
 arch: x86_64

@@ -1,4 +1,4 @@
-name: linux-armv7l-socfpga-devkit
+name: linux-armv7l-altera-socfpga-devkit
 kind: chunk
 configure-commands:
 - git status
