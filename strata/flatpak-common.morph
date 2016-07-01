@@ -1,19 +1,20 @@
-name: xdg-app-common
+name: flatpak-common
 kind: stratum
 build-depends:
 - morph: strata/ostree-core.morph
+- morph: strata/privileges-management.morph
 - morph: strata/x-common.morph
 chunks:
 - name: elfutils
-  morph: strata/xdg-app-common/elfutils.morph
+  morph: strata/flatpak-common/elfutils.morph
   repo: upstream:elfutils
   ref: 9b4bce40709611875754cf4931eb91d394042122
   unpetrify-ref: elfutils-0.165
-- name: xdg-app
-  morph: strata/xdg-app-common/xdg-app.morph
-  repo: upstream:xdg-app
-  ref: 619e1f1025851179dee3e616000e5de2ccde9412
-  unpetrify-ref: 0.5.1
+- name: flatpak
+  morph: strata/flatpak-common/flatpak.morph
+  repo: upstream:flatpak
+  ref: c741200fa5e22199dc88104bdb73da4583cc8c00
+  unpetrify-ref: 0.6.5
   build-depends:
   - elfutils
   submodules:

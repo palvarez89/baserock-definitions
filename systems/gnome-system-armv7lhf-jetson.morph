@@ -67,8 +67,8 @@ strata:
   morph: strata/x-generic.morph
 - name: ostree-core
   morph: strata/ostree-core.morph
-- name: xdg-app-common
-  morph: strata/xdg-app-common.morph
+- name: flatpak-common
+  morph: strata/flatpak-common.morph
 - name: network-security
   morph: strata/network-security.morph
 - name: icu-common

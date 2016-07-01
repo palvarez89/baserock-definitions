@@ -1,4 +1,4 @@
-name: xdg-app
+name: flatpak
 kind: chunk
 build-system: autotools
 configure-commands:
