@@ -7,18 +7,11 @@ build-depends:
 - morph: strata/audio-bluetooth.morph
 - morph: strata/multimedia-common.morph
 chunks:
-- name: orc
-  repo: upstream:orc
-  ref: b4f7fcaf99a4d952e59f2a9fa9286d24cc4b3a5a
-  unpetrify-ref: baserock/morph
-  build-system: autotools
 - name: gstreamer@0.10
   repo: upstream:gstreamer
   ref: 76fc67b18c38e7f6c9cfacc4e4d0ed11d3b2c548
   unpetrify-ref: "0.10"
   build-system: autotools
-  build-depends:
-  - orc
   submodules:
     common:
       url: upstream:gstreamer-common
@@ -40,7 +33,6 @@ chunks:
   build-depends:
   - gstreamer@0.10
   - gstreamer-plugins-base@0.10
-  - orc
   submodules:
     common:
       url: upstream:gstreamer-common

@@ -8,18 +8,11 @@ build-depends:
 - morph: strata/mesa-common.morph
 - morph: strata/graphics-common.morph
 chunks:
-- name: orc
-  morph: strata/multimedia-gstreamer/orc.morph
-  repo: upstream:orc
-  ref: 831886d1f70d3cc21a913b2e335da38af4cae524
-  unpetrify-ref: orc-0.4.25
 - name: gstreamer
   repo: upstream:gstreamer
   ref: 1abf889dddc75b4e4db2f4505a4287cb20878d27
   unpetrify-ref: 1.8.0
   build-system: autotools
-  build-depends:
-  - orc
   submodules:
     common:
       url: upstream:gstreamer-common
@@ -30,7 +23,6 @@ chunks:
   build-system: autotools
   build-depends:
   - gstreamer
-  - orc
   submodules:
     common:
       url: upstream:gstreamer-common
@@ -42,7 +34,6 @@ chunks:
   build-depends:
   - gstreamer
   - gstreamer-plugins-base
-  - orc
   submodules:
     common:
       url: upstream:gstreamer-common
@@ -54,7 +45,6 @@ chunks:
   build-depends:
   - gstreamer
   - gstreamer-plugins-base
-  - orc
   submodules:
     common:
       url: upstream:gstreamer-common
@@ -66,7 +56,6 @@ chunks:
   build-depends:
   - gstreamer
   - gstreamer-plugins-base
-  - orc
   submodules:
     gst-libs/ext/libav:
       url: upstream:ffmpeg

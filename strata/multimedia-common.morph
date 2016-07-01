@@ -57,3 +57,8 @@ chunks:
   repo: upstream:libmpeg2-tarball
   ref: d1e80dc431815df3ac6eeed654eeccaf8d6beea7
   unpetrify-ref: libmpeg2-0.5.1
+- name: orc
+  morph: strata/multimedia-common/orc.morph
+  repo: upstream:orc
+  ref: 831886d1f70d3cc21a913b2e335da38af4cae524
+  unpetrify-ref: orc-0.4.25
