@@ -17,9 +17,9 @@ chunks:
       url: upstream:gstreamer-common
 - name: gstreamer-plugins-base@0.10
   repo: upstream:gstreamer-plugins-base
+  morph: strata/multimedia-gstreamer-0.10/gstreamer-plugins-base-0.10.morph
   ref: 1e1e6eaf3f0dd11f6618154d9739cbe3e007d206
   unpetrify-ref: "0.10"
-  build-system: autotools
   build-depends:
   - gstreamer@0.10
   submodules:

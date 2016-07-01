@@ -1,0 +1,8 @@
+name: gstreamer-plugins-base-0.10
+kind: chunk
+build-system: autotools
+configure-commands:
+- |
+  NOCONFIGURE=1 ./autogen.sh
+  sed -i -e "s/-O2/& -msse2/" configure
+- ./configure --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var --disable-gtk-doc
