@@ -27,8 +27,8 @@ chunks:
       url: upstream:gstreamer-common
 - name: gstreamer-plugins-good@0.10
   repo: upstream:gstreamer-plugins-good
-  ref: 5af6f5bfb6c3619a9ccc3b1681579aeb90e8b89a
-  unpetrify-ref: "0.10"
+  ref: 43185275636cf1b52cc12b52fe6dbbc6886f6347
+  unpetrify-ref: baserock/0.10+v4l_fix
   build-system: autotools
   build-depends:
   - gstreamer@0.10
