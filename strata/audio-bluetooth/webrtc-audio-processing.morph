@@ -1,0 +1,7 @@
+name: webrtc-audio-processing
+kind: chunk
+build-system: autotools
+pre-configure-commands:
+- |
+  NOCONFIGURE=1 ./autogen.sh
+  sed -i -e "s/-O2/& -msse2/" configure

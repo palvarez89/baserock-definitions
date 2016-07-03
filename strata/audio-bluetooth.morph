@@ -101,15 +101,15 @@ chunks:
   build-depends:
   - libsndfile
 - name: webrtc-audio-processing
+  morph: strata/audio-bluetooth/webrtc-audio-processing.morph
   repo: upstream:webrtc-audio-processing
-  ref: 9413986e79cf01958ee6dfb95a89de0d71a44221
-  unpetrify-ref: v0.1
-  build-system: autotools
+  ref: 9a0e28cab06f43d10cd00b69fc14dee78a73c2d0
+  unpetrify-ref: v0.2
 - name: pulseaudio
   morph: strata/audio-bluetooth/pulseaudio.morph
   repo: upstream:pulseaudio
-  ref: a8f8accd5398868548a973b386ee3108f3441641
-  unpetrify-ref: v7.1
+  ref: 8887f256e0f1167e579a217387a4efc5397edf93
+  unpetrify-ref: v9.0
   build-depends:
   - avahi
   - libsndfile
