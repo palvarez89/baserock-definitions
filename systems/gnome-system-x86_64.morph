@@ -3,8 +3,8 @@ kind: system
 description: A GNOME system system.
 arch: x86_64
 strata:
-- name: audio-bluetooth
-  morph: strata/audio-bluetooth.morph
+- name: bluetooth
+  morph: strata/bluetooth.morph
 - name: bsp-x86_64-generic
   morph: strata/bsp-x86_64-generic.morph
 - name: build-essential
@@ -85,6 +85,8 @@ strata:
   morph: strata/samba.morph
 - name: secret-service
   morph: strata/secret-service.morph
+- name: sound-server-pulseaudio
+  morph: strata/sound-server-pulseaudio.morph
 - name: spell-checking
   morph: strata/spell-checking.morph
 - name: storage-management

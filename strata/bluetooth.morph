@@ -1,0 +1,39 @@
+name: bluetooth
+kind: stratum
+description: Components required for bluetooth.
+build-depends:
+- morph: strata/glib-common.morph
+- morph: strata/foundation.morph
+chunks:
+- name: libical
+  morph: strata/bluetooth/libical.morph
+  repo: upstream:libical-git
+  ref: 6c4af23b0a95fd105f38e879908cbc80390f3716
+  unpetrify-ref: v2.0.0
+- name: bluez
+  morph: strata/bluetooth/bluez.morph
+  repo: upstream:bluez
+  ref: 5eb47745978925e451523c8e8cb2ad6a53ed3863
+  unpetrify-ref: baserock/5.37+service-api
+  build-depends:
+  - libical
+- name: dbus-glib
+  repo: upstream:dbus-glib
+  ref: 397e8297d433547c9bf4150ddd2b9e0b4c39628c
+  unpetrify-ref: dbus-glib_0.102
+  build-system: autotools
+- name: bluez-tools
+  morph: strata/bluetooth/bluez-tools.morph
+  repo: upstream:bluez-tools
+  ref: 7350787e96a6ecf2cc5d4afddb3321ccad9fa461
+  unpetrify-ref: baserock/morph
+  build-depends:
+  - dbus-glib
+- name: obexd
+  repo: upstream:obexd
+  ref: 4225280022c206762c91beee47c62d05e1baeacc
+  unpetrify-ref: baserock/morph
+  build-system: autotools
+  build-depends:
+  - bluez
+  - libical

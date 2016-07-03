@@ -18,8 +18,8 @@ strata:
   morph: strata/bsp-jetson.morph
 - name: connectivity
   morph: strata/connectivity.morph
-- name: audio-bluetooth
-  morph: strata/audio-bluetooth.morph
+- name: bluetooth
+  morph: strata/bluetooth.morph
 - name: libdrm-common
   morph: strata/libdrm-common.morph
 - name: multimedia-common
@@ -36,6 +36,8 @@ strata:
   morph: strata/llvm-common.morph
 - name: mesa-common
   morph: strata/mesa-common.morph
+- name: sound-server-pulseaudio
+  morph: strata/sound-server-pulseaudio.morph
 - name: weston-common
   morph: strata/weston-common.morph
 - name: x-common

@@ -4,8 +4,8 @@ description: Codecs
 build-depends:
 - morph: strata/core.morph
 - morph: strata/foundation.morph
-- morph: strata/audio-bluetooth.morph
 - morph: strata/multimedia-common.morph
+- morph: strata/sound-server-pulseaudio.morph
 chunks:
 - name: gstreamer@0.10
   repo: upstream:gstreamer

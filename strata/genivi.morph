@@ -3,7 +3,7 @@ kind: stratum
 description: Software components designed by genivi, for genivi.
 build-depends:
 - morph: strata/foundation.morph
-- morph: strata/audio-bluetooth.morph
+- morph: strata/sound-server-pulseaudio.morph
 chunks:
 - name: linuxquota
   morph: strata/genivi/linuxquota.morph

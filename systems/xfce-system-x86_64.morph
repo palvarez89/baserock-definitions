@@ -23,8 +23,10 @@ strata:
   morph: strata/connman-common.morph
 - name: input-common
   morph: strata/input-common.morph
-- name: audio-bluetooth
-  morph: strata/audio-bluetooth.morph
+- name: bluetooth
+  morph: strata/bluetooth.morph
+- name: sound-server-pulseaudio
+  morph: strata/sound-server-pulseaudio.morph
 - name: libdrm-common
   morph: strata/libdrm-common.morph
 - name: mesa-common

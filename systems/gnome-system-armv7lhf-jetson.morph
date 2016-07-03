@@ -3,8 +3,8 @@ kind: system
 description: A GNOME system system.
 arch: armv7lhf
 strata:
-- name: audio-bluetooth
-  morph: strata/audio-bluetooth.morph
+- name: bluetooth
+  morph: strata/bluetooth.morph
 - name: bsp-jetson
   morph: strata/bsp-jetson.morph
 - name: build-essential
@@ -55,6 +55,8 @@ strata:
   morph: strata/ruby.morph
 - name: libdrm-common
   morph: strata/libdrm-common.morph
+- name: sound-server-pulseaudio
+  morph: strata/sound-server-pulseaudio.morph
 - name: wayland-generic
   morph: strata/wayland-generic.morph
 - name: weston-common

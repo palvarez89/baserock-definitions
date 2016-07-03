@@ -1,7 +1,7 @@
 name: NetworkManager-common
 kind: stratum
 build-depends:
-- morph: strata/audio-bluetooth.morph
+- morph: strata/bluetooth.morph
 - morph: strata/connectivity.morph
 - morph: strata/device-management.morph
 - morph: strata/network-security.morph

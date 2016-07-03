@@ -2,6 +2,7 @@ name: gnome
 kind: stratum
 description: GNOME stratum
 build-depends:
+- morph: strata/bluetooth.morph
 - morph: strata/icu-common.morph
 - morph: strata/input-common.morph
 - morph: strata/data-indexing-management.morph
@@ -9,7 +10,6 @@ build-depends:
 - morph: strata/geolocation.morph
 - morph: strata/gtk2.morph
 - morph: strata/gtk3.morph
-- morph: strata/audio-bluetooth.morph
 - morph: strata/libsoup-common.morph
 - morph: strata/NetworkManager-common.morph
 - morph: strata/multimedia-gstreamer.morph
@@ -20,6 +20,7 @@ build-depends:
 - morph: strata/ruby.morph
 - morph: strata/samba.morph
 - morph: strata/secret-service.morph
+- morph: strata/sound-server-pulseaudio.morph
 - morph: strata/spell-checking.morph
 - morph: strata/cups.morph
 - morph: strata/WebKitGtk1-common.morph

@@ -3,7 +3,7 @@ kind: stratum
 description: xfce stratum
 build-depends:
 - morph: strata/gtk2.morph
-- morph: strata/audio-bluetooth.morph
+- morph: strata/sound-server-pulseaudio.morph
 chunks:
 - name: xfce-dev-tools
   repo: upstream:xfce/xfce4-dev-tools

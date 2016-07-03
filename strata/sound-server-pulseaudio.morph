@@ -1,9 +1,8 @@
-name: audio-bluetooth
+name: sound-server-pulseaudio
 kind: stratum
-description: Components required for audio and bluetooth.
+description: Components required for pulseaudio.
 build-depends:
-- morph: strata/glib-common.morph
-- morph: strata/foundation.morph
+- morph: strata/bluetooth.morph
 chunks:
 - name: libatomic_ops
   repo: upstream:libatomic_ops
@@ -18,7 +17,7 @@ chunks:
   unpetrify-ref: baserock/v1.0.29
   build-system: autotools
 - name: alsa-utils
-  morph: strata/audio-bluetooth/alsa-utils.morph
+  morph: strata/sound-server-pulseaudio/alsa-utils.morph
   repo: upstream:alsa-utils
   ref: 85c622e2984b557e6bd79c13cea466012dfb3761
   # Note: ref anchored because alsa-utils is known for rebasing
@@ -26,58 +25,18 @@ chunks:
   unpetrify-ref: baserock/v1.0.29
   build-depends:
   - alsa-lib
-- name: libical
-  morph: strata/audio-bluetooth/libical.morph
-  repo: upstream:libical-git
-  ref: 6c4af23b0a95fd105f38e879908cbc80390f3716
-  unpetrify-ref: v2.0.0
-- name: bluez
-  morph: strata/audio-bluetooth/bluez.morph
-  repo: upstream:bluez
-  ref: 5eb47745978925e451523c8e8cb2ad6a53ed3863
-  unpetrify-ref: baserock/5.37+service-api
-  build-depends:
-  - libical
-- name: dbus-glib
-  repo: upstream:dbus-glib
-  ref: 397e8297d433547c9bf4150ddd2b9e0b4c39628c
-  unpetrify-ref: dbus-glib_0.102
-  build-system: autotools
-- name: bluez-tools
-  morph: strata/audio-bluetooth/bluez-tools.morph
-  repo: upstream:bluez-tools
-  ref: 7350787e96a6ecf2cc5d4afddb3321ccad9fa461
-  unpetrify-ref: baserock/morph
-  build-depends:
-  - dbus-glib
-- name: obexd
-  repo: upstream:obexd
-  ref: 4225280022c206762c91beee47c62d05e1baeacc
-  unpetrify-ref: baserock/morph
-  build-system: autotools
-  build-depends:
-  - bluez
-  - libical
 - name: speex
   repo: upstream:speex
   ref: e5dc987a403426ee3d0d81768afffa0fe74e20fa
   unpetrify-ref: baserock/morph
   build-system: autotools
-- name: nohands
-  morph: strata/audio-bluetooth/nohands.morph
-  repo: upstream:nohands
-  ref: 20ec5cc245fd5e74d9a0fc21497d1ba4164f2a3a
-  unpetrify-ref: baserock/morph
-  build-depends:
-  - bluez
-  - speex
 - name: json-c
-  morph: strata/audio-bluetooth/json-c.morph
+  morph: strata/sound-server-pulseaudio/json-c.morph
   repo: upstream:json-c
   ref: e8bd6865d7a671e9f75ece05dfe86a19ba610581
   unpetrify-ref: baserock/json-c-0.12-20140410-plus-patch
 - name: libsndfile
-  morph: strata/audio-bluetooth/libsndfile.morph
+  morph: strata/sound-server-pulseaudio/libsndfile.morph
   repo: upstream:libsndfile
   ref: 6c05c615c95ffef7a8a5a707cde0bb52bdd74244
   unpetrify-ref: baserock/morph
@@ -87,7 +46,7 @@ chunks:
   unpetrify-ref: v0.14
   build-system: autotools
 - name: avahi
-  morph: strata/audio-bluetooth/avahi.morph
+  morph: strata/sound-server-pulseaudio/avahi.morph
   repo: upstream:avahi
   ref: 031d6323b5abb785fbe3601b2f163316a1eb54bc
   unpetrify-ref: v0.6.31
@@ -101,12 +60,12 @@ chunks:
   build-depends:
   - libsndfile
 - name: webrtc-audio-processing
-  morph: strata/audio-bluetooth/webrtc-audio-processing.morph
+  morph: strata/sound-server-pulseaudio/webrtc-audio-processing.morph
   repo: upstream:webrtc-audio-processing
   ref: 9a0e28cab06f43d10cd00b69fc14dee78a73c2d0
   unpetrify-ref: v0.2
 - name: pulseaudio
-  morph: strata/audio-bluetooth/pulseaudio.morph
+  morph: strata/sound-server-pulseaudio/pulseaudio.morph
   repo: upstream:pulseaudio
   ref: 8887f256e0f1167e579a217387a4efc5397edf93
   unpetrify-ref: v9.0
@@ -117,6 +76,5 @@ chunks:
   - speex
   - json-c
   - alsa-lib
-  - bluez
   - sbc
   - webrtc-audio-processing

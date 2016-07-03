@@ -17,8 +17,10 @@ strata:
   morph: strata/connman-common.morph
 - name: device-management
   morph: strata/device-management.morph
-- name: audio-bluetooth
-  morph: strata/audio-bluetooth.morph
+- name: bluetooth
+  morph: strata/bluetooth.morph
+- name: sound-server-pulseaudio
+  morph: strata/sound-server-pulseaudio.morph
 - name: glib-common
   morph: strata/glib-common.morph
 - name: libdrm-common

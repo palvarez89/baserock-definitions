@@ -3,8 +3,8 @@ kind: system
 description: A generic IVI system with components from GENIVI and AGL
 arch: x86_64
 strata:
-- name: audio-bluetooth
-  morph: strata/audio-bluetooth.morph
+- name: bluetooth
+  morph: strata/bluetooth.morph
 - name: bsp-x86_both-tools
   morph: strata/bsp-x86_both-tools.morph
 - name: bsp-x86_64-ivi
@@ -81,6 +81,8 @@ strata:
   morph: strata/samba.morph
 - name: secret-service
   morph: strata/secret-service.morph
+- name: sound-server-pulseaudio
+  morph: strata/sound-server-pulseaudio.morph
 - name: spell-checking
   morph: strata/spell-checking.morph
 - name: storage-management
