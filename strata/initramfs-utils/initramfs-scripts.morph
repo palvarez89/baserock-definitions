@@ -1,3 +1,0 @@
-name: initramfs-scripts
-kind: chunk
-build-system: autotools
