@@ -20,3 +20,5 @@ chunks:
   submodules:
     libglnx:
       url: upstream:libglnx
+    bubblewrap:
+      url: upstream:bubblewrap
