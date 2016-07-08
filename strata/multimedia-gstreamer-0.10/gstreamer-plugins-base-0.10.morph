@@ -4,5 +4,11 @@ build-system: autotools
 configure-commands:
 - |
   NOCONFIGURE=1 ./autogen.sh
-  sed -i -e "s/-O2/& -msse2/" configure
-- ./configure --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var --disable-gtk-doc
+
+  case "$MORPH_ARCH" in
+  x86_32)
+    sed -i -e "s/-O2/& -msse2/" configure
+    ;;
+  esac
+
+  ./configure --prefix="$PREFIX" --sysconfdir=/etc --localstatedir=/var --disable-gtk-doc
