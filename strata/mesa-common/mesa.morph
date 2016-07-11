@@ -8,14 +8,17 @@ configure-commands:
   arm*)
     DRIDRIVERS=no
     GALLIUMDRIVERS=nouveau,freedreno,svga,swrast,vc4
+    VULKANDRIVERS=no
     ;;
   *)
     DRIDRIVERS=yes
     GALLIUMDRIVERS=r300,r600,svga,swrast,virgl
+    VULKANDRIVERS=intel
     ;;
   esac
   ./autogen.sh --prefix="$PREFIX" --sysconfdir=/etc \
       --enable-gles2 \
       --with-egl-platforms=drm,wayland,x11 \
+      --with-vulkan-drivers="$VULKANDRIVERS" \
       --with-gallium-drivers="$GALLIUMDRIVERS" \
       --with-dri-drivers="$DRIDRIVERS"
