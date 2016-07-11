@@ -12,7 +12,7 @@ configure-commands:
     ;;
   *)
     DRIDRIVERS=yes
-    GALLIUMDRIVERS=r300,r600,svga,swrast,virgl
+    GALLIUMDRIVERS=r300,r600,svga,swrast,virgl,swr
     VULKANDRIVERS=intel
     ;;
   esac
