@@ -17,7 +17,7 @@
 
 set -eu
 
-if [ "$UPGRADE" == "yes" ]; then
+if [ "$UPGRADE" = "yes" ]; then
     echo >&2 "ERROR: Cannot upgrade a tar file deployment."
     exit 1
 fi
