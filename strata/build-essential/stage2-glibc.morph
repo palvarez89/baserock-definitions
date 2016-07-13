@@ -1,5 +1,6 @@
 name: stage2-glibc
 kind: chunk
+build-system: manual
 
 configure-commands:
 - mkdir o
