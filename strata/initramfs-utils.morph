@@ -5,7 +5,6 @@ build-depends:
 - morph: strata/build-essential.morph
 chunks:
 - name: initramfs-scripts
-  morph: strata/initramfs-utils/initramfs-scripts.morph
   repo: baserock:baserock/initramfs-scripts
   ref: e5c71f0ca075bd29ffd55ec0c25804585bc21046
   unpetrify-ref: master
