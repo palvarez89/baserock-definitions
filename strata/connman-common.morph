@@ -7,8 +7,8 @@ chunks:
 - name: connman
   morph: strata/connman-common/connman.morph
   repo: upstream:connman
-  ref: 1bfe2a8eb20101926e6dfe7f1a535b64c6fcbecb
-  unpetrify-ref: '1.31'
+  ref: c47e491bb374fe3992d8938cc30b48beee379f23
+  unpetrify-ref: '1.33'
 - name: ofono
   morph: strata/connman-common/ofono.morph
   repo: upstream:ofono
