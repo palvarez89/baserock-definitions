@@ -12,5 +12,5 @@ chunks:
 - name: ofono
   morph: strata/connman-common/ofono.morph
   repo: upstream:ofono
-  ref: d05b718cc0b0d367227fbfbf52e60fc5462cc549
-  unpetrify-ref: '1.15'
+  ref: 979e8e21b9c3b9a0f5d07f21d2840d8ac1c700a1
+  unpetrify-ref: '1.18'
