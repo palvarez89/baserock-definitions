@@ -65,8 +65,8 @@ chunks:
 - name: persistence-common-object
   morph: strata/genivi/persistence-common-object.morph
   repo: upstream:genivi/persistence-common-object
-  ref: dc46126214022d068729f7ccd47415dc5f86f425
-  unpetrify-ref: baserock/1.0.2
+  ref: 395b0f504e05ee6c59c1b9d9267c793e072a19ba
+  unpetrify-ref: master
   build-depends:
   - itzam-tarball
   - DLT-daemon
