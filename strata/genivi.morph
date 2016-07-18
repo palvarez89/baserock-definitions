@@ -90,8 +90,8 @@ chunks:
 - name: persistence-administrator
   morph: strata/genivi/persistence-administrator.morph
   repo: upstream:genivi/persistence-administrator
-  ref: f9d62e70237c05323cbd60f1d5c7b574fbc2de43
-  unpetrify-ref: baserock/1.0.5
+  ref: 47e5a424c8ef6e33565737f20d3bd81f69c8efc9
+  unpetrify-ref: master
   build-depends:
   - persistence-common-object
   - DLT-daemon
