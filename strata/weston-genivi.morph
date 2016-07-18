@@ -10,8 +10,8 @@ chunks:
 - name: weston
   morph: strata/weston-genivi/weston.morph
   repo: upstream:weston
-  ref: c7dbc0a8c18e03719b3618b2dff7102f47a1331b
-  unpetrify-ref: baserock/weston-1.9.0/tegra
+  ref: 2e5232b980eaa1074023a65dd7941e80b72a763c
+  unpetrify-ref: baserock/weston-1.11.0/tegra
 - name: wayland-ivi-extension
   morph: strata/weston-genivi/wayland-ivi-extension.morph
   repo: upstream:genivi/wayland-ivi-extension
