@@ -6,8 +6,8 @@ chunks:
 - name: wayland
   morph: strata/wayland-generic/wayland.morph
   repo: upstream:wayland
-  ref: 0ff73b7666b8aee1a68302dd6a7664b68aa659af 
-  unpetrify-ref: 1.10.0
+  ref: 47163797f810373c81b6e13b7a8a245eb9877785
+  unpetrify-ref: 1.11.0
 - name: wayland-protocols
   repo: upstream:wayland-protocols
   ref: 596dfda882a51c05699bcb28a8459ce936a138db
