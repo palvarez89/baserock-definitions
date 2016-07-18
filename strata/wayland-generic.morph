@@ -10,8 +10,8 @@ chunks:
   unpetrify-ref: 1.11.0
 - name: wayland-protocols
   repo: upstream:wayland-protocols
-  ref: 596dfda882a51c05699bcb28a8459ce936a138db
-  unpetrify-ref: 1.1
+  ref: 65d09ef404fb26cb513f4f836e904f415c425a8f
+  unpetrify-ref: 1.4
   build-system: autotools
   build-depends:
   - wayland
