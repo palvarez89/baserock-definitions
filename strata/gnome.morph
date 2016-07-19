@@ -306,8 +306,8 @@ chunks:
 - name: WebKitGtk
   morph: strata/gnome/WebKitGtk.morph
   repo: upstream:WebKitGtk-tarball
-  ref: e15dd966d523731101f70ccf768bba12435a0208
-  unpetrify-ref: webkitgtk-2.10.2
+  ref: a4e969f4965059196ca948db781e52f7cfebf19e
+  unpetrify-ref: webkitgtk-2.12.3
   build-depends:
   - libnotify
 - name: gnome-online-accounts
