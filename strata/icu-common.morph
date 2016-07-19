@@ -6,5 +6,5 @@ chunks:
 - name: icu
   morph: strata/icu-common/icu.morph
   repo: upstream:icu
-  ref: ba023548a3bff7277cbea4acade3042ce9d8949e
-  unpetrify-ref: baserock/morph
+  ref: e2bd11ca1374cccfa50b7d27507ba9fe581be76a
+  unpetrify-ref: icu4c-52_1-src
