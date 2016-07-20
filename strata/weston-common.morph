@@ -10,5 +10,5 @@ chunks:
 - name: weston
   morph: strata/weston-common/weston.morph
   repo: upstream:weston
-  ref: 3d983f5964cbdcf44876e62925c39df74dfa1d6b
-  unpetrify-ref: baserock/weston-1.10.0/tegra
+  ref: 2e5232b980eaa1074023a65dd7941e80b72a763c
+  unpetrify-ref: baserock/weston-1.11.0/tegra
