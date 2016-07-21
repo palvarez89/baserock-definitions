@@ -4,6 +4,7 @@ description: Libraries needed for the GENIVI demo platform.
 build-depends:
 - morph: strata/foundation.morph
 - morph: strata/python-pygobject.morph
+- morph: strata/bluetooth.morph
 chunks:
 - name: dbus-c++
   morph: strata/genivi-demo-platform-libs/dbus-c++.morph
