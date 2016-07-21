@@ -14,6 +14,12 @@ genivi-baseline-build-64:
   - ybd/ybd.py systems/genivi-baseline-system-x86_64-generic x86_64
   - ybd/ybd.py systems/initramfs-x86_64.morph x86_64
 
+genivi-demo-platform-build-64:
+  stage: build
+  script:
+  - ybd/ybd.py systems/genivi-demo-platform-x86_64-generic.morph x86_64
+  - ybd/ybd.py systems/initramfs-x86_64.morph x86_64
+
 gnome-build-64:
   stage: build
   script:
