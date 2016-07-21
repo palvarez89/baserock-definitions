@@ -1,7 +1,7 @@
 name: rvi
 kind: stratum
 build-depends:
-- morph: strata/audio-bluetooth.morph
+- morph: strata/bluetooth.morph
 - morph: strata/erlang.morph
 chunks:
 - name: rvi_core
