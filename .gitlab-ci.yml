@@ -1,4 +1,5 @@
 before_script:
+  - export LC_ALL="C.UTF-8"
   - git clone https://github.com/devcurmudgeon/ybd
   - apt-get update -qq && apt-get install -y -qq python-dev python-pip
   - pip install fs pyyaml sandboxlib requests jsonschema
