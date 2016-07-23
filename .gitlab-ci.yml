@@ -1,7 +1,7 @@
 before_script:
   - export LC_ALL="C.UTF-8"
   - git clone https://github.com/devcurmudgeon/ybd
-  - apt-get update -qq && apt-get install -y -qq python-dev python-pip
+  - apt-get update -qq && apt-get install -y -qq python-dev python-pip gawk
   - pip install fs pyyaml sandboxlib requests jsonschema
 
 devel-build-64:
