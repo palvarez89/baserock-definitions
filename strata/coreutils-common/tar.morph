@@ -1,16 +1,14 @@
 name: tar
 kind: chunk
 build-system: autotools
-pre-configure-commands:
-- rm .gitmodules
-- bash bootstrap --skip-po --gnulib-srcdir="$(pwd)/gnulib" --paxutils-srcdir="$(pwd)/paxutils"
 configure-commands:
+- bash bootstrap --skip-po --gnulib-srcdir="$(pwd)/gnulib"
+
 # Configure flag notes:
 # 1. Needed to run configure as root
 # 2. Disable some warning that cause the build to fail
 # 3. To use GNU tar instead the busybox one.
 #    This will dissappear when we merge /usr/bin and /bin
-
 - |
   `# [1]` env FORCE_UNSAFE_CONFIGURE=1          \
           ./configure --prefix="$PREFIX"        \
