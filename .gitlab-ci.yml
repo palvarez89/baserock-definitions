@@ -21,6 +21,19 @@ genivi-demo-platform-build-64:
   - ybd/ybd.py systems/genivi-demo-platform-x86_64-generic.morph x86_64
   - ybd/ybd.py systems/initramfs-x86_64.morph x86_64
 
+ivi-build-64:
+  stage: build
+  script:
+  - ybd/ybd.py systems/ivi-system-x86_64.morph x86_64
+  - ybd/ybd.py systems/initramfs-x86_64.morph x86_64
+ivi-deploy-64:
+  stage: deploy
+  script:
+  - ybd/ybd.py clusters/ivi-system-x86_64-deploy.morph x86_64
+  artifacts:
+    paths:
+    - /ivi-system-x86_64.img
+
 gnome-build-64:
   stage: build
   script:
