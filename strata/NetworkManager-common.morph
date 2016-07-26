@@ -32,8 +32,8 @@ chunks:
   build-system: autotools
 - name: libqmi
   repo: upstream:libqmi
-  ref: 97aaa6855d071f64ec2e28df1b9f816da02a3e07
-  unpetrify-ref: master
+  ref: 7bdb9347cf08cf26ed8e420a11b358befa81824b
+  unpetrify-ref: 1.16.0
   build-system: autotools
 - name: ModemManager
   morph: strata/NetworkManager-common/ModemManager.morph
