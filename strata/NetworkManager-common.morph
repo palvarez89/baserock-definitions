@@ -27,8 +27,8 @@ chunks:
   - readline6
 - name: libmbim
   repo: upstream:libmbim
-  ref: 6cf74ebfae1dccf807bb34d88f2cd024d4b14da7
-  unpetrify-ref: master
+  ref: 50cddf48823f05ec124afad80c0d948184e19b00
+  unpetrify-ref: 1.14.0
   build-system: autotools
 - name: libqmi
   repo: upstream:libqmi
