@@ -20,8 +20,8 @@ chunks:
 - name: NetworkManager
   morph: strata/NetworkManager-common/NetworkManager.morph
   repo: upstream:NetworkManager
-  ref: c41be469ab107ea2b4813bf28a1618572b78aa6a
-  unpetrify-ref: baserock/1.1.0-dev-1952-gc41be46
+  ref: 8f6d416768cf69932999b1fc2ab4231321761657
+  unpetrify-ref: 1.2.2
   build-depends:
   - libndp
   - readline6
