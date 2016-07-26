@@ -7,24 +7,6 @@ build-depends:
 - morph: strata/network-security.morph
 - morph: strata/privileges-management.morph
 chunks:
-- name: libndp
-  repo: upstream:libndp
-  ref: 2f721c4ff519f38f46695a60d9f9d88f35bf3c1d
-  unpetrify-ref: v1.6
-  build-system: autotools
-- name: readline6
-  repo: upstream:readline
-  ref: 7628b745a813aac53586b640da056a975f1c443e
-  unpetrify-ref: readline-6.3
-  build-system: autotools
-- name: NetworkManager
-  morph: strata/NetworkManager-common/NetworkManager.morph
-  repo: upstream:NetworkManager
-  ref: 8f6d416768cf69932999b1fc2ab4231321761657
-  unpetrify-ref: 1.2.2
-  build-depends:
-  - libndp
-  - readline6
 - name: libmbim
   repo: upstream:libmbim
   ref: 50cddf48823f05ec124afad80c0d948184e19b00
@@ -43,3 +25,22 @@ chunks:
   build-depends:
   - libmbim
   - libqmi
+- name: libndp
+  repo: upstream:libndp
+  ref: 2f721c4ff519f38f46695a60d9f9d88f35bf3c1d
+  unpetrify-ref: v1.6
+  build-system: autotools
+- name: readline6
+  repo: upstream:readline
+  ref: 7628b745a813aac53586b640da056a975f1c443e
+  unpetrify-ref: readline-6.3
+  build-system: autotools
+- name: NetworkManager
+  morph: strata/NetworkManager-common/NetworkManager.morph
+  repo: upstream:NetworkManager
+  ref: 8f6d416768cf69932999b1fc2ab4231321761657
+  unpetrify-ref: 1.2.2
+  build-depends:
+  - ModemManager
+  - libndp
+  - readline6
