@@ -38,8 +38,8 @@ chunks:
 - name: ModemManager
   morph: strata/NetworkManager-common/ModemManager.morph
   repo: upstream:ModemManager
-  ref: 0ca68657fbcd5bace3d303a0babe2da292784385
-  unpetrify-ref: master
+  ref: 397761c9758c3a8c2d130afaf36dab645d6e0ecf
+  unpetrify-ref: 1.6.0
   build-depends:
   - libmbim
   - libqmi
