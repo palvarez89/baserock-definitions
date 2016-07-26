@@ -9,8 +9,8 @@ build-depends:
 chunks:
 - name: libndp
   repo: upstream:libndp
-  ref: f3a3a63d5b5abced8f75731d7b995606933c6e33
-  unpetrify-ref: v1.4
+  ref: 2f721c4ff519f38f46695a60d9f9d88f35bf3c1d
+  unpetrify-ref: v1.6
   build-system: autotools
 - name: readline6
   repo: upstream:readline
