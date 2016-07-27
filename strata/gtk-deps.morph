@@ -14,8 +14,8 @@ chunks:
 - name: shared-mime-info
   morph: strata/gtk-deps/shared-mime-info.morph
   repo: upstream:shared-mime-info
-  ref: c136fc2578aa8f7c0e098008da18d324033eb991
-  unpetrify-ref: Release-1-4
+  ref: f4e094740c36c629b5284ac270a0b08d8c75cb85
+  unpetrify-ref: Release-1-6
 - name: gdk-pixbuf
   morph: strata/gtk-deps/gdk-pixbuf.morph
   repo: upstream:gdk-pixbuf
