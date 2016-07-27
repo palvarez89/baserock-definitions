@@ -23,19 +23,19 @@ chunks:
   unpetrify-ref: 2.34.0
 - name: atk
   repo: upstream:atk
-  ref: eacc351ec797f5fe477844e3012d460c195b4d88
-  unpetrify-ref: ATK_2_18_0
+  ref: 5a0a8577d29eba636aa0573c469a6200cc93db30
+  unpetrify-ref: ATK_2_20_0
   build-system: autotools
 - name: at-spi2-core
   morph: strata/gtk-deps/at-spi2-core.morph
   repo: upstream:at-spi2-core
-  ref: 703990c0c9b39aa98fa37d07e23af88cf7549388
-  unpetrify-ref: AT_SPI2_CORE_2_18_1
+  ref: 5c3aa9275bb4d143ed9b0a94c7e7d92f88eb1520
+  unpetrify-ref: AT_SPI2_CORE_2_20_1
 - name: at-spi2-atk
   morph: strata/gtk-deps/at-spi2-atk.morph
   repo: upstream:at-spi2-atk
-  ref: 94e7613c179960b71cb3e8541623bc0c87626f7c
-  unpetrify-ref: AT_SPI2_ATK_2_18_1
+  ref: 176a34174403ab09cd633b04cbbb2219cfe58a9d
+  unpetrify-ref: AT_SPI2_ATK_2_20_1
   build-depends:
   - at-spi2-core
   - atk
