@@ -46,8 +46,8 @@ chunks:
   build-system: autotools
 - name: librsvg
   repo: upstream:librsvg
-  ref: 25d5f8b7076535fecb972d6454807ba56452991a
-  unpetrify-ref: 2.40.10
+  ref: e68ec17827a7116fc418189d474c5fafa08555b5
+  unpetrify-ref: 2.40.16
   build-system: autotools
   build-depends:
   - gdk-pixbuf
