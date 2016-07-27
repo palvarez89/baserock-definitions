@@ -8,8 +8,8 @@ build-depends:
 chunks:
 - name: pango
   repo: upstream:pango
-  ref: 29a712f1af7bbb15bdc9d7e09cbf58517edf8c15
-  unpetrify-ref: 1.38.0
+  ref: 8daf1de02f8ac7e05b4788dcd6a209ef06e6e03a
+  unpetrify-ref: 1.40.1
   build-system: autotools
 - name: shared-mime-info
   morph: strata/gtk-deps/shared-mime-info.morph
