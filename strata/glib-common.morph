@@ -18,8 +18,8 @@ chunks:
 - name: glib
   morph: strata/glib-common/glib.morph
   repo: upstream:glib
-  ref: d73cd49799444f9045d44a414c7b35f129844504
-  unpetrify-ref: 2.46.0
+  ref: ee1434632b1b397e5355ef31a79fc1d8b89156a0
+  unpetrify-ref: 2.48.1
 - name: gobject-introspection
   repo: upstream:gobject-introspection
   ref: a984a0f57a8ab178762d5942e2d552121edae091
