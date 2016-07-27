@@ -9,5 +9,5 @@ chunks:
 - name: gtk3
   morph: strata/gtk3/gtk3.morph
   repo: upstream:gtk+
-  ref: 1ed442180d65da78d071019c0dc0d365932e4503
-  unpetrify-ref: 3.18.2
+  ref: bbf775301a08b9a578ef7f647bc35fe13e816241
+  unpetrify-ref: 3.20.6
