@@ -230,7 +230,8 @@ class BuildArtifactPublisher(object):
         repo = 'file://%s' % os.path.abspath('.')
         ref = 'HEAD'
 
-        argv = [self.settings['morph-cmd'], 'list-artifacts', '--quiet', repo, ref]
+        argv = [self.settings['morph-cmd'], 'list-artifacts', '--quiet',
+                '--repo', repo, '--ref', ref]
         argv += self.find_system_morphologies(cluster_morphology_path)
         output = cliapp.runcmd(argv)
         basenames = output.splitlines()
