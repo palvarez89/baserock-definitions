@@ -314,7 +314,7 @@ chunks:
   - xorg-lib-libX11
 - name: xorg-lib-libICE
   repo: upstream:xorg-lib-libICE
-  ref: b0cc7794c89d64fc54d0c75b2bba79fd7a1c7e0a
+  ref: 0dfab4253e26d5c6e5f058126eb5e9f7a7732ae8
   unpetrify-ref: libICE-1.0.9
   build-system: autotools
   build-depends:
@@ -322,7 +322,7 @@ chunks:
   - xorg-lib-libxtrans
 - name: xorg-lib-libSM
   repo: upstream:xorg-lib-libSM
-  ref: d0659dcd3aa23598b38826ac78f85071772c436f
+  ref: 0fd7aa17da41779129a3acfdad28e07c0072a160
   unpetrify-ref: libSM-1.2.2
   build-system: autotools
   build-depends:

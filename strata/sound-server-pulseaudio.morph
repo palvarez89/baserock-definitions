@@ -48,13 +48,13 @@ chunks:
 - name: avahi
   morph: strata/sound-server-pulseaudio/avahi.morph
   repo: upstream:avahi
-  ref: 031d6323b5abb785fbe3601b2f163316a1eb54bc
+  ref: 4c0b4cbf9c597f6df6a3220dec5438f4fe9e551b
   unpetrify-ref: v0.6.31
   build-depends:
   - libdaemon
 - name: sbc
   repo: upstream:sbc
-  ref: f64b34a770bc7fbf180d2a733fe63d352f281ea2
+  ref: 24812c660036a693f8770766aa6fdea667de05d0
   unpetrify-ref: "1.3"
   build-system: autotools
   build-depends:

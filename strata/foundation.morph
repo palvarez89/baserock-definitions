@@ -75,7 +75,7 @@ chunks:
 - name: lzo
   morph: strata/foundation/lzo.morph
   repo: upstream:lzo
-  ref: 5cca83e4d1b0be5825a597ab24ffa6126dc0bc95
+  ref: 338906b389d616a50da0447038d4ec3e1e3f190f
   unpetrify-ref: lzo-2.08
 - name: fuse
   morph: strata/foundation/fuse.morph

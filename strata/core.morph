@@ -20,7 +20,7 @@ chunks:
 - name: ncurses
   morph: strata/core/ncurses.morph
   repo: upstream:ncurses
-  ref: f67398afa6a76fbc902cc0cea963d5151fa2a953
+  ref: f6d73a10a980bc78969c3af93665cbe7d06c3646
   unpetrify-ref: ncurses-5.9-20150131
 - name: texinfo-tarball
   morph: strata/core/texinfo-tarball.morph
@@ -74,7 +74,7 @@ chunks:
   unpetrify-ref: libtool-2.4.6
 - name: file
   repo: upstream:file
-  ref: f69c3fd9bcb108292e7887dd889e8b49f68c4a52
+  ref: 670c2bbcffe873a2b8589ed140c12e7923ef20c0
   unpetrify-ref: file-5.22
   build-system: autotools
 - name: libexpat
