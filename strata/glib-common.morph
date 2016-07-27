@@ -22,8 +22,8 @@ chunks:
   unpetrify-ref: 2.48.1
 - name: gobject-introspection
   repo: upstream:gobject-introspection
-  ref: a984a0f57a8ab178762d5942e2d552121edae091
-  unpetrify-ref: 1.46.0
+  ref: 42bf17a25c7379689fe78f31f332a64e3eded5d2
+  unpetrify-ref: 1.48.0
   build-system: autotools
   build-depends:
   - glib
