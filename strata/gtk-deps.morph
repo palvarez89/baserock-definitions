@@ -41,8 +41,8 @@ chunks:
   - atk
 - name: libcroco
   repo: upstream:libcroco
-  ref: 9207f349d1c97618ab38e6b095207bbd8184d844
-  unpetrify-ref: baserock/0.6.8-30-g9207f34
+  ref: d8a1a160186a45a5852abc06916f9e452ace9e00
+  unpetrify-ref: 0.6.11
   build-system: autotools
 - name: librsvg
   repo: upstream:librsvg
