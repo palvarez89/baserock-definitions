@@ -19,8 +19,8 @@ chunks:
 - name: gdk-pixbuf
   morph: strata/gtk-deps/gdk-pixbuf.morph
   repo: upstream:gdk-pixbuf
-  ref: b86959aa16e9d49ec6e286bc57d36c5249578c59
-  unpetrify-ref: 2.30.8
+  ref: 807bdc165f3c560d12326ebfd12820ef3130664b
+  unpetrify-ref: 2.34.0
 - name: atk
   repo: upstream:atk
   ref: eacc351ec797f5fe477844e3012d460c195b4d88
