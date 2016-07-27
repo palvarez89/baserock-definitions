@@ -6,5 +6,5 @@ chunks:
 - name: pcre
   repo: upstream:pcre
   morph: strata/pcre-utils/pcre.morph
-  ref: 2720152c58e13e7cc7403642ec33127101b9971b
-  unpetrify-ref: baserock/morph
+  ref: b2b477a2025ee7501243e5b6a54ef4f6dbfb666b
+  unpetrify-ref: pcre-8.39
