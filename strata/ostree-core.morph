@@ -25,8 +25,8 @@ chunks:
 - name: ostree
   morph: strata/ostree-core/ostree.morph
   repo: upstream:ostree
-  ref: 6c7e191147023942feb7454359557bb3551467a4
-  unpetrify-ref: v2016.6
+  ref: c31cf75552af9be404fbc6a24643c569855c1c3b
+  unpetrify-ref: v2016.7
   build-depends:
   - gpgme
   - libgsystem
