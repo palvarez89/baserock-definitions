@@ -13,8 +13,8 @@ chunks:
 - name: flatpak
   morph: strata/flatpak-common/flatpak.morph
   repo: upstream:flatpak
-  ref: c741200fa5e22199dc88104bdb73da4583cc8c00
-  unpetrify-ref: 0.6.5
+  ref: 07b342a937ed562a59aa649d793771babee57a09
+  unpetrify-ref: 0.6.8
   build-depends:
   - elfutils
   submodules:
