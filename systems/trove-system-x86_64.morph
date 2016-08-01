@@ -33,8 +33,6 @@ strata:
   morph: strata/ostree-core.morph
 - name: morph-utils
   morph: strata/morph-utils.morph
-- name: pcre-utils
-  morph: strata/pcre-utils.morph
 - name: lorry
   morph: strata/lorry.morph
 - name: lorry-controller

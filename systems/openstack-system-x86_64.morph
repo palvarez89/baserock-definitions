@@ -39,8 +39,6 @@ strata:
   morph: strata/databases.morph
 - name: erlang
   morph: strata/erlang.morph
-- name: pcre-utils
-  morph: strata/pcre-utils.morph
 - name: apache-httpd-server
   morph: strata/apache-httpd-server.morph
 - name: django

@@ -21,8 +21,6 @@ strata:
   morph: strata/nfs.morph
 - name: databases
   morph: strata/databases.morph
-- name: pcre-utils
-  morph: strata/pcre-utils.morph
 - name: lighttpd-server
   morph: strata/lighttpd-server.morph
 - name: webtools
