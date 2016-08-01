@@ -16,8 +16,8 @@ chunks:
 - name: wpa_supplicant
   morph: strata/connectivity/wpa_supplicant.morph
   repo: upstream:hostap
-  ref: c4a58c968044c2002706b1a69c089c4d63728e77
-  unpetrify-ref: baserock/hostap_2_3
+  ref: d2d2254ad0c8d9dc80545936c86abecbad49fa91
+  unpetrify-ref: baserock/hostap_2_5
   build-depends:
   - libnl
 - name: iptables
