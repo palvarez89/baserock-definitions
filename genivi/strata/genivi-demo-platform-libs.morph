@@ -7,7 +7,7 @@ build-depends:
 - morph: strata/bluetooth.morph
 chunks:
 - name: dbus-c++
-  morph: strata/genivi-demo-platform-libs/dbus-c++.morph
+  morph: genivi/strata/genivi-demo-platform-libs/dbus-c++.morph
   repo: upstream:dbus-c++
   ref: 8d351eec25430651acbac014e44ec011fac32d57
   unpetrify-ref: baserock/genivi-demo-platform

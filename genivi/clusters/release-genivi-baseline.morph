@@ -3,7 +3,7 @@ kind: cluster
 description: |
   Deploy GENIVI Baseline systems
 systems:
-- morph: systems/genivi-baseline-system-x86_64-generic.morph
+- morph: genivi/systems/genivi-baseline-system-x86_64-generic.morph
   deploy:
     genivi-baseline-system-x86_64-generic:
       type: extensions/rawdisk
@@ -21,7 +21,7 @@ systems:
       initramfs-genivi-baseline-system-x86_64-generic:
         type: extensions/initramfs
         location: boot/initramfs.gz
-- morph: systems/genivi-baseline-system-armv7lhf-jetson.morph
+- morph: genivi/systems/genivi-baseline-system-armv7lhf-jetson.morph
   deploy:
     genivi-baseline-system-armv7lhf-jetson:
       type: extensions/rawdisk

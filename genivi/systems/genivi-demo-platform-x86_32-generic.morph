@@ -38,7 +38,7 @@ strata:
 - name: navigation
   morph: strata/navigation.morph
 - name: genivi
-  morph: strata/genivi.morph
+  morph: genivi/strata/genivi.morph
 - name: wayland-generic
   morph: strata/wayland-generic.morph
 - name: graphics-common
@@ -54,7 +54,7 @@ strata:
 - name: x-common
   morph: strata/x-common.morph
 - name: weston-genivi
-  morph: strata/weston-genivi.morph
+  morph: genivi/strata/weston-genivi.morph
 - name: ruby
   morph: strata/ruby.morph
 - name: icu-common
@@ -70,9 +70,9 @@ strata:
 - name: python-pygobject
   morph: strata/python-pygobject.morph
 - name: genivi-demo-platform-libs
-  morph: strata/genivi-demo-platform-libs.morph
+  morph: genivi/strata/genivi-demo-platform-libs.morph
 - name: genivi-demo-platform
-  morph: strata/genivi-demo-platform.morph
+  morph: genivi/strata/genivi-demo-platform.morph
 - name: tools
   morph: strata/tools.morph
 configuration-extensions:

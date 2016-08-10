@@ -2,16 +2,16 @@ name: genivi-demo-platform
 kind: stratum
 description: Components which make up the GENIVI demo platform.
 build-depends:
-- morph: strata/genivi-demo-platform-libs.morph
+- morph: genivi/strata/genivi-demo-platform-libs.morph
 - morph: strata/qt5-tools.morph
 - morph: strata/qt5-tools-qtmultimedia.morph
 - morph: strata/qt5-tools-qtwebkit.morph
-- morph: strata/genivi.morph
+- morph: genivi/strata/genivi.morph
 - morph: strata/wayland-generic.morph
-- morph: strata/weston-genivi.morph
+- morph: genivi/strata/weston-genivi.morph
 chunks:
 - name: browser-poc
-  morph: strata/genivi-demo-platform/browser-poc.morph
+  morph: genivi/strata/genivi-demo-platform/browser-poc.morph
   repo: upstream:genivi/browser-poc
   ref: d90501f8bd3edcd35eae72efbfb4583ba8f3cdfc
   unpetrify-ref: baserock/genivi/genivi-demo-platform
@@ -19,12 +19,12 @@ chunks:
     documentation/designdocument/cls:
       url: http://github.com/Pelagicore/Pelagicore-LaTeX-Class.git
 - name: audiomanager-poc
-  morph: strata/genivi-demo-platform/audiomanager-poc.morph
+  morph: genivi/strata/genivi-demo-platform/audiomanager-poc.morph
   repo: upstream:audiomanager
   ref: bb65a4d0a18667baa64e5ba40104dc2cda06b299
   unpetrify-ref: baserock/genivi/genivi-demo-platform
 - name: audiomanager@gdp
-  morph: strata/genivi-demo-platform/audiomanager@gdp.morph
+  morph: genivi/strata/genivi-demo-platform/audiomanager@gdp.morph
   repo: upstream:audiomanager
   ref: ba709ee7d4f9f81af638a3d3c640b7152bbe32bc
   unpetrify-ref: baserock/genivi/6.1-3-gba709ee-gdp
@@ -36,7 +36,7 @@ chunks:
   build-depends:
   - audiomanager@gdp
 - name: genivi-demo-platform-hmi
-  morph: strata/genivi-demo-platform/genivi-demo-platform-hmi.morph
+  morph: genivi/strata/genivi-demo-platform/genivi-demo-platform-hmi.morph
   repo: upstream:genivi/genivi-demo-platform-hmi
   ref: fd2c954165b0c0f7f4d9e94e8c9c3c8541a53e79
   unpetrify-ref: master

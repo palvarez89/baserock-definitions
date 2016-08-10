@@ -3,7 +3,7 @@ kind: cluster
 description: |
   Deploy GENIVI Demo platform system
 systems:
-- morph: systems/genivi-demo-platform-x86_64-generic.morph
+- morph: genivi/systems/genivi-demo-platform-x86_64-generic.morph
   deploy:
     genivi-demo-platform-x86_64-generic:
       type: extensions/rawdisk

@@ -8,12 +8,12 @@ build-depends:
 - morph: strata/wayland-generic.morph
 chunks:
 - name: weston
-  morph: strata/weston-genivi/weston.morph
+  morph: genivi/strata/weston-genivi/weston.morph
   repo: upstream:weston
   ref: 2e5232b980eaa1074023a65dd7941e80b72a763c
   unpetrify-ref: baserock/weston-1.11.0/tegra
 - name: wayland-ivi-extension
-  morph: strata/weston-genivi/wayland-ivi-extension.morph
+  morph: genivi/strata/weston-genivi/wayland-ivi-extension.morph
   repo: upstream:genivi/wayland-ivi-extension
   ref: 6c2823684105c0bd46aaeca817fe5d87e7c6da25
   unpetrify-ref: 1.10.90

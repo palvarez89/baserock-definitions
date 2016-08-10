@@ -32,7 +32,7 @@ strata:
 - name: multimedia-gstreamer
   morph: strata/multimedia-gstreamer.morph
 - name: genivi
-  morph: strata/genivi.morph
+  morph: genivi/strata/genivi.morph
 - name: wayland-generic
   morph: strata/wayland-generic.morph
 - name: graphics-common
@@ -44,7 +44,7 @@ strata:
 - name: x-common
   morph: strata/x-common.morph
 - name: weston-genivi
-  morph: strata/weston-genivi.morph
+  morph: genivi/strata/weston-genivi.morph
 configuration-extensions:
 - extensions/set-hostname
 - extensions/add-config-files

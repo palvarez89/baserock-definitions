@@ -6,41 +6,41 @@ build-depends:
 - morph: strata/sound-server-pulseaudio.morph
 chunks:
 - name: linuxquota
-  morph: strata/genivi/linuxquota.morph
+  morph: genivi/strata/genivi/linuxquota.morph
   repo: upstream:linuxquota
   ref: 0804c89a16736533e440771dc42a15e5d0223902
   unpetrify-ref: baserock/genivi/morph
 - name: DLT-daemon
-  morph: strata/genivi/DLT-daemon.morph
+  morph: genivi/strata/genivi/DLT-daemon.morph
   repo: upstream:DLT-daemon
   ref: e9a486a08fff6d3cc7133a350cec3ee10f463207
   unpetrify-ref: v2.15.0
 - name: node-startup-controller
-  morph: strata/genivi/node-startup-controller.morph
+  morph: genivi/strata/genivi/node-startup-controller.morph
   repo: upstream:node-startup-controller
   ref: b77fb1dbb280ec45525853e52a362eafd736b400
   unpetrify-ref: baserock/systemd_v216
   build-depends:
   - DLT-daemon
 - name: googletest
-  morph: strata/genivi/googletest.morph
+  morph: genivi/strata/genivi/googletest.morph
   repo: upstream:googletest
   ref: 5e3f7d3db4c16e2ba8b42b0bf4689f7d2abbcb08
   unpetrify-ref: baserock/morph
 - name: googlemock
-  morph: strata/genivi/googlemock.morph
+  morph: genivi/strata/genivi/googlemock.morph
   repo: upstream:googlemock
   ref: 0e9998c140079046c396a0e7033bb465abae79cd
   unpetrify-ref: baserock/morph
   build-depends:
   - googletest
 - name: genivi-common-api-runtime
-  morph: strata/genivi/genivi-common-api-runtime.morph
+  morph: genivi/strata/genivi/genivi-common-api-runtime.morph
   repo: upstream:genivi-common-api-runtime
   ref: 77d9cdaf6acee03a1e360e0e1a3cd0b01a95b407
   unpetrify-ref: 3.1.5
 - name: genivi-common-api-dbus-runtime
-  morph: strata/genivi/genivi-common-api-dbus-runtime.morph
+  morph: genivi/strata/genivi/genivi-common-api-dbus-runtime.morph
   repo: upstream:genivi-common-api-dbus-runtime
   ref: 3348a422ffc756b63de5890356383858a898e8b1
   unpetrify-ref: 3.1.5
@@ -58,12 +58,12 @@ chunks:
   - genivi-common-api-runtime
   - genivi-common-api-dbus-runtime
 - name: itzam-tarball
-  morph: strata/genivi/itzam-tarball.morph
+  morph: genivi/strata/genivi/itzam-tarball.morph
   repo: upstream:itzam-tarball
   ref: 4ebcf671416927b64475da7b810b6016c847bf73
   unpetrify-ref: baserock/genivi/baseline
 - name: persistence-common-object
-  morph: strata/genivi/persistence-common-object.morph
+  morph: genivi/strata/genivi/persistence-common-object.morph
   repo: upstream:genivi/persistence-common-object
   ref: 395b0f504e05ee6c59c1b9d9267c793e072a19ba
   unpetrify-ref: master
@@ -88,7 +88,7 @@ chunks:
   - DLT-daemon
   - persistence-client-library
 - name: persistence-administrator
-  morph: strata/genivi/persistence-administrator.morph
+  morph: genivi/strata/genivi/persistence-administrator.morph
   repo: upstream:genivi/persistence-administrator
   ref: 47e5a424c8ef6e33565737f20d3bd81f69c8efc9
   unpetrify-ref: master

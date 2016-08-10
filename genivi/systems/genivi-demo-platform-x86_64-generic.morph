@@ -1,7 +1,7 @@
-name: genivi-demo-platform-armv7lhf-jetson
+name: genivi-demo-platform-x86_64-generic
 kind: system
 description: A GENIVI demo platform for a 64-bit x86 system.
-arch: armv7lhf
+arch: x86_64
 strata:
 - name: build-essential
   morph: strata/build-essential.morph
@@ -17,8 +17,8 @@ strata:
   morph: strata/pcre-utils.morph
 - name: foundation
   morph: strata/foundation.morph
-- name: bsp-jetson
-  morph: strata/bsp-jetson.morph
+- name: bsp-x86_64-generic
+  morph: strata/bsp-x86_64-generic.morph
 - name: connectivity
   morph: strata/connectivity.morph
 - name: connman-common
@@ -38,7 +38,7 @@ strata:
 - name: navigation
   morph: strata/navigation.morph
 - name: genivi
-  morph: strata/genivi.morph
+  morph: genivi/strata/genivi.morph
 - name: wayland-generic
   morph: strata/wayland-generic.morph
 - name: graphics-common
@@ -47,12 +47,14 @@ strata:
   morph: strata/input-common.morph
 - name: ivi-common
   morph: strata/ivi-common.morph
+- name: llvm-common
+  morph: strata/llvm-common.morph
 - name: mesa-common
   morph: strata/mesa-common.morph
 - name: x-common
   morph: strata/x-common.morph
 - name: weston-genivi
-  morph: strata/weston-genivi.morph
+  morph: genivi/strata/weston-genivi.morph
 - name: ruby
   morph: strata/ruby.morph
 - name: icu-common
@@ -68,9 +70,9 @@ strata:
 - name: python-pygobject
   morph: strata/python-pygobject.morph
 - name: genivi-demo-platform-libs
-  morph: strata/genivi-demo-platform-libs.morph
+  morph: genivi/strata/genivi-demo-platform-libs.morph
 - name: genivi-demo-platform
-  morph: strata/genivi-demo-platform.morph
+  morph: genivi/strata/genivi-demo-platform.morph
 - name: tools
   morph: strata/tools.morph
 configuration-extensions:

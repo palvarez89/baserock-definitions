@@ -1,7 +1,7 @@
 name: gdp-jetson-upgrade
 kind: cluster
 systems:
-- morph: systems/genivi-demo-platform-armv7lhf-jetson.morph
+- morph: genivi/systems/genivi-demo-platform-armv7lhf-jetson.morph
   deploy-defaults:
     BOOT_DEVICE: "/dev/mmcblk0p1"
     ROOT_DEVICE: "/dev/mmcblk0p2"
