@@ -27,8 +27,8 @@ chunks:
 - name: linux-jetson-tk1
   morph: strata/bsp-jetson/linux-jetson-tk1.morph
   repo: upstream:linux
-  ref: 2dcd0af568b0cf583645c8a317dd12e344b1c72a
-  unpetrify-ref: v4.6
+  ref: 523d939ef98fd712632d93a5a2b588e477a7565e
+  unpetrify-ref: v4.7
 - name: linux-firmware@jetson
   morph: strata/bsp-jetson/linux-firmware@jetson.morph
   repo: upstream:linux-firmware
