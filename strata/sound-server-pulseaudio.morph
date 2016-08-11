@@ -11,18 +11,18 @@ chunks:
   build-system: autotools
 - name: alsa-lib
   repo: upstream:alsa-lib
-  ref: 16c956e598a2b22459538ec7eb46b7a8421bb80a
+  ref: 1bf144013cffdeb41a5df3a11a8eb2596c5ea2b5
   # Note: ref anchored because alsa-lib is known for rebasing
   # tags, and master
-  unpetrify-ref: baserock/v1.0.29
+  unpetrify-ref: baserock/v1.1.2
   build-system: autotools
 - name: alsa-utils
   morph: strata/sound-server-pulseaudio/alsa-utils.morph
   repo: upstream:alsa-utils
-  ref: 85c622e2984b557e6bd79c13cea466012dfb3761
+  ref: 675619eb295f8eb35903ef227e6939a86d8c1e7f
   # Note: ref anchored because alsa-utils is known for rebasing
   # tags, and master
-  unpetrify-ref: baserock/v1.0.29
+  unpetrify-ref: baserock/v1.1.2
   build-depends:
   - alsa-lib
 - name: speex
