@@ -13,8 +13,8 @@ chunks:
 - name: bluez
   morph: strata/bluetooth/bluez.morph
   repo: upstream:bluez
-  ref: 5eb47745978925e451523c8e8cb2ad6a53ed3863
-  unpetrify-ref: baserock/5.37+service-api
+  ref: 557ea2e2d10cbda4b295e111e1794ef9160b159a
+  unpetrify-ref: baserock/5.41+service-api
   build-depends:
   - libical
 - name: dbus-glib
