@@ -4,6 +4,7 @@ description: Software components designed by genivi, for genivi.
 build-depends:
 - morph: strata/foundation.morph
 - morph: strata/sound-server-pulseaudio.morph
+- morph: strata/cpp-common-libs.morph
 chunks:
 - name: linuxquota
   morph: genivi/strata/genivi/linuxquota.morph
@@ -105,3 +106,8 @@ chunks:
   - node-state-manager
   - persistence-client-library
   - DLT-daemon
+- name: vSomeIP
+  repo: upstream:genivi/vSomeIP
+  ref: 2b7442a4c2452f8f3bd9e0f09f829478256d39af
+  unpetrify-ref: 2.0.1
+  build-system: cmake
